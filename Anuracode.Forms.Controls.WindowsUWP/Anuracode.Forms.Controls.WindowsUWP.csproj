@@ -107,7 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShapeRenderer.cs" />
     <EmbeddedResource Include="Properties\Anuracode.Forms.Controls.WindowsUWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>

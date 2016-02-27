@@ -33,8 +33,41 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AC.cs" />
+    <Compile Include="ContentButton\ContentTemplateViewButton.cs" />
+    <Compile Include="ContentButton\ContentViewButton.cs" />
+    <Compile Include="ContentButton\GlyphContentViewButton.cs" />
+    <Compile Include="ContentButton\GlyphLeftContentViewButton.cs" />
+    <Compile Include="ContentButton\GlyphOnlyContentViewButton.cs" />
+    <Compile Include="ContentButton\GlyphTopContentViewButton.cs" />
+    <Compile Include="ContentButton\ImageContentViewButton.cs" />
+    <Compile Include="ContentButton\ImageLeftContentViewButton.cs" />
+    <Compile Include="ContentButton\TextContentViewButton.cs" />
+    <Compile Include="ExtendedImage.cs" />
+    <Compile Include="ExtendedLabel.cs" />
+    <Compile Include="ImageOrientation.cs" />
+    <Compile Include="ITraceService.cs" />
+    <Compile Include="Layouts\CollectionChangedHandle.cs" />
+    <Compile Include="Layouts\RepeaterRecycleView.cs" />
+    <Compile Include="Layouts\RepeaterView.generics.cs" />
+    <Compile Include="Layouts\SimpleLayout.cs" />
+    <Compile Include="Layouts\SimpleRowBaseView.cs" />
+    <Compile Include="Layouts\SimpleViewBase.cs" />
+    <Compile Include="Layouts\SimpleViewViewCell.Generic.cs" />
+    <Compile Include="Layouts\SimpleViewViewRowCell.Generic.cs" />
+    <Compile Include="Layouts\TemplateSelector.cs" />
+    <Compile Include="ObjectExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeType.cs" />
+    <Compile Include="ShapeView.cs" />
+    <Compile Include="Styles\ApplicationStyles.cs" />
+    <Compile Include="Styles\ApplicationStyles.Generics.cs" />
+    <Compile Include="Styles\ApplicationStylesBase.cs" />
+    <Compile Include="Styles\CommonResourcesBase.cs" />
+    <Compile Include="Styles\CommonResourcesBase.Fonts.cs" />
+    <Compile Include="Styles\CommonResourcesDarkTheme.cs" />
+    <Compile Include="Styles\CommonResourcesLightTheme.cs" />
+    <Compile Include="Styles\ThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -53,6 +86,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.1.0.6517-pre5\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.1.0.6517-pre5\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

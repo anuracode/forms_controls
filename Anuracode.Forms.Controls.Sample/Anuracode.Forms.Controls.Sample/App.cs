@@ -11,6 +11,13 @@ namespace Anuracode.Forms.Controls.Sample
     {
         public App()
         {
+            //ShapeView newShape = new ShapeView()
+            //{
+            //    Color = Color.Green,
+            //    WidthRequest = 40,
+            //    HeightRequest = 40                
+            //};
+
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -21,7 +28,7 @@ namespace Anuracode.Forms.Controls.Sample
                         new Label {
                             XAlign = TextAlignment.Center,
                             Text = "Welcome to Xamarin Forms!"
-                        }
+                        }                        
                     }
                 }
             };
