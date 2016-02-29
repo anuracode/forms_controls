@@ -15,6 +15,17 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Default text color.
         /// </summary>
+        public override Color DefaultLabelSubtitleTextColor
+        {
+            get
+            {
+                return Color.FromHex("333333");
+            }
+        }
+
+        /// <summary>
+        /// Default text color.
+        /// </summary>
         public override Color DefaultLabelTextColor
         {
             get

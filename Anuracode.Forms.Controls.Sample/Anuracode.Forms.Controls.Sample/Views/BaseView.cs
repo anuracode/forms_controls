@@ -15,8 +15,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public BaseView() : base()
+        public BaseView()
         {
+            this.Style = Theme.ApplicationStyles.ViewPageStyle;
         }
     }
 }

@@ -5,6 +5,7 @@
 
 using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Styles;
 
 namespace Anuracode.Forms.Controls
 {
@@ -128,7 +129,7 @@ namespace Anuracode.Forms.Controls
                 IsHandlingLayoutManually = true,
                 Padding = 0,
                 IsClippedToBounds = true,
-                BackgroundColor = ContentButtonDefaultValues.PagesBackgroundColorLight
+                BackgroundColor = ThemeManager.CommonResourcesBase.PagesBackgroundColorLight
             };
 
             InnerConentLayout.OnLayoutChildren += InnerConentLayout_OnLayoutChildren;

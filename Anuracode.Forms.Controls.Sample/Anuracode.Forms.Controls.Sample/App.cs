@@ -1,42 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using Anuracode.Forms.Controls.Sample.Localization;
+using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample
 {
     public class App : Application
     {
+        /// <summary>
+        /// Localization resources for the App.
+        /// </summary>
+        private static LocalizationResources localizationResources;
+
+        /// <summary>
+        /// Static constructor.
+        /// </summary>
         public App()
         {
-            //ShapeView newShape = new ShapeView()
-            //{
-            //    Color = Color.Green,
-            //    WidthRequest = 40,
-            //    HeightRequest = 40                
-            //};
-
-            // The root page of your application
-            MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }                        
-                    }
-                }
-            };
+            MainPage = new Views.MainPage();
         }
 
-        protected override void OnStart()
+        /// <summary>
+        /// Action when the page initialization is complete.
+        /// </summary>
+        public static Action InitPageCompleteAction { get; set; }
+
+        /// <summary>
+        /// Localization resources for the App.
+        /// </summary>
+        public static LocalizationResources LocalizationResources
         {
-            // Handle when your app starts
+            get
+            {
+                if (localizationResources == null)
+                {
+                    localizationResources = new LocalizationResources();
+                }
+
+                return localizationResources;
+            }
+        }
+
+        /// <summary>
+        /// True when the pages have been initilezed.
+        /// </summary>
+        public static bool PagesInitilized { get; set; }
+
+        /// <summary>
+        /// Show main menu.
+        /// </summary>
+        public static ICommand ShowMainMenuCommand { get; set; }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
         }
 
         protected override void OnSleep()
@@ -44,9 +61,9 @@ namespace Anuracode.Forms.Controls.Sample
             // Handle when your app sleeps
         }
 
-        protected override void OnResume()
+        protected override void OnStart()
         {
-            // Handle when your app resumes
+            // Handle when your app starts
         }
     }
 }

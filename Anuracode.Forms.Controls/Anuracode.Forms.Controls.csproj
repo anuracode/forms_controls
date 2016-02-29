@@ -67,6 +67,7 @@
     <Compile Include="Styles\CommonResourcesBase.Fonts.cs" />
     <Compile Include="Styles\CommonResourcesDarkTheme.cs" />
     <Compile Include="Styles\CommonResourcesLightTheme.cs" />
+    <Compile Include="Styles\RenderUtilBase.cs" />
     <Compile Include="Styles\ThemeManager.cs" />
   </ItemGroup>
   <ItemGroup>

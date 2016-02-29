@@ -36,11 +36,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Localization\LocalizationResources.cs" />
+    <Compile Include="ViewModels\StoreSearchViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="Views\BaseView.cs" />
+    <Compile Include="Views\BaseView.Generics.cs" />
     <Compile Include="Views\Common\CommonResources.cs" />
+    <Compile Include="Views\Common\CommonResourcesGlyph.cs" />
+    <Compile Include="Views\IntroPage.cs" />
+    <Compile Include="Views\MainPage.cs" />
     <Compile Include="Views\MenuPage.cs" />
+    <Compile Include="Views\StoreSearchPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />

@@ -24,6 +24,11 @@ namespace Anuracode.Forms.Controls.Sample
         private static CommonResources commonResources;
 
         /// <summary>
+        /// Render util to use.
+        /// </summary>
+        private static RenderUtilBase renderUtil;
+
+        /// <summary>
         /// Application styles.
         /// </summary>
         public static ApplicationStyles ApplicationStyles
@@ -32,7 +37,7 @@ namespace Anuracode.Forms.Controls.Sample
             {
                 if (applicationStyles == null)
                 {
-                    SetTheme(new ApplicationStyles(new CommonResources()));
+                    SetTheme(new ApplicationStyles(new CommonResources(), new RenderUtilBase()));
                 }
 
                 return applicationStyles;
@@ -52,6 +57,18 @@ namespace Anuracode.Forms.Controls.Sample
         }
 
         /// <summary>
+        /// Common resources to use.
+        /// </summary>
+        public static RenderUtilBase RenderUtil
+        {
+            get
+            {
+                // Force the instance of the resources.
+                return (ApplicationStyles == null) ? null : renderUtil;
+            }
+        }
+
+        /// <summary>
         /// Set theme.
         /// </summary>
         /// <param name="themeId">Id of the theme.</param>
@@ -63,6 +80,13 @@ namespace Anuracode.Forms.Controls.Sample
                 if (commonResources == null)
                 {
                     throw new System.ArgumentOutOfRangeException("newStyles", "The resources should be of type CommonResources");
+                }
+
+                renderUtil = newStyles.RenderUtilBase;
+
+                if (renderUtil == null)
+                {
+                    throw new System.ArgumentOutOfRangeException("newStyles", "The render util should be definded.");
                 }
 
                 Anuracode.Forms.Controls.Styles.ThemeManager.SetTheme(newStyles);

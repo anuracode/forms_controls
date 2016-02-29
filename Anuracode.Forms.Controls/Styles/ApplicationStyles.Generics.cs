@@ -21,8 +21,9 @@ namespace Anuracode.Forms.Controls.Styles
         /// Default constructor.
         /// </summary>
         /// <param name="commonResources">Common resources.</param>
-        public ApplicationStyles(TCommonResources commonResources)
-            : base(commonResources)
+        /// <param name="renderUtil">Render util to use.</param>
+        public ApplicationStyles(TCommonResources commonResources, RenderUtilBase renderUtil)
+            : base(commonResources, renderUtil)
         {
         }
 

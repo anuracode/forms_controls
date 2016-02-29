@@ -26,7 +26,7 @@ namespace Anuracode.Forms.Controls.Styles
             {
                 if (applicationStyles == null)
                 {
-                    SetTheme(new ApplicationStyles(new CommonResourcesBase()));
+                    SetTheme(new ApplicationStyles(new CommonResourcesBase(), new RenderUtilBase()));
                 }
 
                 return applicationStyles;

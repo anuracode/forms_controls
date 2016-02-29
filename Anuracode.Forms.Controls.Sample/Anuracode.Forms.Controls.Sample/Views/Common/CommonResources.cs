@@ -16,5 +16,19 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     /// </summary>
     public partial class CommonResources : Anuracode.Forms.Controls.Styles.CommonResourcesLightTheme
     {
+        /// <summary>
+        /// Path for the image.
+        /// </summary>
+        public string PathImageAppLogoLarge = ExtendedImage.CompleteImagePrefix("LogoApp256.png");
+
+        /// <summary>
+        /// Path for the image.
+        /// </summary>
+        public string PathImageFeaturesAction = ExtendedImage.CompleteImagePrefix("appbar_features.png");
+
+        /// <summary>
+        /// Path for the image.
+        /// </summary>
+        public string PathImageHambuergerLogo = ExtendedImage.CompleteImagePrefix("hamburgerlogo.png");
     }
 }

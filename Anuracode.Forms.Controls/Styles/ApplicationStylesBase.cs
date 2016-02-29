@@ -16,12 +16,30 @@ namespace Anuracode.Forms.Controls.Styles
         private CommonResourcesBase commonResourcesBase;
 
         /// <summary>
+        /// Utility to render.
+        /// </summary>
+        private RenderUtilBase renderUtilBase;
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="commonResources">Common resources to use.</param>
-        public ApplicationStylesBase(CommonResourcesBase commonResources)
+        /// <param name="renderUtil">Render util to use.</param>
+        public ApplicationStylesBase(CommonResourcesBase commonResources, RenderUtilBase renderUtil)
         {
             this.commonResourcesBase = commonResources;
+            this.renderUtilBase = renderUtil;
+        }
+
+        /// <summary>
+        /// Utility to render.
+        /// </summary>
+        public RenderUtilBase RenderUtilBase
+        {
+            get
+            {
+                return renderUtilBase;
+            }
         }
 
         /// <summary>

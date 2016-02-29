@@ -81,6 +81,17 @@ namespace Anuracode.Forms.Controls.Styles
         }
 
         /// <summary>
+        /// Background color translucent.
+        /// </summary>
+        public virtual Color BackgroundColorTranslucent
+        {
+            get
+            {
+                return new Color(PagesBackgroundColor.R, PagesBackgroundColor.G, PagesBackgroundColor.B, 0.4f);
+            }
+        }
+
+        /// <summary>
         /// Button background color.
         /// </summary>
         public virtual Color ButtonBackgroundColor
@@ -88,6 +99,17 @@ namespace Anuracode.Forms.Controls.Styles
             get
             {
                 return Color.FromHex("f3f3f3").MultiplyAlpha(0.5);
+            }
+        }
+
+        /// <summary>
+        /// Default text color.
+        /// </summary>
+        public virtual Color DefaultLabelSubtitleTextColor
+        {
+            get
+            {
+                return Color.White;
             }
         }
 
