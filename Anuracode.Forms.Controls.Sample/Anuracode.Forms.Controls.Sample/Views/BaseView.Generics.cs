@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Xamarin.Forms;
+using System.Threading;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
@@ -14,9 +14,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
         where TViewModel : class
     {
         /// <summary>
-        /// View model from the AppNavigation.
+        /// Lock for the animtaion.
         /// </summary>
-        protected TViewModel ViewModel { get; private set; }
+        private SemaphoreSlim lockAnimation;
 
         /// <summary>
         /// Default constructor.
@@ -42,5 +42,31 @@ namespace Anuracode.Forms.Controls.Sample.Views
             : this(null)
         {
         }
+
+        /// <summary>
+        /// Animation token source.
+        /// </summary>
+        protected CancellationTokenSource AnimationTokenSource { get; set; }
+
+        /// <summary>
+        /// Lock for the animtaion.
+        /// </summary>
+        protected SemaphoreSlim LockAnimation
+        {
+            get
+            {
+                if (lockAnimation == null)
+                {
+                    lockAnimation = new SemaphoreSlim(1);
+                }
+
+                return lockAnimation;
+            }
+        }
+
+        /// <summary>
+        /// View model from the AppNavigation.
+        /// </summary>
+        protected TViewModel ViewModel { get; private set; }
     }
 }

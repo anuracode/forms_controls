@@ -30,5 +30,10 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Path for the image.
         /// </summary>
         public string PathImageHambuergerLogo = ExtendedImage.CompleteImagePrefix("hamburgerlogo.png");
+
+        /// <summary>
+        /// Path for image.
+        /// </summary>
+        public string PathImageCancelAction = ExtendedImage.CompleteImagePrefix("appbar_cancel.png");
     }
 }

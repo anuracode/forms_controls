@@ -55,6 +55,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Cancel button.
+        /// </summary>
+        public string CancelButton
+        {
+            get
+            {
+                return "Cancel";
+            }
+        }
+
+        /// <summary>
         /// Orders label.
         /// </summary>
         public string OrdersLabel

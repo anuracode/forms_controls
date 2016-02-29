@@ -15,27 +15,27 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Corner radius property.
         /// </summary>
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(bool), typeof(ShapeView), defaultValue: 0f);
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create<ShapeView, float>(s => s.CornerRadius, 0f);
 
         /// <summary>
         /// Padding property.
-        /// </summary>        
-        public static readonly BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Thickness), typeof(ShapeView), defaultValue: default(Thickness));
+        /// </summary>
+        public static readonly BindableProperty PaddingProperty = BindableProperty.Create<ShapeView, Thickness>(s => s.Padding, default(Thickness));
 
         /// <summary>
         /// Shape type.
         /// </summary>
-        public static readonly BindableProperty ShapeTypeProperty = BindableProperty.Create(nameof(ShapeType), typeof(Anuracode.Forms.Controls.ShapeType), typeof(ShapeView), defaultValue: Anuracode.Forms.Controls.ShapeType.Box);
+        public static readonly BindableProperty ShapeTypeProperty = BindableProperty.Create<ShapeView, ShapeType>(s => s.ShapeType, ShapeType.Box);
 
         /// <summary>
         /// Shape color.
         /// </summary>
-        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create(nameof(StrokeColor), typeof(Color), typeof(ShapeView), defaultValue: Color.Default);
+        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<ShapeView, Color>(s => s.StrokeColor, Color.Default);
 
         /// <summary>
         /// Stroke width.
         /// </summary>
-        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create(nameof(StrokeWidth), typeof(float), typeof(ShapeView), defaultValue: 1);
+        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<ShapeView, float>(s => s.StrokeWidth, 1f);
 
         /// <summary>
         /// Default constructor.

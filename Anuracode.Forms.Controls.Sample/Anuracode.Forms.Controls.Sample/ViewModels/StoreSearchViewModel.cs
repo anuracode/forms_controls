@@ -14,7 +14,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     /// <summary>
     /// Main view view model.
     /// </summary>
-    public class StoreSearchViewModel
+    public class StoreSearchViewModel : BaseViewModel
     {
     }
 }

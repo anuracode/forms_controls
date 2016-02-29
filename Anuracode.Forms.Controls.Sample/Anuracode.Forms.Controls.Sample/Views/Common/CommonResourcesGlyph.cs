@@ -11,6 +11,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     public partial class CommonResources
     {
         /// <summary>
+        /// Glyph for the main menu.
+        /// </summary>
+        public string GlyphTextMainMenu = "\uE9BD";
+
+        /// <summary>
         /// Glyph about.
         /// </summary>
         public string GlyphTextAbout = "\uEA0C";
@@ -39,6 +44,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Glyph shopping cart from the alternate glyph.
         /// </summary>
         public string GlyphTextCart = "\uE93A";
+
+        /// <summary>
+        /// Glyph for the navigate back.
+        /// </summary>
+        public string GlyphTextNavigateBack = "\uE112";
 
         /// <summary>
         /// Glyph orders.

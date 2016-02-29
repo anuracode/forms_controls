@@ -4,13 +4,14 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Sample.ViewModels;
+using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
     /// <summary>
     /// Store search view.
     /// </summary>
-    public class StoreSearchPage : BaseView<StoreSearchViewModel>
+    public class StoreSearchPage : ContentBaseView<StoreSearchViewModel>
     {
         /// <summary>
         /// Default constructor.
@@ -27,6 +28,19 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public StoreSearchPage()
             : this(null)
         {
+        }
+
+        /// <summary>
+        /// Content of the page.
+        /// </summary>
+        protected override View RenderContent()
+        {
+            StackLayout stackPage = new StackLayout()
+            {
+                Style = Theme.ApplicationStyles.FormRowContainerStyle
+            };
+
+            return stackPage;
         }
     }
 }
