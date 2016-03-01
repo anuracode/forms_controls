@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
+    <key>UIAppFonts</key>
+    <array>
+      <string>Fonts/Roboto-Regular.ttf</string>
+      <string>Fonts/Roboto-Medium.ttf</string>
+      <string>Fonts/Roboto-BoldCondensed.ttf</string>
+      <string>Fonts/Roboto-Condensed.ttf</string>
+      <string>Fonts/Roboto-Light.ttf</string>
+      <string>Fonts/seguisym.ttf</string>
+      <string>Fonts/IcoMoon-Free.ttf</string>
+    </array>
     <key>UIDeviceFamily</key>
     <array>
       <integer>1</integer>
