@@ -146,4 +146,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <AndroidAsset Include="Assets\IcoMoon-Free.ttf" />
+    <AndroidAsset Include="Assets\Roboto-BoldCondensed.ttf" />
+    <AndroidAsset Include="Assets\Roboto-Condensed.ttf" />
+    <AndroidAsset Include="Assets\Roboto-Light.ttf" />
+    <AndroidAsset Include="Assets\Roboto-Medium.ttf" />
+    <AndroidAsset Include="Assets\Roboto-Regular.ttf" />
+    <AndroidAsset Include="Assets\seguisym.ttf" />
+  </ItemGroup>
 </Project>
