@@ -146,7 +146,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, false, true, true, true);
+                return false;
             }
         }
 
