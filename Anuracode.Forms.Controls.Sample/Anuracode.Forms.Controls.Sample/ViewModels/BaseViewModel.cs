@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Sample.Localization;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// Title to use.
         /// </summary>
         private string title = string.Empty;
+        internal static readonly string PREFIX_EMAIL;
 
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
@@ -44,6 +46,17 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// Is initialized, not bindinble.
         /// </summary>
         public bool IsInitialized { get; set; }
+
+        /// <summary>
+        /// Localization resources for the App.
+        /// </summary>
+        public LocalizationResources LocalizationResources
+        {
+            get
+            {
+                return App.LocalizationResources;
+            }
+        }
 
         /// <summary>
         /// Share app.

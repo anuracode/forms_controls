@@ -112,7 +112,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                return FontSegoeUISymbolFriendlyName;
+                return FontIconMoonName;
             }
         }
 
@@ -123,7 +123,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                return FontIconMoonName;
+                return FontSegoeUISymbolFriendlyName;
             }
         }
 

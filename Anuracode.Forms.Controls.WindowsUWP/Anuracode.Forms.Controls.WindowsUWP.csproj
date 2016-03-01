@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorExtensions.cs" />
+    <Compile Include="ExtendedLabelRenderer.cs" />
+    <Compile Include="ManagedImageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
     <EmbeddedResource Include="Properties\Anuracode.Forms.Controls.WindowsUWP.rd.xml" />

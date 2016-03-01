@@ -117,6 +117,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Fonts\IcoMoon-Free.ttf" />
+    <Content Include="Assets\Fonts\Roboto-BoldCondensed.ttf" />
+    <Content Include="Assets\Fonts\Roboto-Condensed.ttf" />
+    <Content Include="Assets\Fonts\Roboto-Light.ttf" />
+    <Content Include="Assets\Fonts\Roboto-Medium.ttf" />
+    <Content Include="Assets\Fonts\Roboto-Regular.ttf" />
+    <Content Include="Assets\Fonts\seguisym.ttf" />
     <None Include="packages.config" />
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>

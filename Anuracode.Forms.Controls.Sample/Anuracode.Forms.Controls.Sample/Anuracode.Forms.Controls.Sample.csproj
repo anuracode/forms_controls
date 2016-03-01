@@ -37,11 +37,13 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Localization\LocalizationResources.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\StoreSearchViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Theme.cs" />
+    <Compile Include="Views\AboutPage.cs" />
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\BaseView.Generics.cs" />
     <Compile Include="Views\Common\CommonResources.cs" />

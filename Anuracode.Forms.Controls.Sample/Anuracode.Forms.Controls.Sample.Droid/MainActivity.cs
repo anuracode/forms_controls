@@ -14,6 +14,7 @@ namespace Anuracode.Forms.Controls.Sample.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            global::Xamarin.Forms.Forms.SetTitleBarVisibility(global::Xamarin.Forms.AndroidTitleBarVisibility.Never);
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

@@ -6,8 +6,6 @@
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -18,36 +16,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
     /// </summary>
     public partial class MainPage : MasterDetailPage
     {
-        /// <summary>
-        /// Viewmodel for the main.
-        /// </summary>
-        private MainViewModel viewModel;
-
-        /// <summary>
-        /// Viewmodel for the main.
-        /// </summary>
-        public MainViewModel ViewModel
-        {
-            get
-            {
-                if (viewModel == null)
-                {
-                    viewModel = new MainViewModel();
-                }
-
-                return viewModel;
-            }
-        }
-
-        /// <summary>
-        /// Updates the gesture enable.
-        /// </summary>
-        /// <param name="isEnable">True when the gesture should be enabled.</param>
-        protected void SetMenuGesture(bool isEnable)
-        {
-            this.IsGestureEnabled = isEnable;
-        }
-
         /// <summary>
         /// Navigation delay.
         /// </summary>
@@ -98,8 +66,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         private Command showOrdersCommand;
 
-
-
         /// <summary>
         /// Navigate to search.
         /// </summary>
@@ -121,6 +87,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         private NavigationPage storeNavigationPage;
 
         /// <summary>
+        /// Viewmodel for the main.
+        /// </summary>
+        private MainViewModel viewModel;
+
+        /// <summary>
         /// Default consturctor.
         /// </summary>
         public MainPage()
@@ -133,10 +104,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             RenderContent();
         }
-
-
-
-
 
         /// <summary>
         /// Show shipment items.
@@ -170,8 +137,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             }
         }
 
-
-
         /// <summary>
         /// Intro navigation page.
         /// </summary>
@@ -184,13 +149,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             }
         }
 
-
-
-
-
-
-
-
         /// <summary>
         /// Navigate to About.
         /// </summary>
@@ -200,19 +158,26 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (showAboutCommand == null)
                 {
-                    showAboutCommand = new Command(AlertFunctionNotIncluded);
+                    showAboutCommand = new Command(
+                        () =>
+                    {
+                        var aboutViewModel = new AboutViewModel();
+
+                        AboutPage newPage = new AboutPage(aboutViewModel);
+
+                        if (StoreNavigationPage != null)
+                        {
+                            NavigationPage.SetHasNavigationBar(newPage, false);
+                            NavigationPage.SetHasBackButton(newPage, false);
+                            StoreNavigationPage.PushAsync(newPage);
+
+                            CloseMenuCommand.Execute(null);
+                        }
+                    });
                 }
 
                 return showAboutCommand;
             }
-        }
-
-        /// <summary>
-        /// Alert funcition not added.
-        /// </summary>
-        protected void AlertFunctionNotIncluded()
-        {
-            DisplayAlert("Sample do not include function", "The sample do not include this functionallity", "Cancel");
         }
 
         /// <summary>
@@ -373,7 +338,40 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 storeNavigationPage = value;
             }
-        }              
+        }
+
+        /// <summary>
+        /// Viewmodel for the main.
+        /// </summary>
+        public MainViewModel ViewModel
+        {
+            get
+            {
+                if (viewModel == null)
+                {
+                    viewModel = new MainViewModel();
+                }
+
+                return viewModel;
+            }
+        }
+
+        /// <summary>
+        /// Alert funcition not added.
+        /// </summary>
+        protected void AlertFunctionNotIncluded()
+        {
+            DisplayAlert("Sample do not include function", "The sample do not include this functionallity", "Cancel");
+        }
+
+        /// <summary>
+        /// Updates the gesture enable.
+        /// </summary>
+        /// <param name="isEnable">True when the gesture should be enabled.</param>
+        protected void SetMenuGesture(bool isEnable)
+        {
+            this.IsGestureEnabled = isEnable;
+        }
 
         /// <summary>
         /// Property changed.
@@ -459,7 +457,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                    });
             };
 
-            App.ShowMainMenuCommand = this.ShowMainMenuCommand;            
+            App.ShowMainMenuCommand = this.ShowMainMenuCommand;
         }
 
         /// <summary>

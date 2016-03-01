@@ -11,9 +11,72 @@ namespace Anuracode.Forms.Controls.Sample.Localization
     public class LocalizationResources
     {
         /// <summary>
+        /// Assembly version.
+        /// </summary>
+        public string AboutAssemblyVersionLabel
+        {
+            get
+            {
+                return "Assembly version";
+            }
+        }
+
+        /// <summary>
+        /// Disclaimer message.
+        /// </summary>
+        public string AboutDisclaimerMessage
+        {
+            get
+            {
+                return "Your privacy is important to us.";
+            }
+        }
+
+        /// <summary>
+        /// Disclaimer title.
+        /// </summary>
+        public string AboutDisclaimerTitle
+        {
+            get
+            {
+                return "Disclaimer";
+            }
+        }
+
+        /// <summary>
+        /// File version.
+        /// </summary>
+        public string AboutFileVersionLabel
+        {
+            get
+            {
+                return "File version";
+            }
+        }
+
+        /// <summary>
+        /// About mail.
+        /// </summary>
+        public string AboutMailLabel
+        {
+            get
+            {
+                return "Support mail";
+            }
+        }
+
+        /// <summary>
         /// About label.
         /// </summary>
         public string AboutMenu
+        {
+            get
+            {
+                return "About";
+            }
+        }
+
+        public object AboutUrl
         {
             get
             {
@@ -62,6 +125,39 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Cancel";
+            }
+        }
+
+        /// <summary>
+        /// Developer label.
+        /// </summary>
+        public string DevelopedByLabel
+        {
+            get
+            {
+                return "Developed by";
+            }
+        }
+
+        /// <summary>
+        /// Disclaimer url.
+        /// </summary>
+        public string DisclaimerUrl
+        {
+            get
+            {
+                return "http://www.google.com/privacy";
+            }
+        }
+
+        /// <summary>
+        /// Email to.
+        /// </summary>
+        public string ErrorMailTo
+        {
+            get
+            {
+                return "contact@sample.com";
             }
         }
 
