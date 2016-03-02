@@ -74,5 +74,16 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Glyph for the store.
         /// </summary>
         public string GlyphTextStore = "\uE14D";
+
+        /// <summary>
+        /// Glyph add.
+        /// </summary>
+        public string GlyphTextAdd = "\uE0B6";
+
+        /// <summary>
+        /// Glyph for the refresh.
+        /// </summary>
+        public string GlyphTextRefresh = "\uE117";
+
     }
 }

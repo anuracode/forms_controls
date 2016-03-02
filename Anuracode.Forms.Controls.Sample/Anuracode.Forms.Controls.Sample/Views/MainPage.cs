@@ -189,7 +189,34 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (showAddressBookCommand == null)
                 {
-                    showAddressBookCommand = new Command(AlertFunctionNotIncluded);
+                    showAddressBookCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new AddressListViewModel();
+
+                            AddressesListPage newPage = new AddressesListPage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                AC.ScheduleManaged(
+                                    TimeSpan.FromSeconds(0.1),
+                                    async () =>
+                                {
+                                    await Task.FromResult(0);
+
+                                    if (newViewModel.LoadItemsCommand.CanExecute(null))
+                                    {
+                                        newViewModel.LoadItemsCommand.Execute(null);
+                                    }
+                                });
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
                 }
 
                 return showAddressBookCommand;

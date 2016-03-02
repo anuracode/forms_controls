@@ -36,11 +36,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public ContentBaseView(TViewModel viewModel)
             : base(viewModel)
         {
-            if (HasInitialAnimation && (ViewModel != null) && !IsRecylced)
-            {
-                ViewModel.InitializationComplete += ViewModel_InitializationComplete;
-            }
-
             if (BindingContext == null)
             {
                 BindingContext = ViewModel;
@@ -137,18 +132,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Footer of the view.
         /// </summary>
-        protected View Footer { get; set; }
-
-        /// <summary>
-        /// Has initial animation.
-        /// </summary>
-        protected virtual bool HasInitialAnimation
-        {
-            get
-            {
-                return false;
-            }
-        }
+        protected View Footer { get; set; }        
 
         /// <summary>
         /// Has a background that needs render.
@@ -395,31 +379,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             }
 
             AddShareToolbarItem();
-        }
-
-        /// <summary>
-        /// Initial animation.
-        /// </summary>
-        /// <returns>Task to await.</returns>
-        protected virtual async Task InitialAnimation()
-        {
-            if (HasInitialAnimation && (InnerContentView != null) && !IsRecylced)
-            {
-                try
-                {
-                    await LockAnimation.WaitAsync();
-
-                    if (this.Content != null)
-                    {
-                        await InnerContentView.FadeTo(1);
-                    }
-                }
-                finally
-                {
-                    LockAnimation.Release();
-                }
-            }
-        }
+        }       
 
         /// <summary>
         /// Instance the view for the applciation title.
@@ -768,19 +728,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="footerPosition">Footer position.</param>
         protected virtual void PageExtraLayersLayoutChildren(Rectangle pageSize, Rectangle headerPosition, Rectangle contentPosition, Rectangle footerPosition)
         {
-        }
-
-        /// <summary>
-        /// Prepare initial animation.
-        /// </summary>
-        /// <param name="content">View to prepare.</param>
-        protected virtual void PrepareContentInitalAnimation(View content)
-        {
-            if (content != null)
-            {
-                content.Opacity = ViewModel.IsInitialized ? 1 : 0;
-            }
-        }
+        }       
 
         /// <summary>
         /// Render background layout.
@@ -985,11 +933,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (InnerContentView != null)
                 {
-                    if (HasInitialAnimation && !IsRecylced)
-                    {
-                        PrepareContentInitalAnimation(InnerContentView);
-                    }
-
                     InnerContentView.VerticalOptions = LayoutOptions.FillAndExpand;
                     InnerContentView.HorizontalOptions = LayoutOptions.Fill;
 
@@ -1025,21 +968,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 await BackgroundTopShape.FadeTo(newOpacity);
                 await BackgroundTopRightShape.FadeTo(newOpacity);
             }
-        }
-
-        /// <summary>
-        /// Event when the ViewModel initalization is complete.
-        /// </summary>
-        /// <param name="sender">Sender of the event.</param>
-        /// <param name="e">Arguments of the event.</param>
-        protected void ViewModel_InitializationComplete(object sender, EventArgs e)
-        {
-            if (ViewModel != null)
-            {
-                ViewModel.InitializationComplete -= ViewModel_InitializationComplete;
-            }
-
-            AC.ScheduleManaged((Func<Task>)InitialAnimation);
-        }
+        }        
     }
 }

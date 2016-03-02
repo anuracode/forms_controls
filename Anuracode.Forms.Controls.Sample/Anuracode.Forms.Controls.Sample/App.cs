@@ -1,4 +1,5 @@
 ﻿using Anuracode.Forms.Controls.Sample.Localization;
+using Anuracode.Forms.Controls.Sample.Repository;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -11,6 +12,16 @@ namespace Anuracode.Forms.Controls.Sample
         /// Localization resources for the App.
         /// </summary>
         private static LocalizationResources localizationResources;
+
+        /// <summary>
+        /// Repository for the address.
+        /// </summary>
+        private static RepositoryAddress repositoryAddress;
+
+        /// <summary>
+        /// Repository for store items.
+        /// </summary>
+        private static RepositoryStoreItem repositoryStoreItem;
 
         /// <summary>
         /// Static constructor.
@@ -45,6 +56,38 @@ namespace Anuracode.Forms.Controls.Sample
         /// True when the pages have been initilezed.
         /// </summary>
         public static bool PagesInitilized { get; set; }
+
+        /// <summary>
+        /// Repository for the address.
+        /// </summary>
+        public static RepositoryAddress RepositoryAddress
+        {
+            get
+            {
+                if (repositoryAddress == null)
+                {
+                    repositoryAddress = new RepositoryAddress();
+                }
+
+                return repositoryAddress;
+            }
+        }
+
+        /// <summary>
+        /// Repository for store items.
+        /// </summary>
+        public static RepositoryStoreItem RepositoryStoreItem
+        {
+            get
+            {
+                if (repositoryStoreItem == null)
+                {
+                    repositoryStoreItem = new RepositoryStoreItem();
+                }
+
+                return repositoryStoreItem;
+            }
+        }
 
         /// <summary>
         /// Show main menu.

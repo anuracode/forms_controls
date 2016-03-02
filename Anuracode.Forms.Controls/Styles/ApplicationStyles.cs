@@ -49,6 +49,11 @@ namespace Anuracode.Forms.Controls.Styles
         private Style detailValueExtendedLabelStyle;
 
         /// <summary>
+        /// Style for the text of empty on a list.
+        /// </summary>
+        private Style emptyListExtendedLabelStyle;
+
+        /// <summary>
         /// Style for the filter stack.
         /// </summary>
         private Style filterStackStyle;
@@ -306,6 +311,29 @@ namespace Anuracode.Forms.Controls.Styles
                 }
 
                 return detailValueExtendedLabelStyle;
+            }
+        }
+
+        /// <summary>
+        /// Style for the text of empty on a list.
+        /// </summary>
+        public virtual Style EmptyListExtendedLabelStyle
+        {
+            get
+            {
+                if (emptyListExtendedLabelStyle == null)
+                {
+                    emptyListExtendedLabelStyle = new Style(typeof(ExtendedLabel));
+                    emptyListExtendedLabelStyle.BasedOn = DefaultExtendedLabelStyle;
+
+                    emptyListExtendedLabelStyle.Setters.Add(Label.FontSizeProperty, Device.GetNamedSize(NamedSize.Micro, typeof(Label)));
+                    emptyListExtendedLabelStyle.Setters.Add(Label.FontAttributesProperty, FontAttributes.Bold);
+                    emptyListExtendedLabelStyle.Setters.Add(Label.TextColorProperty, Color.Gray);
+                    emptyListExtendedLabelStyle.Setters.Add(Label.VerticalOptionsProperty, LayoutOptions.Start);
+                    emptyListExtendedLabelStyle.Setters.Add(Label.HorizontalOptionsProperty, LayoutOptions.Center);
+                }
+
+                return emptyListExtendedLabelStyle;
             }
         }
 

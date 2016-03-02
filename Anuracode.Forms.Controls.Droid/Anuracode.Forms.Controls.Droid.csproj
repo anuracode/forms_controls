@@ -90,6 +90,8 @@
     <Compile Include="ManagedImageRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shape\Shape.cs" />
+    <Compile Include="Shape\ShapeRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

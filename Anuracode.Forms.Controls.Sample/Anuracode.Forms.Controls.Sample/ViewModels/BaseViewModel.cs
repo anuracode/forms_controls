@@ -5,7 +5,7 @@
 
 using Anuracode.Forms.Controls.Sample.Localization;
 using System;
-using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,8 +14,18 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     /// <summary>
     /// Base view model.
     /// </summary>
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : Model.BaseEntity
     {
+        /// <summary>
+        /// Email prefix.
+        /// </summary>
+        public const string PREFIX_EMAIL = "mailto:";
+
+        /// <summary>
+        /// Semaphore for the repository file.
+        /// </summary>
+        private static SemaphoreSlim lockUI;
+
         /// <summary>
         /// Share content.
         /// </summary>
@@ -30,17 +40,22 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// Title to use.
         /// </summary>
         private string title = string.Empty;
-        internal static readonly string PREFIX_EMAIL;
 
         /// <summary>
-        /// Occurs when changes occur that affect whether or not the command should execute.
+        /// Semaphore for the repository file.
         /// </summary>
-        public event EventHandler InitializationComplete;
+        public static SemaphoreSlim LockUI
+        {
+            get
+            {
+                if (lockUI == null)
+                {
+                    lockUI = new SemaphoreSlim(3);
+                }
 
-        /// <summary>
-        /// Event when property changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+                return lockUI;
+            }
+        }
 
         /// <summary>
         /// Is initialized, not bindinble.
@@ -158,39 +173,6 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         protected virtual bool CanShareContent()
         {
             return false;
-        }
-
-        /// <summary>
-        /// Notify that a property changed.
-        /// </summary>
-        /// <param name="propertyName">Name of the property that changed.</param>
-        /// [Obsolete("Use OnPropertyChanged with expression.", false)]
-        protected void OnPropertyChanged(string propertyName)
-        {
-            AC.ScheduleManaged(
-                async () =>
-            {
-                await Task.FromResult(0);
-                RaisePropertyChangedEvent(propertyName);
-            });
-        }
-
-        /// <summary>
-        /// Raise the property change.
-        /// </summary>
-        /// <param name="whichProperty"></param>
-        protected void RaisePropertyChangedEvent(string whichProperty)
-        {
-            // check for subscription before going multithreaded
-            if (PropertyChanged != null)
-            {
-                var handler = PropertyChanged;
-
-                if (handler != null)
-                {
-                    handler(this, new PropertyChangedEventArgs(whichProperty));
-                }
-            }
         }
 
         /// <summary>

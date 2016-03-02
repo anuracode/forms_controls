@@ -76,11 +76,34 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             }
         }
 
-        public object AboutUrl
+        /// <summary>
+        /// About Url.
+        /// </summary>
+        public string AboutUrl
         {
             get
             {
-                return "About";
+                return "http://www.anuracode.com";
+            }
+        }
+
+        /// <summary>
+        /// Add button.
+        /// </summary>
+        public string AddButton
+        {
+            get
+            {
+                return "Add";
+            }
+        }
+
+        /// <summary>
+        /// Addresses empty.
+        /// </summary>
+        public string AddressesEmptyText
+        {
+            get { return "No addresses";
             }
         }
 
@@ -164,6 +187,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         /// <summary>
         /// Orders label.
         /// </summary>
+        public string FilterLabel
+        {
+            get
+            {
+                return "Filter";
+            }
+        }
+
+        /// <summary>
+        /// Orders label.
+        /// </summary>
         public string OrdersLabel
         {
             get
@@ -180,6 +214,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Search";
+            }
+        }
+
+        /// <summary>
+        /// Filter by.
+        /// </summary>
+        public string SearchFilterByLabel
+        {
+            get
+            {
+                return "Filter by";
             }
         }
 
@@ -213,6 +258,28 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Share App";
+            }
+        }
+
+        /// <summary>
+        /// Store item.
+        /// </summary>
+        public string StoreItemLabel
+        {
+            get
+            {
+                return "Store item";
+            }
+        }
+
+        /// <summary>
+        /// Store items.
+        /// </summary>
+        public string StoreItemsLabel
+        {
+            get
+            {
+                return "Store items";
             }
         }
 

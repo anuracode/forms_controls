@@ -36,22 +36,46 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Interfaces\IListPagedViewModelBase.cs" />
     <Compile Include="Localization\LocalizationResources.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\StoreItem.cs" />
+    <Compile Include="Model\StoreItemLevel.cs" />
+    <Compile Include="Model\StringExtensions.cs" />
+    <Compile Include="Repository\RepositoryAddress.cs" />
+    <Compile Include="Repository\RepositoryStoreItem.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AddressListViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\GenericComparer.cs" />
+    <Compile Include="ViewModels\GroupingExtensions.cs" />
+    <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
+    <Compile Include="ViewModels\PagedResult.Generics.cs" />
+    <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
+    <Compile Include="ViewModels\StoreItemViewModel.cs" />
+    <Compile Include="ViewModels\StoreListViewModel.cs" />
     <Compile Include="ViewModels\StoreSearchViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="Views\AboutPage.cs" />
+    <Compile Include="Views\AddressesListPage.cs" />
+    <Compile Include="Views\AddressRowView.cs" />
+    <Compile Include="Views\BasePagedView.Generics.cs" />
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\BaseView.Generics.cs" />
+    <Compile Include="Views\Common\BaseConverter.cs" />
     <Compile Include="Views\Common\CommonResources.cs" />
     <Compile Include="Views\Common\CommonResourcesGlyph.cs" />
+    <Compile Include="Views\Common\StringToBooleanConverter.cs" />
     <Compile Include="Views\ContentBaseView.Generics.cs" />
+    <Compile Include="Views\FilterBarView.cs" />
     <Compile Include="Views\IntroPage.cs" />
+    <Compile Include="Views\ListBasePagedView.Generics.cs" />
     <Compile Include="Views\MainPage.cs" />
     <Compile Include="Views\MenuPage.cs" />
+    <None Include="Views\StoreListPage.cs" />
     <Compile Include="Views\StoreSearchPage.cs" />
   </ItemGroup>
   <ItemGroup>
