@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
     /// <summary>
     /// Page for the store items.
     /// </summary>
-    public class StoreListPage : ListBasePagedView<StoreListViewModel, StoreItemViewModel>, IStoreListPage
+    public class StoreListPage : ListBasePagedView<StoreListViewModel, StoreItemViewModel> //, IStoreListPage
     {
         /// <summary>
         /// Counter for the autoscroll.
         /// </summary>
         private long autoScrollCounter = 0;
-
-        /// <summary>
-        /// Command that moves the scroll automatically.
-        /// </summary>
-        private DelegateCommandAsync autoScrollFeaturedItemsCommand;
 
         /// <summary>
         /// Interval for auto scroll.
@@ -43,7 +39,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command for the filter bar.
         /// </summary>
-        private DelegateCommandResultAsync<string, string> executeSearchCommand;
+        private Command<string> executeSearchCommand;
 
         /// <summary>
         /// Flag for idle.
@@ -53,22 +49,22 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Hide cart command.
         /// </summary>
-        private DelegateCommandAsync hideCartCommand;
+        private Command hideCartCommand;
 
         /// <summary>
         /// Hide item group detail.
         /// </summary>
-        private DelegateCommandAsync hideItemGroupDetailCommand;
+        private Command hideItemGroupDetailCommand;
 
         /// <summary>
         /// Hide item large detail command.
         /// </summary>
-        private DelegateCommandAsync hideItemLargeDetailCommand;
+        private Command hideItemLargeDetailCommand;
 
         /// <summary>
         /// Hide items options command.
         /// </summary>
-        private DelegateCommandAsync hideItemOptionsCommand;
+        private Command hideItemOptionsCommand;
 
         /// <summary>
         /// Flag for when the cart view has been added.
@@ -310,13 +306,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command for the filter bar.
         /// </summary>
-        public override DelegateCommandResultAsync<string, string> ExecuteSearchCommand
+        public override Command<string> ExecuteSearchCommand
         {
             get
             {
                 if (executeSearchCommand == null)
                 {
-                    executeSearchCommand = new DelegateCommandResultAsync<string, string>(
+                    executeSearchCommand = new Command<string>(
                         async (newFilterTerm) =>
                         {
                             await Task.FromResult(0);
@@ -331,16 +327,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             HideSearchCommand.ExecuteIfCan();
 
                             FilterBar_Completed(this, null);
-
-                            return newFilterTerm;
-                        },
-                        (newFilterTerm) =>
-                        {
-                            return (ViewModel.IsFullSearchMode && !string.IsNullOrWhiteSpace(newFilterTerm)) || !ViewModel.IsFullSearchMode;
-                        },
-                        () => ExecuteSearchCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return executeSearchCommand;

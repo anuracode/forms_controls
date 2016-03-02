@@ -52,6 +52,7 @@
     <Compile Include="ViewModels\GroupingExtensions.cs" />
     <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
     <Compile Include="ViewModels\PagedResult.Generics.cs" />
+    <Compile Include="ViewModels\StoreDetailViewModel.cs" />
     <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
     <Compile Include="ViewModels\StoreItemViewModel.cs" />
     <Compile Include="ViewModels\StoreListViewModel.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Views\ListBasePagedView.Generics.cs" />
     <Compile Include="Views\MainPage.cs" />
     <Compile Include="Views\MenuPage.cs" />
+    <Compile Include="Views\NavigationStep.cs" />
     <None Include="Views\StoreListPage.cs" />
     <Compile Include="Views\StoreSearchPage.cs" />
   </ItemGroup>
