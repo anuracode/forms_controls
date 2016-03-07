@@ -19,6 +19,11 @@ namespace Anuracode.Forms.Controls.Sample
         private static RepositoryAddress repositoryAddress;
 
         /// <summary>
+        /// Repository cart.
+        /// </summary>
+        private static RepositoryCart repositoryCart;
+
+        /// <summary>
         /// Repository for store items.
         /// </summary>
         private static RepositoryStoreItem repositoryStoreItem;
@@ -70,6 +75,22 @@ namespace Anuracode.Forms.Controls.Sample
                 }
 
                 return repositoryAddress;
+            }
+        }
+
+        /// <summary>
+        /// Repository cart.
+        /// </summary>
+        public static RepositoryCart RepositoryCart
+        {
+            get
+            {
+                if (repositoryCart == null)
+                {
+                    repositoryCart = new RepositoryCart();
+                }
+
+                return repositoryCart;
             }
         }
 

@@ -3,14 +3,12 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Anuracode.Forms.Controls.Sample.Repository
 {
@@ -19,7 +17,6 @@ namespace Anuracode.Forms.Controls.Sample.Repository
     /// </summary>
     public class RepositoryStoreItem
     {
-
         /// <summary>
         /// Get all the items that match the conditions.
         /// </summary>

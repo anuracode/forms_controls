@@ -33,6 +33,24 @@ namespace Anuracode.Forms.Controls
         /// Schedule a action to execute.
         /// </summary>
         /// <param name="action">Action to execute.</param>
+        public static void ScheduleManaged(Action action)
+        {
+            InternalScheduleManaged(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    if (action != null)
+                    {
+                        action();
+                    }
+                });
+        }
+
+        /// <summary>
+        /// Schedule a action to execute.
+        /// </summary>
+        /// <param name="action">Action to execute.</param>
         /// <param name="delayTime">Delay time to execute.</param>
         public static void ScheduleManaged(TimeSpan delayTime, Func<Task> action)
         {

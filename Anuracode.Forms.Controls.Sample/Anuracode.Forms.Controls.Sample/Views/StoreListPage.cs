@@ -4,14 +4,12 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reactive.Concurrency;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views
@@ -94,27 +92,27 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to store level.
         /// </summary>
-        private DelegateCommandAsync<StoreItemLevel> navigateToStoreLevelCommand;
+        private Command<StoreItemLevel> navigateToStoreLevelCommand;
 
         /// <summary>
         /// Navigate to store level.
         /// </summary>
-        private DelegateCommandAsync<StoreItemLevel> navigateToStoreLevelProductsCommand;
+        private Command<StoreItemLevel> navigateToStoreLevelProductsCommand;
 
         /// <summary>
         /// Navigate to store level in search mode.
         /// </summary>
-        private DelegateCommandAsync<StoreItemLevel> navigateToStoreLevelProductsSearchModeCommand;
+        private Command<StoreItemLevel> navigateToStoreLevelProductsSearchModeCommand;
 
         /// <summary>
         /// Command for refreshing items.
         /// </summary>
-        private DelegateCommandAsync refreshCommand;
+        private Command refreshCommand;
 
         /// <summary>
         /// navigate back depending on the view.
         /// </summary>
-        private DelegateCommandAsync relativeBackCommand;
+        private Command relativeBackCommand;
 
         /// <summary>
         /// Selected item viewmodel.
@@ -124,42 +122,42 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Select payment type command.
         /// </summary>
-        private DelegateCommandAsync selectGroupTypeCommand;
+        private Command selectGroupTypeCommand;
 
         /// <summary>
         /// Share content.
         /// </summary>
-        private DelegateCommandAsync shareContentCommand;
+        private Command shareContentCommand;
 
         /// <summary>
         /// Show cart command.
         /// </summary>
-        private DelegateCommandAsync showCartCommand;
+        private Command showCartCommand;
 
         /// <summary>
         /// Show the item detail.
         /// </summary>
-        private DelegateCommandAsync<object> showItemLargeDetailCommand;
+        private Command<object> showItemLargeDetailCommand;
 
         /// <summary>
         /// Show the items options.
         /// </summary>
-        private DelegateCommandAsync<StoreItemViewModel> showItemOptionsCommand;
+        private Command<StoreItemViewModel> showItemOptionsCommand;
 
         /// <summary>
         /// Show search.
         /// </summary>
-        private DelegateCommandAsync showSearchCommand;
+        private Command showSearchCommand;
 
         /// <summary>
         /// Command to change the view to category mode.
         /// </summary>
-        private DelegateCommandAsync<bool?> switchToCategoryModeCommand;
+        private Command<bool?> switchToCategoryModeCommand;
 
         /// <summary>
         /// Command to change the view to production list mode.
         /// </summary>
-        private DelegateCommandAsync<bool?> switchToProductionListModeCommand;
+        private Command<bool?> switchToProductionListModeCommand;
 
         /// <summary>
         /// Timer subscription.
@@ -169,12 +167,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Update the view to reflect a specifig navigation step.
         /// </summary>
-        private DelegateCommandAsync<NavigationStep> updateViewToStepCommand;
+        private Command<NavigationStep> updateViewToStepCommand;
 
         /// <summary>
         /// Complete the search with the suggestion.
         /// </summary>
-        private DelegateCommandAsync<StoreItemViewModel> useSuggestionCommand;
+        private Command<StoreItemViewModel> useSuggestionCommand;
 
         /// <summary>
         /// Default constructor.
@@ -183,9 +181,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public StoreListPage(StoreListViewModel viewModel)
             : base(viewModel)
         {
-            ViewModel.LoadItemsCommand.CommandCompleted += LoadItemsCommand_CommandCompleted;
-            ViewModel.LoadSublevelsCommand.CommandCompleted += LoadSublevelsCommand_CommandCompleted;
-            ViewModel.LoadFeaturedItemsCommand.CommandCompleted += LoadFeaturedItemsCommand_CommandCompleted;
+            // ViewModel.LoadItemsCommand.CommandCompleted += LoadItemsCommand_CommandCompleted;
+            // ViewModel.LoadSublevelsCommand.CommandCompleted += LoadSublevelsCommand_CommandCompleted;
+            // ViewModel.LoadFeaturedItemsCommand.CommandCompleted += LoadFeaturedItemsCommand_CommandCompleted;
         }
 
         /// <summary>
@@ -208,84 +206,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
-        /// Command that moves the scroll automatically.
-        /// </summary>
-        public DelegateCommandAsync AutoScrollFeaturedItemsCommand
-        {
-            get
-            {
-                if (autoScrollFeaturedItemsCommand == null)
-                {
-                    autoScrollFeaturedItemsCommand = new DelegateCommandAsync(
-                        async () =>
-                        {
-                            await Task.FromResult(0);
-
-                            Parcero.Core.App.ThreadManager.ScheduleManaged(
-                                async () =>
-                                {
-                                    if ((this.Content != null) && (timerSubscription != null))
-                                    {
-                                        if (featuredScrollIdle)
-                                        {
-                                            if (FeaturedScrollView != null)
-                                            {
-                                                RepeaterRecycleView recycler = FeaturedScrollView as RepeaterRecycleView;
-
-                                                if (recycler != null)
-                                                {
-                                                    if ((recycler.ItemsSource != null) && !recycler.IsLoading)
-                                                    {
-                                                        int totalItems = recycler.ItemsSource.Count;
-
-                                                        if (totalItems > 0)
-                                                        {
-                                                            autoScrollCounter++;
-                                                            long division = autoScrollCounter / totalItems;
-                                                            int newIndex = Convert.ToInt32(autoScrollCounter - (totalItems * division));
-
-                                                            await recycler.ScrollToIndexAsync(newIndex.Clamp(0, totalItems - 1), ScrollToPosition.Center, true);
-                                                        }
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    RepeaterView<StoreItemViewModel> stackScroll = FeaturedScrollView.Content as RepeaterView<StoreItemViewModel>;
-
-                                                    if ((stackScroll != null) && (stackScroll.Children != null) && !stackScroll.IsLoading)
-                                                    {
-                                                        int totalItems = stackScroll.Children.Count;
-
-                                                        if (totalItems > 0)
-                                                        {
-                                                            autoScrollCounter++;
-                                                            long division = autoScrollCounter / totalItems;
-                                                            int newIndex = Convert.ToInt32(autoScrollCounter - (totalItems * division));
-                                                            Element newElement = stackScroll.Children[newIndex.Clamp(0, totalItems - 1)];
-
-                                                            await FeaturedScrollView.ScrollToAsync(newElement, ScrollToPosition.Start, true);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            featuredScrollIdle = true;
-                                        }
-                                    }
-                                });
-                        },
-                        () => AutoScrollFeaturedItemsCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
-                }
-
-                return autoScrollFeaturedItemsCommand;
-            }
-        }
-
-        /// <summary>
         /// View model for the store detail.
         /// </summary>
         public StoreDetailViewModel DetailViewModel
@@ -294,9 +214,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (detailViewModel == null)
                 {
-                    detailViewModel = AC.Resolve<StoreDetailViewModel>();
-
-                    detailViewModel.UpdateNavigation(this.Navigation);
+                    detailViewModel = new StoreDetailViewModel();
                 }
 
                 return detailViewModel;
@@ -337,34 +255,29 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show store.
         /// </summary>
-        public DelegateCommandAsync HideCartCommand
+        public Command HideCartCommand
         {
             get
             {
                 if (hideCartCommand == null)
                 {
-                    hideCartCommand = new DelegateCommandAsync(
-                        async () =>
+                    hideCartCommand = new Command(
+                        () =>
                         {
-                            await Task.FromResult(0);
-
                             if (IsCartVisible)
                             {
                                 IsCartVisible = false;
 
                                 if ((CartView != null) && CartView.HideOverlayCommand.CanExecute())
                                 {
-                                    await CartView.HideOverlayCommand.ExecuteAsync();
+                                    CartView.HideOverlayCommand.Execute(null);
                                 }
                             }
                         },
                         () =>
                         {
                             return IsCartVisible;
-                        },
-                        () => HideCartCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return hideCartCommand;
@@ -374,17 +287,15 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Hide view.
         /// </summary>
-        public DelegateCommandAsync HideItemGroupDetailCommand
+        public Command HideItemGroupDetailCommand
         {
             get
             {
                 if (hideItemGroupDetailCommand == null)
                 {
-                    hideItemGroupDetailCommand = new DelegateCommandAsync(
-                        async () =>
+                    hideItemGroupDetailCommand = new Command(
+                         () =>
                         {
-                            await Task.FromResult(0);
-
                             if (IsGroupDetailVisible)
                             {
                                 if (GroupItemsView.BindingContext != DetailViewModel)
@@ -394,7 +305,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                                 if (GroupItemsView != null && GroupItemsView.HideOverlayCommand.CanExecute())
                                 {
-                                    await GroupItemsView.HideOverlayCommand.ExecuteAsync();
+                                    GroupItemsView.HideOverlayCommand.Execute(null);
                                 }
 
                                 DetailViewModel.CurrentLoadedGroup = null;
@@ -404,10 +315,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         () =>
                         {
                             return IsGroupDetailVisible;
-                        },
-                        () => HideItemGroupDetailCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return hideItemGroupDetailCommand;
@@ -417,34 +325,29 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show store.
         /// </summary>
-        public DelegateCommandAsync HideItemLargeDetailCommand
+        public Command HideItemLargeDetailCommand
         {
             get
             {
                 if (hideItemLargeDetailCommand == null)
                 {
-                    hideItemLargeDetailCommand = new DelegateCommandAsync(
-                        async () =>
+                    hideItemLargeDetailCommand = new Command(
+                         () =>
                         {
-                            await Task.FromResult(0);
-
                             if (IsLargeDetailVisible)
                             {
                                 IsLargeDetailVisible = false;
 
                                 if ((DetailLargeView != null) && DetailLargeView.HideOverlayCommand.CanExecute())
                                 {
-                                    await DetailLargeView.HideOverlayCommand.ExecuteAsync();
+                                    DetailLargeView.HideOverlayCommand.Execute(null);
                                 }
                             }
                         },
                         () =>
                         {
                             return IsLargeDetailVisible;
-                        },
-                        () => HideItemLargeDetailCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return hideItemLargeDetailCommand;
@@ -454,20 +357,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Hide items options command.
         /// </summary>
-        public DelegateCommandAsync HideItemOptionsCommand
+        public Command HideItemOptionsCommand
         {
             get
             {
                 if (hideItemOptionsCommand == null)
                 {
-                    hideItemOptionsCommand = new DelegateCommandAsync(
-                        async () =>
+                    hideItemOptionsCommand = new Command(
+                        () =>
                         {
-                            await Task.FromResult(0);
-
                             if (ItemDetailView != null && ItemDetailView.HideOverlayCommand.CanExecute())
                             {
-                                await ItemDetailView.HideOverlayCommand.ExecuteAsync();
+                                ItemDetailView.HideOverlayCommand.Execute(null);
                             }
 
                             SelectedItemViewModel = null;
@@ -475,10 +376,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         () =>
                         {
                             return SelectedItemViewModel != null;
-                        },
-                        () => HideItemOptionsCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return hideItemOptionsCommand;
@@ -584,15 +482,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to store level.
         /// </summary>
-        public DelegateCommandAsync<StoreItemLevel> NavigateToStoreLevelCommand
+        public Command<StoreItemLevel> NavigateToStoreLevelCommand
         {
             get
             {
                 if (navigateToStoreLevelCommand == null)
                 {
-                    navigateToStoreLevelCommand = new DelegateCommandAsync<StoreItemLevel>(
+                    navigateToStoreLevelCommand = new Command<StoreItemLevel>(
                         async (subLevel) =>
                         {
+                            await Task.FromResult(0);
+
                             bool calculatedProductMode = (subLevel != null) && !string.IsNullOrWhiteSpace(subLevel.Department) && !string.IsNullOrWhiteSpace(subLevel.Category) && !string.IsNullOrWhiteSpace(subLevel.Subcategory);
 
                             if (UseSingleViewSublevels)
@@ -621,22 +521,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                                 if (UpdateViewToStepCommand.CanExecute(newStep))
                                 {
-                                    await UpdateViewToStepCommand.ExecuteAsync(newStep);
+                                    UpdateViewToStepCommand.Execute(newStep);
                                 }
                             }
                             else
                             {
-                                await NavigationHelper.ShowStoreLevel(subLevel, ViewModel, ViewModel.NavigationCancellationToken, calculatedProductMode);
-                                ViewModel.NavigationCancellationToken = new CancellationTokenSource();
+                                AlertFunctionNotIncluded();
                             }
                         },
                         (sublevel) =>
                         {
                             return sublevel != null;
-                        },
-                        () => NavigateToStoreLevelCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return navigateToStoreLevelCommand;
@@ -646,13 +542,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to store level.
         /// </summary>
-        public DelegateCommandAsync<StoreItemLevel> NavigateToStoreLevelProductsCommand
+        public Command<StoreItemLevel> NavigateToStoreLevelProductsCommand
         {
             get
             {
                 if (navigateToStoreLevelProductsCommand == null)
                 {
-                    navigateToStoreLevelProductsCommand = new DelegateCommandAsync<StoreItemLevel>(
+                    navigateToStoreLevelProductsCommand = new Command<StoreItemLevel>(
                         async (subLevel) =>
                         {
                             if (UseSingleViewSublevels)
@@ -685,17 +581,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             }
                             else
                             {
-                                await NavigationHelper.ShowStoreLevel(subLevel, ViewModel, ViewModel.NavigationCancellationToken, true);
-                                ViewModel.NavigationCancellationToken = new CancellationTokenSource();
+                                AlertFunctionNotIncluded();
                             }
                         },
                         (sublevel) =>
                         {
                             return sublevel != null;
-                        },
-                        () => NavigateToStoreLevelProductsCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return navigateToStoreLevelProductsCommand;
@@ -705,13 +597,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to store level.
         /// </summary>
-        public DelegateCommandAsync<StoreItemLevel> NavigateToStoreLevelProductsSearchModeCommand
+        public Command<StoreItemLevel> NavigateToStoreLevelProductsSearchModeCommand
         {
             get
             {
                 if (navigateToStoreLevelProductsSearchModeCommand == null)
                 {
-                    navigateToStoreLevelProductsSearchModeCommand = new DelegateCommandAsync<StoreItemLevel>(
+                    navigateToStoreLevelProductsSearchModeCommand = new Command<StoreItemLevel>(
                         async (subLevel) =>
                         {
                             if (UseSingleViewSublevels)
@@ -745,17 +637,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             }
                             else
                             {
-                                await NavigationHelper.ShowStoreLevel(subLevel, ViewModel, ViewModel.NavigationCancellationToken, true, true);
-                                ViewModel.NavigationCancellationToken = new CancellationTokenSource();
+                                AlertFunctionNotIncluded();
                             }
                         },
                         (sublevel) =>
                         {
                             return sublevel != null;
-                        },
-                        () => NavigateToStoreLevelProductsSearchModeCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return navigateToStoreLevelProductsSearchModeCommand;
@@ -765,13 +653,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command for refresh.
         /// </summary>
-        public virtual DelegateCommandAsync RefreshCommand
+        public virtual Command RefreshCommand
         {
             get
             {
                 if (refreshCommand == null)
                 {
-                    var tmpCommand = new DelegateCommandAsync(
+                    var tmpCommand = new Command(
                         async () =>
                         {
                             await Task.FromResult(0);
@@ -791,10 +679,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         () =>
                         {
                             return IsCartVisible || (!IsCartVisible && (SelectedItemViewModel == null) && !IsGroupDetailVisible && !IsLargeDetailVisible);
-                        },
-                        () => RefreshCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
 
                     this.refreshCommand = tmpCommand;
                 }
@@ -806,13 +691,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show search.
         /// </summary>
-        public DelegateCommandAsync RelativeBackCommand
+        public Command RelativeBackCommand
         {
             get
             {
                 if (relativeBackCommand == null)
                 {
-                    relativeBackCommand = new DelegateCommandAsync(
+                    relativeBackCommand = new Command(
                         async () =>
                         {
                             await Task.FromResult(0);
@@ -833,7 +718,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                                     if (ShowCartCommand.CanExecute())
                                     {
-                                        await ShowCartCommand.ExecuteAsync();
+                                        ShowCartCommand.Execute();
                                     }
 
                                     if (CacheItemDetailCart == null)
@@ -849,10 +734,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                             DetailLargeView.BindingContext = DetailViewModel;
                                         }
 
-                                        AC.ThreadManager.ScheduleManaged(
-                                            () =>
+                                        AC.ScheduleManaged(
+                                            async () =>
                                             {
                                                 DetailLargeView.UpdateProductDetail();
+
+                                                await Task.FromResult(0);
                                             });
 
                                         CacheItemDetailCart = null;
@@ -878,23 +765,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             }
                             else
                             {
-                                ViewModel.NavigateBackManagedCommand.ExecuteIfCan();
+                                NavigateBackCommand.ExecuteIfCan();
                             }
                         },
                         () =>
                         {
-                            if (ViewModel.IsRootView)
+                            if (IsRootView)
                             {
                                 return IsCartVisible || IsLargeDetailVisible || (SelectedItemViewModel != null) || IsGroupDetailVisible || (LevelStack.Count > 0);
                             }
                             else
                             {
-                                return ViewModel.NavigateBackManagedCommand.CanExecute();
+                                return NavigateBackCommand.CanExecute();
                             }
-                        },
-                        () => RelativeBackCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return relativeBackCommand;
@@ -927,10 +811,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (ViewModel != null)
                 {
-                    ViewModel.IncreaseItemCartCommand.RaiseCanExecuteChanged();
-                    ViewModel.DecreaseItemCartCommand.RaiseCanExecuteChanged();
                     ViewModel.ViewItemDetailCommand.RaiseCanExecuteChanged();
-                    ViewModel.IncreaseItemCartAndPlaceOrderCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -938,35 +819,21 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Select payment type command.
         /// </summary>
-        public DelegateCommandAsync SelectGroupTypeCommand
+        public Command SelectGroupTypeCommand
         {
             get
             {
                 if (selectGroupTypeCommand == null)
                 {
-                    selectGroupTypeCommand = new DelegateCommandAsync(
-                        async () =>
+                    selectGroupTypeCommand = new Command(
+                         () =>
                         {
-                            List<string> groupOptionsOptions = new List<string>();
-
-                            groupOptionsOptions.Add(ViewModel.LocalizationResources.StoreListGroupAllValue.LetterCasingSentence());
-                            groupOptionsOptions.Add(ViewModel.LocalizationResources.StoreListGroupNewValue.LetterCasingSentence());
-                            groupOptionsOptions.Add(ViewModel.LocalizationResources.StoreListGroupFeaturedValue.LetterCasingSentence());
-
-                            int selectedGroupType = await Parcero.Core.App.UserInteraction.DisplayActionSheetIndex(ViewModel.LocalizationResources.ListGroupLabel, ViewModel.LocalizationResources.CancelButton, null, groupOptionsOptions);
-
-                            if ((selectedGroupType > -1))
-                            {
-                                ViewModel.GroupType = selectedGroupType;
-                            }
+                            AlertFunctionNotIncluded();
                         },
                         () =>
                         {
                             return SelectedItemViewModel == null;
-                        },
-                        () => SelectGroupTypeCommand,
-                        this,
-                        this.ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return selectGroupTypeCommand;
@@ -976,44 +843,21 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Share app.
         /// </summary>
-        public DelegateCommandAsync ShareContentCommand
+        public Command ShareContentCommand
         {
             get
             {
                 if (shareContentCommand == null)
                 {
-                    shareContentCommand = new DelegateCommandAsync(
-                        async () =>
+                    shareContentCommand = new Command(
+                         () =>
                         {
-                            await Task.FromResult(0);
-
-                            if (IsLargeDetailVisible && (DetailViewModel != null) && (DetailViewModel.CurrentItemViewModel != null))
-                            {
-                                string contentUrl = DetailViewModel.CurrentItemViewModel.Item.GetShareUrl();
-                                ViewModel.ShareTask.ShareLink(ViewModel.LocalizationResources.SocialShareStoreItemMessage, ViewModel.LocalizationResources.SocialShareStoreItemTitle, contentUrl);
-                            }
-                            else if (IsGroupDetailVisible && (DetailViewModel != null) && (DetailViewModel.CurrentLoadedGroup != null))
-                            {
-                                string contentUrl = DetailViewModel.CurrentLoadedGroup.Item.GetShareUrl();
-                                ViewModel.ShareTask.ShareLink(ViewModel.LocalizationResources.SocialShareStoreItemMessage, ViewModel.LocalizationResources.SocialShareStoreItemTitle, contentUrl);
-                            }
-                            else if (SelectedItemViewModel != null)
-                            {
-                                string contentUrl = SelectedItemViewModel.Item.GetShareUrl();
-                                ViewModel.ShareTask.ShareLink(ViewModel.LocalizationResources.SocialShareStoreItemMessage, ViewModel.LocalizationResources.SocialShareStoreItemTitle, contentUrl);
-                            }
-                            else
-                            {
-                                ViewModel.ShareContentCommand.ExecuteIfCan();
-                            }
+                            AlertFunctionNotIncluded();
                         },
                         () =>
                         {
                             return !IsCartVisible;
-                        },
-                        () => ShareContentCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return shareContentCommand;
@@ -1023,13 +867,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show store.
         /// </summary>
-        public DelegateCommandAsync ShowCartCommand
+        public Command ShowCartCommand
         {
             get
             {
                 if (showCartCommand == null)
                 {
-                    showCartCommand = new DelegateCommandAsync(
+                    showCartCommand = new Command(
                         async () =>
                         {
                             await Task.FromResult(0);
@@ -1047,10 +891,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         () =>
                         {
                             return !IsCartVisible;
-                        },
-                        () => ShowCartCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return showCartCommand;
@@ -1060,13 +901,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show the items options.
         /// </summary>
-        public DelegateCommandAsync<object> ShowItemLargeDetailCommand
+        public Command<object> ShowItemLargeDetailCommand
         {
             get
             {
                 if (showItemLargeDetailCommand == null)
                 {
-                    showItemLargeDetailCommand = new DelegateCommandAsync<object>(
+                    showItemLargeDetailCommand = new Command<object>(
                         async (selectedElement) =>
                         {
                             await Task.FromResult(0);
@@ -1079,12 +920,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                 {
                                     if (IsLargeDetailVisible && HideItemLargeDetailCommand.CanExecute())
                                     {
-                                        await HideItemLargeDetailCommand.ExecuteAsync();
+                                        HideItemLargeDetailCommand.Execute();
                                     }
 
                                     if (HideItemOptionsCommand.CanExecute())
                                     {
-                                        await HideItemOptionsCommand.ExecuteAsync();
+                                        HideItemOptionsCommand.Execute();
                                     }
 
                                     IsGroupDetailVisible = true;
@@ -1151,19 +992,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                             if (selectedCartItem != null)
                             {
-                                selectedCartItem.ItemViewModel.LoadCartCount(CancellationToken.None);
-
-                                if ((selectedCartItem.ItemViewModel.ItemPrice == null) && (selectedCartItem.ItemPriceNotifyTask != null))
-                                {
-                                    AC.ThreadManager.ScheduleManaged(
-                                        async () =>
-                                        {
-                                            await selectedCartItem.ItemPriceNotifyTask.Task;
-
-                                            selectedCartItem.ItemViewModel.ItemPrice = selectedCartItem.ItemPriceNotifyTask.Result;
-                                        });
-                                }
-
                                 if (IsLargeDetailVisible)
                                 {
                                     CacheItemDetailCart = DetailViewModel.CurrentItemViewModel;
@@ -1181,10 +1009,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     DetailLargeView.BindingContext = DetailViewModel;
                                 }
 
-                                AC.ThreadManager.ScheduleManaged(
-                                    () =>
+                                AC.ScheduleManaged(
+                                    async () =>
                                     {
                                         DetailLargeView.UpdateProductDetail();
+                                        await Task.FromResult(0);
                                     });
 
                                 if (DetailLargeView.ShowOverlayCommand.CanExecute())
@@ -1192,19 +1021,16 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     await DetailLargeView.ShowOverlayCommand.ExecuteAsync();
                                 }
 
-                                if (HideCartCommand.CanExecute())
+                                if (HideCartCommand.CanExecute(null))
                                 {
-                                    await HideCartCommand.ExecuteAsync();
+                                    HideCartCommand.Execute(null);
                                 }
                             }
                         },
                         (selectedElement) =>
                         {
                             return (selectedElement != null) && ((selectedElement is StoreItemViewModel) || (selectedElement is StoreItemCartViewModel));
-                        },
-                        () => ShowItemLargeDetailCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return showItemLargeDetailCommand;
@@ -1214,13 +1040,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show the items options.
         /// </summary>
-        public DelegateCommandAsync<StoreItemViewModel> ShowItemOptionsCommand
+        public Command<StoreItemViewModel> ShowItemOptionsCommand
         {
             get
             {
                 if (showItemOptionsCommand == null)
                 {
-                    showItemOptionsCommand = new DelegateCommandAsync<StoreItemViewModel>(
+                    showItemOptionsCommand = new Command<StoreItemViewModel>(
                         async (selectedElement) =>
                         {
                             await Task.FromResult(0);
@@ -1276,10 +1102,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         (selectedElement) =>
                         {
                             return selectedElement != null && !selectedElement.Equals(SelectedItemViewModel);
-                        },
-                        () => ShowItemOptionsCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return showItemOptionsCommand;
@@ -1289,13 +1112,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show search.
         /// </summary>
-        public override DelegateCommandAsync ShowSearchCommand
+        public override Command ShowSearchCommand
         {
             get
             {
                 if (showSearchCommand == null)
                 {
-                    showSearchCommand = new DelegateCommandAsync(
+                    showSearchCommand = new Command(
                         async () =>
                         {
                             await Task.FromResult(0);
@@ -1335,10 +1158,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         () =>
                         {
                             return !IsSearchVisible;
-                        },
-                        () => ShowSearchCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return showSearchCommand;
@@ -1359,13 +1179,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command to change the view to category mode.
         /// </summary>
-        public DelegateCommandAsync<bool?> SwitchToCategoryModeCommand
+        public Command<bool?> SwitchToCategoryModeCommand
         {
             get
             {
                 if (switchToCategoryModeCommand == null)
                 {
-                    switchToCategoryModeCommand = new DelegateCommandAsync<bool?>(
+                    switchToCategoryModeCommand = new Command<bool?>(
                         async (shouldRefresh) =>
                         {
                             if (ViewModel.IsProductListMode)
@@ -1452,10 +1272,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                                 UpdateBackgroundOpactity();
 
-                                Parcero.Core.App.ThreadManager.ScheduleManaged(
+                                AC.ScheduleManaged(
                                 TimeSpan.FromSeconds(0.1),
-                                () =>
+                                async () =>
                                 {
+                                    await Task.FromResult(0);
                                     RelativeBackCommand.RaiseCanExecuteChanged();
                                 });
                             }
@@ -1469,10 +1290,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             var subLevel = ViewModel.Level;
                             bool calculatedProductMode = (subLevel != null) && !string.IsNullOrWhiteSpace(subLevel.Department) && !string.IsNullOrWhiteSpace(subLevel.Category) && !string.IsNullOrWhiteSpace(subLevel.Subcategory);
                             return (ViewModel.IsProductListMode || IsCartVisible || IsLargeDetailVisible || IsGroupDetailVisible) && !calculatedProductMode;
-                        },
-                        () => SwitchToCategoryModeCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return switchToCategoryModeCommand;
@@ -1482,13 +1300,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command to change the view to production list mode.
         /// </summary>
-        public DelegateCommandAsync<bool?> SwitchToProductionListModeCommand
+        public Command<bool?> SwitchToProductionListModeCommand
         {
             get
             {
                 if (switchToProductionListModeCommand == null)
                 {
-                    switchToProductionListModeCommand = new DelegateCommandAsync<bool?>(
+                    switchToProductionListModeCommand = new Command<bool?>(
                         async (shouldRefresh) =>
                         {
                             ViewModel.IsProductListMode = true;
@@ -1544,20 +1362,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                             UpdateBackgroundOpactity();
 
-                            Parcero.Core.App.ThreadManager.ScheduleManaged(
+                            AC.ScheduleManaged(
                                 TimeSpan.FromSeconds(0.1),
-                                () =>
+                                async () =>
                                 {
+                                    await Task.FromResult(0);
                                     RelativeBackCommand.RaiseCanExecuteChanged();
                                 });
                         },
                         (shouldRefresh) =>
                         {
                             return !ViewModel.IsProductListMode;
-                        },
-                        () => SwitchToProductionListModeCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return switchToProductionListModeCommand;
@@ -1567,11 +1383,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Update the view to reflect a specifig navigation step.
         /// </summary>
-        public DelegateCommandAsync<NavigationStep> UpdateViewToStepCommand
+        public Command<NavigationStep> UpdateViewToStepCommand
         {
             get
             {
-                updateViewToStepCommand = new DelegateCommandAsync<NavigationStep>(
+                updateViewToStepCommand = new Command<NavigationStep>(
                         async (newStep) =>
                         {
                             bool updateData = true;
@@ -1663,13 +1479,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                             if (updateData)
                             {
-                                if (ViewModel.NavigationCancellationToken != null && !ViewModel.NavigationCancellationToken.IsCancellationRequested)
-                                {
-                                    ViewModel.NavigationCancellationToken.Cancel();
-
-                                    ViewModel.NavigationCancellationToken = new CancellationTokenSource();
-                                }
-
                                 if (ViewModel.LoadSublevelsCommand.CanExecute())
                                 {
                                     await ViewModel.LoadSublevelsCommand.ExecuteAsync();
@@ -1691,10 +1500,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         (newStep) =>
                         {
                             return newStep != null;
-                        },
-                        () => UpdateViewToStepCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
 
                 return updateViewToStepCommand;
             }
@@ -1703,13 +1509,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Show the items options.
         /// </summary>
-        public DelegateCommandAsync<StoreItemViewModel> UseSuggestionCommand
+        public Command<StoreItemViewModel> UseSuggestionCommand
         {
             get
             {
                 if (useSuggestionCommand == null)
                 {
-                    useSuggestionCommand = new DelegateCommandAsync<StoreItemViewModel>(
+                    useSuggestionCommand = new Command<StoreItemViewModel>(
                         async (selectedElement) =>
                         {
                             await Task.FromResult(0);
@@ -1722,10 +1528,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         (selectedElement) =>
                         {
                             return (selectedElement != null);
-                        },
-                        () => UseSuggestionCommand,
-                        this,
-                        ViewModel.HandlerCommandException);
+                        });
                 }
 
                 return useSuggestionCommand;
@@ -1772,17 +1575,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Store detail large view.
         /// </summary>
         protected StoreDetailGroupView GroupItemsView { get; set; }
-
-        /// <summary>
-        /// Flag if has auto scroll.
-        /// </summary>
-        protected virtual bool HasAutoScroll
-        {
-            get
-            {
-                return Device.OS.OnPlatform(true, true, true, true, true);
-            }
-        }
 
         /// <summary>
         /// Has filter bar.
@@ -1854,226 +1646,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             get
             {
                 return true;
-            }
-        }
-
-        /// <summary>
-        /// Render a chat line.
-        /// </summary>
-        /// <typeparam name="TViewModel">View model to use.</typeparam>
-        /// <param name="stackContainer">Stack container to use.</param>
-        /// <param name="expressionLabelValue">Expression for the label.</param>
-        /// <param name="expressionImagePath">Expression for the image.</param>
-        /// <param name="expressionDateValue">Expression for the date.</param>
-        /// <param name="dateValue">Date value to use.</param>
-        /// <param name="dateValueConverter">Value converter to use for the date.</param>
-        public static void RenderChatLine<TViewModel>(
-            StackLayout stackContainer,
-            View chatView,
-            View imageView = null,
-            Expression<Func<TViewModel, object>> expressionDateValue = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
-            object dateValue = null,
-            IValueConverter dateValueConverter = null)
-        {
-            Color boubleBackground = Theme.CommonResources.PagesBackgroundColorLight;
-
-            if (dateValueConverter == null)
-            {
-                dateValueConverter = Theme.CommonResources.DateTimeUtcToRelativeStringConverter;
-            }
-
-            if (stackContainer != null)
-            {
-                StackLayout stackChatLine = new StackLayout()
-                {
-                    Style = Theme.ApplicationStyles.SimpleStackContainerStyle,
-                    Orientation = StackOrientation.Horizontal
-                };
-
-                if (expressionIsVisible != null)
-                {
-                    stackChatLine.SetBinding<TViewModel>(StackLayout.IsVisibleProperty, expressionIsVisible);
-                }
-
-                StackLayout stackImage = new StackLayout()
-                {
-                    Style = Theme.ApplicationStyles.SimpleStackContainerStyle,
-                    WidthRequest = Theme.CommonResources.UserImageWidth * 1.5f,
-                    Orientation = StackOrientation.Horizontal
-                };
-
-                if (imageView != null)
-                {
-                    imageView.HorizontalOptions = LayoutOptions.Center;
-                    imageView.VerticalOptions = LayoutOptions.Center;
-                    stackImage.Children.Add(imageView);
-                }
-
-                stackChatLine.Children.Add(stackImage);
-
-                RenderUtil.RenderSpace(stackChatLine);
-
-                StackLayout stackChatContent = new StackLayout()
-                {
-                    Style = Theme.ApplicationStyles.SimpleStackContainerStyle,
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    BackgroundColor = boubleBackground
-                };
-
-                RenderUtil.RenderSpace(stackChatContent, 10, 10);
-
-                stackChatContent.Children.Add(chatView);
-
-                RenderUtil.RenderSpace(stackChatContent, 10, 10);
-
-                ExtendedLabel textChatDate = new ExtendedLabel()
-                {
-                    Style = Theme.ApplicationStyles.DefaultExtendedLabelStyle,
-                    HorizontalOptions = LayoutOptions.Start,
-                    FontSize = Theme.CommonResources.TextSizeMicro,
-                    VerticalOptions = LayoutOptions.Fill,
-                    VerticalTextAlignment = TextAlignment.End,
-                    LineBreakMode = LineBreakMode.NoWrap,
-                    TextColor = Theme.CommonResources.Accent
-                };
-
-                if (dateValue == null)
-                {
-                    if (expressionDateValue != null)
-                    {
-                        textChatDate.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionDateValue, converter: dateValueConverter);
-                    }
-                }
-                else
-                {
-                    if (dateValueConverter == null)
-                    {
-                        textChatDate.Text = dateValue.ToString();
-                    }
-                    else
-                    {
-                        textChatDate.Text = dateValueConverter.Convert(dateValue, typeof(string), null, AC.Locale.Culture) as string;
-                    }
-                }
-
-                stackChatContent.Children.Add(textChatDate);
-
-                RenderUtil.RenderSpace(stackChatContent);
-
-                stackChatLine.Children.Add(stackChatContent);
-
-                RenderUtil.RenderSpace(stackChatLine);
-
-                stackContainer.Children.Add(stackChatLine);
-            }
-        }
-
-        /// <summary>
-        /// Render a chat line.
-        /// </summary>
-        /// <typeparam name="TViewModel">View model to use.</typeparam>
-        /// <param name="stackContainer">Stack container to use.</param>
-        /// <param name="expressionLabelValue">Expression for the label.</param>
-        /// <param name="expressionImagePath">Expression for the image.</param>
-        /// <param name="expressionDateValue">Expression for the date.</param>
-        /// <param name="dateValue">Date value to use.</param>
-        /// <param name="dateValueConverter">Value converter to use for the date.</param>
-        public static void RenderChatLine<TViewModel>(
-            StackLayout stackContainer,
-            Expression<Func<TViewModel, object>> expressionLabelValue = null,
-            Expression<Func<TViewModel, object>> expressionImagePath = null,
-            Expression<Func<TViewModel, object>> expressionDateValue = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
-            object dateValue = null,
-            IValueConverter dateValueConverter = null,
-            ICommand imageCommand = null)
-        {
-            if (stackContainer != null)
-            {
-                View imageView = null;
-                View chatView = null;
-
-                if (expressionImagePath != null)
-                {
-                    double imageWidthPercent = 0.85;
-                    double imageButtonMargin = 5;
-
-                    var imageLogoButton = new ImageContentViewButton()
-                    {
-                        VerticalOptions = LayoutOptions.CenterAndExpand,
-                        HorizontalOptions = LayoutOptions.CenterAndExpand,
-                        WidthRequest = Theme.CommonResources.UserImageWidth,
-                        HeightRequest = Theme.CommonResources.UserImageWidth,
-                        ImageHeightRequest = Theme.CommonResources.UserImageWidth * imageWidthPercent,
-                        ImageWidthRequest = Theme.CommonResources.UserImageWidth * imageWidthPercent,
-                        ShapeType = ShapeType.Circle,
-                        ButtonBackgroundColor = Color.White,
-                        StrokeWidth = 1,
-                        StrokeColor = Theme.CommonResources.AccentDark,
-                        MarginBorders = imageButtonMargin,
-                        Command = imageCommand
-                    };
-
-                    imageLogoButton.SetBinding<TViewModel>(ImageContentViewButton.SourceProperty, expressionImagePath);
-
-                    StackLayout imageViewLayout = new StackLayout()
-                    {
-                        Style = Theme.ApplicationStyles.FormRowContainerStyle,
-                        Orientation = StackOrientation.Horizontal
-                    };
-
-                    RenderUtil.RenderSpace(imageViewLayout, 5, 7);
-                    imageViewLayout.Children.Add(imageLogoButton);
-                    RenderUtil.RenderSpace(imageViewLayout);
-
-                    imageView = imageViewLayout;
-                }
-
-                ExtendedLabel textChat = new ExtendedLabel()
-                {
-                    Style = Theme.ApplicationStyles.DefaultExtendedLabelStyle,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    VerticalOptions = LayoutOptions.FillAndExpand,
-                    VerticalTextAlignment = TextAlignment.Center,
-                    FontSize = Theme.CommonResources.TextSizeSmall,
-                    LineBreakMode = LineBreakMode.WordWrap
-                };
-
-                textChat.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionLabelValue);
-
-                chatView = textChat;
-
-                RenderChatLine<TViewModel>(stackContainer, chatView, imageView, expressionDateValue: expressionDateValue, expressionIsVisible: expressionIsVisible, dateValue: dateValue, dateValueConverter: dateValueConverter);
-            }
-        }
-
-        /// <summary>
-        /// Clean bindings.
-        /// </summary>
-        public override void CleanBindings()
-        {
-            base.CleanBindings();
-
-            if ((CartView != null) && (CartView.BindingContext != null))
-            {
-                CartView.BindingContext = null;
-            }
-
-            if ((DetailLargeView != null) && (DetailLargeView.BindingContext != null))
-            {
-                DetailLargeView.BindingContext = null;
-            }
-
-            if ((ItemDetailView != null) && (ItemDetailView.BindingContext != null))
-            {
-                ItemDetailView.BindingContext = null;
-            }
-
-            if ((GroupItemsView != null) && (GroupItemsView.BindingContext != null))
-            {
-                GroupItemsView.BindingContext = null;
             }
         }
 
@@ -2310,21 +1882,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 StackShortCuts.Children.Insert(0, refreshButton);
             }
-            else
-            {
-                if (!IsRecylced)
-                {
-                    var tbi = new ToolbarItem()
-                    {
-                        Text = ViewModel.LocalizationResources.RefreshButton,
-                        Icon = Theme.CommonResources.PathImageRefreshAction,
-                        Command = RefreshCommand,
-                        Order = ToolbarItemOrder.Secondary
-                    };
-
-                    ToolbarItems.Add(tbi);
-                }
-            }
         }
 
         /// <summary>
@@ -2408,11 +1965,19 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
+        /// Alert funcition not added.
+        /// </summary>
+        protected void AlertFunctionNotIncluded()
+        {
+            DisplayAlert("Sample do not include function", "The sample do not include this functionallity", "OK");
+        }
+
+        /// <summary>
         /// Set the properties for the label when there is no elements in the list.
         /// A binding is recomended.
         /// </summary>
         /// <param name="labelToSet">Label to set.</param>
-        protected override void BindLabelNoElements(Xamarin.Forms.Label labelToSet)
+        protected override void BindLabelNoElements(ExtendedLabel labelToSet)
         {
             base.BindLabelNoElements(labelToSet);
 
@@ -2461,7 +2026,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Instance the navigation back button.
         /// </summary>
         /// <returns>Button to use.</returns>
-        protected override Parcero.Core.Views.Common.ContentViewButton InstanceNavigateBackButton()
+        protected override ContentViewButton InstanceNavigateBackButton()
         {
             var button = base.InstanceNavigateBackButton();
 
@@ -2479,7 +2044,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns></returns>
         protected override View InstanceTitleView()
         {
-            GlyphContentViewButton storeContentButton1 = new GlyphContentViewButton(true, true, Anuracode.Support.Model.ImageOrientation.ImageToLeft)
+            GlyphContentViewButton storeContentButton1 = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
             {
                 Style = Theme.ApplicationStyles.TextWithGlyphImportantContentButtonStyle,
                 MarginBorders = Device.Idiom == TargetIdiom.Phone ? 0 : 2.5f,
@@ -2590,7 +2155,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (e.Item != null)
             {
                 var selectedItem = e.Item;
-                Parcero.Core.App.ThreadManager.ScheduleManaged(
+                AC.ScheduleManaged(
                     () =>
                     {
                         try
@@ -2624,7 +2189,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             base.OnAppearing();
 
-            Parcero.Core.App.ThreadManager.ScheduleManaged(
+            AC.ScheduleManaged(
                 async () =>
                 {
                     await Task.FromResult(0);
@@ -2637,28 +2202,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         }
                     }
                 });
-
-            if (HasAutoScroll)
-            {
-                if (timerSubscription != null)
-                {
-                    timerSubscription.Dispose();
-                    timerSubscription = null;
-                }
-
-                timerSubscription = NewThreadScheduler.Default.SchedulePeriodic(
-                    autoScrollInterval,
-                    () =>
-                    {
-                        AutoScrollFeaturedItemsCommand.ExecuteIfCan();
-                    });
-
-                if (FeaturedScrollView != null)
-                {
-                    FeaturedScrollView.Scrolled -= FeaturedScrollView_Scrolled;
-                    FeaturedScrollView.Scrolled += FeaturedScrollView_Scrolled;
-                }
-            }
 
             if ((CartView != null) && (CartView.BindingContext == null))
             {
@@ -2923,7 +2466,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             stackSeparatorContainer.SetBinding<StoreListViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
 
-            var separatorView = RenderUtil.InstaceLineSeparator();
+            var separatorView = Theme.RenderUtil.InstaceLineSeparator();
 
             separatorView.SetBinding<StoreListViewModel>(View.IsVisibleProperty, vm => vm.Sublevels.Count, converter: Theme.CommonResources.IntToBooleanConverter);
 
@@ -2978,7 +2521,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns>View to add.</returns>
         protected override View RenderFloatingSearchFilter()
         {
-            var newFilter = new FilterBarStoreView(ViewModel.ShowProfileCommand)
+            var newFilter = new FilterBarStoreView(NavigateBackCommand)
             {
                 FilterBackgroundColor = Theme.CommonResources.Accent,
                 Command = ExecuteSearchCommand,
@@ -3015,14 +2558,14 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 stackSeparatorContainer.SetBinding<StoreListViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
 
-                RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
+                Theme.RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
 
                 // Navigation bar.
                 var levelView = new StoreItemLevelSimpleView(false, true, true, true)
                 {
                     Padding = 5,
                     NavigateToStoreLevelCommand = NavigateToStoreLevelCommand,
-                    NavigateBackCommand = ViewModel.NavigateBackCommand,
+                    NavigateBackCommand = NavigateBackCommand,
                     BackgroundMargin = 20,
                     BackgroundTranslateX = ContentMargin
                 };
@@ -3032,7 +2575,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 levelView.SetBinding<StoreListViewModel>(StoreItemLevelView.BindingContextProperty, vm => vm.Level);
                 stackSeparatorContainer.Children.Add(levelView);
 
-                RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
+                Theme.RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
 
                 headerLayout.Children.Insert(1, stackSeparatorContainer);
             }
@@ -3072,18 +2615,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     {
                         if (ViewModel.IsFullSearchMode)
                         {
-                            AC.ThreadManager.ScheduleManaged(
-                            () =>
+                            AC.ScheduleManaged(
+                            async () =>
                             {
+                                await Task.FromResult(0);
                                 ViewModel.LoadRecentSearch();
                             });
                         }
                     }
                     else
                     {
-                        AC.ThreadManager.ScheduleManaged(
-                            () =>
+                        AC.ScheduleManaged(
+                            async () =>
                             {
+                                await Task.FromResult(0);
                                 CategoryView.InitializeView();
                                 CategoryView.PrepareBindings();
 
@@ -3119,10 +2664,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ViewModel.IsProductListMode && ViewModel.IsStartViewSearchMode)
             {
-                Parcero.Core.App.ThreadManager.ScheduleManaged(
+                AC.ScheduleManaged(
                     TimeSpan.FromSeconds(0.1),
-                    () =>
+                    async () =>
                     {
+                        await Task.FromResult(0);
+
                         ShowSearchCommand.ExecuteIfCan();
                     });
             }
@@ -3153,12 +2700,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             base.RenderPanelNoElements(panelFoundNoElementsLayout);
 
-            GlyphContentViewButton searchAllStore = new GlyphContentViewButton(true, true, Anuracode.Support.Model.ImageOrientation.ImageToLeft)
+            GlyphContentViewButton searchAllStore = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
             {
                 Text = App.LocalizationResources.SearchAllStoreLabel,
                 Style = Theme.ApplicationStyles.MainSubMenuContentButtonStyle,
                 HorizontalOptions = LayoutOptions.Center,
-                Command = ViewModel.SearchAllStoreCommand,
+                Command = NavigateBackCommand,
                 GlyphText = Theme.CommonResources.GlyphTextSearch,
                 ButtonBackgroundColor = Theme.CommonResources.Accent,
                 ContentAlignment = TextAlignment.Start
@@ -3190,10 +2737,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             int elementsCount = await e.CountAsync();
 
-            Parcero.Core.App.ThreadManager.ScheduleManaged(
+            AC.ScheduleManaged(
                     TimeSpan.FromSeconds(0.1),
-                    () =>
+                    async () =>
                     {
+                        await Task.FromResult(0);
                         UpdateBackgroundOpactity(elementsCount);
                     });
         }
@@ -3209,16 +2757,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ViewModel.IsProductListMode)
             {
-                Parcero.Core.App.ThreadManager.ScheduleManaged(
+                AC.ScheduleManaged(
                     TimeSpan.FromSeconds(0.1),
-                    () =>
+                    async () =>
                     {
+                        await Task.FromResult(0);
                         AddExtraLayers();
                     });
 
                 if (ViewModel.IsFullSearchMode)
                 {
-                    Parcero.Core.App.ThreadManager.ScheduleManaged(
+                    AC.ScheduleManaged(
                     async () =>
                     {
                         while (!SuggestionsRepeater.IsVisible)
@@ -3250,7 +2799,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (!ViewModel.IsProductListMode)
             {
-                Parcero.Core.App.ThreadManager.ScheduleManaged(
+                AC.ScheduleManaged(
                     TimeSpan.FromSeconds(0.1),
                     async () =>
                     {
@@ -3301,7 +2850,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (LabelGroupValue != null)
             {
-                Parcero.Core.App.ThreadManager.ScheduleManaged(() =>
+                AC.ScheduleManaged(() =>
                 {
                     Model.StoreListingGroup groupTypeValue = (Model.StoreListingGroup)groupType;
 

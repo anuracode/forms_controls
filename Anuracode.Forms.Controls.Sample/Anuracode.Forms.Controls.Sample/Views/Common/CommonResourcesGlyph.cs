@@ -11,14 +11,14 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     public partial class CommonResources
     {
         /// <summary>
-        /// Glyph for the main menu.
-        /// </summary>
-        public string GlyphTextMainMenu = "\uE9BD";
-
-        /// <summary>
         /// Glyph about.
         /// </summary>
         public string GlyphTextAbout = "\uEA0C";
+
+        /// <summary>
+        /// Glyph add.
+        /// </summary>
+        public string GlyphTextAdd = "\uE0B6";
 
         /// <summary>
         /// Glyph address book.
@@ -46,6 +46,21 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextCart = "\uE93A";
 
         /// <summary>
+        /// Glyph edit.
+        /// </summary>
+        public string GlyphTextEdit = "\uE0D8";
+
+        /// <summary>
+        /// Glyph for the filter.
+        /// </summary>
+        public string GlyphTextFilter = "\uE16E";
+
+        /// <summary>
+        /// Glyph for the main menu.
+        /// </summary>
+        public string GlyphTextMainMenu = "\uE9BD";
+
+        /// <summary>
         /// Glyph for the navigate back.
         /// </summary>
         public string GlyphTextNavigateBack = "\uE112";
@@ -56,9 +71,19 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextOrders = "\uE162";
 
         /// <summary>
+        /// Glyph for the refresh.
+        /// </summary>
+        public string GlyphTextRefresh = "\uE117";
+
+        /// <summary>
         /// Glyph for the search.
         /// </summary>
         public string GlyphTextSearch = "\uE11A";
+
+        /// <summary>
+        /// Glyph select.
+        /// </summary>
+        public string GlyphTextSelect = "\uE10B";
 
         /// <summary>
         /// Glyph settings.
@@ -74,16 +99,5 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Glyph for the store.
         /// </summary>
         public string GlyphTextStore = "\uE14D";
-
-        /// <summary>
-        /// Glyph add.
-        /// </summary>
-        public string GlyphTextAdd = "\uE0B6";
-
-        /// <summary>
-        /// Glyph for the refresh.
-        /// </summary>
-        public string GlyphTextRefresh = "\uE117";
-
     }
 }

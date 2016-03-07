@@ -44,15 +44,19 @@
     <Compile Include="Model\StoreItemLevel.cs" />
     <Compile Include="Model\StringExtensions.cs" />
     <Compile Include="Repository\RepositoryAddress.cs" />
+    <Compile Include="Repository\RepositoryCart.cs" />
     <Compile Include="Repository\RepositoryStoreItem.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AddressListViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CartListViewModel.cs" />
     <Compile Include="ViewModels\GenericComparer.cs" />
     <Compile Include="ViewModels\GroupingExtensions.cs" />
+    <Compile Include="ViewModels\IStoreListViewModel.cs" />
     <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
     <Compile Include="ViewModels\PagedResult.Generics.cs" />
     <Compile Include="ViewModels\StoreDetailViewModel.cs" />
+    <Compile Include="ViewModels\StoreItemCartViewModel.cs" />
     <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
     <Compile Include="ViewModels\StoreItemViewModel.cs" />
     <Compile Include="ViewModels\StoreListViewModel.cs" />
@@ -66,9 +70,12 @@
     <Compile Include="Views\BasePagedView.Generics.cs" />
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\BaseView.Generics.cs" />
+    <Compile Include="Views\CartLargeView.cs" />
+    <Compile Include="Views\CartRowView.cs" />
     <Compile Include="Views\Common\BaseConverter.cs" />
     <Compile Include="Views\Common\CommonResources.cs" />
     <Compile Include="Views\Common\CommonResourcesGlyph.cs" />
+    <Compile Include="Views\Common\InvertBooleanToBooleanConverter.cs" />
     <Compile Include="Views\Common\StringToBooleanConverter.cs" />
     <Compile Include="Views\ContentBaseView.Generics.cs" />
     <Compile Include="Views\FilterBarView.cs" />
@@ -76,8 +83,12 @@
     <Compile Include="Views\ListBasePagedView.Generics.cs" />
     <Compile Include="Views\MainPage.cs" />
     <Compile Include="Views\MenuPage.cs" />
-    <Compile Include="Views\NavigationStep.cs" />
-    <None Include="Views\StoreListPage.cs" />
+    <Compile Include="ViewModels\NavigationStep.cs" />
+    <Compile Include="Views\StoreDetailGroupView.cs" />
+    <Compile Include="Views\StoreItemThumbVerticalBarView.cs" />
+    <Compile Include="Views\StoreItemThumbVerticalBarViewCell.cs" />
+    <Compile Include="Views\StoreItemThumbView.cs" />
+    <Compile Include="Views\StoreListPage.cs" />
     <Compile Include="Views\StoreSearchPage.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -29,6 +30,29 @@ namespace Anuracode.Forms.Controls.Extensions
         public static void Execute(this ICommand command)
         {
             command.Execute(null);
+        }
+
+        /// <summary>
+        /// Validate the can execute, if it can, execute it.
+        /// </summary>
+        /// <param name="command">Command to execute.</param>
+        public static Task ExecuteAsync(this ICommand command)
+        {
+            ExecuteIfCan(command, null);
+
+            return Task.FromResult(0);
+        }
+
+        /// <summary>
+        /// Validate the can execute, if it can, execute it.
+        /// </summary>
+        /// <param name="command">Command to execute.</param>
+        /// <param name="parameter">Parameter to use.</param>
+        public static Task ExecuteAsync(this ICommand command, object parameter)
+        {
+            ExecuteIfCan(command, parameter);
+
+            return Task.FromResult(0);
         }
 
         /// <summary>

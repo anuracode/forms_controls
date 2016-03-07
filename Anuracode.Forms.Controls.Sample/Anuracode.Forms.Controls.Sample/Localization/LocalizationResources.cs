@@ -99,11 +99,24 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Add more products.
+        /// </summary>
+        public string AddMoreProductsAction
+        {
+            get
+            {
+                return "Add more products";
+            }
+        }
+
+        /// <summary>
         /// Addresses empty.
         /// </summary>
         public string AddressesEmptyText
         {
-            get { return "No addresses";
+            get
+            {
+                return "No addresses";
             }
         }
 
@@ -115,6 +128,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Addresses";
+            }
+        }
+
+        /// <summary>
+        /// Address label.
+        /// </summary>
+        public string AddressLabel
+        {
+            get
+            {
+                return "Address";
             }
         }
 
@@ -148,6 +172,61 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Cancel";
+            }
+        }
+
+        /// <summary>
+        /// Adjustments label.
+        /// </summary>
+        public string CartAdjustmentsLabel
+        {
+            get
+            {
+                return "Adjustments";
+            }
+        }
+
+        /// <summary>
+        /// Cart frase connector.
+        /// </summary>
+        public string CartConnector1Text
+        {
+            get
+            {
+                return " - ";
+            }
+        }
+
+        /// <summary>
+        /// Connector 2.
+        /// </summary>
+        public string CartConnector2Text
+        {
+            get
+            {
+                return " - ";
+            }
+        }
+
+        /// <summary>
+        /// Separator.
+        /// </summary>
+        public string CartConnector4Text
+        {
+            get
+            {
+                return " - ";
+            }
+        }
+
+        /// <summary>
+        /// Detail label.
+        /// </summary>
+        public string DetailLabel
+        {
+            get
+            {
+                return "Detail";
             }
         }
 
@@ -196,6 +275,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Group label.
+        /// </summary>
+        public string ListGroupLabel
+        {
+            get
+            {
+                return "Group";
+            }
+        }
+
+        /// <summary>
         /// Orders label.
         /// </summary>
         public string OrdersLabel
@@ -207,6 +297,66 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Payment type.
+        /// </summary>
+        public string PaymentTypeLabel
+        {
+            get
+            {
+                return "Payment Type";
+            }
+        }
+
+        /// <summary>
+        /// Payment type value.
+        /// </summary>
+        public string PaymentTypeValueLabel
+        {
+            get { return "Crash"; }
+        }
+
+        /// <summary>
+        /// Place order label.
+        /// </summary>
+        public string PlaceOrderButton
+        {
+            get
+            {
+                return "Place Order";
+            }
+        }
+
+        /// <summary>
+        /// Recent searches.
+        /// </summary>
+        public string RecentSearchesLabel
+        {
+            get
+            {
+                return "Recent searches";
+            }
+        }
+
+        /// <summary>
+        /// Refresh label.
+        /// </summary>
+        public string RefreshButton
+        {
+            get
+            {
+                return "Refresh";
+            }
+        }
+
+        /// <summary>
+        /// Search store label.
+        /// </summary>
+        public string SearchAllStoreLabel
+        {
+            get { return "Search all store"; }
+        }
+
+        /// <summary>
         /// Search label.
         /// </summary>
         public string SearchButton
@@ -214,6 +364,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Search";
+            }
+        }
+
+        /// <summary>
+        /// Search empty.
+        /// </summary>
+        public string SearchEmptyToAllStoreText
+        {
+            get
+            {
+                return "SearchEmptyToAllStoreText";
             }
         }
 
@@ -229,6 +390,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Browse store.
+        /// </summary>
+        public string SearchGotoStoreLabel
+        {
+            get
+            {
+                return "Browse store";
+            }
+        }
+
+        /// <summary>
         /// Settings label.
         /// </summary>
         public string SettingsButton
@@ -236,6 +408,39 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Settings";
+            }
+        }
+
+        /// <summary>
+        /// Shipping type label.
+        /// </summary>
+        public string ShippingTypeLabel
+        {
+            get
+            {
+                return "Shipping type";
+            }
+        }
+
+        /// <summary>
+        /// Shipping type.
+        /// </summary>
+        public string ShippingTypeValueLabel
+        {
+            get
+            {
+                return "Normal";
+            }
+        }
+
+        /// <summary>
+        /// No items.
+        /// </summary>
+        public string ShoppingCartEmpyText
+        {
+            get
+            {
+                return "No items";
             }
         }
 
@@ -273,6 +478,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// New label.
+        /// </summary>
+        public string StoreItemNewLabel
+        {
+            get
+            {
+                return "New";
+            }
+        }
+
+        /// <summary>
         /// Store items.
         /// </summary>
         public string StoreItemsLabel
@@ -291,6 +507,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Store";
+            }
+        }
+
+        /// <summary>
+        /// Suggestion label.
+        /// </summary>
+        public string SuggestionsLabel
+        {
+            get
+            {
+                return "Suggestions";
             }
         }
     }

@@ -172,5 +172,10 @@ namespace Anuracode.Forms.Controls
                 SetValue(PlaceholderProperty, value);
             }
         }
+
+        public void SetBinding<T>(BindableProperty textProperty, Func<Controls.Sample.ViewModels.CartListViewModel, object> p, object stringFormat, object converter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

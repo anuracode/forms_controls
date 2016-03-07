@@ -27,20 +27,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
             {
                 list.Add(newElement);
             }
-        }
-
-        /// <summary>
-        /// Async create of the count from an
-        /// IEnumerable<T>.
-        /// </summary>
-        /// <typeparam name="T">The type of the elements of source.</typeparam>
-        /// <param name="list">The System.Collections.Generic.IEnumerable<T>
-        /// to create a System.Collections.Generic.List<T> from.</param>
-        /// <returns> Count of the items.</returns>
-        public static Task<int> CountAsync<T>(this IEnumerable<T> list)
-        {
-            return Task.Run(() => list.Count());
-        }
+        }      
 
         /// <summary>
         /// First or default.

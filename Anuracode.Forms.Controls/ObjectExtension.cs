@@ -111,5 +111,35 @@ namespace Anuracode.Forms.Controls.Extensions
         {
             return Task.Run(() => list.ToList());
         }
+
+        /// <summary>
+        /// Update is visible.
+        /// </summary>
+        /// <param name="view">View to use.</param>
+        /// <param name="isVisible">Is visible value.</param>
+        public static void UpdateIsVisible(this View view, bool isVisible)
+        {
+            if ((view != null) && (view.IsVisible != isVisible))
+            {
+                AC.ScheduleManaged(
+                    () =>
+                    {
+                        view.IsVisible = isVisible;
+                    });
+            }
+        }
+
+        /// <summary>
+        /// Update is visible.
+        /// </summary>
+        /// <param name="view">View to use.</param>
+        /// <param name="newOpacity">Opacity value.</param>
+        public static void UpdateOpacity(this View view, double newOpacity)
+        {
+            if ((view != null) && (view.Opacity != newOpacity))
+            {
+                view.Opacity = newOpacity;
+            }
+        }
     }
 }

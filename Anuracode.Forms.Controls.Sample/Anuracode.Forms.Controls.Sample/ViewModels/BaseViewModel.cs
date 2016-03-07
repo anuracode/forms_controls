@@ -58,6 +58,17 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         }
 
         /// <summary>
+        /// Flag for an authenticated user.
+        /// </summary>
+        public bool IsAuthenticated
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Is initialized, not bindinble.
         /// </summary>
         public bool IsInitialized { get; set; }
