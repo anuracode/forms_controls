@@ -374,7 +374,7 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         {
             get
             {
-                return "SearchEmptyToAllStoreText";
+                return "No items found";
             }
         }
 

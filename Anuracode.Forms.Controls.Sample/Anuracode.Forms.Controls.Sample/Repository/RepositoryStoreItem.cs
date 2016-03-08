@@ -7,6 +7,7 @@ using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,6 +18,21 @@ namespace Anuracode.Forms.Controls.Sample.Repository
     /// </summary>
     public class RepositoryStoreItem
     {
+        /// <summary>
+        /// Sublevels cache.
+        /// </summary>
+        protected List<StoreItemLevel> sublevelsCache = new List<StoreItemLevel>();
+
+        /// <summary>
+        /// Flag for the sample data.
+        /// </summary>
+        private bool sampleDataInitilized = false;
+
+        /// <summary>
+        /// Store items cache.
+        /// </summary>
+        private List<StoreItem> storeItemsCache = new List<StoreItem>();
+
         /// <summary>
         /// Get all the items that match the conditions.
         /// </summary>
@@ -43,7 +59,53 @@ namespace Anuracode.Forms.Controls.Sample.Repository
             bool? newItems = null,
             string groupParentId = null)
         {
-            throw new NotImplementedException();
+            await Task.FromResult(0);
+
+            InitSampleData();
+
+            PagedResult<StoreItemViewModel> results = new PagedResult<StoreItemViewModel>();
+
+            IEnumerable<StoreItem> filteredItems = from item in storeItemsCache
+                                                   orderby item.IsFeautred, item.FeaturedWeight, item.Name
+                                                   select item;
+
+            if (level != null)
+            {
+                if (!string.IsNullOrEmpty(level.Department) && string.IsNullOrEmpty(level.Category) && string.IsNullOrEmpty(level.Subcategory))
+                {
+                    filteredItems = from item in storeItemsCache
+                                    where (string.Compare(level.Department, item.Department, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                    orderby item.IsFeautred, item.FeaturedWeight, item.Name
+                                    select item;
+                }
+                else if (!string.IsNullOrEmpty(level.Department) && !string.IsNullOrEmpty(level.Category) && string.IsNullOrEmpty(level.Subcategory))
+                {
+                    filteredItems = from item in storeItemsCache
+                                    where (string.Compare(level.Department, item.Department, StringComparison.CurrentCultureIgnoreCase) == 0) &&
+                                    (string.Compare(level.Category, item.Category, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                    orderby item.IsFeautred, item.FeaturedWeight, item.Name
+                                    select item;
+                }
+                else if (!string.IsNullOrEmpty(level.Department) && !string.IsNullOrEmpty(level.Category) && !string.IsNullOrEmpty(level.Subcategory))
+                {
+                    filteredItems = from item in storeItemsCache
+                                    where (string.Compare(level.Department, item.Department, StringComparison.CurrentCultureIgnoreCase) == 0) &&
+                                    (string.Compare(level.Category, item.Category, StringComparison.CurrentCultureIgnoreCase) == 0) &&
+                                    (string.Compare(level.Subcategory, item.Subcategory, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                    orderby item.IsFeautred, item.FeaturedWeight, item.Name
+                                    select item;
+                }
+            }
+
+            results.TotalItemsCount = filteredItems.Count();
+
+            var pagedItems = (from item in filteredItems
+                              select item).Skip(skip).Take(pageSize);
+
+            results.PagedItems = from item in pagedItems
+                                 select new StoreItemViewModel(item);
+
+            return results;
         }
 
         /// <summary>
@@ -55,7 +117,126 @@ namespace Anuracode.Forms.Controls.Sample.Repository
         /// <returns>Task to await.</returns>
         public async Task<IEnumerable<StoreItemLevel>> GetSublevelsAsync(StoreItemLevel level, bool cacheData, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await Task.FromResult(0);
+
+            InitSampleData();
+
+            IEnumerable<StoreItemLevel> sublevels = null;
+
+            if (level != null)
+            {
+                if (string.IsNullOrEmpty(level.Department) && string.IsNullOrEmpty(level.Category) && string.IsNullOrEmpty(level.Subcategory))
+                {
+                    sublevels = from sublevel in sublevelsCache
+                                where !string.IsNullOrWhiteSpace(sublevel.Department) && string.IsNullOrEmpty(sublevel.Category) && string.IsNullOrEmpty(sublevel.Subcategory)
+                                select sublevel;
+                }
+                else if (!string.IsNullOrEmpty(level.Department) && string.IsNullOrEmpty(level.Category) && string.IsNullOrEmpty(level.Subcategory))
+                {
+                    sublevels = from sublevel in sublevelsCache
+                                where !string.IsNullOrWhiteSpace(sublevel.Department) &&
+                                !string.IsNullOrWhiteSpace(sublevel.Category) &&
+                                string.IsNullOrWhiteSpace(sublevel.Subcategory) &&
+                                (string.Compare(level.Department, sublevel.Department, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                select sublevel;
+                }
+                else if (!string.IsNullOrEmpty(level.Department) && !string.IsNullOrEmpty(level.Category) && string.IsNullOrEmpty(level.Subcategory))
+                {
+                    sublevels = from sublevel in sublevelsCache
+                                where !string.IsNullOrWhiteSpace(sublevel.Department) &&
+                                !string.IsNullOrWhiteSpace(sublevel.Category) &&
+                                !string.IsNullOrWhiteSpace(sublevel.Subcategory) &&
+                                (string.Compare(level.Department, sublevel.Department, StringComparison.CurrentCultureIgnoreCase) == 0) &&
+                                (string.Compare(level.Category, sublevel.Category, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                select sublevel;
+                }
+            }
+
+            return sublevels;
+        }
+
+        /// <summary>
+        /// Generate sample store items.
+        /// </summary>
+        /// <param name="quantity">Quanity to generate.</param>
+        /// <param name="level">Level to use.</param>
+        protected virtual void AddGeneratedStoreItems(int quantity, StoreItemLevel level)
+        {
+            if (level != null)
+            {
+                StoreItem sampleItem = null;
+
+                for (int i = 0; i < quantity; i++)
+                {
+                    sampleItem = new StoreItem()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = "Name " + i,
+                        ShortDescription = "Short description " + i,
+                        LongDescription = "Long description " + i,
+                        Brand = "Brand " + i,
+                        Department = level.Department,
+                        Category = level.Category,
+                        Subcategory = level.Subcategory
+                    };
+
+                    storeItemsCache.Add(sampleItem);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Init sample data.
+        /// </summary>
+        protected virtual void InitSampleData()
+        {
+            if (!sampleDataInitilized)
+            {
+                StoreItemLevel sampleLevel = null;
+
+                sublevelsCache.Clear();
+
+                for (int i = 0; i < 6; i++)
+                {
+                    sampleLevel = new StoreItemLevel()
+                    {
+                        Department = "Department " + (i + 1)
+                    };
+
+                    sublevelsCache.Add(sampleLevel);
+                    AddGeneratedStoreItems(2, sampleLevel);
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        sampleLevel = new StoreItemLevel()
+                        {
+                            Department = "Department " + (i + 1),
+                            Category = "Category " + (j + 1)
+                        };
+
+                        sublevelsCache.Add(sampleLevel);
+                        AddGeneratedStoreItems(2, sampleLevel);
+
+                        if (i == 0 && j == 0)
+                        {
+                            for (int k = 0; k < 4; k++)
+                            {
+                                sampleLevel = new StoreItemLevel()
+                                {
+                                    Department = "Department " + (i + 1),
+                                    Category = "Category " + (j + 1),
+                                    Subcategory = "SubCategory " + (k + 1)
+                                };
+
+                                sublevelsCache.Add(sampleLevel);
+                                AddGeneratedStoreItems(5, sampleLevel);
+                            }
+                        }
+                    }
+                }
+
+                sampleDataInitilized = true;
+            }
         }
     }
 }

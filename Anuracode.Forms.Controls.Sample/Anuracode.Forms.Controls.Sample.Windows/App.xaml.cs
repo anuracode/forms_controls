@@ -31,6 +31,8 @@ namespace Anuracode.Forms.Controls.Sample.Windows
         /// </summary>
         public App()
         {
+            AC.SetTraceService(new TraceService());
+
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }

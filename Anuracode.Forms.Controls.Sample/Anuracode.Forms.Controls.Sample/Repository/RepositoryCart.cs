@@ -29,7 +29,13 @@ namespace Anuracode.Forms.Controls.Sample.Repository
         /// <returns>Results to use.</returns>
         public async Task<PagedResult<StoreItemCartViewModel>> GetItemsAsync(string filterTerm, int skip, int pageSize, bool cacheData, System.Threading.CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await Task.FromResult(0);
+
+            PagedResult<StoreItemCartViewModel> results = new PagedResult<StoreItemCartViewModel>();
+
+            results.PagedItems = new List<StoreItemCartViewModel>();
+
+            return results;
         }
     }
 }

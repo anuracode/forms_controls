@@ -104,6 +104,10 @@ namespace Anuracode.Forms.Controls
                             {
                                 await action();
                             }
+                        }                       
+                        catch (OperationCanceledException opex)
+                        {
+                            TraceError("Operation cancelled", opex);
                         }
                         catch (Exception ex)
                         {

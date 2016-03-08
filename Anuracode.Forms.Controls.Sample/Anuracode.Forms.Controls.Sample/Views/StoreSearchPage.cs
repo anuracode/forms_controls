@@ -1,17 +1,16 @@
-﻿// <copyright file="IntroPage.cs" company="Anura Code">
+﻿// <copyright file="StoreListPage.cs" company="Anura Code">
 // All rights reserved.
 // </copyright>
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Sample.ViewModels;
-using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
     /// <summary>
-    /// Store search view.
+    /// Page for the store items.
     /// </summary>
-    public class StoreSearchPage : ContentBaseView<StoreSearchViewModel>
+    public class StoreSearchPage : StoreListPage
     {
         /// <summary>
         /// Default constructor.
@@ -28,19 +27,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public StoreSearchPage()
             : this(null)
         {
-        }
-
-        /// <summary>
-        /// Content of the page.
-        /// </summary>
-        protected override View RenderContent()
-        {
-            StackLayout stackPage = new StackLayout()
-            {
-                Style = Theme.ApplicationStyles.FormRowContainerStyle
-            };
-
-            return stackPage;
         }
     }
 }

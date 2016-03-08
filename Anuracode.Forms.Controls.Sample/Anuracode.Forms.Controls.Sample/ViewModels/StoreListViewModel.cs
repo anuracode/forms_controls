@@ -18,7 +18,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     /// <summary>
     /// ViewModel for the listing of all the store elements.
     /// </summary>
-    public class StoreListViewModel : ListPagedViewModelBase<StoreItemViewModel>
+    public class StoreListViewModel : ListPagedViewModelBase<StoreItemViewModel>, IStoreListViewModel
     {
         /// <summary>
         /// Key to store the settings.
@@ -113,6 +113,21 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         {
             Title = LocalizationResources.StoreItemLabel;
         }
+
+        /// <summary>
+        /// Command completed.
+        /// </summary>
+        public event EventHandler<IEnumerable<StoreItemViewModel>> LoadFeaturedItemsCommandCompleted;
+
+        /// <summary>
+        /// Command completed.
+        /// </summary>
+        public event EventHandler<IEnumerable<StoreItemViewModel>> LoadItemsCommandCompleted;
+
+        /// <summary>
+        /// Command completed.
+        /// </summary>
+        public event EventHandler<IEnumerable<StoreItemLevel>> LoadSublevelsCommandCompleted;
 
         /// <summary>
         /// Lock for the images.
@@ -286,6 +301,18 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
                                 }
                             }
 
+                            if (LoadFeaturedItemsCommandCompleted != null)
+                            {
+                                AC.ScheduleManaged(
+                                   () =>
+                                   {
+                                       if (LoadFeaturedItemsCommandCompleted != null)
+                                       {
+                                           LoadFeaturedItemsCommandCompleted(this, newElements);
+                                       }
+                                   });
+                            }
+
                             if ((newElements != null) && (await newElements.FirstOrDefaultAsync() != null))
                             {
                                 AC.ScheduleManaged(
@@ -380,6 +407,18 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
 
                                     return Task.FromResult(0);
                                 });
+                            }
+
+                            if (LoadSublevelsCommandCompleted != null)
+                            {
+                                AC.ScheduleManaged(
+                                   () =>
+                                   {
+                                       if (LoadSublevelsCommandCompleted != null)
+                                       {
+                                           LoadSublevelsCommandCompleted(this, newElements);
+                                       }
+                                   });
                             }
 
                             if (!IsProductListMode)
@@ -812,6 +851,18 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
                         return Task.FromResult(0);
                     });
                 }
+            }
+
+            if (LoadItemsCommandCompleted != null)
+            {
+                AC.ScheduleManaged(
+                   () =>
+                   {
+                       if (LoadItemsCommandCompleted != null)
+                       {
+                           LoadItemsCommandCompleted(sender, newElements);
+                       }
+                   });
             }
         }
 

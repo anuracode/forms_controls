@@ -9,7 +9,6 @@ using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -20,11 +19,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
     /// </summary>
     public class StoreListPage : ListBasePagedView<StoreListViewModel, StoreItemViewModel>, IStoreListPage
     {
-        /// <summary>
-        /// Counter for the autoscroll.
-        /// </summary>
-        private long autoScrollCounter = 0;
-
         /// <summary>
         /// Interval for auto scroll.
         /// </summary>
@@ -39,11 +33,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Command for the filter bar.
         /// </summary>
         private Command<string> executeSearchCommand;
-
-        /// <summary>
-        /// Flag for idle.
-        /// </summary>
-        private bool featuredScrollIdle = false;
 
         /// <summary>
         /// Hide cart command.
@@ -161,11 +150,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         private Command<bool?> switchToProductionListModeCommand;
 
         /// <summary>
-        /// Timer subscription.
-        /// </summary>
-        private IDisposable timerSubscription;
-
-        /// <summary>
         /// Update the view to reflect a specifig navigation step.
         /// </summary>
         private Command<NavigationStep> updateViewToStepCommand;
@@ -182,9 +166,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public StoreListPage(StoreListViewModel viewModel)
             : base(viewModel)
         {
-            // ViewModel.LoadItemsCommand.CommandCompleted += LoadItemsCommand_CommandCompleted;
-            // ViewModel.LoadSublevelsCommand.CommandCompleted += LoadSublevelsCommand_CommandCompleted;
-            // ViewModel.LoadFeaturedItemsCommand.CommandCompleted += LoadFeaturedItemsCommand_CommandCompleted;
+            ViewModel.LoadItemsCommandCompleted += LoadItemsCommand_CommandCompleted;
+            ViewModel.LoadSublevelsCommandCompleted += LoadSublevelsCommand_CommandCompleted;
+            ViewModel.LoadFeaturedItemsCommandCompleted += LoadFeaturedItemsCommand_CommandCompleted;
         }
 
         /// <summary>
@@ -768,6 +752,14 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             {
                                 NavigateBackCommand.ExecuteIfCan();
                             }
+
+                            AC.ScheduleManaged(
+                           TimeSpan.FromSeconds(0.1),
+                           async () =>
+                           {
+                               await Task.FromResult(0);
+                               RelativeBackCommand.RaiseCanExecuteChanged();
+                           });
                         },
                         () =>
                         {
@@ -1272,19 +1264,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                 }
 
                                 UpdateBackgroundOpactity();
-
-                                AC.ScheduleManaged(
-                                TimeSpan.FromSeconds(0.1),
-                                async () =>
-                                {
-                                    await Task.FromResult(0);
-                                    RelativeBackCommand.RaiseCanExecuteChanged();
-                                });
                             }
                             else
                             {
                                 RelativeBackCommand.ExecuteIfCan();
                             }
+
+                            AC.ScheduleManaged(
+                            TimeSpan.FromSeconds(0.1),
+                            async () =>
+                            {
+                                await Task.FromResult(0);
+                                RelativeBackCommand.RaiseCanExecuteChanged();
+                                SwitchToCategoryModeCommand.RaiseCanExecuteChanged();
+                            });
                         },
                         (shouldRefresh) =>
                         {
@@ -1543,7 +1536,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return false;
+                return true;
             }
         }
 
@@ -2138,25 +2131,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
-        /// Page disapperas.
-        /// </summary>
-        protected override void OnDisappearing()
-        {
-            if (timerSubscription != null)
-            {
-                timerSubscription.Dispose();
-                timerSubscription = null;
-            }
-
-            if (FeaturedScrollView != null)
-            {
-                FeaturedScrollView.Scrolled -= FeaturedScrollView_Scrolled;
-            }
-
-            base.OnDisappearing();
-        }
-
-        /// <summary>
         /// Layout the children for the background.
         /// </summary>
         /// <param name="pageSize">Page size.</param>
@@ -2225,7 +2199,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             base.RenderFilters(headerLayout);
             headerLayout.Spacing = 0.2;
 
-            bool useGridView = Device.OS.OnPlatform(true, true, true, false, false);
+            bool useGridView = Device.OS.OnPlatform(true, true, true, true, false);
 
             if (useGridView)
             {
@@ -2633,16 +2607,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             panelFoundNoElementsLayout.Children.Add(searchAllStore);
 
             panelNoElementsLayout.Children.Add(panelFoundNoElementsLayout);
-        }
-
-        /// <summary>
-        /// Scroll moved.
-        /// </summary>
-        /// <param name="sender">Sender of the event.</param>
-        /// <param name="e">Arguments of the event.</param>
-        private void FeaturedScrollView_Scrolled(object sender, ScrolledEventArgs e)
-        {
-            featuredScrollIdle = false;
         }
 
         /// <summary>

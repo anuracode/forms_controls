@@ -3,18 +3,22 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Anuracode.Forms.Controls.Sample.ViewModels
 {
     /// <summary>
-    /// Main view view model.
+    /// ViewModel for the listing of all the store elements.
     /// </summary>
-    public class StoreSearchViewModel : BaseViewModel
+    public class StoreSearchViewModel : StoreListViewModel
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public StoreSearchViewModel()
+            : base()
+        {
+            IsStartViewSearchMode = true;
+            IsProductListMode = true;
+            IsFullSearchMode = true;
+        }
     }
 }
