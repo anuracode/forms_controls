@@ -3,10 +3,10 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using System;
-using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
+using System;
+using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
@@ -121,11 +121,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected ShapeView BackgroundShape { get; set; }
 
         /// <summary>
-        /// Count background shape.
-        /// </summary>
-        protected ShapeView CountBackgroundShape { get; set; }
-
-        /// <summary>
         /// Flag to add the background elements.
         /// </summary>
         protected virtual bool HasBackground
@@ -140,17 +135,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Flag when the thumb has border.
         /// </summary>
         protected virtual bool HasBackgroundBorder
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Has cart count.
-        /// </summary>
-        protected virtual bool HasCartCount
         {
             get
             {
@@ -235,11 +219,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
-        /// Description of the product cart count.
-        /// </summary>
-        protected Label ProductCartCountLabel { get; set; }
-
-        /// <summary>
         /// Name of the product.
         /// </summary>
         protected Label ProductNameLabel { get; set; }
@@ -308,62 +287,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected ShapeView ThumbNormalBorder { get; set; }
 
         /// <summary>
-        /// Setup the bindings of the elements.
-        /// </summary>
-        protected override void SetupBindings()
-        {
-            if (BackgroundImage != null)
-            {
-                BackgroundImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.MainImagePath);
-            }
-
-            if (ThumbNormalBorder != null)
-            {
-                ThumbNormalBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
-            }
-
-            if (ThumbFeaturedBorder != null)
-            {
-                ThumbFeaturedBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred);
-            }
-
-            if (ThumbImage != null)
-            {
-                ThumbImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.ThumbnailImagePath);
-            }
-
-            if (NewLabel != null)
-            {
-                NewLabel.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsNew);
-            }
-
-            if (ProductShortDescriptionLabel != null)
-            {
-                ProductShortDescriptionLabel.SetBinding<StoreItemViewModel>(ExtendedLabel.TextProperty, vm => vm.Item.ShortDescription);
-            }
-
-            if (ProductPriceLabel != null)
-            {
-                ProductPriceLabel.Text = "$0";
-            }
-
-            if (CountBackgroundShape != null)
-            {
-                CountBackgroundShape.IsVisible = false;
-            }
-
-            if (ProductCartCountLabel != null)
-            {                
-                ProductCartCountLabel.IsVisible = false;
-            }
-
-            if (ProductNameLabel != null)
-            {
-                ProductNameLabel.SetBinding<StoreItemViewModel>(Label.TextProperty, vm => vm.Item.Name);
-            }
-        }
-
-        /// <summary>
         /// Add the control to the layout in the proper order.
         /// </summary>
         protected override void AddControlsToLayout()
@@ -376,8 +299,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             AddViewToLayout(ThumbBackgroundShape, ImageLayout);
             AddViewToLayout(ThumbImage, ImageLayout);
             AddViewToLayout(NewLabel, ImageLayout);
-            AddViewToLayout(CountBackgroundShape, ImageLayout);
-            AddViewToLayout(ProductCartCountLabel, ImageLayout);
             AddViewToLayout(ThumbNormalBorder, ImageLayout);
             AddViewToLayout(ThumbFeaturedBorder, ImageLayout);
 
@@ -860,36 +781,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 NewLabel.LayoutUpdate(elementPosition);
             }
-
-            Rectangle countBackgroundPosition = new Rectangle();
-
-            if (CountBackgroundShape != null)
-            {
-                var elementSize = CountBackgroundShape.GetSizeRequest(layoutPartialBorderSize.Width, height).Request;
-
-                double elementLeft = width - (elementSize.Width + 8);
-                double elementTop = height - (elementSize.Height + 8);
-                double elementWidth = elementSize.Width;
-                double elementHeight = elementSize.Height;
-
-                countBackgroundPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                CountBackgroundShape.LayoutUpdate(countBackgroundPosition);
-            }
-
-            if (ProductCartCountLabel != null)
-            {
-                var elementSize = ProductCartCountLabel.GetSizeRequest(countBackgroundPosition.Width, countBackgroundPosition.Height).Request;
-
-                double elementHeight = elementSize.Height;
-                double elementWidth = elementSize.Width;
-                double elementLeft = ((countBackgroundPosition.Width - elementSize.Width) * 0.5f) + countBackgroundPosition.X;
-                double elementTop = ((countBackgroundPosition.Height - elementSize.Height) * 0.5f) + countBackgroundPosition.Y;
-
-                var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                ProductCartCountLabel.LayoutUpdate(elementPosition);
-            }
         }
 
         /// <summary>
@@ -1087,26 +978,51 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     StrokeWidth = BackgroundBorderWidth
                 };
             }
+        }
 
-            if (HasCartCount)
+        /// <summary>
+        /// Setup the bindings of the elements.
+        /// </summary>
+        protected override void SetupBindings()
+        {
+            if (BackgroundImage != null)
             {
-                CountBackgroundShape = new ShapeView()
-                {
-                    Color = Theme.CommonResources.Accent,
-                    WidthRequest = Theme.CommonResources.CountButtonWidth,
-                    HeightRequest = Theme.CommonResources.CountButtonWidth,
-                    ShapeType = ShapeType.Circle
-                };
+                BackgroundImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.MainImagePath);
+            }
 
-                ProductCartCountLabel = new ExtendedLabel()
-                {
-                    FontName = Theme.CommonResources.GlyphFontName,
-                    FriendlyFontName = Theme.CommonResources.GlyphFriendlyFontName,
-                    FontSize = Theme.CommonResources.TextSizeMicro * (0.5f),
-                    TextColor = Theme.CommonResources.TextColorSection,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Center
-                };
+            if (ThumbNormalBorder != null)
+            {
+                ThumbNormalBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+            }
+
+            if (ThumbFeaturedBorder != null)
+            {
+                ThumbFeaturedBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred);
+            }
+
+            if (ThumbImage != null)
+            {
+                ThumbImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.ThumbnailImagePath);
+            }
+
+            if (NewLabel != null)
+            {
+                NewLabel.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsNew);
+            }
+
+            if (ProductShortDescriptionLabel != null)
+            {
+                ProductShortDescriptionLabel.SetBinding<StoreItemViewModel>(ExtendedLabel.TextProperty, vm => vm.Item.ShortDescription);
+            }
+
+            if (ProductPriceLabel != null)
+            {
+                ProductPriceLabel.Text = "$0";
+            }
+
+            if (ProductNameLabel != null)
+            {
+                ProductNameLabel.SetBinding<StoreItemViewModel>(Label.TextProperty, vm => vm.Item.Name);
             }
         }
     }

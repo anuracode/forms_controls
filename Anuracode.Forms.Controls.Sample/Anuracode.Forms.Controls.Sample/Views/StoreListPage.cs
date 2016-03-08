@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Sample.Interfaces;
 using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
@@ -17,7 +18,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
     /// <summary>
     /// Page for the store items.
     /// </summary>
-    public class StoreListPage : ListBasePagedView<StoreListViewModel, StoreItemViewModel> //, IStoreListPage
+    public class StoreListPage : ListBasePagedView<StoreListViewModel, StoreItemViewModel>, IStoreListPage
     {
         /// <summary>
         /// Counter for the autoscroll.
@@ -1614,21 +1615,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected StoreItemViewModel LastSelectedCartItem { get; set; }
 
         /// <summary>
-        /// View for the recent search view items.
-        /// </summary>
-        protected RecentSearchView ListRecentSearchView { get; set; }
-
-        /// <summary>
-        /// Suggestions label.
-        /// </summary>
-        protected ExtendedLabel RecentSearchLabel { get; set; }
-
-        /// <summary>
-        /// Suggestions background.
-        /// </summary>
-        protected BoxView SuggestionsBackground { get; set; }
-
-        /// <summary>
         /// Suggestions label.
         /// </summary>
         protected ExtendedLabel SuggestionsLabel { get; set; }
@@ -1779,15 +1765,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             titleStyle.Setters.Add(ExtendedLabel.FontSizeProperty, Theme.CommonResources.TextSizeSmall);
             titleStyle.Setters.Add(ExtendedLabel.FontAttributesProperty, FontAttributes.Bold);
 
-            // Suggestion background.
-            SuggestionsBackground = new BoxView()
-            {
-                Color = Theme.CommonResources.PagesBackgroundColor,
-                Opacity = 0
-            };
-
-            list.Add(SuggestionsBackground);
-
             SuggestionsLabel = new ExtendedLabel()
             {
                 Style = titleStyle,
@@ -1840,27 +1817,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             SuggestionsRepeater.SetBinding<StoreListViewModel>(RepeaterRecycleView.ItemsSourceProperty, vm => vm.SuggestedItems);
 
             list.Add(SuggestionsRepeater);
-
-            RecentSearchLabel = new ExtendedLabel()
-            {
-                Style = titleStyle,
-                Text = ViewModel.LocalizationResources.RecentSearchesLabel,
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions = LayoutOptions.Start,
-                Opacity = 0
-            };
-
-            list.Add(RecentSearchLabel);
-
-            ListRecentSearchView = new RecentSearchView()
-            {
-                SearchItemCommand = ExecuteSearchCommand,
-                BindingContext = ViewModel,
-                IsVisible = false,
-                Opacity = 0
-            };
-
-            list.Add(ListRecentSearchView);
 
             return list;
         }
@@ -2075,8 +2031,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 Rectangle suggestionsLabelPosition = new Rectangle();
                 Rectangle suggestionsListPosition = new Rectangle();
-                Rectangle searchesLabelPosition = new Rectangle();
-                Rectangle searchesListPosition = new Rectangle();
 
                 if (SuggestionsLabel != null)
                 {
@@ -2104,43 +2058,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     suggestionsListPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
                     SuggestionsRepeater.LayoutUpdate(suggestionsListPosition);
-                }
-
-                if (RecentSearchLabel != null)
-                {
-                    var elementSize = RecentSearchLabel.GetSizeRequest(pageSize.Width, pageSize.Height).Request;
-                    double elementLeft = ContentMargin;
-                    double elementTop = suggestionsListPosition.Y + suggestionsListPosition.Height + (ContentMargin * 1f);
-                    double elementWidth = elementSize.Width;
-                    double elementHeight = elementSize.Height;
-
-                    searchesLabelPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                    RecentSearchLabel.LayoutUpdate(searchesLabelPosition);
-                }
-
-                if (ListRecentSearchView != null)
-                {
-                    double elementLeft = ContentMargin;
-                    double elementTop = searchesLabelPosition.Y + searchesLabelPosition.Height + (ContentMargin * 0.5f);
-                    double elementWidth = pageSize.Width - (ContentMargin * 2f);
-                    double elementHeight = ((pageSize.Height - elementTop) + ContentMargin).Clamp(0, 180f);
-
-                    searchesListPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                    ListRecentSearchView.LayoutUpdate(searchesListPosition);
-                }
-
-                if (SuggestionsBackground != null)
-                {
-                    double elementLeft = 0;
-                    double elementTop = filterPosition.Y + filterPosition.Height;
-                    double elementWidth = pageSize.Width;
-                    double elementHeight = (searchesListPosition.Y + searchesListPosition.Height + ContentMargin) - elementTop;
-
-                    var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                    SuggestionsBackground.LayoutUpdate(elementPosition);
                 }
             }
         }
@@ -2572,7 +2489,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 levelView.PrepareBindings();
 
-                levelView.SetBinding<StoreListViewModel>(StoreItemLevelView.BindingContextProperty, vm => vm.Level);
+                levelView.SetBinding<StoreListViewModel>(StoreItemLevelSimpleView.BindingContextProperty, vm => vm.Level);
                 stackSeparatorContainer.Children.Add(levelView);
 
                 Theme.RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
@@ -2852,24 +2769,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 AC.ScheduleManaged(() =>
                 {
-                    Model.StoreListingGroup groupTypeValue = (Model.StoreListingGroup)groupType;
-
-                    switch (groupTypeValue)
-                    {
-                        case StoreListingGroup.Featured:
-                            LabelGroupValue.Text = App.LocalizationResources.StoreListGroupFeaturedValue;
-                            break;
-
-                        case StoreListingGroup.New:
-                            LabelGroupValue.Text = App.LocalizationResources.StoreListGroupNewValue;
-                            break;
-
-                        case StoreListingGroup.Name:
-                        case StoreListingGroup.Price:
-                        default:
-                            LabelGroupValue.Text = App.LocalizationResources.StoreListGroupAllValue;
-                            break;
-                    }
+                    LabelGroupValue.Text = "All";
 
                     return Task.FromResult(0);
                 });

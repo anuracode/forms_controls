@@ -401,6 +401,28 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Search intro.
+        /// </summary>
+        public string SearchIntroLabel
+        {
+            get
+            {
+                return "What do you need?";
+            }
+        }
+
+        /// <summary>
+        /// Search place holder.
+        /// </summary>
+        public string SearchPlaceHolderText
+        {
+            get
+            {
+                return "What do you need?";
+            }
+        }
+
+        /// <summary>
         /// Settings label.
         /// </summary>
         public string SettingsButton
@@ -478,6 +500,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// View all.
+        /// </summary>
+        public string StoreItemLevelAllLabel
+        {
+            get
+            {
+                return "View All";
+            }
+        }
+
+        /// <summary>
         /// New label.
         /// </summary>
         public string StoreItemNewLabel
@@ -507,6 +540,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Store";
+            }
+        }
+
+        /// <summary>
+        /// Show detail.
+        /// </summary>
+        public string StoreListShowItemDetailLabel
+        {
+            get
+            {
+                return "Show detail";
             }
         }
 

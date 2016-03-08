@@ -11,6 +11,16 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     public partial class CommonResources
     {
         /// <summary>
+        /// Glyph for the category bullet.
+        /// </summary>
+        public string GlyphTextCategoryBullet = "\uE236";
+
+        /// <summary>
+        /// Glyph for detail.
+        /// </summary>
+        public string GlyphTextDetail = "\uE243";
+
+        /// <summary>
         /// Glyph about.
         /// </summary>
         public string GlyphTextAbout = "\uEA0C";

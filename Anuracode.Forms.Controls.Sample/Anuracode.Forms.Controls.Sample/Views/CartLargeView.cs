@@ -54,7 +54,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public CartLargeView()
             : base(false)
         {
-            BindingContext = ViewModel;            
+            BindingContext = ViewModel;
 
             if (IsOverlay)
             {
@@ -630,7 +630,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             ButtonAddMoreItems = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
             {
-                Style = Theme.ApplicationStyles.TextWithGlyphImportantLargeContentButtonStyle,                
+                Style = Theme.ApplicationStyles.TextWithGlyphImportantLargeContentButtonStyle,
                 Text = App.LocalizationResources.AddMoreProductsAction,
                 GlyphText = Theme.CommonResources.GlyphTextAdd,
                 ButtonBackgroundColor = Theme.CommonResources.AccentAlternative,
@@ -730,7 +730,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             var buttonShippingType = new TextContentViewButton()
             {
                 MarginBorders = 0,
-                MarginElements = 0,                
+                MarginElements = 0,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Start,
                 MinimumWidthRequest = 150,
@@ -742,7 +742,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HeightRequest = controlRequestHeight,
                 IsUnderline = true,
                 Text = App.LocalizationResources.ShippingTypeValueLabel
-            };            
+            };
 
             panelCartLine1.Children.Add(buttonShippingType);
 
@@ -762,7 +762,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             var buttonAddress = new TextContentViewButton()
             {
                 MarginBorders = 0,
-                MarginElements = 0,                
+                MarginElements = 0,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Start,
                 MinimumWidthRequest = 150,
@@ -774,7 +774,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HeightRequest = controlRequestHeight,
                 IsUnderline = true,
                 Text = "No address"
-            };            
+            };
 
             panelCartLine2.Children.Add(buttonAddress);
 
@@ -797,7 +797,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Start,
                 Text = "$ 0"
-            };            
+            };
 
             panelCartLine3.Children.Add(labelConnector3);
 
@@ -805,7 +805,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             var buttonPaymentMethod = new TextContentViewButton()
             {
                 MarginBorders = 0,
-                MarginElements = 0,                
+                MarginElements = 0,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Start,
                 MinimumWidthRequest = 150,
@@ -816,8 +816,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 FriendlyFontName = labelRequest.FriendlyFontName,
                 HeightRequest = controlRequestHeight,
                 IsUnderline = true,
-                Text = App.LocalizationResources.PaymentTypeValueLabel                
-            };            
+                Text = App.LocalizationResources.PaymentTypeValueLabel
+            };
 
             panelCartLine3.Children.Add(buttonPaymentMethod);
 
@@ -843,11 +843,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 ItemTemplate = new DataTemplate(
                     () =>
                     {
-                        var cell = new CartRowView()
-                        {
-                            DeleteCommand = ViewModel.DeleteItemCommand,
-                            DetailCommand = InternalShowItemLargeDetailCommand
-                        };
+                        var cell = new CartRowView();
 
                         cell.PrepareBindings();
 
@@ -869,7 +865,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             totalLayout.Children.Add(lineSeparator1);
 
-            Theme.RenderUtil.RenderSpace(totalLayout);           
+            Theme.RenderUtil.RenderSpace(totalLayout);
 
             // Separator
             Theme.RenderUtil.RenderSpace(totalLayout, 10, 10);
@@ -915,7 +911,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 GlyphText = Theme.CommonResources.GlyphTextEdit,
                 VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Start,                
+                HorizontalOptions = LayoutOptions.Start,
                 InvisibleWhenDisabled = true
             };
 
@@ -960,7 +956,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 GlyphText = Theme.CommonResources.GlyphTextEdit,
                 HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Center,                
+                VerticalOptions = LayoutOptions.Center,
                 BindingContext = this,
                 InvisibleWhenDisabled = true
             };
@@ -997,7 +993,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HorizontalOptions = LayoutOptions.Start,
                 Text = "No address"
             };
-                        
+
             panelAddressLayout.Children.Add(labelAddressValue);
 
             panelAddressLayout.Children.Add(new BoxView { Color = Color.Transparent, WidthRequest = 5 });
@@ -1008,16 +1004,16 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 GlyphText = Theme.CommonResources.GlyphTextEdit,
                 HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Center,                
+                VerticalOptions = LayoutOptions.Center,
                 InvisibleWhenDisabled = true
             };
 
             panelAddressLayout.Children.Add(buttonEditAddress);
-            
+
 
             optionsLayout.Children.Add(panelAddressLayout);
 
-            StackLayout coverageLayout = Theme.RenderUtil.RenderIdentedVerticalContainer(generalLayout);            
+            StackLayout coverageLayout = Theme.RenderUtil.RenderIdentedVerticalContainer(generalLayout);
 
             completeLayout.Children.Add(initialLayout);
             completeLayout.Children.Add(generalLayout);

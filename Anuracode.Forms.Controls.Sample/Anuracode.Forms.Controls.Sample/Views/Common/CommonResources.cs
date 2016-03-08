@@ -14,9 +14,24 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     public partial class CommonResources : Anuracode.Forms.Controls.Styles.CommonResourcesLightTheme
     {
         /// <summary>
+        /// Glyph all.
+        /// </summary>
+        public string GlyphTextAll = "\uE14C";
+
+        /// <summary>
+        /// Converter from int to boolean.
+        /// </summary>
+        public IntToBooleanConverter IntToBooleanConverter = new IntToBooleanConverter();
+
+        /// <summary>
         /// Invert value of a boolean.
         /// </summary>
         public InvertBooleanToBooleanConverter InvertBooleanToBooleanConverter = new InvertBooleanToBooleanConverter();
+
+        /// <summary>
+        /// Color for status.
+        /// </summary>
+        public Color ItemTrackingStatusNewColor = Color.FromHex("003E6D");
 
         /// <summary>
         /// Path for the image.
@@ -44,43 +59,24 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public int PreviewImageWidth = Device.Idiom == TargetIdiom.Phone ? 40 : 80;
 
         /// <summary>
+        /// Converter from StoreItemLevel to string of the lowest clasifier.
+        /// </summary>
+        public StoreItemLevelToLowerLevelStringConverter StoreItemLevelToLowerLevelStringConverter = new StoreItemLevelToLowerLevelStringConverter();
+
+        /// <summary>
         /// String to boolean converter.
         /// </summary>
         public StringToBooleanConverter StringToBooleanConverter = new StringToBooleanConverter();
 
         /// <summary>
-        /// Color for status.
+        /// User image with.
         /// </summary>
-        public Color ItemTrackingStatusNewColor = Color.FromHex("003E6D");
+        public int UserImageWidth = 50;
 
         /// <summary>
-        /// Count button width.
+        /// Height of a line.
         /// </summary>
-        public virtual double CountButtonWidth
-        {
-            get
-            {
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    return Device.Idiom == TargetIdiom.Phone ? 15 : 20;
-                }
-                else
-                {
-                    return 25;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Stroke color featured item.
-        /// </summary>
-        public virtual Color StrokeColorFeaturedItem
-        {
-            get
-            {
-                return Accent;
-            }
-        }
+        private double? lineHeight;
 
         /// <summary>
         /// Background color item.
@@ -145,6 +141,24 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         }
 
         /// <summary>
+        /// Count button width.
+        /// </summary>
+        public virtual double CountButtonWidth
+        {
+            get
+            {
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    return Device.Idiom == TargetIdiom.Phone ? 15 : 20;
+                }
+                else
+                {
+                    return 25;
+                }
+            }
+        }
+
+        /// <summary>
         /// Default entry text color.
         /// </summary>
         public virtual Color DefaultEntryTextColor
@@ -156,6 +170,22 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         }
 
         /// <summary>
+        /// Height of a line.
+        /// </summary>
+        public double LineHeight
+        {
+            get
+            {
+                if (!lineHeight.HasValue)
+                {
+                    lineHeight = Theme.CommonResources.TextSizeMicro * 1.205f;
+                }
+
+                return lineHeight.Value;
+            }
+        }
+
+        /// <summary>
         /// Stroke color default item.
         /// </summary>
         public virtual Color StrokeColorDefaultItem
@@ -163,6 +193,17 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
             get
             {
                 return Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// Stroke color featured item.
+        /// </summary>
+        public virtual Color StrokeColorFeaturedItem
+        {
+            get
+            {
+                return Accent;
             }
         }
     }

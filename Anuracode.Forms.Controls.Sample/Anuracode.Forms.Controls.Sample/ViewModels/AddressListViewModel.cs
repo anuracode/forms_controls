@@ -90,7 +90,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
                                               select filteredItem;
                 }
 
-                pagedResults.TotalItemsCount = await pagedResults.PagedItems.CountAsync();
+                pagedResults.TotalItemsCount = pagedResults.PagedItems.Count();
             }
 
             return pagedResults;

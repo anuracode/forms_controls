@@ -138,10 +138,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             AddViewToLayout(ThumbImage);
             AddViewToLayout(NewLabel);
             AddViewToLayout(BackgroundShape, ImageLayout);
-            AddViewToLayout(ImageLayout);
-
-            AddViewToLayout(CountBackgroundShape);
-            AddViewToLayout(ProductCartCountLabel);
+            AddViewToLayout(ImageLayout);           
 
             AddViewToLayout(ProductNameLabel);
             AddViewToLayout(ProductPriceWithoutDiscountLabel);
@@ -293,37 +290,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (ThumbFeaturedBorder != null)
             {
                 ThumbFeaturedBorder.LayoutUpdate(bottomBarPosition);
-            }
-
-            Rectangle countBackgroundPosition = new Rectangle();
-
-            if (CountBackgroundShape != null)
-            {
-                var elementSize = CountBackgroundShape.GetSizeRequest(layoutPartialBorderSize.Width, height).Request;
-                double itemMargin = BackgroundBorderWidth;
-                double elementLeft = layoutPartialBorderSize.X + itemMargin;
-                double elementWidth = elementSize.Width;
-                double elementHeight = elementSize.Height;
-                double elementTop = bottomBarPosition.Y - elementHeight - itemMargin;
-
-                countBackgroundPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                CountBackgroundShape.LayoutUpdate(countBackgroundPosition);
-            }
-
-            if (ProductCartCountLabel != null)
-            {
-                var elementSize = ProductCartCountLabel.GetSizeRequest(countBackgroundPosition.Width, countBackgroundPosition.Height).Request;
-
-                double elementHeight = elementSize.Height;
-                double elementWidth = elementSize.Width;
-                double elementLeft = ((countBackgroundPosition.Width - elementSize.Width) * 0.5f) + countBackgroundPosition.X;
-                double elementTop = ((countBackgroundPosition.Height - elementSize.Height) * 0.5f) + countBackgroundPosition.Y;
-
-                var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                ProductCartCountLabel.LayoutUpdate(elementPosition);
-            }
+            }           
 
             if (NewLabel != null)
             {
@@ -534,28 +501,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ThumbImage = new ExtendedImage()
             {
                 Aspect = Aspect.AspectFill
-            };
-
-            if (HasCartCount)
-            {
-                CountBackgroundShape = new ShapeView()
-                {
-                    Color = Theme.CommonResources.Accent,
-                    WidthRequest = Theme.CommonResources.CountButtonWidth,
-                    HeightRequest = Theme.CommonResources.CountButtonWidth,
-                    ShapeType = ShapeType.Circle
-                };
-
-                ProductCartCountLabel = new ExtendedLabel()
-                {
-                    FontName = Theme.CommonResources.GlyphFontName,
-                    FriendlyFontName = Theme.CommonResources.GlyphFriendlyFontName,
-                    FontSize = Theme.CommonResources.TextSizeMicro * (0.5f),
-                    TextColor = Theme.CommonResources.TextColorSection,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Center
-                };
-            }
+            };           
 
             // Thumb border.
             ThumbNormalBorder = new ShapeView()
