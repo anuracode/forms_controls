@@ -41,6 +41,8 @@
     <Compile Include="Localization\LocalizationResources.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\PersonBase.cs" />
     <Compile Include="Model\StoreItem.cs" />
     <Compile Include="Model\StoreItemLevel.cs" />
     <Compile Include="Model\StringExtensions.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="ViewModels\IStoreListViewModel.cs" />
     <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
     <Compile Include="ViewModels\PagedResult.Generics.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\StoreDetailViewModel.cs" />
     <Compile Include="ViewModels\StoreItemCartViewModel.cs" />
     <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Views\MainPage.cs" />
     <Compile Include="Views\MenuPage.cs" />
     <Compile Include="ViewModels\NavigationStep.cs" />
+    <Compile Include="Views\ProfilePage.cs" />
     <Compile Include="Views\StoreDetailGroupView.cs" />
     <Compile Include="Views\StoreDetailLargeSimpleView.cs" />
     <Compile Include="Views\StoreDetailSmallSimpleView.cs" />

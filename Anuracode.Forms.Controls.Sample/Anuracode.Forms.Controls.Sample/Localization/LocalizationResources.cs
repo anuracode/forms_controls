@@ -253,6 +253,28 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Edit button.
+        /// </summary>
+        public object EditButton
+        {
+            get
+            {
+                return "Edit";
+            }
+        }
+
+        /// <summary>
+        /// Email label.
+        /// </summary>
+        public string EmailLabel
+        {
+            get
+            {
+                return "Email";
+            }
+        }
+
+        /// <summary>
         /// Email to.
         /// </summary>
         public string ErrorMailTo
@@ -274,6 +296,9 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             }
         }
 
+        public object FirstNameLabel { get; internal set; }
+        public object LastNameLabel { get; internal set; }
+
         /// <summary>
         /// Group label.
         /// </summary>
@@ -284,6 +309,9 @@ namespace Anuracode.Forms.Controls.Sample.Localization
                 return "Group";
             }
         }
+
+        public object MobilePhoneLabel { get; internal set; }
+        public object NickNameLabel { get; internal set; }
 
         /// <summary>
         /// Orders label.
@@ -315,6 +343,8 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get { return "Crash"; }
         }
 
+        public object PhoneLabel { get; internal set; }
+
         /// <summary>
         /// Place order label.
         /// </summary>
@@ -323,6 +353,39 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Place Order";
+            }
+        }
+
+        /// <summary>
+        /// Select provider.
+        /// </summary>
+        public string ProfileLoginChooseLabel
+        {
+            get
+            {
+                return "Select provider";
+            }
+        }
+
+        /// <summary>
+        /// Profile message.
+        /// </summary>
+        public string ProfileLoginLabel
+        {
+            get
+            {
+                return "For your convenience (and ours) we use one of your existing social accounts to recognize you. Do not have one? Create one and come back!";
+            }
+        }
+
+        /// <summary>
+        /// Profile title.
+        /// </summary>
+        public string ProfileRegistrationTitleLabel
+        {
+            get
+            {
+                return "Profile";
             }
         }
 
@@ -564,5 +627,7 @@ namespace Anuracode.Forms.Controls.Sample.Localization
                 return "Suggestions";
             }
         }
+
+        public object SyncAzureSignOutButton { get; internal set; }
     }
 }

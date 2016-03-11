@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
 using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
@@ -27,6 +28,11 @@ namespace Anuracode.Forms.Controls.Sample.Repository
         /// Flag for the sample data.
         /// </summary>
         private bool sampleDataInitilized = false;
+
+        /// <summary>
+        /// Store item number.
+        /// </summary>
+        private int storeItemNumber;
 
         /// <summary>
         /// Store items cache.
@@ -168,17 +174,25 @@ namespace Anuracode.Forms.Controls.Sample.Repository
 
                 for (int i = 0; i < quantity; i++)
                 {
+                    storeItemNumber++;
+
                     sampleItem = new StoreItem()
                     {
                         Id = Guid.NewGuid().ToString(),
-                        Name = "Name " + i,
-                        ShortDescription = "Short description " + i,
-                        LongDescription = "Long description " + i,
-                        Brand = "Brand " + i,
+                        Name = string.Format("Name {0}", storeItemNumber),
+                        ShortDescription = "Short description " + storeItemNumber,
+                        LongDescription = "Long description " + storeItemNumber,
+                        ThumbnailImagePath = string.Format("~/sample{0}-t.jpg", (i + 1).Clamp(1, 9)),
+                        MainImagePath = string.Format("~/MP_Default-m.jpg"),
+                        Brand = "Brand " + (i + 1),
                         Department = level.Department,
                         Category = level.Category,
                         Subcategory = level.Subcategory
                     };
+
+                    sampleItem.ImagesPaths = new List<string>();
+
+                    sampleItem.ImagesPaths.Add(string.Format("~/sample{0}-1.jpg", (i + 1).Clamp(1, 9)));
 
                     storeItemsCache.Add(sampleItem);
                 }

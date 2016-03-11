@@ -21,6 +21,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextDetail = "\uE243";
 
         /// <summary>
+        /// Glyph edit.
+        /// </summary>
+        public string GlyphTextLogout = "\uE1AD";
+
+        /// <summary>
         /// Glyph about.
         /// </summary>
         public string GlyphTextAbout = "\uEA0C";

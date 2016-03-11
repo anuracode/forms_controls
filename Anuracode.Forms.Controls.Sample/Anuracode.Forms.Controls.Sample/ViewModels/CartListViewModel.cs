@@ -4,7 +4,6 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Sample.Repository;
-using System;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,69 +17,14 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     public class CartListViewModel : ListPagedViewModelBase<StoreItemCartViewModel>
     {
         /// <summary>
-        /// Flag to know that is the first run.
-        /// </summary>
-        private static bool isFirstRun = true;
-
-        /// <summary>
         /// Lock for the load.
         /// </summary>
         private static SemaphoreSlim lockLoad = new SemaphoreSlim(1);
 
         /// <summary>
-        /// Place order automatically.
-        /// </summary>
-        private bool autoPlaceOrder;
-
-        /// <summary>
-        /// Select payment type.
-        /// </summary>
-        private bool canSelectPaymentType;
-
-        /// <summary>
-        /// Can select shipping type.
-        /// </summary>
-        private bool canSelectShippingType;
-
-        /// <summary>
-        /// Destination address.
-        /// </summary>
-        private Model.Address destinationAddress;
-
-        /// <summary>
-        /// Flag to force client reload.
-        /// </summary>
-        private bool forceCientReload = false;
-
-        /// <summary>
-        /// Flag when the client has multiple addresses.
-        /// </summary>
-        private bool hasMultipleAddresses;
-
-        /// <summary>
-        /// Cache of the number of items last time the shipping options were calculated.
-        /// </summary>
-        private int itemsCountShippingCache;
-
-        /// <summary>
         /// Place an order of the items in the cart.
         /// </summary>
         private Command placeOrderCommand;
-
-        /// <summary>
-        /// Command for process order.
-        /// </summary>
-        private Command<object> processPreorderCommand;
-
-        /// <summary>
-        /// Subscription for the repository.
-        /// </summary>
-        private IDisposable repositorySubscriptionClient;
-
-        /// <summary>
-        /// Subscription for the repository.
-        /// </summary>
-        private IDisposable repositorySubscriptionLocal;
 
         /// <summary>
         /// Default constuctor.
@@ -109,22 +53,6 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
             get
             {
                 return App.RepositoryCart;
-            }
-        }
-
-        /// <summary>
-        /// Place order automatically.
-        /// </summary>
-        public bool AutoPlaceOrder
-        {
-            get
-            {
-                return autoPlaceOrder;
-            }
-
-            set
-            {
-                ValidateRaiseAndSetIfChanged(ref autoPlaceOrder, value);
             }
         }
 
@@ -196,7 +124,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
 
                 await LockLoad.WaitAsync(loadingToken);
 
-                loadingToken.ThrowIfCancellationRequested();              
+                loadingToken.ThrowIfCancellationRequested();
 
                 var pagedResults = await RepositoryCartLocal.GetItemsAsync(filterTerm, skip, pageSize, cacheData, loadingToken);
 

@@ -232,10 +232,22 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (showArticlesCommand == null)
                 {
-                    if (showArticlesCommand == null)
-                    {
-                        showArticlesCommand = new Command(AlertFunctionNotIncluded);
-                    }
+                    showArticlesCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new ProfileViewModel();
+
+                            ProfilePage newPage = new ProfilePage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
                 }
 
                 return showArticlesCommand;

@@ -17,16 +17,6 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     public class AddressListViewModel : ListPagedViewModelBase<Model.Address>
     {
         /// <summary>
-        /// Flag for reloading when back from detail.
-        /// </summary>
-        private bool reloadOnNavigateBack;
-
-        /// <summary>
-        /// Subscription for the repository.
-        /// </summary>
-        private IDisposable repositorySubscription;
-
-        /// <summary>
         /// Default constuctor.
         /// </summary>
         public AddressListViewModel()

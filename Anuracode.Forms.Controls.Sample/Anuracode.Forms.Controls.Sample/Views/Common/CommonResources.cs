@@ -36,22 +36,22 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// <summary>
         /// Path for the image.
         /// </summary>
-        public string PathImageAppLogoLarge = ExtendedImage.CompleteImagePrefix("LogoApp256.png");
-
-        /// <summary>
-        /// Path for image.
-        /// </summary>
-        public string PathImageCancelAction = ExtendedImage.CompleteImagePrefix("appbar_cancel.png");
+        public string PathImageAppLogoLarge = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
 
         /// <summary>
         /// Path for the image.
         /// </summary>
-        public string PathImageFeaturesAction = ExtendedImage.CompleteImagePrefix("appbar_features.png");
+        public string PathImageFeaturesAction = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
 
         /// <summary>
         /// Path for the image.
         /// </summary>
-        public string PathImageHambuergerLogo = ExtendedImage.CompleteImagePrefix("hamburgerlogo.png");
+        public string PathImageHambuergerLogo = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
+
+        /// <summary>
+        /// Path to profile background.
+        /// </summary>
+        public ImageSource PathImageProfileBackground = Model.StoreItem.DEFAULT_SERVER_IMAGE_PATH + "profile_background.jpg";
 
         /// <summary>
         /// Image width.
@@ -184,6 +184,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
                 return lineHeight.Value;
             }
         }
+
+        /// <summary>
+        /// Logo mirror.
+        /// </summary>
+        public ImageSource PathImageAppLogoLargeMirror = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
 
         /// <summary>
         /// Stroke color default item.

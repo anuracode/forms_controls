@@ -114,7 +114,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(0, 0, 0, 95, 0);
+                return 0;
             }
         }
 
@@ -278,15 +278,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (!IsRecylced)
             {
-                var tbi = new ToolbarItem()
-                {
-                    Text = App.LocalizationResources.CancelButton,
-                    Icon = Theme.CommonResources.PathImageCancelAction,
-                    Command = NavigateBackCommand
-                };
-
-                ToolbarItems.Add(tbi);
-
                 if (StackShortCuts != null)
                 {
                     var cancelButton = new GlyphOnlyContentViewButton()

@@ -132,35 +132,27 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            // Load items if there are none.
-            if (!ViewModel.Initialized)
-            {
-                ViewModel.LoadItemsCommand.ExecuteIfCan();
-            }
-            else
-            {
-                AC.ScheduleManaged(
-                    TimeSpan.FromSeconds(0.15),
-                    async () =>
+            AC.ScheduleManaged(
+                TimeSpan.FromSeconds(0.15),
+                async () =>
+                {
+                    try
                     {
-                        try
-                        {
-                            await LockAnimation.WaitAsync();
+                        await LockAnimation.WaitAsync();
 
-                            if (this.Content != null)
-                            {
-                                await this.FadeTo(1);
-                            }
-                        }
-                        catch
+                        if (this.Content != null)
                         {
+                            await this.FadeTo(1);
                         }
-                        finally
-                        {
-                            LockAnimation.Release();
-                        }
-                    });
-            }
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        LockAnimation.Release();
+                    }
+                });
 
             return CartButton;
         }

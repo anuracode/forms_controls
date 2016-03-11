@@ -22,8 +22,7 @@ namespace Anuracode.Forms.Controls.Sample.Model
 
         /// <summary>
         /// Default server image path.
-        /// </summary>
-        // public const string DEFAULT_SERVER_IMAGE_PATH = "http://storage.parcero.com.co/resources/";
+        /// </summary>        
         public const string DEFAULT_SERVER_IMAGE_PATH = "http://storagetest.parcero.com.co/resources/";
 
         /// <summary>
