@@ -804,7 +804,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             BottomShape = new ShapeView()
             {
                 Color = Theme.CommonResources.BackgroundColorItem,
-                ShapeType = ShapeType.Circle
+                ShapeType = ShapeType.Box
             };
 
             ThumbImage = new StoreItemThumbOnlyView();

@@ -46,6 +46,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextArticles = "\uE1EC";
 
         /// <summary>
+        /// Glyph articles.
+        /// </summary>
+        public string GlyphTextProfile = "\uE2AF";
+
+        /// <summary>
         /// Bullet glyph.
         /// </summary>
         public string GlyphTextBullet = "\uE1F5";

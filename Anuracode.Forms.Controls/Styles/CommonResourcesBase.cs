@@ -40,7 +40,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                return Color.FromHex("FF9E09");
+                return Color.Red;
             }
         }
 

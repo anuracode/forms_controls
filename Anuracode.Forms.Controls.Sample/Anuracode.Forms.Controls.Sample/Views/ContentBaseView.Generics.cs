@@ -85,27 +85,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 return true;
             }
-        }
-
-        /// <summary>
-        /// Bottom background shape.
-        /// </summary>
-        protected ShapeView BackgroundBottomLeftShape { get; set; }
-
-        /// <summary>
-        /// Bottom background shape.
-        /// </summary>
-        protected BoxView BackgroundBottomShape { get; set; }
-
-        /// <summary>
-        /// Top background shape.
-        /// </summary>
-        protected ShapeView BackgroundTopRightShape { get; set; }
-
-        /// <summary>
-        /// Top background shape.
-        /// </summary>
-        protected BoxView BackgroundTopShape { get; set; }
+        }        
 
         /// <summary>
         /// Margin for the bottom app bar.
@@ -499,52 +479,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="contentPosition">Content position.</param>
         /// <param name="footerPosition">Footer position.</param>
         protected virtual void PageBackgroundLayoutChildren(Rectangle pageSize, Rectangle headerPosition, Rectangle contentPosition, Rectangle footerPosition)
-        {
-            if (BackgroundTopShape != null)
-            {
-                double elementTop = 0;
-                double elementLeft = 0;
-                double elementWidth = pageSize.Width;
-                double elementHeight = pageSize.Height - (headerPosition.Y - headerPosition.Height);
-                Rectangle elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                BackgroundTopShape.LayoutUpdate(elementPosition);
-            }
-
-            Rectangle bottonLeftPostion = new Rectangle();
-
-            if (BackgroundBottomLeftShape != null)
-            {
-                double elementTop = headerPosition.Y + ContentMargin;
-                double elementWidth = pageSize.Width + (ContentMargin * 2f);
-                double elementHeight = elementWidth * 0.33f;
-                double elementLeft = (pageSize.Width * 0.25f) - (elementWidth * 0.5f);
-                bottonLeftPostion = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                BackgroundBottomLeftShape.LayoutUpdate(bottonLeftPostion);
-            }
-
-            if (BackgroundBottomShape != null)
-            {
-                double elementLeft = 0;
-                double elementTop = bottonLeftPostion.Y + (bottonLeftPostion.Height * 0.08f);
-                double elementWidth = pageSize.Width;
-                double elementHeight = pageSize.Height - elementTop;
-                Rectangle elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                BackgroundBottomShape.LayoutUpdate(elementPosition);
-            }
-
-            if (BackgroundTopRightShape != null)
-            {
-                double elementWidth = bottonLeftPostion.Width * 1.5f;
-                double elementHeight = bottonLeftPostion.Height;
-                double elementLeft = (pageSize.Width * 0.9f) - (elementWidth * 0.5f);
-                double elementTop = bottonLeftPostion.Y - (elementHeight * 0.85f);
-                Rectangle elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
-
-                BackgroundTopRightShape.LayoutUpdate(elementPosition);
-            }
+        {            
         }
 
         /// <summary>
@@ -726,39 +661,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         /// <param name="absoluteLayout">Layout to add the items to.</param>
         protected virtual void RenderBackgroundLayout(SimpleLayout absoluteLayout)
-        {
-            if (absoluteLayout != null)
-            {
-                BackgroundTopShape = new BoxView()
-                {
-                    Color = Theme.CommonResources.AccentLight
-                };
-
-                absoluteLayout.Children.Add(BackgroundTopShape);
-
-                BackgroundBottomLeftShape = new ShapeView()
-                {
-                    ShapeType = ShapeType.Circle,
-                    Color = Theme.CommonResources.PagesBackgroundColor
-                };
-
-                absoluteLayout.Children.Add(BackgroundBottomLeftShape);
-
-                BackgroundBottomShape = new BoxView()
-                {
-                    Color = Theme.CommonResources.PagesBackgroundColor
-                };
-
-                absoluteLayout.Children.Add(BackgroundBottomShape);
-
-                BackgroundTopRightShape = new ShapeView()
-                {
-                    ShapeType = ShapeType.Circle,
-                    Color = Theme.CommonResources.AccentLight
-                };
-
-                absoluteLayout.Children.Add(BackgroundTopRightShape);
-            }
+        {            
         }
 
         /// <summary>
@@ -950,15 +853,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Update the background opacity.
         /// </summary>
         /// <param name="featuredCount">Feautes count.</param>
-        protected virtual async Task UpdateBackgroundOpactity(bool isVisible)
+        protected virtual Task UpdateBackgroundOpactity(bool isVisible)
         {
-            double newOpacity = isVisible ? 1 : 0;
-
-            if ((BackgroundTopShape != null) && (BackgroundTopRightShape != null))
-            {
-                await BackgroundTopShape.FadeTo(newOpacity);
-                await BackgroundTopRightShape.FadeTo(newOpacity);
-            }
+            return Task.FromResult(0);
         }        
     }
 }

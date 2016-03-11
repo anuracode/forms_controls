@@ -357,6 +357,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Profile label.
+        /// </summary>
+        public string ProfileLabel
+        {
+            get
+            {
+                return "Profile";
+            }
+        }
+
+        /// <summary>
         /// Select provider.
         /// </summary>
         public string ProfileLoginChooseLabel

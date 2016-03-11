@@ -2710,17 +2710,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             int itemsCount = (featuredCount == null) ? ViewModel.FeaturedItems.Count : featuredCount.Value;
 
-            bool backgroundVisible = ViewModel.IsProductListMode || (!ViewModel.IsProductListMode && itemsCount == 0);
-
-            if (BackgroundTopShape != null)
-            {
-                BackgroundTopShape.Opacity = backgroundVisible ? 1 : 0;
-            }
-
-            if (BackgroundTopRightShape != null)
-            {
-                BackgroundTopRightShape.Opacity = backgroundVisible ? 1 : 0;
-            }
+            bool backgroundVisible = ViewModel.IsProductListMode || (!ViewModel.IsProductListMode && itemsCount == 0);           
         }
 
         /// <summary>

@@ -280,7 +280,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             BackgroundDecoration = new ShapeView()
             {
                 Color = Theme.CommonResources.AccentLight,
-                ShapeType = ShapeType.Circle
+                ShapeType = ShapeType.Box
             };
 
             // Nick name.

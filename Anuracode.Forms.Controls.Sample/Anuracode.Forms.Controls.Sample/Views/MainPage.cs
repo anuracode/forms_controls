@@ -47,11 +47,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         private Command showAddressBookCommand;
 
         /// <summary>
-        /// Command to show the tasks.
-        /// </summary>
-        private Command showArticlesCommand;
-
-        /// <summary>
         /// Navigate to cart.
         /// </summary>
         private Command showCartCommand;
@@ -65,6 +60,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Command to show the orders.
         /// </summary>
         private Command showOrdersCommand;
+
+        /// <summary>
+        /// Command to show the tasks.
+        /// </summary>
+        private Command showProfileCommand;
 
         /// <summary>
         /// Navigate to search.
@@ -224,37 +224,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
-        /// Command to show the articles.
-        /// </summary>
-        public Command ShowArticlesCommand
-        {
-            get
-            {
-                if (showArticlesCommand == null)
-                {
-                    showArticlesCommand = new Command(
-                        () =>
-                        {
-                            var newViewModel = new ProfileViewModel();
-
-                            ProfilePage newPage = new ProfilePage(newViewModel);
-
-                            if (StoreNavigationPage != null)
-                            {
-                                NavigationPage.SetHasNavigationBar(newPage, false);
-                                NavigationPage.SetHasBackButton(newPage, false);
-                                StoreNavigationPage.PushAsync(newPage);
-
-                                CloseMenuCommand.Execute(null);
-                            }
-                        });
-                }
-
-                return showArticlesCommand;
-            }
-        }
-
-        /// <summary>
         /// Navigate to cart.
         /// </summary>
         public Command ShowCartCommand
@@ -312,6 +281,37 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 }
 
                 return showOrdersCommand;
+            }
+        }
+
+        /// <summary>
+        /// Command to show the articles.
+        /// </summary>
+        public Command ShowProfileCommand
+        {
+            get
+            {
+                if (showProfileCommand == null)
+                {
+                    showProfileCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new ProfileViewModel();
+
+                            ProfilePage newPage = new ProfilePage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
+                }
+
+                return showProfileCommand;
             }
         }
 
@@ -443,8 +443,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
             mainMenu.ExternalShowSearchCommand = ShowSearchCommand;
             mainMenu.ExternalShowStoreCommand = ShowStoreCommand;
             mainMenu.ExternalShowAboutCommand = ShowAboutCommand;
-            mainMenu.ExternalShareAppCommand = ShowArticlesCommand;
-            mainMenu.ExternalShowArticlesCommand = ShowArticlesCommand;
+            mainMenu.ExternalShareAppCommand = ShowProfileCommand;
+            mainMenu.ExternalShowProfileCommand = ShowProfileCommand;
             mainMenu.ExternalShowCartCommand = ShowCartCommand;
             mainMenu.ExternalShowAddressBookCommand = ShowAddressBookCommand;
 
@@ -508,7 +508,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ShowSearchCommand.ChangeCanExecute();
             ShowStoreCommand.ChangeCanExecute();
             ShowAboutCommand.ChangeCanExecute();
-            ShowArticlesCommand.ChangeCanExecute();
+            ShowProfileCommand.ChangeCanExecute();
             ShowCartCommand.ChangeCanExecute();
             ShowAddressBookCommand.ChangeCanExecute();
 

@@ -818,7 +818,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 BackgroundShape = new ShapeView()
                 {
                     Color = Color.White,
-                    ShapeType = ShapeType.Circle
+                    ShapeType = ShapeType.Box
                 };
 
                 if (HasBackgroundBorder)

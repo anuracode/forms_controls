@@ -68,7 +68,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command to show the tasks.
         /// </summary>
-        public Command ExternalShowArticlesCommand { get; set; }
+        public Command ExternalShowProfileCommand { get; set; }
 
         /// <summary>
         /// Navigate to cart.
@@ -133,7 +133,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Button to use.
         /// </summary>
-        protected GlyphContentViewButton ButtonArticlesAlt { get; private set; }
+        protected GlyphContentViewButton ButtonProfileAlt { get; private set; }
 
         /// <summary>
         /// Button to use.
@@ -494,16 +494,16 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             StackAlternativeOptions.Children.Add(ButtonShareAlt);
 
-            // Articles
-            ButtonArticlesAlt = new GlyphLeftContentViewButton()
+            // Profile
+            ButtonProfileAlt = new GlyphLeftContentViewButton()
             {
                 Style = extraMenuOptionsStyle,
-                GlyphText = Theme.CommonResources.GlyphTextArticles,
-                Text = App.LocalizationResources.ArticlesLabel,
-                Command = ExternalShowArticlesCommand
+                GlyphText = Theme.CommonResources.GlyphTextProfile,
+                Text = App.LocalizationResources.ProfileLabel,
+                Command = ExternalShowProfileCommand
             };
 
-            StackAlternativeOptions.Children.Add(ButtonArticlesAlt);
+            StackAlternativeOptions.Children.Add(ButtonProfileAlt);
 
             // About
             ButtonAboutAlt = new GlyphLeftContentViewButton()
@@ -564,7 +564,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             UpdateButtonCommand(ButtonStoreAlt, ExternalShowStoreCommand);
             UpdateButtonCommand(ButtonCartAlt, ExternalShowCartCommand);
             UpdateButtonCommand(ButtonSearchAlt, ExternalShowSearchCommand);
-            UpdateButtonCommand(ButtonArticlesAlt, ExternalShowArticlesCommand);
+            UpdateButtonCommand(ButtonProfileAlt, ExternalShowProfileCommand);
             UpdateButtonCommand(ButtonOrdersAlt, ExternalShowOrdersCommand);
             UpdateButtonCommand(ButtonSettingsAlt, ExternalShowSettingsCommand);
             UpdateButtonCommand(ButtonShareAlt, ExternalShareAppCommand);

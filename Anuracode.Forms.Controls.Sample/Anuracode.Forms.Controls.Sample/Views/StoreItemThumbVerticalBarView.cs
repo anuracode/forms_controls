@@ -122,7 +122,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Strike throught.
         /// </summary>
-        protected BoxView PriceStrikeThrought { get; set; }       
+        protected BoxView PriceStrikeThrought { get; set; }
 
         /// <summary>
         /// Price of the product.
@@ -138,7 +138,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             AddViewToLayout(ThumbImage);
             AddViewToLayout(NewLabel);
             AddViewToLayout(BackgroundShape, ImageLayout);
-            AddViewToLayout(ImageLayout);           
+            AddViewToLayout(ImageLayout);
 
             AddViewToLayout(ProductNameLabel);
             AddViewToLayout(ProductPriceWithoutDiscountLabel);
@@ -277,10 +277,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ThumbNormalBorder != null)
             {
-                double elementHeight = 5;
-                double elementWidth = layoutPartialBorderSize.Width;
+                double elementHeight = layoutPartialBorderSize.Height + Margin;
+                double elementWidth = 5;
                 double elementLeft = layoutPartialBorderSize.X;
-                double elementTop = (layoutPartialBorderSize.Y + layoutPartialBorderSize.Height) - elementHeight + 1;
+                double elementTop = layoutPartialBorderSize.Y;
 
                 bottomBarPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -290,7 +290,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (ThumbFeaturedBorder != null)
             {
                 ThumbFeaturedBorder.LayoutUpdate(bottomBarPosition);
-            }           
+            }
 
             if (NewLabel != null)
             {
@@ -429,7 +429,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             BackgroundShape = new ShapeView()
             {
                 Color = Color.White,
-                ShapeType = ShapeType.Circle
+                ShapeType = ShapeType.Box
             };
 
             if (HasBackgroundBorder)
@@ -439,7 +439,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     Color = Color.Transparent,
                     ShapeType = ShapeType.Box,
                     StrokeColor = StrokeColorPageBackground ? PageBackgroundColor : Theme.CommonResources.StrokeColorDefaultItem,
-                    CornerRadius = 10,
+                    CornerRadius = 0,
                     StrokeWidth = BackgroundBorderWidth
                 };
             }
@@ -501,7 +501,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ThumbImage = new ExtendedImage()
             {
                 Aspect = Aspect.AspectFill
-            };           
+            };
 
             // Thumb border.
             ThumbNormalBorder = new ShapeView()
@@ -532,7 +532,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (PriceStrikeThrought != null)
             {
                 PriceStrikeThrought.IsVisible = false;
-            }            
+            }
 
             if (BackgroundShape != null)
             {
