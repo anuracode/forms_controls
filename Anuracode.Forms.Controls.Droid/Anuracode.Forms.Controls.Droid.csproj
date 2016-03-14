@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="FontExtensions.cs" />
     <Compile Include="ManagedImageRenderer.cs" />
@@ -92,6 +93,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape\Shape.cs" />
     <Compile Include="Shape\ShapeRenderer.cs" />
+    <Compile Include="Signature\ClearingImageView.cs" />
+    <Compile Include="Signature\SignatureCanvasView.cs" />
+    <Compile Include="Signature\SignaturePad.cs" />
+    <Compile Include="Signature\SignaturePadViewRenderer.cs" />
+    <Compile Include="SwitchRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
