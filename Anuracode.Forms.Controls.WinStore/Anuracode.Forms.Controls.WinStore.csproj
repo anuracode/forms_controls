@@ -111,8 +111,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ExtendedEntryRenderer.cs">
+      <Link>ExtendedEntryRenderer.cs</Link>
+    </Compile>
     <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ExtendedLabelRenderer.cs">
       <Link>ExtendedLabelRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ManagedImageRenderer.cs">
+      <Link>ManagedImageRenderer.cs</Link>
     </Compile>
     <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ShapeRenderer.cs">
       <Link>ShapeRenderer.cs</Link>

@@ -58,9 +58,12 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
+    <Compile Include="Signature\SignaturePad.cs" />
+    <Compile Include="Signature\SignaturePadViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Anuracode.Forms.Controls\Anuracode.Forms.Controls.csproj">

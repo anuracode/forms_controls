@@ -20,6 +20,11 @@ namespace Anuracode.Forms.Controls.Renderers
     public class ShapeRenderer : VisualElementRenderer<ShapeView>
     {
         /// <summary>
+        /// Previous size.
+        /// </summary>
+        private CGSize previousSize;
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public ShapeRenderer()
@@ -32,9 +37,27 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="rect">Rect to use.</param>
         public override void Draw(CGRect rect)
         {
-            var currentContext = UIGraphics.GetCurrentContext();
             var properRect = AdjustForThickness(rect);
-            HandleShapeDraw(currentContext, properRect);
+
+            using (var currentContext = UIGraphics.GetCurrentContext())
+            {
+                HandleShapeDraw(currentContext, properRect);
+            }
+
+            base.Draw(rect);
+
+            this.previousSize = this.Bounds.Size;
+        }
+
+        /// <summary>
+        /// Layout subviews.
+        /// </summary>
+        public override void LayoutSubviews()
+        {
+            if (this.previousSize != this.Bounds.Size)
+            {
+                this.SetNeedsDisplay();
+            }
         }
 
         /// <summary>
@@ -60,34 +83,28 @@ namespace Anuracode.Forms.Controls.Renderers
             switch (Element.ShapeType)
             {
                 case ShapeType.Box:
-                    HandleStandardDraw(currentContext, rect, () =>
-                    {
-                        if (Element.CornerRadius > 0)
+                    HandleStandardDraw(currentContext, rect,
+                        () =>
                         {
-                            var path = UIBezierPath.FromRoundedRect(rectBox, Element.CornerRadius);
-                            currentContext.AddPath(path.CGPath);
-                        }
-                        else
-                        {
-                            currentContext.AddRect(rect);
-                        }
-                    });
+                            if (Element.CornerRadius > 0)
+                            {
+                                var path = UIBezierPath.FromRoundedRect(rectBox, Element.CornerRadius);
+                                currentContext.AddPath(path.CGPath);
+                            }
+                            else
+                            {
+                                currentContext.AddRect(rect);
+                            }
+                        });
                     break;
 
                 case ShapeType.Circle:
-                    // Only used for circles
-                    var centerX = rect.X + (rect.Width / 2);
-                    var centerY = rect.Y + (rect.Height / 2);
-                    var startAngle = 0;
-                    var endAngle = (float)(Math.PI * 2);
-                    var radius = rectBox.Width * 0.5f;
-
-                    if (Element.WidthRequest > 0)
-                    {
-                        radius = Convert.ToSingle(Element.WidthRequest * 0.5f);
-                    }
-
-                    HandleStandardDraw(currentContext, rect, () => currentContext.AddArc(centerX, centerY, radius, startAngle, endAngle, true));
+                    HandleStandardDraw(currentContext, rect,
+                        () =>
+                        {
+                            var path = UIBezierPath.FromOval(rectBox);
+                            currentContext.AddPath(path.CGPath);
+                        });
                     break;
             }
         }
@@ -129,7 +146,8 @@ namespace Anuracode.Forms.Controls.Renderers
                 (e.PropertyName == ShapeView.StrokeColorProperty.PropertyName) ||
                 (e.PropertyName == ShapeView.StrokeWidthProperty.PropertyName) ||
                 (e.PropertyName == ShapeView.ShapeTypeProperty.PropertyName) ||
-                (e.PropertyName == ShapeView.IsVisibleProperty.PropertyName))
+                (e.PropertyName == ShapeView.IsVisibleProperty.PropertyName) ||
+                (e.PropertyName == ShapeView.OpacityProperty.PropertyName))
             {
                 this.SetNeedsDisplay();
             }

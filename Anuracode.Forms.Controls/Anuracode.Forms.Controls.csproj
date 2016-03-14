@@ -67,6 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeType.cs" />
     <Compile Include="ShapeView.cs" />
+    <Compile Include="SignaturePad\DrawPoint.cs" />
+    <Compile Include="SignaturePad\SignaturePadView.cs" />
+    <Compile Include="SignaturePad\SignatureSerializer.cs" />
     <Compile Include="Styles\ApplicationStyles.cs" />
     <Compile Include="Styles\ApplicationStyles.Generics.cs" />
     <Compile Include="Styles\ApplicationStylesBase.cs" />
