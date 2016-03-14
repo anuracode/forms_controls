@@ -3,13 +3,13 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Sample.ViewModels;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Anuracode.Forms.Controls.Extensions;
-using Anuracode.Forms.Controls.Sample.ViewModels;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
@@ -152,10 +152,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     CartView.UpdateOpacity(0);
                                 }
 
-                                if (Opacity > 0)
-                                {
-                                    Opacity = 0;
-                                }
+                                this.UpdateOpacity(0);                                
 
                                 CartView.UpdateIsVisible(false);
 
@@ -220,18 +217,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             {
                                 IsOverlayVisible = true;
 
+                                CartView.UpdateOpacity(0);
+                                OverlaySeparator.UpdateIsVisible(true);
+
                                 if (HasVerticalTransition)
                                 {
                                     await CartView.TranslateTo(0, LastSizePageCanvas.Height + (ContentMargin * 2), 0);
-                                }
-                                else
-                                {
-                                    CartView.UpdateOpacity(0);
-                                }
-
-                                if (Opacity < 1)
-                                {
-                                    Opacity = 1;
                                 }
 
                                 if (HasVerticalTransition && CartView.Opacity < 1)
@@ -260,6 +251,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                 }
 
                                 this.UpdateIsVisible(true);
+                                this.UpdateOpacity(1);
 
                                 CartView.UpdateIsVisible(true);
 
@@ -672,12 +664,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 VerticalOptions = LayoutOptions.Start,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Opacity = 0
-            };                          
+            };
 
             generalLayout.Children.Add(PanelHeaderRequestLayout);
 
             PanelSummaryLayout = generalLayout;
-            PanelSummaryLayout.UpdateOpacity(0);           
+            PanelSummaryLayout.UpdateOpacity(0);
 
             var detailLayout = Theme.RenderUtil.RenderIdentedVerticalContainer(generalLayout);
 
@@ -712,7 +704,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             totalLayout.Children.Add(lineSeparator1);
 
-            Theme.RenderUtil.RenderSpace(totalLayout);                     
+            Theme.RenderUtil.RenderSpace(totalLayout);
 
             completeLayout.Children.Add(initialLayout);
             completeLayout.Children.Add(generalLayout);

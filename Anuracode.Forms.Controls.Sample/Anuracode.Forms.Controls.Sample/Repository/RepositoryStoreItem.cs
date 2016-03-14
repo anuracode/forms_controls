@@ -103,6 +103,13 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                 }
             }
 
+            if (featured.HasValue)
+            {
+                filteredItems = from item in filteredItems
+                                where item.IsFeautred == featured
+                                select item;
+            }
+
             results.TotalItemsCount = filteredItems.Count();
 
             var pagedItems = (from item in filteredItems
@@ -187,7 +194,8 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                         Brand = "Brand " + (i + 1),
                         Department = level.Department,
                         Category = level.Category,
-                        Subcategory = level.Subcategory
+                        Subcategory = level.Subcategory,
+                        IsFeautred = storeItemNumber < 10
                     };
 
                     sampleItem.ImagesPaths = new List<string>();
