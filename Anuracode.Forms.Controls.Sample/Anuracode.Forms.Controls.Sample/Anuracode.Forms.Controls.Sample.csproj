@@ -59,6 +59,7 @@
     <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
     <Compile Include="ViewModels\PagedResult.Generics.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\SignatureViewModel.cs" />
     <Compile Include="ViewModels\StoreDetailViewModel.cs" />
     <Compile Include="ViewModels\StoreItemCartViewModel.cs" />
     <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Views\MenuPage.cs" />
     <Compile Include="ViewModels\NavigationStep.cs" />
     <Compile Include="Views\ProfilePage.cs" />
+    <Compile Include="Views\SignaturePage.cs" />
     <Compile Include="Views\StoreDetailGroupView.cs" />
     <Compile Include="Views\StoreDetailLargeSimpleView.cs" />
     <Compile Include="Views\StoreDetailSmallSimpleView.cs" />

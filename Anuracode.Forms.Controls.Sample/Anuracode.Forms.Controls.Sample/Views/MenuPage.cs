@@ -53,7 +53,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Share app.
         /// </summary>
-        public Command ExternalShareAppCommand { get; set; }
+        public Command ExternalSignatureCommand { get; set; }
 
         /// <summary>
         /// Navigate to About.
@@ -158,7 +158,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Button to use.
         /// </summary>
-        protected ContentViewButton ButtonShareAlt { get; private set; }
+        protected ContentViewButton ButtonSignatureAlt { get; private set; }
 
         /// <summary>
         /// Close button.
@@ -482,17 +482,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
             StackAlternativeOptions.Children.Add(ButtonSettingsAlt);
 
             // Share
-            ButtonShareAlt = new GlyphLeftContentViewButton()
+            ButtonSignatureAlt = new GlyphLeftContentViewButton()
             {
                 Style = extraMenuOptionsStyle,
                 GlyphText = Theme.CommonResources.GlyphTextShare,
                 GlyphFriendlyFontName = Theme.CommonResources.GlyphFriendlyFontNameAlternate,
                 GlyphFontName = Theme.CommonResources.GlyphFontNameAlternate,
-                Text = App.LocalizationResources.SocialShareMenu,
-                Command = ExternalShareAppCommand
+                Text = App.LocalizationResources.SignatureLabel,
+                Command = ExternalSignatureCommand
             };
 
-            StackAlternativeOptions.Children.Add(ButtonShareAlt);
+            StackAlternativeOptions.Children.Add(ButtonSignatureAlt);
 
             // Profile
             ButtonProfileAlt = new GlyphLeftContentViewButton()
@@ -567,7 +567,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             UpdateButtonCommand(ButtonProfileAlt, ExternalShowProfileCommand);
             UpdateButtonCommand(ButtonOrdersAlt, ExternalShowOrdersCommand);
             UpdateButtonCommand(ButtonSettingsAlt, ExternalShowSettingsCommand);
-            UpdateButtonCommand(ButtonShareAlt, ExternalShareAppCommand);
+            UpdateButtonCommand(ButtonSignatureAlt, ExternalSignatureCommand);
             UpdateButtonCommand(ButtonAboutAlt, ExternalShowAboutCommand);
             UpdateButtonCommand(ButtonAddressBook, ExternalShowAddressBookCommand);
         }

@@ -220,6 +220,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Clear label.
+        /// </summary>
+        public string ClearLabel
+        {
+            get
+            {
+                return "Clear";
+            }
+        }
+
+        /// <summary>
         /// Detail label.
         /// </summary>
         public string DetailLabel
@@ -548,6 +559,28 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Shopping cart";
+            }
+        }
+
+        /// <summary>
+        /// Signature label.
+        /// </summary>
+        public string SignatureLabel
+        {
+            get
+            {
+                return "Signature";
+            }
+        }
+
+        /// <summary>
+        /// Sign here label.
+        /// </summary>
+        public string SignhereLabel
+        {
+            get
+            {
+                return "Sign here";
             }
         }
 
