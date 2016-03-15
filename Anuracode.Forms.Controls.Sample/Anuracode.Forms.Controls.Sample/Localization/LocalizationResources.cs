@@ -307,8 +307,38 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             }
         }
 
-        public object FirstNameLabel { get; internal set; }
-        public object LastNameLabel { get; internal set; }
+        /// <summary>
+        /// First name.
+        /// </summary>
+        public string FirstNameLabel
+        {
+            get
+            {
+                return "First name";
+            }
+        }
+
+        /// <summary>
+        /// Image sample.
+        /// </summary>
+        public string ImageSampleButton
+        {
+            get
+            {
+                return "Image sample";
+            }
+        }
+
+        /// <summary>
+        /// Last name.
+        /// </summary>
+        public string LastNameLabel
+        {
+            get
+            {
+                return "Last name";
+            }
+        }
 
         /// <summary>
         /// Group label.
@@ -321,8 +351,27 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             }
         }
 
-        public object MobilePhoneLabel { get; internal set; }
-        public object NickNameLabel { get; internal set; }
+        /// <summary>
+        /// Mobile phone
+        /// </summary>
+        public string MobilePhoneLabel
+        {
+            get
+            {
+                return "Mobile phone";
+            }
+        }
+
+        /// <summary>
+        /// Nick name.
+        /// </summary>
+        public string NickNameLabel
+        {
+            get
+            {
+                return "Nick name";
+            }
+        }
 
         /// <summary>
         /// Orders label.
@@ -354,7 +403,16 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get { return "Crash"; }
         }
 
-        public object PhoneLabel { get; internal set; }
+        /// <summary>
+        /// Phone label.
+        /// </summary>
+        public string PhoneLabel
+        {
+            get
+            {
+                return "Phone";
+            }
+        }
 
         /// <summary>
         /// Place order label.
@@ -438,7 +496,10 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         /// </summary>
         public string SearchAllStoreLabel
         {
-            get { return "Search all store"; }
+            get
+            {
+                return "Search all store";
+            }
         }
 
         /// <summary>
@@ -585,6 +646,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Signout label.
+        /// </summary>
+        public string SignOutButton
+        {
+            get
+            {
+                return "Signout";
+            }
+        }
+
+        /// <summary>
         /// Share app label.
         /// </summary>
         public string SocialShareMenu
@@ -671,7 +743,5 @@ namespace Anuracode.Forms.Controls.Sample.Localization
                 return "Suggestions";
             }
         }
-
-        public object SyncAzureSignOutButton { get; internal set; }
     }
 }

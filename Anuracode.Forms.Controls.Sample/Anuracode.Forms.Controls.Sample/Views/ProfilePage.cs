@@ -200,7 +200,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextLogout
             };
 
-            buttonLogout.SetBinding<ProfileViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.SyncAzureSignOutButton);
+            buttonLogout.SetBinding<ProfileViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.SignOutButton);
             // buttonLogout.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LogoutCommand);
             stackLoggedInButtons.Children.Add(buttonLogout);
 

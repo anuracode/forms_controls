@@ -39,6 +39,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string PathImageAppLogoLarge = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
 
         /// <summary>
+        /// Logo mirror.
+        /// </summary>
+        public ImageSource PathImageAppLogoLargeMirror = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
+
+        /// <summary>
         /// Path for the image.
         /// </summary>
         public string PathImageFeaturesAction = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
@@ -52,6 +57,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Path to profile background.
         /// </summary>
         public ImageSource PathImageProfileBackground = Model.StoreItem.DEFAULT_SERVER_IMAGE_PATH + "profile_background.jpg";
+
+        /// <summary>
+        /// Path sample image.
+        /// </summary>
+        public string PathImageSample = Model.StoreItem.DEFAULT_SERVER_IMAGE_PATH + "MP_Default-m.jpg";
 
         /// <summary>
         /// Image width.
@@ -184,11 +194,6 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
                 return lineHeight.Value;
             }
         }
-
-        /// <summary>
-        /// Logo mirror.
-        /// </summary>
-        public ImageSource PathImageAppLogoLargeMirror = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
 
         /// <summary>
         /// Stroke color default item.

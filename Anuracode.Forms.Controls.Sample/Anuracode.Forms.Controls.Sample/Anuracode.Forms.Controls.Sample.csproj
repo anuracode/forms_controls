@@ -55,6 +55,7 @@
     <Compile Include="ViewModels\CartListViewModel.cs" />
     <Compile Include="ViewModels\GenericComparer.cs" />
     <Compile Include="ViewModels\GroupingExtensions.cs" />
+    <Compile Include="ViewModels\ImageSampleViewModel.cs" />
     <Compile Include="ViewModels\IStoreListViewModel.cs" />
     <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
     <Compile Include="ViewModels\PagedResult.Generics.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Views\ContentBaseView.Generics.cs" />
     <Compile Include="Views\FilterBarStoreView.cs" />
     <Compile Include="Views\FilterBarView.cs" />
+    <Compile Include="Views\ImageSamplePage.cs" />
     <Compile Include="Views\IntroPage.cs" />
     <Compile Include="Views\ListBasePagedView.Generics.cs" />
     <Compile Include="Views\MainPage.cs" />

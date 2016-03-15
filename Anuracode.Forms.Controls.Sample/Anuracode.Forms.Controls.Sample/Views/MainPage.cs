@@ -52,6 +52,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         private Command showCartCommand;
 
         /// <summary>
+        /// Navigate to image.
+        /// </summary>
+        private Command showImageSampleCommand;
+
+        /// <summary>
         /// Show main menu.
         /// </summary>
         private Command showMainMenuCommand;
@@ -70,11 +75,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Navigate to search.
         /// </summary>
         private Command showSearchCommand;
-
-        /// <summary>
-        /// Navigate to settings.
-        /// </summary>
-        private Command showSettingsCommand;
 
         /// <summary>
         /// Navigate to store.
@@ -101,6 +101,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         public MainPage()
         {
+            SetMenuGesture(false);
+
             NavigationPage.SetHasNavigationBar(this, false);
 
             this.PropertyChanged += MainPage_PropertyChanged;
@@ -245,6 +247,37 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
+        /// Navigate to sample.
+        /// </summary>
+        public Command ShowImageSampleCommand
+        {
+            get
+            {
+                if (showImageSampleCommand == null)
+                {
+                    showImageSampleCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new ImageSampleViewModel();
+
+                            var newPage = new ImageSamplePage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
+                }
+
+                return showImageSampleCommand;
+            }
+        }
+
+        /// <summary>
         /// Show main menu.
         /// </summary>
         public Command ShowMainMenuCommand
@@ -333,22 +366,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 }
 
                 return showSearchCommand;
-            }
-        }
-
-        /// <summary>
-        /// Navigate to settings.
-        /// </summary>
-        public Command ShowSettingsCommand
-        {
-            get
-            {
-                if (showSettingsCommand == null)
-                {
-                    showSettingsCommand = new Command(AlertFunctionNotIncluded);
-                }
-
-                return showSettingsCommand;
             }
         }
 
@@ -475,10 +492,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
             mainMenu = new MenuPage();
 
             mainMenu.ExternalCloseMenuCommand = CloseMenuCommand;
-            mainMenu.ExternalShowSettingsCommand = ShowSettingsCommand;
+            mainMenu.ExternalShowImageSampleCommand = ShowImageSampleCommand;
             mainMenu.ExternalShowSearchCommand = ShowSearchCommand;
             mainMenu.ExternalShowStoreCommand = ShowStoreCommand;
-            mainMenu.ExternalShowAboutCommand = ShowAboutCommand;            
+            mainMenu.ExternalShowAboutCommand = ShowAboutCommand;
             mainMenu.ExternalShowProfileCommand = ShowProfileCommand;
             mainMenu.ExternalShowCartCommand = ShowCartCommand;
             mainMenu.ExternalShowAddressBookCommand = ShowAddressBookCommand;
@@ -540,7 +557,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         private void UpdateCommandsStatus()
         {
-            ShowSettingsCommand.ChangeCanExecute();
+            ShowImageSampleCommand.ChangeCanExecute();
             ShowSearchCommand.ChangeCanExecute();
             ShowStoreCommand.ChangeCanExecute();
             ShowAboutCommand.ChangeCanExecute();

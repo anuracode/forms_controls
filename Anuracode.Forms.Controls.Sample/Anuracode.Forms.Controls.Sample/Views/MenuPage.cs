@@ -88,7 +88,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to settings.
         /// </summary>
-        public Command ExternalShowSettingsCommand { get; set; }
+        public Command ExternalShowImageSampleCommand { get; set; }
 
         /// <summary>
         /// Navigate to store.
@@ -153,7 +153,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Button for settings.
         /// </summary>
-        protected ContentViewButton ButtonSettingsAlt { get; private set; }
+        protected ContentViewButton ButtonImageSampleAlt { get; private set; }
 
         /// <summary>
         /// Button to use.
@@ -471,15 +471,15 @@ namespace Anuracode.Forms.Controls.Sample.Views
             bottomMenuOptionsStyle.Setters.Add(ContentViewButton.ContentAlignmentProperty, TextAlignment.Start);
 
             // Settings
-            ButtonSettingsAlt = new GlyphLeftContentViewButton()
+            ButtonImageSampleAlt = new GlyphLeftContentViewButton()
             {
                 Style = extraMenuOptionsStyle,
                 GlyphText = Theme.CommonResources.GlyphTextSettings,
-                Text = App.LocalizationResources.SettingsButton,
-                Command = ExternalShowSettingsCommand
+                Text = App.LocalizationResources.ImageSampleButton,
+                Command = ExternalShowImageSampleCommand
             };
 
-            StackAlternativeOptions.Children.Add(ButtonSettingsAlt);
+            StackAlternativeOptions.Children.Add(ButtonImageSampleAlt);
 
             // Share
             ButtonSignatureAlt = new GlyphLeftContentViewButton()
@@ -566,7 +566,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             UpdateButtonCommand(ButtonSearchAlt, ExternalShowSearchCommand);
             UpdateButtonCommand(ButtonProfileAlt, ExternalShowProfileCommand);
             UpdateButtonCommand(ButtonOrdersAlt, ExternalShowOrdersCommand);
-            UpdateButtonCommand(ButtonSettingsAlt, ExternalShowSettingsCommand);
+            UpdateButtonCommand(ButtonImageSampleAlt, ExternalShowImageSampleCommand);
             UpdateButtonCommand(ButtonSignatureAlt, ExternalSignatureCommand);
             UpdateButtonCommand(ButtonAboutAlt, ExternalShowAboutCommand);
             UpdateButtonCommand(ButtonAddressBook, ExternalShowAddressBookCommand);
