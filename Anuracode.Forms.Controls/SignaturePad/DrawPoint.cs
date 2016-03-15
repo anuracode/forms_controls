@@ -1,7 +1,6 @@
-﻿// <copyright file="DrawPoint.cs" company="Anura Code">
+﻿// <copyright file="DrawPoint.cs" company="">
 // All rights reserved.
 // </copyright>
-// <author>Alberto Puyana</author>
 
 namespace Anuracode.Forms.Controls
 {

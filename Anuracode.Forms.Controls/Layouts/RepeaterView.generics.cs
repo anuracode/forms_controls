@@ -1,7 +1,6 @@
-﻿// <copyright file="RepeaterView.cs" company="Anura Code">
+﻿// <copyright file="RepeaterView.cs" company="">
 // All rights reserved.
 // </copyright>
-// <author>Alberto Puyana</author>
 
 using System;
 using System.Collections.Generic;

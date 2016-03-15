@@ -1,7 +1,6 @@
-﻿// <copyright file="SignaturePadView.cs" company="Anura Code">
+﻿// <copyright file="SignaturePadView.cs" company="">
 // All rights reserved.
 // </copyright>
-// <author>Alberto Puyana</author>
 
 using System;
 using System.Threading.Tasks;
