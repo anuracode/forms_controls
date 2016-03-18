@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
+    <Compile Include="ImageCircleRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
     <Compile Include="Signature\SignaturePad.cs" />

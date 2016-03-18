@@ -41,7 +41,7 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// <summary>
         /// Logo mirror.
         /// </summary>
-        public ImageSource PathImageAppLogoLargeMirror = ExtendedImage.CompleteImagePrefix("Icon-Small.png");
+        public ImageSource PathImageAppLogoLargeMirror = Model.StoreItem.DEFAULT_SERVER_IMAGE_PATH + "MP_Default-m.jpg";
 
         /// <summary>
         /// Path for the image.

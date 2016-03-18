@@ -88,6 +88,7 @@
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="FontExtensions.cs" />
+    <Compile Include="ImageCircleRenderer.cs" />
     <Compile Include="ManagedImageRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

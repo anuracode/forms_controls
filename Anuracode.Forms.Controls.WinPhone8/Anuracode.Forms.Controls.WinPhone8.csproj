@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="ExtendedEntryRenderer.cs" />
+    <Compile Include="ImageCircleRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignaturePad\SignaturePad.xaml.cs">
       <DependentUpon>SignaturePad.xaml</DependentUpon>

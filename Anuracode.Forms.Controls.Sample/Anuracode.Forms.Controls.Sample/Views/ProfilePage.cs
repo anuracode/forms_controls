@@ -80,7 +80,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Image logo.
         /// </summary>
-        protected ImageContentViewButton ImageLogoButton { get; set; }
+        protected CircleImage ImageLogoButton { get; set; }
 
         /// <summary>
         /// Grid top info.
@@ -362,21 +362,15 @@ namespace Anuracode.Forms.Controls.Sample.Views
             double marginBordersLogo = 5;
 
             // Image logo.
-            ImageLogoButton = new ImageContentViewButton()
+            ImageLogoButton = new CircleImage()
             {
                 Source = Theme.CommonResources.PathImageAppLogoLargeMirror,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                ShapeType = ShapeType.Circle,
-                ButtonBackgroundColor = Theme.CommonResources.Accent,
-                StrokeWidth = 1,
-                StrokeColor = Theme.CommonResources.Accent,
-                MarginBorders = marginBordersLogo,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,                
+                BorderThickness = 1,
+                BorderColor = Theme.CommonResources.Accent,                
                 WidthRequest = imageProfileWidth + marginBordersLogo,
-                HeightRequest = imageProfileWidth + marginBordersLogo,
-                ImageHeightRequest = imageProfileWidth,
-                ImageWidthRequest = imageProfileWidth,
-                Command = LogoAnimateCommand
+                HeightRequest = imageProfileWidth + marginBordersLogo                
             };
 
             stackLoggedOut.Children.Add(ImageLogoButton);
@@ -422,13 +416,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Content = stackGeneral
             };
 
-            ViewModel.UpdateLoginStatus();
-
-            // Load items if there are none.
-            // if ((ViewModel.UserInfo == null) && ViewModel.IsLoggedIn)
-            // {
-            // ViewModel.GetUserNameCommand.ExecuteIfCan();
-            // }
+            ViewModel.UpdateLoginStatus();           
 
             return mainScroll;
         }
