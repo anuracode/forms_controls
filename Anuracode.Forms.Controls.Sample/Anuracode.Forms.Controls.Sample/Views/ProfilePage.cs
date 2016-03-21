@@ -367,6 +367,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 Source = Theme.CommonResources.PathImageAppLogoLargeMirror,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
+				Aspect = Aspect.AspectFill,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,                
                 BorderThickness = 1,
                 BorderColor = Theme.CommonResources.Accent,                
