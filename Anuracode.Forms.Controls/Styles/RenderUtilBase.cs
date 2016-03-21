@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Anuracode.Forms.Controls.Views.Extensions;
 
 namespace Anuracode.Forms.Controls.Styles
 {
@@ -50,7 +51,7 @@ namespace Anuracode.Forms.Controls.Styles
                 await viewElement.FadeTo(0, lenght, easing);
 
                 viewElement.Opacity = 0;
-                viewElement.IsVisible = false;
+                viewElement.UpdateIsVisible(false);
             }
         }
 

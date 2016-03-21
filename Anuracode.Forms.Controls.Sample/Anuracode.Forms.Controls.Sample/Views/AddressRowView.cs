@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views

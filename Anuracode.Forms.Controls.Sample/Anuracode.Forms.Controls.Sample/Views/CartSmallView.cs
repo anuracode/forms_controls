@@ -3,7 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using System.Threading;

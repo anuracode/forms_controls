@@ -3,11 +3,10 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Anuracode.Forms.Controls.Sample.ViewModels;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Sample.ViewModels;
+using Anuracode.Forms.Controls.Views.Extensions;
 using System;
-using System.Reactive.Concurrency;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -85,7 +84,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 return true;
             }
-        }        
+        }
 
         /// <summary>
         /// Margin for the bottom app bar.
@@ -112,7 +111,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Footer of the view.
         /// </summary>
-        protected View Footer { get; set; }        
+        protected View Footer { get; set; }
 
         /// <summary>
         /// Has a background that needs render.
@@ -184,7 +183,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 navigationDisposable = value;
             }
-        }        
+        }
 
         /// <summary>
         /// Render cancel button.
@@ -311,7 +310,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     PageCanvas.Children.Add(NavigateBackButton);
                 }
 
-                PageCanvas.Children.Add(StackShortCuts);                
+                PageCanvas.Children.Add(StackShortCuts);
 
                 extraLayersAdded = true;
             }
@@ -350,7 +349,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             }
 
             AddShareToolbarItem();
-        }       
+        }
 
         /// <summary>
         /// Instance the view for the applciation title.
@@ -479,7 +478,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="contentPosition">Content position.</param>
         /// <param name="footerPosition">Footer position.</param>
         protected virtual void PageBackgroundLayoutChildren(Rectangle pageSize, Rectangle headerPosition, Rectangle contentPosition, Rectangle footerPosition)
-        {            
+        {
         }
 
         /// <summary>
@@ -491,7 +490,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="height">Height to use.</param>
         protected virtual void PageCanvasLayoutChildren(double x, double y, double width, double height)
         {
-            Rectangle pageSize = new Rectangle(ContentMargin, ContentMargin, width - (ContentMargin * 2), height - (ContentMargin * 2) - BottomAppBarMargin);           
+            Rectangle pageSize = new Rectangle(ContentMargin, ContentMargin, width - (ContentMargin * 2), height - (ContentMargin * 2) - BottomAppBarMargin);
 
             PageContentLayoutChildren(x, y, width, height);
         }
@@ -654,14 +653,14 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="footerPosition">Footer position.</param>
         protected virtual void PageExtraLayersLayoutChildren(Rectangle pageSize, Rectangle headerPosition, Rectangle contentPosition, Rectangle footerPosition)
         {
-        }       
+        }
 
         /// <summary>
         /// Render background layout.
         /// </summary>
         /// <param name="absoluteLayout">Layout to add the items to.</param>
         protected virtual void RenderBackgroundLayout(SimpleLayout absoluteLayout)
-        {            
+        {
         }
 
         /// <summary>
@@ -700,7 +699,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             this.Content = PageCanvas;
 
-            AddToolBarItems();           
+            AddToolBarItems();
         }
 
         /// <summary>
@@ -856,6 +855,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected virtual Task UpdateBackgroundOpactity(bool isVisible)
         {
             return Task.FromResult(0);
-        }        
+        }
     }
 }

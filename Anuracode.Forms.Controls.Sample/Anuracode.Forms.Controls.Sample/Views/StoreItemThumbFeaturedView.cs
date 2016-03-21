@@ -4,7 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Xamarin.Forms;
-using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {

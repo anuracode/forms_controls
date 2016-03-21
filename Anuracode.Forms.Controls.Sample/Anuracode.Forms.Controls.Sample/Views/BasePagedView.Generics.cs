@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.Interfaces;
 using System;
 using System.Collections.Generic;

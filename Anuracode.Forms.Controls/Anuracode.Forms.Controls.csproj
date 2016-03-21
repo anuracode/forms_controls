@@ -80,6 +80,7 @@
     <Compile Include="Styles\CommonResourcesLightTheme.cs" />
     <Compile Include="Styles\RenderUtilBase.cs" />
     <Compile Include="Styles\ThemeManager.cs" />
+    <Compile Include="ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

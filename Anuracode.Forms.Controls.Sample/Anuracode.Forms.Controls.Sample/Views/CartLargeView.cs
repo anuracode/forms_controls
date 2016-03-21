@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System.Collections.Generic;
 using System.Threading;
@@ -152,7 +153,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     CartView.UpdateOpacity(0);
                                 }
 
-                                this.UpdateOpacity(0);                                
+                                this.UpdateOpacity(0);
 
                                 CartView.UpdateIsVisible(false);
 
@@ -741,8 +742,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 {
                     if (LabelNoElements != null)
                     {
-                        LabelNoElements.IsVisible = (totalItemsCount == 0);
-                        LabelNoElements.Opacity = LabelNoElements.IsVisible ? 1 : 0;
+                        LabelNoElements.UpdateIsVisible((totalItemsCount == 0));
+                        LabelNoElements.UpdateOpacity(LabelNoElements.IsVisible ? 1 : 0);
                     }
 
                     return Task.FromResult(0);
@@ -806,7 +807,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     }
                                 }
 
-                                PanelHeaderRequestLayout.IsVisible = showHeader;
+                                PanelHeaderRequestLayout.UpdateIsVisible(showHeader);
                             }
 
                             if (ButtonConfirmOrder != null)

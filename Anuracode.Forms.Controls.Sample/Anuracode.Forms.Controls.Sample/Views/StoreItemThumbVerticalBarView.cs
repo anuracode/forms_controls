@@ -6,6 +6,7 @@
 using System;
 using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 
 namespace Anuracode.Forms.Controls.Sample.Views

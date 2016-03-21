@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -1721,7 +1722,7 @@ namespace Anuracode.Forms.Controls
 
             if (InvisibleWhenDisabled)
             {
-                this.IsVisible = canExecute;
+                this.UpdateIsVisible(canExecute);
             }
         }
 

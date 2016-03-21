@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
@@ -115,15 +116,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                                 await Theme.RenderUtil.AnimateFadeOutViewAsync(BackgroundWaterMark);
 
-                                if (Opacity > 0)
-                                {
-                                    Opacity = 0;
-                                }
-
-                                if (IsVisible)
-                                {
-                                    IsVisible = false;
-                                }
+                                this.UpdateOpacity(0);
+                                this.UpdateIsVisible(false);
                             }
                         },
                         () =>
@@ -202,7 +196,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                                     IsVisible = true;
                                 }
 
-                                await Theme.RenderUtil.AnimateFadeInViewAsync(BackgroundWaterMark);                                
+                                await Theme.RenderUtil.AnimateFadeInViewAsync(BackgroundWaterMark);
 
                                 await Theme.RenderUtil.AnimateFadeInViewAsync(ContentDetailLayout);
 

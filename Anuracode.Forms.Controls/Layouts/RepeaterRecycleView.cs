@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 
 namespace Anuracode.Forms.Controls
 {
@@ -492,15 +493,8 @@ namespace Anuracode.Forms.Controls
 
                             if (itemView != null)
                             {
-                                if (itemView.Opacity > 0)
-                                {
-                                    itemView.Opacity = 0;
-                                }
-
-                                if (itemView.IsVisible)
-                                {
-                                    itemView.IsVisible = false;
-                                }
+                                itemView.UpdateOpacity(0);
+                                itemView.UpdateIsVisible(false);                                
                             }
                         }
                     }
@@ -729,15 +723,8 @@ namespace Anuracode.Forms.Controls
 
                             cancellationToken.ThrowIfCancellationRequested();
 
-                            if (!itemView.IsVisible)
-                            {
-                                itemView.IsVisible = true;
-                            }
-
-                            if (itemView.Opacity < 1)
-                            {
-                                itemView.Opacity = 1;
-                            }
+                            itemView.UpdateIsVisible(true);
+                            itemView.UpdateOpacity(1);
 
                             itemView.LayoutUpdate(elementPosition);
                         }
@@ -765,15 +752,8 @@ namespace Anuracode.Forms.Controls
 
                     if (itemView != null)
                     {
-                        if (itemView.Opacity > 0)
-                        {
-                            itemView.Opacity = 0;
-                        }
-
-                        if (itemView.IsVisible)
-                        {
-                            itemView.IsVisible = false;
-                        }
+                        itemView.UpdateOpacity(0);
+                        itemView.UpdateIsVisible(false);
                     }
 
                     cancellationToken.ThrowIfCancellationRequested();

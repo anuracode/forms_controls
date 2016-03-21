@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.Interfaces;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 

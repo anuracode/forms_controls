@@ -5,6 +5,7 @@
 
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
