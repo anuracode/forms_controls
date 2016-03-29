@@ -80,6 +80,8 @@
     <Compile Include="Styles\CommonResourcesLightTheme.cs" />
     <Compile Include="Styles\RenderUtilBase.cs" />
     <Compile Include="Styles\ThemeManager.cs" />
+    <Compile Include="Thread\IThreadManager.cs" />
+    <Compile Include="Thread\ThreadManagerBase.cs" />
     <Compile Include="ViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

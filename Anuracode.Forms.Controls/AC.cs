@@ -3,10 +3,10 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Thread;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls
 {
@@ -16,9 +16,30 @@ namespace Anuracode.Forms.Controls
     public static class AC
     {
         /// <summary>
+        /// Thread manager.
+        /// </summary>
+        private static IThreadManager threadManager;
+
+        /// <summary>
         /// Trace service.
         /// </summary>
         private static ITraceService traceService;
+
+        /// <summary>
+        /// Thread manager.
+        /// </summary>
+        public static IThreadManager ThreadManager
+        {
+            get
+            {
+                if (threadManager == null)
+                {
+                    SetThreadManager(new ThreadManagerBase());
+                }
+
+                return threadManager;
+            }
+        }
 
         /// <summary>
         /// Schedule a action to execute.
@@ -26,7 +47,7 @@ namespace Anuracode.Forms.Controls
         /// <param name="action">Action to execute.</param>
         public static void ScheduleManaged(Func<Task> action)
         {
-            InternalScheduleManaged(action);
+            ThreadManager.ScheduleManagedFull(action);
         }
 
         /// <summary>
@@ -35,7 +56,7 @@ namespace Anuracode.Forms.Controls
         /// <param name="action">Action to execute.</param>
         public static void ScheduleManaged(Action action)
         {
-            InternalScheduleManaged(
+            ThreadManager.ScheduleManagedFull(
                 async () =>
                 {
                     await Task.FromResult(0);
@@ -54,7 +75,19 @@ namespace Anuracode.Forms.Controls
         /// <param name="delayTime">Delay time to execute.</param>
         public static void ScheduleManaged(TimeSpan delayTime, Func<Task> action)
         {
-            InternalScheduleManaged(action, delayTime: delayTime);
+            ThreadManager.ScheduleManagedFull(action, delayTime: delayTime);
+        }
+
+        /// <summary>
+        /// Set thread manager.
+        /// </summary>
+        /// <param name="newManager">New manager.</param>
+        public static void SetThreadManager(IThreadManager newManager)
+        {
+            if (newManager != null)
+            {
+                threadManager = newManager;
+            }
         }
 
         /// <summary>
@@ -77,63 +110,6 @@ namespace Anuracode.Forms.Controls
             if (traceService != null)
             {
                 traceService.TraceError(message, errorException, eventParameters);
-            }
-        }
-
-        /// <summary>
-        /// Schedule a action to execute.
-        /// </summary>
-        /// <param name="action">Action to execute.</param>
-        /// <param name="useUIThread">True to use the UI thread.</param>
-        /// <param name="delayTime">Delay time to execute.</param>
-        private static void InternalScheduleManaged(Func<Task> action, bool useUIThread = true, TimeSpan? delayTime = null)
-        {
-            if (useUIThread)
-            {
-                Device.BeginInvokeOnMainThread(
-                    async () =>
-                    {
-                        try
-                        {
-                            if ((delayTime != null) && delayTime.Value.TotalMilliseconds > 0)
-                            {
-                                await Task.Delay(delayTime.Value);
-                            }
-
-                            if (action != null)
-                            {
-                                await action();
-                            }
-                        }                       
-                        catch (OperationCanceledException opex)
-                        {
-                            TraceError("Operation cancelled", opex);
-                        }
-                        catch (Exception ex)
-                        {
-                            TraceError("Schedule error", ex);
-                        }
-                    });
-            }
-            else
-            {
-                Task.Run(
-                    async () =>
-                    {
-                        try
-                        {
-                            if ((delayTime != null) && delayTime.Value.TotalMilliseconds > 0)
-                            {
-                                await Task.Delay(delayTime.Value);
-                            }
-
-                            await action();
-                        }
-                        catch (Exception ex)
-                        {
-                            TraceError("Schedule error", ex);
-                        }
-                    });
             }
         }
     }
