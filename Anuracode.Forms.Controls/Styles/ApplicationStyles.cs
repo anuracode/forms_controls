@@ -439,7 +439,7 @@ namespace Anuracode.Forms.Controls.Styles
         }
 
         /// <summary>
-        /// Style for image only rounded button.
+        /// Style for navigation buttons.
         /// </summary>
         public virtual Style GlyphOnlyNavbarButtonStyle
         {
