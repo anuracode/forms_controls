@@ -453,7 +453,7 @@ namespace Anuracode.Forms.Controls.Styles
                     glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.GlyphTextColorProperty, CommonResources.PagesBackgroundColorLight);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.TextColorProperty, CommonResources.PagesBackgroundColorLight);
                     glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.DisableGlyphOnlyProperty, true);
-                    glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.ButtonBackgroundColorProperty, CommonResources.AccentDark);
+                    glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.ButtonBackgroundColorProperty, Color.Transparent);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.ShapeTypeProperty, ShapeType.Box);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.VerticalOptionsProperty, LayoutOptions.Center);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.HorizontalOptionsProperty, LayoutOptions.Start);

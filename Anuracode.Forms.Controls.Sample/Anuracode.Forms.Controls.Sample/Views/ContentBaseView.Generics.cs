@@ -758,8 +758,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             GlyphText = Theme.CommonResources.GlyphTextMainMenu,
                             GlyphFriendlyFontName = Theme.CommonResources.GlyphFriendlyFontNameAlternate,
                             GlyphFontName = Theme.CommonResources.GlyphFontNameAlternate,
-                            Command = ViewModel.ShowMainMenuCommand,
-                            ButtonBackgroundColor = Theme.CommonResources.AccentLight
+                            Command = ViewModel.ShowMainMenuCommand                            
                         };
 
                         double factorSize = 1.4;
