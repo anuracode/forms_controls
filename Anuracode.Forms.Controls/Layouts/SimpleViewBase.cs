@@ -3,8 +3,8 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
+using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls
 {
@@ -32,8 +32,8 @@ namespace Anuracode.Forms.Controls
                 Padding = 0
             };
 
-            ContentLayout.OnLayoutChildren += ContentLayout_OnLayoutChildren;
-            ContentLayout.ManualSizeCalculationDelegate = ContentLayout_OnSizeRequest;
+            ContentLayout.OnLayoutChildren += InternalContentLayout_OnLayoutChildren;
+            ContentLayout.ManualSizeCalculationDelegate = InternalContentLayout_OnSizeRequest;
 
             if (autoInit)
             {
@@ -61,10 +61,10 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Margin for the element.s
         /// </summary>
-        protected virtual double Margin
+        protected virtual double ContentMargin
         {
             get
-            {
+            {                
                 return 10;
             }
         }
@@ -113,11 +113,6 @@ namespace Anuracode.Forms.Controls
         public virtual void RecycleView()
         {
         }
-
-        /// <summary>
-        /// Setup the bindings of the elements.
-        /// </summary>
-        protected abstract void SetupBindings();
 
         /// <summary>
         /// Set up cell values.
@@ -194,7 +189,7 @@ namespace Anuracode.Forms.Controls
             }
             else
             {
-                var resultSize = ContentLayout.GetSizeRequest(widthConstraint, heightConstraint);
+                var resultSize = ContentLayout.Measure(widthConstraint, heightConstraint);
 
                 double requestWidth = resultSize.Request.Width.Clamp(0, widthConstraint);
                 double requestHeight = resultSize.Request.Height.Clamp(0, heightConstraint);
@@ -203,6 +198,51 @@ namespace Anuracode.Forms.Controls
 
                 return new SizeRequest(new Size(requestWidth, requestHeight), new Size(minimumWidth, minimumHeight));
             }
+        }
+
+        /// <summary>
+        /// Setup the bindings of the elements.
+        /// </summary>
+        protected abstract void SetupBindings();
+
+        /// <summary>
+        /// Layout children.
+        /// </summary>
+        /// <param name="x">Top to use.</param>
+        /// <param name="y">Left to use.</param>
+        /// <param name="width">Width to use.</param>
+        /// <param name="height">Height to use.</param>
+        private void InternalContentLayout_OnLayoutChildren(double x, double y, double width, double height)
+        {
+            try
+            {
+                ContentLayout_OnLayoutChildren(x, y, width, height);
+            }
+            catch (System.Exception ex)
+            {
+                AC.TraceError("OnSize error", ex);
+            }
+        }
+
+        /// <summary>
+        /// Mesure the content.
+        /// </summary>
+        /// <param name="widthConstraint">Width to constarint.</param>
+        /// <param name="heightConstraint">Height to constraint.</param>
+        /// <returns>Size to use.</returns>
+        private SizeRequest InternalContentLayout_OnSizeRequest(double widthConstraint, double heightConstraint)
+        {
+            SizeRequest returnValue = new SizeRequest();
+            try
+            {
+                returnValue = ContentLayout_OnSizeRequest(widthConstraint, heightConstraint);
+            }
+            catch (System.Exception ex)
+            {
+                AC.TraceError("OnSize error", ex);
+            }
+
+            return returnValue;
         }
     }
 }

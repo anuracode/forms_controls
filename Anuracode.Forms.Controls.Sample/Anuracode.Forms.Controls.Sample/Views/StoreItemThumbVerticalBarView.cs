@@ -214,12 +214,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceLabel != null)
             {
-                priceSize = ProductPriceLabel.GetSizeRequest(maxContentWidth, maxLineHeight).Request;
+                priceSize = ProductPriceLabel.Measure(maxContentWidth, maxLineHeight).Request;
             }
 
             if (ProductNameLabel != null)
             {
-                nameSize = ProductNameLabel.GetSizeRequest(maxContentWidth, maxLineHeight).Request;
+                nameSize = ProductNameLabel.Measure(maxContentWidth, maxLineHeight).Request;
             }
 
             if (ProductNameLabel != null)
@@ -253,7 +253,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceWithoutDiscountLabel != null)
             {
-                var elementSize = ProductPriceWithoutDiscountLabel.GetSizeRequest(maxContentWidth, layoutPartialBorderSize.Height).Request;
+                var elementSize = ProductPriceWithoutDiscountLabel.Measure(maxContentWidth, layoutPartialBorderSize.Height).Request;
                 double elementHeight = elementSize.Height.Clamp(0, maxLineHeight);
                 double elementWidth = elementSize.Width.Clamp(0, maxContentWidth);
                 double elementLeft = decorationPosition.X + (((width - decorationPosition.X) - elementWidth) * 0.5f);
@@ -278,7 +278,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ThumbNormalBorder != null)
             {
-                double elementHeight = layoutPartialBorderSize.Height + Margin;
+                double elementHeight = layoutPartialBorderSize.Height + ContentMargin;
                 double elementWidth = 5;
                 double elementLeft = layoutPartialBorderSize.X;
                 double elementTop = layoutPartialBorderSize.Y;
@@ -313,7 +313,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     }
                 }
 
-                var elementSize = NewLabel.GetSizeRequest(layoutPartialBorderSize.Width, layoutPartialBorderSize.Height).Request;
+                var elementSize = NewLabel.Measure(layoutPartialBorderSize.Width, layoutPartialBorderSize.Height).Request;
 
                 double elementLeft = BackgroundBorderWidth;
                 double elementTop = BackgroundBorderWidth;
@@ -322,7 +322,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (IsNewRotated)
                 {
-                    elementWidth = elementSize.Width + (Margin * 6);
+                    elementWidth = elementSize.Width + (ContentMargin * 6);
                     elementLeft = BackgroundBorderWidth - (elementWidth * (0.18f));
                     elementTop = BackgroundBorderWidth + (height * (0.33f));
                 }

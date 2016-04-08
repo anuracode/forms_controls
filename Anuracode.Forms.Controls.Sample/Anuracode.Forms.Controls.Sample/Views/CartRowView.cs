@@ -134,7 +134,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             // Image
             if (ImageDetailPreview != null)
             {
-                var elementSize = ImageDetailPreview.GetSizeRequest(width, height).Request;
+                var elementSize = ImageDetailPreview.Measure(width, height).Request;
                 double elementLeft = 0;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
@@ -145,8 +145,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 ImageDetailPreview.LayoutUpdate(imagePosition);
             }
 
-            double contentLeft = imagePosition.Width + Margin;
-            double contentWidth = width - imagePosition.Width - Margin - (Theme.CommonResources.RoundedButtonWidth * 2f) - (Theme.CommonResources.CartPriceWidth * 0.5f) - (Theme.CommonResources.CartPriceWidth);
+            double contentLeft = imagePosition.Width + ContentMargin;
+            double contentWidth = width - imagePosition.Width - ContentMargin - (Theme.CommonResources.RoundedButtonWidth * 2f) - (Theme.CommonResources.CartPriceWidth * 0.5f) - (Theme.CommonResources.CartPriceWidth);
 
             double priceWidth = Theme.CommonResources.CartPriceWidth;
 
@@ -156,7 +156,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (LabelTotalPrice != null)
             {
                 double elementWidth = priceWidth;
-                var elementSize = LabelTotalPrice.GetSizeRequest(useAutoSize ? width : elementWidth, height).Request;
+                var elementSize = LabelTotalPrice.Measure(useAutoSize ? width : elementWidth, height).Request;
 
                 if (useAutoSize)
                 {
@@ -186,7 +186,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (LabelQuantity != null)
             {
                 double elementWidth = priceWidth * 0.5f;
-                var elementSize = LabelQuantity.GetSizeRequest(useAutoSize ? width : elementWidth, height).Request;
+                var elementSize = LabelQuantity.Measure(useAutoSize ? width : elementWidth, height).Request;
 
                 if (useAutoSize)
                 {
@@ -217,7 +217,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LabelName != null)
             {
-                var elementSize = LabelName.GetSizeRequest(contentWidth, height).Request;
+                var elementSize = LabelName.Measure(contentWidth, height).Request;
                 double elementWidth = contentWidth;
                 double elementHeight = elementSize.Height;
                 double elementLeft = contentLeft;
@@ -230,11 +230,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LabelPriceValue != null)
             {
-                var elementSize = LabelPriceValue.GetSizeRequest(contentWidth, height).Request;
+                var elementSize = LabelPriceValue.Measure(contentWidth, height).Request;
                 double elementWidth = contentWidth;
                 double elementHeight = elementSize.Height;
                 double elementLeft = contentLeft;
-                double elementTop = namePosition.Y + namePosition.Height + (Margin * 0f);
+                double elementTop = namePosition.Y + namePosition.Height + (ContentMargin * 0f);
 
                 pricePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -257,20 +257,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ImageDetailPreview != null)
             {
-                imageSize = ImageDetailPreview.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                imageSize = ImageDetailPreview.Measure(widthConstraint, heightConstraint).Request;
             }
 
-            double contentMaxWidth = imageSize.Width + Margin + Theme.CommonResources.RoundedButtonWidth + (Theme.CommonResources.CartPriceWidth * 0.5f) + Theme.CommonResources.RoundedButtonWidth + (Theme.CommonResources.CartPriceWidth);
+            double contentMaxWidth = imageSize.Width + ContentMargin + Theme.CommonResources.RoundedButtonWidth + (Theme.CommonResources.CartPriceWidth * 0.5f) + Theme.CommonResources.RoundedButtonWidth + (Theme.CommonResources.CartPriceWidth);
             double minContentWidth = widthConstraint.Clamp(0, 4000) - contentMaxWidth.Clamp(0, widthConstraint);
 
             if (LabelPriceValue != null)
             {
-                priceSize = LabelPriceValue.GetSizeRequest(minContentWidth, heightConstraint).Request;
+                priceSize = LabelPriceValue.Measure(minContentWidth, heightConstraint).Request;
             }
 
             if (LabelName != null)
             {
-                nameSize = LabelName.GetSizeRequest(minContentWidth, heightConstraint).Request;
+                nameSize = LabelName.Measure(minContentWidth, heightConstraint).Request;
             }            
 
             double imageHeight = imageSize.Height;

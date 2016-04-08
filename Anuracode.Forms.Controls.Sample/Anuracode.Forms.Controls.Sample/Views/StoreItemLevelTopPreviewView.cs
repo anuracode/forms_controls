@@ -287,9 +287,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ButtonCategory != null)
             {
-                var elementSize = ButtonCategory.GetSizeRequest(width, height).Request;
-                double elementLeft = Margin;
-                double elementTop = Margin;
+                var elementSize = ButtonCategory.Measure(width, height).Request;
+                double elementLeft = ContentMargin;
+                double elementTop = ContentMargin;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
 
@@ -300,9 +300,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ButtonAllProducts != null)
             {
-                var elementSize = ButtonAllProducts.GetSizeRequest(width, height).Request;
-                double elementLeft = Width - elementSize.Width - Margin;
-                double elementTop = Margin;
+                var elementSize = ButtonAllProducts.Measure(width, height).Request;
+                double elementLeft = Width - elementSize.Width - ContentMargin;
+                double elementTop = ContentMargin;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
 
@@ -311,9 +311,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 ButtonAllProducts.LayoutUpdate(elementPosition);
             }
 
-            double itemsElementLeft = Margin;
-            double itemsElementTop = categoryButtonPosition.Y + categoryButtonPosition.Height + (Margin * (1f));
-            double itemsElementWidth = width - (Margin * 2f);
+            double itemsElementLeft = ContentMargin;
+            double itemsElementTop = categoryButtonPosition.Y + categoryButtonPosition.Height + (ContentMargin * (1f));
+            double itemsElementWidth = width - (ContentMargin * 2f);
             double itemsElementHeight = itemHeight;
             Rectangle itemsPosition = new Rectangle(itemsElementLeft, itemsElementTop, itemsElementWidth, itemsElementHeight);
 
@@ -329,7 +329,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ActivityView != null)
             {
-                var elementSize = ActivityView.GetSizeRequest(itemsPosition.Width * 0.5f, itemsPosition.Height * 0.5f).Request;
+                var elementSize = ActivityView.Measure(itemsPosition.Width * 0.5f, itemsPosition.Height * 0.5f).Request;
                 double elementLeft = ((itemsPosition.Width - elementSize.Width) * 0.5f) + itemsPosition.X;
                 double elementTop = ((itemsPosition.Height - elementSize.Height) * 0.5f) + itemsPosition.Y;
                 double elementHeight = elementSize.Height;
@@ -342,7 +342,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ButtonExpandCategory != null)
             {
-                double elementLeft = categoryButtonPosition.X + categoryButtonPosition.Width + (Margin * 0.5f);
+                double elementLeft = categoryButtonPosition.X + categoryButtonPosition.Width + (ContentMargin * 0.5f);
                 double elementTop = categoryButtonPosition.Y;
                 double elementHeight = categoryButtonPosition.Height;
                 double elementWidth = elementHeight;
@@ -386,10 +386,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (CategoryShapeBackgroundView != null)
             {
-                double elementLeft = categoryButtonPosition.X - (Margin * 1f);
-                double elementTop = categoryButtonPosition.Y - (Margin * 0.5f);
-                double elementHeight = categoryButtonPosition.Height + (Margin * 1f);
-                double elementWidth = categoryButtonPosition.Width + categoryExpandButtonPosition.Width + (Margin * 1.5f);
+                double elementLeft = categoryButtonPosition.X - (ContentMargin * 1f);
+                double elementTop = categoryButtonPosition.Y - (ContentMargin * 0.5f);
+                double elementHeight = categoryButtonPosition.Height + (ContentMargin * 1f);
+                double elementWidth = categoryButtonPosition.Width + categoryExpandButtonPosition.Width + (ContentMargin * 1.5f);
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -409,10 +409,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ButtonCategory != null)
             {
-                categorySize = ButtonCategory.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                categorySize = ButtonCategory.Measure(widthConstraint, heightConstraint).Request;
             }
 
-            double height = categorySize.Height + (Margin * 2f) + itemHeight;
+            double height = categorySize.Height + (ContentMargin * 2f) + itemHeight;
             SizeRequest resultRequest = new SizeRequest(new Size(widthConstraint, height), new Size(widthConstraint, height));
 
             return resultRequest;

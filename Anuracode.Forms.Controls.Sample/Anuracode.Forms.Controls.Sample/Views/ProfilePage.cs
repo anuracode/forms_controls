@@ -247,7 +247,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             Theme.RenderUtil.RenderSpace(stackmainInfo, heightRequest: 15);
 
-            var sizeRequest = stackmainInfo.GetSizeRequest(ContentViewButton.MAX_WIDTH, ContentViewButton.MAX_HEIGHT);
+            var sizeRequest = stackmainInfo.Measure(ContentViewButton.MAX_WIDTH, ContentViewButton.MAX_HEIGHT);
 
             GridTopInfo.Children.Add(stackmainInfo);
             stackDetail.Children.Add(GridTopInfo);

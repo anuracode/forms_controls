@@ -367,7 +367,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (SelectedItemPreview != null)
             {
-                var elementSize = SelectedItemPreview.GetSizeRequest(width, height).Request;
+                var elementSize = SelectedItemPreview.Measure(width, height).Request;
 
                 if (IsOverlay)
                 {
@@ -450,7 +450,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if (SelectedItemPreview != null)
                     {
-                        elementSize = SelectedItemPreview.GetSizeRequest(width, height).Request;
+                        elementSize = SelectedItemPreview.Measure(width, height).Request;
                     }
 
                     double elementWidth = elementSize.Width + (3 * 2);
@@ -468,7 +468,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (CloseButton != null)
             {
-                var elementSize = CloseButton.GetSizeRequest(width, height).Request;
+                var elementSize = CloseButton.Measure(width, height).Request;
                 double elementWidth = elementSize.Width;
                 double elementHeight = elementSize.Height;
                 double elementLeft = (detailPosition.X + detailPosition.Width) - (elementWidth * 0.5f);

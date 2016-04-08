@@ -187,10 +187,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ImageLayout != null)
             {
-                var imageSize = ImageLayout.GetSizeRequest(width, height).Request;
+                var imageSize = ImageLayout.Measure(width, height).Request;
                 double elementWidth = imageSize.Width;
                 double elementHeight = imageSize.Height;
-                double elementLeft = Margin;
+                double elementLeft = ContentMargin;
                 double elementTop = (height - elementHeight) * 0.5f;
 
                 imagePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
@@ -200,11 +200,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceLabel != null)
             {
-                var elementMargin = Margin * 0.5f;
-                var elementSize = ProductPriceLabel.GetSizeRequest(Theme.CommonResources.CartPriceWidth, height - (elementMargin * 2f)).Request;
+                var elementMargin = ContentMargin * 0.5f;
+                var elementSize = ProductPriceLabel.Measure(Theme.CommonResources.CartPriceWidth, height - (elementMargin * 2f)).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
-                double elementLeft = width - elementWidth - (Margin * 2f);
+                double elementLeft = width - elementWidth - (ContentMargin * 2f);
                 double elementTop = (height - elementHeight) * 0.5f;
 
                 pricePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
@@ -226,7 +226,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LeftDecorationLayout != null)
             {
-                double elementLeft = width - Theme.CommonResources.CartPriceWidth - (Margin * 2f) - BackgroundBorderWidth;
+                double elementLeft = width - Theme.CommonResources.CartPriceWidth - (ContentMargin * 2f) - BackgroundBorderWidth;
                 double elementTop = BackgroundBorderWidth;
                 double elementWidth = width - elementLeft - BackgroundBorderWidth;
                 double elementHeight = height - (BackgroundBorderWidth * 2f);
@@ -238,10 +238,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                var elementMargin = Margin * 0.5f;
-                double elementLeft = imagePosition.X + imagePosition.Width + (Margin * 2f);
+                var elementMargin = ContentMargin * 0.5f;
+                double elementLeft = imagePosition.X + imagePosition.Width + (ContentMargin * 2f);
                 double elementWidth = decorationPosition.X - elementLeft;
-                var elementSize = ProductNameLabel.GetSizeRequest(elementWidth, height - (elementMargin * 2f)).Request;
+                var elementSize = ProductNameLabel.Measure(elementWidth, height - (elementMargin * 2f)).Request;
                 double elementHeight = elementSize.Height;
                 double elementTop = (height - elementHeight) * 0.5f;
 
@@ -259,7 +259,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns>Size to use.</returns>
         protected override SizeRequest ContentLayout_OnSizeRequest(double widthConstraint, double heightConstraint)
         {
-            double contentMaxWidth = ThumbImageWidth + (Margin * 5f) + (BackgroundBorderWidth * 2f) + Theme.CommonResources.CartPriceWidth;
+            double contentMaxWidth = ThumbImageWidth + (ContentMargin * 5f) + (BackgroundBorderWidth * 2f) + Theme.CommonResources.CartPriceWidth;
             double minContentWidth = widthConstraint.Clamp(0, 4000) - contentMaxWidth.Clamp(0, widthConstraint);
             double maxHeight = ((BackgroundBorderWidth * 4f) + ThumbImageWidth).Clamp(0, heightConstraint);
             double minWidth = contentMaxWidth;
@@ -338,7 +338,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 double elementWidth = width * 4f;
                 double elementHeight = elementWidth;
-                double elementLeft = Margin;
+                double elementLeft = ContentMargin;
                 double elementTop = (height - elementHeight) * 0.55f;
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
@@ -350,7 +350,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 double elementWidth = width * 4f;
                 double elementHeight = elementWidth;
-                double elementLeft = Margin;
+                double elementLeft = ContentMargin;
                 double elementTop = (height - elementHeight) * 0.55f;
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
@@ -379,7 +379,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns></returns>
         protected virtual SizeRequest LeftDecorationLayout_OnSizeRequest(double widthConstraint, double heightConstraint)
         {
-            double contentMaxWidth = (Margin * 3f) + (BackgroundBorderWidth * 2f) + Theme.CommonResources.CartPriceWidth;
+            double contentMaxWidth = (ContentMargin * 3f) + (BackgroundBorderWidth * 2f) + Theme.CommonResources.CartPriceWidth;
             double maxHeight = ((BackgroundBorderWidth * 2f) + ThumbImageWidth).Clamp(0, heightConstraint);
             double minWidth = contentMaxWidth;
 

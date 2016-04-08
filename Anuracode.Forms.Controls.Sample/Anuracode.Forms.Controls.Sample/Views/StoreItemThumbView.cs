@@ -370,20 +370,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                         if (ProductPriceLabel != null)
                         {
-                            sizePrice = ProductPriceLabel.GetSizeRequest(widthConstraint, heightRequest).Request;
+                            sizePrice = ProductPriceLabel.Measure(widthConstraint, heightRequest).Request;
                         }
 
                         if (ProductNameLabel != null)
                         {
-                            sizeName = ProductNameLabel.GetSizeRequest(widthConstraint, heightRequest).Request;
+                            sizeName = ProductNameLabel.Measure(widthConstraint, heightRequest).Request;
                         }
 
                         if (ProductShortDescriptionLabel != null)
                         {
-                            sizeDescription = ProductShortDescriptionLabel.GetSizeRequest(widthConstraint, heightRequest).Request;
+                            sizeDescription = ProductShortDescriptionLabel.Measure(widthConstraint, heightRequest).Request;
                         }
 
-                        double widthRequest = (BackgroundBorderWidth * 2) + ThumbImageWidth + (Margin * 4f) + Math.Max(Math.Max(sizeName.Width, sizePrice.Width), sizeDescription.Width);
+                        double widthRequest = (BackgroundBorderWidth * 2) + ThumbImageWidth + (ContentMargin * 4f) + Math.Max(Math.Max(sizeName.Width, sizePrice.Width), sizeDescription.Width);
 
                         resultRequest = new SizeRequest(new Size(widthRequest, heightRequest), new Size(widthRequest, heightRequest));
                     }
@@ -400,20 +400,20 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                         if (ProductPriceLabel != null)
                         {
-                            priceSize = ProductPriceLabel.GetSizeRequest(widthRequest, heightConstraint).Request;
+                            priceSize = ProductPriceLabel.Measure(widthRequest, heightConstraint).Request;
                         }
 
                         if (ProductNameLabel != null)
                         {
-                            nameSize = ProductNameLabel.GetSizeRequest(widthRequest, heightConstraint).Request;
+                            nameSize = ProductNameLabel.Measure(widthRequest, heightConstraint).Request;
                         }
 
                         if (ProductShortDescriptionLabel != null)
                         {
-                            descriptionSize = ProductShortDescriptionLabel.GetSizeRequest(widthRequest, heightConstraint).Request;
+                            descriptionSize = ProductShortDescriptionLabel.Measure(widthRequest, heightConstraint).Request;
                         }
 
-                        double heightRequest = ThumbImageWidth + (Margin * 5f) + priceSize.Height + nameSize.Height + descriptionSize.Height;
+                        double heightRequest = ThumbImageWidth + (ContentMargin * 5f) + priceSize.Height + nameSize.Height + descriptionSize.Height;
 
                         resultRequest = new SizeRequest(new Size(widthRequest, heightRequest), new Size(widthRequest, heightRequest));
                     }
@@ -421,7 +421,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     {
                         double widthRequest = ThumbImageWidth + (ThumbImageWidth * (1f / 3f));
 
-                        double heightRequest = ThumbImageWidth + (BackgroundBorderWidth * 2f) + (LineHeight * 3) + (Margin * 3);
+                        double heightRequest = ThumbImageWidth + (BackgroundBorderWidth * 2f) + (LineHeight * 3) + (ContentMargin * 3);
                         resultRequest = new SizeRequest(new Size(widthRequest, heightRequest), new Size(widthRequest, heightRequest));
                     }
                     break;
@@ -450,8 +450,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ImageLayout != null)
             {
-                var imageSize = ImageLayout.GetSizeRequest(width, height).Request;
-                double elementLeft = BackgroundBorderWidth + Margin;
+                var imageSize = ImageLayout.Measure(width, height).Request;
+                double elementLeft = BackgroundBorderWidth + ContentMargin;
                 double elementHeight = imageSize.Height;
                 double elementWidth = imageSize.Width;
                 double elementTop = (height - elementHeight) * 0.5f;
@@ -491,11 +491,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceLabel != null)
             {
-                var elementSize = ProductPriceLabel.GetSizeRequest(width, height).Request;
+                var elementSize = ProductPriceLabel.Measure(width, height).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = arcPosition.X + (arcPosition.Width / 2f) - (elementWidth / 2f);
-                double elementTop = arcPosition.Y + (Margin * 1f);
+                double elementTop = arcPosition.Y + (ContentMargin * 1f);
 
                 pricePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -504,11 +504,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                var elementSize = ProductNameLabel.GetSizeRequest(width, height).Request;
+                var elementSize = ProductNameLabel.Measure(width, height).Request;
                 double elementHeight = elementSize.Height;
-                double elementWidth = elementSize.Width.Clamp(0, width - (Margin * 2f));
+                double elementWidth = elementSize.Width.Clamp(0, width - (ContentMargin * 2f));
                 double elementLeft = pricePosition.X + (pricePosition.Width * 0.5f) - (elementWidth * 0.5f);
-                double elementTop = pricePosition.Y + (Margin * 2f);
+                double elementTop = pricePosition.Y + (ContentMargin * 2f);
 
                 namePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -518,11 +518,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (ProductShortDescriptionLabel != null)
             {
                 float marginMultiplayer = Device.Idiom == TargetIdiom.Phone ? 1.5f : 2.75f;
-                double elementWidth = width - (imagePosition.X + imagePosition.Width + (Margin * 1f));
-                var elementSize = ProductNameLabel.GetSizeRequest(elementWidth, height).Request;
+                double elementWidth = width - (imagePosition.X + imagePosition.Width + (ContentMargin * 1f));
+                var elementSize = ProductNameLabel.Measure(elementWidth, height).Request;
                 double elementHeight = elementSize.Height;
-                double elementLeft = imagePosition.X + imagePosition.Width + (Margin * 1f);
-                double elementTop = namePosition.Y + (Margin * marginMultiplayer);
+                double elementLeft = imagePosition.X + imagePosition.Width + (ContentMargin * 1f);
+                double elementTop = namePosition.Y + (ContentMargin * marginMultiplayer);
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -555,11 +555,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ImageLayout != null)
             {
-                var imageSize = ImageLayout.GetSizeRequest(width, height).Request;
+                var imageSize = ImageLayout.Measure(width, height).Request;
                 double elementWidth = imageSize.Width;
                 double elementHeight = imageSize.Height;
                 double elementLeft = (width - elementWidth) * 0.5f;
-                double elementTop = Margin * 2f;
+                double elementTop = ContentMargin * 2f;
 
                 imagePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -594,11 +594,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceLabel != null)
             {
-                var elementSize = ProductPriceLabel.GetSizeRequest(width, height).Request;
+                var elementSize = ProductPriceLabel.Measure(width, height).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = (width - elementWidth) * 0.5f;
-                double elementTop = imagePosition.Y + imagePosition.Height + (Margin * 2f);
+                double elementTop = imagePosition.Y + imagePosition.Height + (ContentMargin * 2f);
 
                 pricePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -607,11 +607,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                var elementSize = ProductNameLabel.GetSizeRequest(width, height).Request;
+                var elementSize = ProductNameLabel.Measure(width, height).Request;
                 double elementHeight = elementSize.Height;
-                double elementWidth = elementSize.Width.Clamp(0, width - (Margin * 2f));
+                double elementWidth = elementSize.Width.Clamp(0, width - (ContentMargin * 2f));
                 double elementLeft = (width - elementWidth) * 0.5f;
-                double elementTop = pricePosition.Y + pricePosition.Height + (Margin * 0f);
+                double elementTop = pricePosition.Y + pricePosition.Height + (ContentMargin * 0f);
 
                 namePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -620,11 +620,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductShortDescriptionLabel != null)
             {
-                var elementSize = ProductShortDescriptionLabel.GetSizeRequest(width, height).Request;
+                var elementSize = ProductShortDescriptionLabel.Measure(width, height).Request;
                 double elementHeight = elementSize.Height;
-                double elementWidth = elementSize.Width.Clamp(0, width - (Margin * 2f));
+                double elementWidth = elementSize.Width.Clamp(0, width - (ContentMargin * 2f));
                 double elementLeft = (width - elementWidth) * 0.5f;
-                double elementTop = namePosition.Y + namePosition.Height + (Margin * 0f);
+                double elementTop = namePosition.Y + namePosition.Height + (ContentMargin * 0f);
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -654,8 +654,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ImageLayout != null)
             {
-                var imageSize = ImageLayout.GetSizeRequest(width, height).Request;
-                double elementLeft = BackgroundBorderWidth + Margin;
+                var imageSize = ImageLayout.Measure(width, height).Request;
+                double elementLeft = BackgroundBorderWidth + ContentMargin;
                 double elementHeight = imageSize.Height;
                 double elementWidth = imageSize.Width;
                 double elementTop = (height - elementHeight) * 0.5f;
@@ -667,11 +667,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                var elementSize = ProductNameLabel.GetSizeRequest(width, height).Request;
-                double elementTop = imagePosition.Y + (Margin * 0.25f);
-                double elementLeft = imagePosition.X + imagePosition.Width + (Margin * 2f);
+                var elementSize = ProductNameLabel.Measure(width, height).Request;
+                double elementTop = imagePosition.Y + (ContentMargin * 0.25f);
+                double elementLeft = imagePosition.X + imagePosition.Width + (ContentMargin * 2f);
                 double elementHeight = elementSize.Height;
-                double elementWidth = width - elementLeft - Margin - BackgroundBorderWidth;
+                double elementWidth = width - elementLeft - ContentMargin - BackgroundBorderWidth;
 
                 namePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -680,18 +680,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductPriceLabel != null)
             {
-                priceSize = ProductPriceLabel.GetSizeRequest(namePosition.Width, height).Request;
+                priceSize = ProductPriceLabel.Measure(namePosition.Width, height).Request;
             }
 
-            double maxDescriptionHeight = height - (imagePosition.Y * 2f) - namePosition.Height - (Margin * 0.25f) - priceSize.Height;
+            double maxDescriptionHeight = height - (imagePosition.Y * 2f) - namePosition.Height - (ContentMargin * 0.25f) - priceSize.Height;
 
             if (ProductShortDescriptionLabel != null)
             {
-                var elementSize = ProductNameLabel.GetSizeRequest(namePosition.Width, height).Request;
+                var elementSize = ProductNameLabel.Measure(namePosition.Width, height).Request;
                 double elementWidth = namePosition.Width;
                 double elementLeft = namePosition.X;
                 double elementHeight = Math.Min(elementSize.Height, maxDescriptionHeight);
-                double elementTop = namePosition.Y + namePosition.Height + (Margin * 0f);
+                double elementTop = namePosition.Y + namePosition.Height + (ContentMargin * 0f);
 
                 descriptionPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -703,7 +703,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 double elementHeight = priceSize.Height;
                 double elementWidth = namePosition.Width;
                 double elementLeft = namePosition.Left;
-                double elementTop = descriptionPosition.Y + descriptionPosition.Height + (Margin * 0f);
+                double elementTop = descriptionPosition.Y + descriptionPosition.Height + (ContentMargin * 0f);
 
                 pricePosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -764,7 +764,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     }
                 }
 
-                var elementSize = NewLabel.GetSizeRequest(layoutPartialBorderSize.Width, layoutPartialBorderSize.Height).Request;
+                var elementSize = NewLabel.Measure(layoutPartialBorderSize.Width, layoutPartialBorderSize.Height).Request;
 
                 double elementLeft = BackgroundBorderWidth;
                 double elementTop = BackgroundBorderWidth;
@@ -773,7 +773,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (IsNewRotated)
                 {
-                    elementWidth = elementSize.Width + (Margin * 6);
+                    elementWidth = elementSize.Width + (ContentMargin * 6);
                     elementLeft = BackgroundBorderWidth - (elementWidth * (0.18f));
                     elementTop = BackgroundBorderWidth + (height * (0.33f));
                 }

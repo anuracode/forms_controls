@@ -515,7 +515,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (MainMenuButton != null)
             {
-                var elementSize = MainMenuButton.GetSizeRequest(width, height).Request;
+                var elementSize = MainMenuButton.Measure(width, height).Request;
 
                 mainMenuButtonPosition = new Rectangle(
                     0,
@@ -527,7 +527,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (NavigateBackButton != null)
             {
-                var elementSize = NavigateBackButton.GetSizeRequest(width, height).Request;
+                var elementSize = NavigateBackButton.Measure(width, height).Request;
 
                 navigateBackButtonPosition = new Rectangle(
                     0,
@@ -550,7 +550,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (AppNameView != null)
             {
                 double maxWidth = width - mainMenuButtonPosition.X - mainMenuButtonPosition.Width - (ContentMargin * 2f);
-                var elementSize = AppNameView.GetSizeRequest(maxWidth, mainMenuButtonPosition.Height).Request;
+                var elementSize = AppNameView.Measure(maxWidth, mainMenuButtonPosition.Height).Request;
 
                 var elementPosition = new Rectangle(
                     mainMenuButtonPosition.X + mainMenuButtonPosition.Width + ContentMargin,
@@ -573,7 +573,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (StackShortCuts != null)
             {
-                var elementSize = StackShortCuts.GetSizeRequest(width, height).Request;
+                var elementSize = StackShortCuts.Measure(width, height).Request;
 
                 stackButtonPosition = new Rectangle(
                     width - (ContentMargin * 2) - elementSize.Width,
@@ -588,7 +588,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 double titleMargin = ContentMargin * (Device.Idiom == TargetIdiom.Phone ? 0f : 1f);
                 double maxWidth = stackButtonPosition.X - navigateBackButtonPosition.X - (titleMargin * 2f);
-                var elementSize = TitleView.GetSizeRequest(maxWidth, stackButtonPosition.Height).Request;
+                var elementSize = TitleView.Measure(maxWidth, stackButtonPosition.Height).Request;
 
                 var elementPosition = new Rectangle(
                     navigateBackButtonPosition.X + navigateBackButtonPosition.Width + titleMargin,
@@ -601,7 +601,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (Header != null)
             {
-                var headerSize = Header.GetSizeRequest(width, height).Request;
+                var headerSize = Header.Measure(width, height).Request;
 
                 headerposition = new Rectangle(
                     ContentMargin,
@@ -614,7 +614,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (Footer != null)
             {
-                var footerSize = Footer.GetSizeRequest(width, height).Request;
+                var footerSize = Footer.Measure(width, height).Request;
 
                 footerPosition = new Rectangle(
                     ContentMargin,

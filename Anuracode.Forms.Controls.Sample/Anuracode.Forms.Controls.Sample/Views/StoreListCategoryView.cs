@@ -206,7 +206,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (hasLevel)
                 {
-                    var elementSize = LevelView.GetSizeRequest(width, height).Request;
+                    var elementSize = LevelView.Measure(width, height).Request;
                     double elementLeft = x + ContentMargin;
                     double elementTop = y + ContentMargin;
                     double elementWidth = elementSize.Width;
@@ -223,8 +223,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (hasLevel)
                 {
-                    var elementSize = StoreAllProductsButton.GetSizeRequest(width, height).Request;
-                    double elementLeft = Width - elementSize.Width - Margin;
+                    var elementSize = StoreAllProductsButton.Measure(width, height).Request;
+                    double elementLeft = Width - elementSize.Width - base.ContentMargin;
                     double elementTop = levelViewPosition.Y;
                     double elementHeight = elementSize.Height;
                     double elementWidth = elementSize.Width;

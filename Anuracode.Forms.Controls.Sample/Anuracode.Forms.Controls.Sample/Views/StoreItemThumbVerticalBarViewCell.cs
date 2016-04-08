@@ -87,7 +87,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (InnerView != null)
             {
-                return InnerView.GetSizeRequest(widthConstraint, heightConstraint);
+                return InnerView.Measure(widthConstraint, heightConstraint);
             }
             else
             {

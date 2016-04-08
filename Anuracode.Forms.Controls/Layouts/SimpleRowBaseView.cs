@@ -36,7 +36,7 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Content margin.
         /// </summary>
-        protected override double Margin
+        protected override double ContentMargin
         {
             get
             {
@@ -70,10 +70,10 @@ namespace Anuracode.Forms.Controls
         {
             if (InnerConentLayout != null)
             {
-                double elementLeft = Margin;
-                double elementTop = Margin;
-                double elementWidth = width - (Margin * 2f) - RightExtraPadding;
-                double elementHeight = height - (Margin * 2f);
+                double elementLeft = ContentMargin;
+                double elementTop = ContentMargin;
+                double elementWidth = width - (ContentMargin * 2f) - RightExtraPadding;
+                double elementHeight = height - (ContentMargin * 2f);
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -95,10 +95,10 @@ namespace Anuracode.Forms.Controls
 
             if (InnerConentLayout != null)
             {
-                innerContentSize = InnerConentLayout.GetSizeRequest(calculatedWidth - (Margin * 2f) - RightExtraPadding, heightConstraint).Request;
+                innerContentSize = InnerConentLayout.Measure(calculatedWidth - (ContentMargin * 2f) - RightExtraPadding, heightConstraint).Request;
             }
 
-            double calculatedHeigh = innerContentSize.Height + (Margin * 2f);
+            double calculatedHeigh = innerContentSize.Height + (ContentMargin * 2f);
             return new SizeRequest(new Size(calculatedWidth.Clamp(0, 4000), calculatedHeigh.Clamp(0, 4000)), new Size(calculatedWidth.Clamp(0, 4000), calculatedHeigh.Clamp(0, 4000)));
         }
 

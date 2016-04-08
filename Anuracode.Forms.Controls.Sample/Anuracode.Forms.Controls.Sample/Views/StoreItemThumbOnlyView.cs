@@ -95,7 +95,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (ImageLayout != null)
             {
-                var imageSize = ImageLayout.GetSizeRequest(width, height).Request;
+                var imageSize = ImageLayout.Measure(width, height).Request;
                 double elementLeft = 0;
                 double elementHeight = imageSize.Height;
                 double elementWidth = imageSize.Width;

@@ -137,7 +137,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (BackButton != null)
             {
-                var sizeRequest = BackButton.GetSizeRequest(width, height).Request;
+                var sizeRequest = BackButton.Measure(width, height).Request;
 
                 backButtonPosition = new Rectangle(
                     0,

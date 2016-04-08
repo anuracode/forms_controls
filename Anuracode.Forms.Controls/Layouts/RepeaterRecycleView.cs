@@ -597,7 +597,7 @@ namespace Anuracode.Forms.Controls
             {
                 if (ActivityView != null)
                 {
-                    var aelementSize = ActivityView.GetSizeRequest(ItemWidth, ItemHeight).Request;
+                    var aelementSize = ActivityView.Measure(ItemWidth, ItemHeight).Request;
                     double aelementHeight = aelementSize.Height.Clamp(ItemHeight * 0.33f, ItemHeight);
                     double aelementWidth = aelementSize.Width.Clamp(ItemWidth * 0.33f, ItemWidth);
                     double aelementLeft = ((ContentSize.Width - aelementSize.Width) * 0.5f) + ScrollX;
