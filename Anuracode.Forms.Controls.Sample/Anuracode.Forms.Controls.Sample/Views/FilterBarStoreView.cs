@@ -61,7 +61,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected override void ContentLayout_OnLayoutChildren(double x, double y, double width, double height)
         {
             double minWidth = 245;
-            double maxWidth = width - (Margin * 6);
+            double maxWidth = width - (ContentMargin * 6);
 
             // A third of the screen.
             double thirdMax = (maxWidth * 0.33f);
@@ -74,11 +74,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (InfoLabel != null)
             {
-                var elementSize = InfoLabel.GetSizeRequest(maxWidth, height - (MarginBorders * 2f)).Request;
+                var elementSize = InfoLabel.Measure(maxWidth, height - (MarginBorders * 2f)).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = (width - elementWidth) * 0.5f;
-                double elementTop = Margin;
+                double elementTop = ContentMargin;
 
                 infoPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
@@ -91,7 +91,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = 0;
-                double elementTop = infoPosition.Y + infoPosition.Height + (Margin * 1.5f);
+                double elementTop = infoPosition.Y + infoPosition.Height + (ContentMargin * 1.5f);
 
                 // Center elements
                 elementLeft += (width - maxWidth) * 0.5f;
@@ -101,7 +101,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (SearchButton != null)
             {
-                var elementSize = SearchButton.GetSizeRequest(maxWidth, height - (MarginBorders * 2f) - infoPosition.Height).Request;
+                var elementSize = SearchButton.Measure(maxWidth, height - (MarginBorders * 2f) - infoPosition.Height).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = maxWidth - MarginBorders - elementWidth;
@@ -118,7 +118,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (FilterEntry != null)
             {
                 double elementWidth = maxWidth - buttonPosition.Width - (MarginElements * 3f) - MarginBorders - profilePosition.Width;
-                var elementSize = FilterEntry.GetSizeRequest(elementWidth, height - (MarginBorders * 2f) - infoPosition.Height).Request;
+                var elementSize = FilterEntry.Measure(elementWidth, height - (MarginBorders * 2f) - infoPosition.Height).Request;
                 double elementHeight = elementSize.Height;
                 double elementLeft = MarginElements + profilePosition.X + profilePosition.Width;
                 double elementTop = profilePosition.Y + ((profilePosition.Height - elementHeight) * 0.5f);
@@ -130,7 +130,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (InfoDecoration != null)
             {
-                double elementMargin = Margin * 0.5f;
+                double elementMargin = ContentMargin * 0.5f;
                 double elementTop = buttonPosition.Top - elementMargin;
                 double elementLeft = entryPosition.Left - elementMargin;
                 double elementWidth = (buttonPosition.X + buttonPosition.Width) - entryPosition.X + (elementMargin * 2f);
@@ -151,7 +151,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected override SizeRequest ContentLayout_OnSizeRequest(double widthConstraint, double heightConstraint)
         {
             double minWidth = 245;
-            double maxWidth = widthConstraint - (Margin * 6);
+            double maxWidth = widthConstraint - (ContentMargin * 6);
 
             // A third of the screen.
             double thirdMax = (maxWidth * 0.33f);
@@ -162,10 +162,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (InfoLabel != null)
             {
-                infoSize = SearchButton.GetSizeRequest(maxWidth, heightConstraint - (MarginBorders * 2f)).Request;
+                infoSize = SearchButton.Measure(maxWidth, heightConstraint - (MarginBorders * 2f)).Request;
             }
 
-            double maxHeight = (profileSize.Height + (MarginBorders * 2f) + infoSize.Height + Margin).Clamp(Theme.CommonResources.RoundedButtonWidth, heightConstraint);
+            double maxHeight = (profileSize.Height + (MarginBorders * 2f) + infoSize.Height + ContentMargin).Clamp(Theme.CommonResources.RoundedButtonWidth, heightConstraint);
 
             SizeRequest resultRequest = new SizeRequest(new Size(widthConstraint, maxHeight), new Size(widthConstraint, maxHeight));
 

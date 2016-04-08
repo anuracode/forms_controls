@@ -107,7 +107,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <param name="height">Height to use.</param>
         protected override void InnerConentLayout_OnLayoutChildren(double x, double y, double width, double height)
         {
-            double calculatedWidth = width - (Margin * 4f);
+            double calculatedWidth = width - (ContentMargin * 4f);
 
             Rectangle nickPosition = new Rectangle();
             Rectangle recievPosition = new Rectangle();
@@ -119,9 +119,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelNickName) != null && LabelNickName.IsVisible)
             {
-                var elementSize = LabelNickName.GetSizeRequest(calculatedWidth, height).Request;
-                double elementLeft = Margin * 6f;
-                double elementTop = Margin * 1f;
+                var elementSize = LabelNickName.Measure(calculatedWidth, height).Request;
+                double elementLeft = ContentMargin * 6f;
+                double elementTop = ContentMargin * 1f;
                 double elementWidth = elementSize.Width;
                 double elementHeight = elementSize.Height;
 
@@ -134,7 +134,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelRecipient) != null && LabelRecipient.IsVisible)
             {
-                var elementSize = LabelRecipient.GetSizeRequest(calculatedWidth, height).Request;
+                var elementSize = LabelRecipient.Measure(calculatedWidth, height).Request;
                 double elementLeft = previousPosition.Left;
                 double elementTop = previousPosition.Top + previousPosition.Height;
                 double elementWidth = elementSize.Width;
@@ -153,7 +153,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelPhoneValue) != null && LabelPhoneValue.IsVisible)
             {
-                var elementSize = LabelPhoneValue.GetSizeRequest(calculatedWidth, height).Request;
+                var elementSize = LabelPhoneValue.Measure(calculatedWidth, height).Request;
 
                 double elementLeft = previousPosition.Left;
                 double elementTop = previousPosition.Top + previousPosition.Height;
@@ -173,7 +173,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelLine1Value) != null && LabelLine1Value.IsVisible)
             {
-                var elementSize = LabelLine1Value.GetSizeRequest(calculatedWidth, height).Request;
+                var elementSize = LabelLine1Value.Measure(calculatedWidth, height).Request;
                 double elementLeft = previousPosition.Left;
                 double elementTop = previousPosition.Top + previousPosition.Height;
                 double elementWidth = elementSize.Width;
@@ -192,7 +192,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelLine2Value) != null && LabelLine2Value.IsVisible)
             {
-                var elementSize = LabelLine2Value.GetSizeRequest(calculatedWidth, height).Request;
+                var elementSize = LabelLine2Value.Measure(calculatedWidth, height).Request;
 
                 double elementLeft = previousPosition.Left;
                 double elementTop = previousPosition.Top + previousPosition.Height;
@@ -214,7 +214,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 double elementWidth = height * 2f;
                 double elementHeight = elementWidth;
-                double elementLeft = nickPosition.X - elementWidth - Margin;
+                double elementLeft = nickPosition.X - elementWidth - ContentMargin;
                 double elementTop = (height - elementHeight) * 0.5f;
 
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
@@ -231,7 +231,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns></returns>
         protected override SizeRequest InnerContentLayout_OnSizeRequest(double widthConstraint, double heightConstraint)
         {
-            double calculatedWidth = widthConstraint - (Margin * 7f);
+            double calculatedWidth = widthConstraint - (ContentMargin * 7f);
 
             Size nickSize = new Size();
             Size recieverSize = new Size();
@@ -242,30 +242,30 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((LabelNickName) != null && LabelNickName.IsVisible)
             {
-                nickSize = LabelNickName.GetSizeRequest(calculatedWidth, heightConstraint).Request;
+                nickSize = LabelNickName.Measure(calculatedWidth, heightConstraint).Request;
             }
 
             if ((LabelRecipient) != null && LabelRecipient.IsVisible)
             {
-                recieverSize = LabelRecipient.GetSizeRequest(calculatedWidth, heightConstraint).Request;
+                recieverSize = LabelRecipient.Measure(calculatedWidth, heightConstraint).Request;
             }
 
             if ((LabelLine1Value) != null && LabelLine1Value.IsVisible)
             {
-                line1Size = LabelLine1Value.GetSizeRequest(calculatedWidth, heightConstraint).Request;
+                line1Size = LabelLine1Value.Measure(calculatedWidth, heightConstraint).Request;
             }
 
             if ((LabelLine2Value) != null && LabelLine2Value.IsVisible)
             {
-                line2Size = LabelLine2Value.GetSizeRequest(calculatedWidth, heightConstraint).Request;
+                line2Size = LabelLine2Value.Measure(calculatedWidth, heightConstraint).Request;
             }
 
             if ((LabelPhoneValue) != null && LabelPhoneValue.IsVisible)
             {
-                phoneSize = LabelPhoneValue.GetSizeRequest(calculatedWidth, heightConstraint).Request;
+                phoneSize = LabelPhoneValue.Measure(calculatedWidth, heightConstraint).Request;
             }
 
-            double calculatedHeigh = nickSize.Height + recieverSize.Height + line1Size.Height + line2Size.Height + distnaceSize.Height + phoneSize.Height + (Margin * 2f);
+            double calculatedHeigh = nickSize.Height + recieverSize.Height + line1Size.Height + line2Size.Height + distnaceSize.Height + phoneSize.Height + (ContentMargin * 2f);
 
             return new SizeRequest(new Size(calculatedWidth, calculatedHeigh), new Size(calculatedWidth, calculatedHeigh));
         }

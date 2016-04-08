@@ -593,7 +593,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ThumbImage != null)
             {
-                var elementSize = ThumbImage.GetSizeRequest(width, height).Request;
+                var elementSize = ThumbImage.Measure(width, height).Request;
                 double elementLeft = (width - elementSize.Width) * 0.5f;
                 double elementTop = (height * thumpPosition) - (elementSize.Height * 0.5f);
                 double elementWidth = elementSize.Width;
@@ -609,7 +609,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LevelView != null)
             {
-                var elementSize = LevelView.GetSizeRequest(width, height).Request;
+                var elementSize = LevelView.Measure(width, height).Request;
                 double elementLeft = ContentMargin;
                 double elementTop = ContentMargin;
                 double elementWidth = elementSize.Width;
@@ -626,10 +626,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (PriceLabel != null)
             {
                 double maxWidth = width - imageThumbPosition.X;
-                var elementSize = PriceLabel.GetSizeRequest(maxWidth, height).Request;
+                var elementSize = PriceLabel.Measure(maxWidth, height).Request;
                 double elementWidth = elementSize.Width;
                 double elementHeight = elementSize.Height;
-                double elementTop = imageThumbPosition.Y + imageThumbPosition.Height + (Margin * 0.5f);
+                double elementTop = imageThumbPosition.Y + imageThumbPosition.Height + (base.ContentMargin * 0.5f);
 
                 double elementLeft = (width - elementWidth) * 0.5f;
 
@@ -641,7 +641,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LabelName != null)
             {
-                var elementSize = LabelName.GetSizeRequest(detailsWidth, height).Request;
+                var elementSize = LabelName.Measure(detailsWidth, height).Request;
                 double elementTop = pricePosition.Y + pricePosition.Height + (ContentMargin * 0.5f);
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
@@ -653,7 +653,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LabelShortDescription != null)
             {
-                var elementSize = LabelShortDescription.GetSizeRequest(detailsWidth, height).Request;
+                var elementSize = LabelShortDescription.Measure(detailsWidth, height).Request;
                 double elementTop = namePosition.Y + namePosition.Height + (ContentMargin * 0);
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;

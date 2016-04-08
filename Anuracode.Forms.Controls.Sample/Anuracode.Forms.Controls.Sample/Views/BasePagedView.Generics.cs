@@ -577,7 +577,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (FloatingFilterContainer != null)
             {
-                var filterSize = FloatingFilterContainer.GetSizeRequest(pageSize.Width, pageSize.Height).Request;
+                var filterSize = FloatingFilterContainer.Measure(pageSize.Width, pageSize.Height).Request;
 
                 double elementWidth = pageSize.Width + ContentMargin;
                 double elementLeft = -ContentMargin;

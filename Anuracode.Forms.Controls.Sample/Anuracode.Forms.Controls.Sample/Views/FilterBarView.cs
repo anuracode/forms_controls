@@ -409,7 +409,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected override void ContentLayout_OnLayoutChildren(double x, double y, double width, double height)
         {
             double minWidth = 245;
-            double maxWidth = width - (Margin * 6);
+            double maxWidth = width - (ContentMargin * 6);
 
             // A third of the screen.
             double thirdMax = (maxWidth * 0.33f);
@@ -421,7 +421,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (SearchButton != null)
             {
-                var elementSize = SearchButton.GetSizeRequest(maxWidth, height - (MarginBorders * 2f)).Request;
+                var elementSize = SearchButton.Measure(maxWidth, height - (MarginBorders * 2f)).Request;
                 double elementHeight = elementSize.Height;
                 double elementWidth = elementSize.Width;
                 double elementLeft = maxWidth - MarginBorders - elementWidth;
@@ -438,7 +438,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (FilterEntry != null)
             {
                 double elementWidth = maxWidth - buttonPosition.Width - (MarginElements * 2f) - MarginBorders;
-                var elementSize = FilterEntry.GetSizeRequest(elementWidth, height - (MarginBorders * 2f)).Request;
+                var elementSize = FilterEntry.Measure(elementWidth, height - (MarginBorders * 2f)).Request;
                 double elementHeight = elementSize.Height;
                 double elementLeft = MarginBorders;
                 double elementTop = (height - elementHeight) * 0.5f;
@@ -453,7 +453,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (InfoDecoration != null)
             {
-                double elementMargin = Margin * 0.5f;
+                double elementMargin = ContentMargin * 0.5f;
                 double elementTop = buttonPosition.Top - elementMargin;
                 double elementLeft = entryPosition.Left - elementMargin;
                 double elementWidth = (buttonPosition.X + buttonPosition.Width) - entryPosition.X + (elementMargin * 2f);
@@ -477,10 +477,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (SearchButton != null)
             {
-                searchSize = SearchButton.GetSizeRequest(widthConstraint, heightConstraint - (MarginBorders * 2f)).Request;
+                searchSize = SearchButton.Measure(widthConstraint, heightConstraint - (MarginBorders * 2f)).Request;
             }
 
-            double maxHeight = (searchSize.Height + (MarginBorders * 2f) + (Margin * 2f)).Clamp(Theme.CommonResources.RoundedButtonWidth, heightConstraint);
+            double maxHeight = (searchSize.Height + (MarginBorders * 2f) + (ContentMargin * 2f)).Clamp(Theme.CommonResources.RoundedButtonWidth, heightConstraint);
 
             SizeRequest resultRequest = new SizeRequest(new Size(widthConstraint, maxHeight), new Size(widthConstraint, maxHeight));
 

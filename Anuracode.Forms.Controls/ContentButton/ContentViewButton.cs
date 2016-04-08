@@ -1122,7 +1122,7 @@ namespace Anuracode.Forms.Controls
                 {
                     if (TextExtendedLabel != null)
                     {
-                        var requestImageSize = TextExtendedLabel.GetSizeRequest(width, height).Request;
+                        var requestImageSize = TextExtendedLabel.Measure(width, height).Request;
                         double textWidth = requestImageSize.Width.Clamp(0, width);
                         double textHeight = requestImageSize.Height.Clamp(0, height);
                         double textX = (width - textWidth) * 0.5f;
@@ -1137,7 +1137,7 @@ namespace Anuracode.Forms.Controls
                 {
                     if (ButtonImageView != null)
                     {
-                        var requestImageSize = ButtonImageView.GetSizeRequest(width, height).Request;
+                        var requestImageSize = ButtonImageView.Measure(width, height).Request;
                         double imageWidth = requestImageSize.Width.Clamp(0, ImageWidthRequest);
                         double imageHeight = requestImageSize.Height.Clamp(0, ImageHeightRequest);
 
@@ -1167,8 +1167,8 @@ namespace Anuracode.Forms.Controls
                 }
                 else
                 {
-                    var requestTextSize = TextExtendedLabel.GetSizeRequest(width, height).Request;
-                    var requestImageSize = ButtonImageView.GetSizeRequest(width, height).Request;
+                    var requestTextSize = TextExtendedLabel.Measure(width, height).Request;
+                    var requestImageSize = ButtonImageView.Measure(width, height).Request;
 
                     double imageX = 0;
                     double imageY = 0;
@@ -1361,7 +1361,7 @@ namespace Anuracode.Forms.Controls
 
             if (TemplateContentView != null)
             {
-                resultRequest = TemplateContentView.GetSizeRequest(widthConstraintCustom, heightConstraintCustom);
+                resultRequest = TemplateContentView.Measure(widthConstraintCustom, heightConstraintCustom);
             }
             else
             {
@@ -1371,14 +1371,14 @@ namespace Anuracode.Forms.Controls
                     {
                         if (TextExtendedLabel != null)
                         {
-                            resultRequest = TextExtendedLabel.GetSizeRequest(widthConstraintCustom, heightConstraintCustom);
+                            resultRequest = TextExtendedLabel.Measure(widthConstraintCustom, heightConstraintCustom);
                         }
                     }
                     else if (!HasText && HasImage)
                     {
                         if ((ButtonImageView != null) && IsImageSizeVariable)
                         {
-                            resultRequest = ButtonImageView.GetSizeRequest(widthConstraintCustom, heightConstraintCustom);
+                            resultRequest = ButtonImageView.Measure(widthConstraintCustom, heightConstraintCustom);
                         }
                         else
                         {
@@ -1394,7 +1394,7 @@ namespace Anuracode.Forms.Controls
 
                         if (TextExtendedLabel != null)
                         {
-                            textSize = TextExtendedLabel.GetSizeRequest(widthConstraintCustom, heightConstraintCustom);
+                            textSize = TextExtendedLabel.Measure(widthConstraintCustom, heightConstraintCustom);
                         }
 
                         switch (orientation)
@@ -1473,7 +1473,7 @@ namespace Anuracode.Forms.Controls
 
             if (ContentLayout != null)
             {
-                request = ContentLayout.GetSizeRequest(widthConstraint, heightConstraint);
+                request = ContentLayout.Measure(widthConstraint, heightConstraint);
             }
 
             return request;

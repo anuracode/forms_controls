@@ -2028,7 +2028,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (SuggestionsLabel != null)
                 {
-                    var elementSize = SuggestionsLabel.GetSizeRequest(pageSize.Width, pageSize.Height).Request;
+                    var elementSize = SuggestionsLabel.Measure(pageSize.Width, pageSize.Height).Request;
                     double elementLeft = ContentMargin;
                     double elementTop = filterPosition.Y + filterPosition.Height + (ContentMargin * 1.5f);
                     double elementWidth = elementSize.Width;

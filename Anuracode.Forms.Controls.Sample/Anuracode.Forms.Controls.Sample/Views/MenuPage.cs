@@ -238,7 +238,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if ((Content != null) && (MenuScroll != null) && (MenuScroll.Content != null))
                 {
-                    double contentHeight = MenuScroll.Content.GetSizeRequest(ContentViewButton.MAX_WIDTH, ContentViewButton.MAX_HEIGHT).Request.Height;
+                    double contentHeight = MenuScroll.Content.Measure(ContentViewButton.MAX_WIDTH, ContentViewButton.MAX_HEIGHT).Request.Height;
                     var calculatedHeight = height;
 
                     if (contentHeight < calculatedHeight)

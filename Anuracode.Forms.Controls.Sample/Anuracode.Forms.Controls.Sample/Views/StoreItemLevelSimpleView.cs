@@ -315,9 +315,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (SubLevelButton != null)
                 {
-                    var elementSize = SubLevelButton.GetSizeRequest(width, height).Request;
+                    var elementSize = SubLevelButton.Measure(width, height).Request;
 
-                    double elementLeft = Margin;
+                    double elementLeft = ContentMargin;
                     double elementTop = 0;
                     double elementWidth = elementSize.Width;
                     double elementHeight = elementSize.Height;
@@ -340,9 +340,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 {
                     if ((LabelDepartment != null) && LabelDepartment.IsVisible)
                     {
-                        var elementSize = LabelDepartment.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelDepartment.Measure(width, height).Request;
 
-                        double elementLeft = Margin;
+                        double elementLeft = ContentMargin;
                         double elementTop = 0;
                         double elementWidth = elementSize.Width;
                         double elementHeight = elementSize.Height;
@@ -356,7 +356,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelDepartmentSeparator != null) && LabelDepartmentSeparator.IsVisible)
                     {
-                        var elementSize = LabelDepartmentSeparator.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelDepartmentSeparator.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -372,7 +372,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelCategory != null) && LabelCategory.IsVisible)
                     {
-                        var elementSize = LabelCategory.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelCategory.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -388,7 +388,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelCategorySeparator != null) && LabelCategorySeparator.IsVisible)
                     {
-                        var elementSize = LabelCategorySeparator.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelCategorySeparator.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -404,7 +404,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelSubcategory != null) && LabelSubcategory.IsVisible)
                     {
-                        var elementSize = LabelSubcategory.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelSubcategory.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -420,9 +420,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 {
                     if ((ButtonDepartment != null) && ButtonDepartment.IsVisible)
                     {
-                        var elementSize = ButtonDepartment.GetSizeRequest(width, height).Request;
+                        var elementSize = ButtonDepartment.Measure(width, height).Request;
 
-                        double elementLeft = Margin;
+                        double elementLeft = ContentMargin;
                         double elementTop = 0;
                         double elementWidth = elementSize.Width;
                         double elementHeight = elementSize.Height;
@@ -436,7 +436,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelDepartmentSeparator != null) && LabelDepartmentSeparator.IsVisible)
                     {
-                        var elementSize = LabelDepartmentSeparator.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelDepartmentSeparator.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -452,7 +452,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((ButtonCategory != null) && ButtonCategory.IsVisible)
                     {
-                        var elementSize = ButtonCategory.GetSizeRequest(width, height).Request;
+                        var elementSize = ButtonCategory.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -468,7 +468,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((LabelCategorySeparator != null) && LabelCategorySeparator.IsVisible)
                     {
-                        var elementSize = LabelCategorySeparator.GetSizeRequest(width, height).Request;
+                        var elementSize = LabelCategorySeparator.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -484,7 +484,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                     if ((ButtonSubcategory != null) && ButtonSubcategory.IsVisible)
                     {
-                        var elementSize = ButtonSubcategory.GetSizeRequest(width, height).Request;
+                        var elementSize = ButtonSubcategory.Measure(width, height).Request;
 
                         double elementLeft = previousPosition.X + previousPosition.Width;
                         double elementTop = previousPosition.Y;
@@ -530,51 +530,51 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((SubLevelButton) != null && SubLevelButton.IsVisible)
             {
-                levelOnlyButton = SubLevelButton.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                levelOnlyButton = SubLevelButton.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((LabelDepartment) != null && LabelDepartment.IsVisible)
             {
-                departmentSize = LabelDepartment.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                departmentSize = LabelDepartment.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((LabelCategory) != null && LabelCategory.IsVisible)
             {
-                categorySize = LabelCategory.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                categorySize = LabelCategory.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((LabelSubcategory) != null && LabelSubcategory.IsVisible)
             {
-                subcategorySize = LabelSubcategory.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                subcategorySize = LabelSubcategory.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((ButtonDepartment) != null && ButtonDepartment.IsVisible)
             {
-                departmentSize = ButtonDepartment.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                departmentSize = ButtonDepartment.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((ButtonCategory) != null && ButtonCategory.IsVisible)
             {
-                categorySize = ButtonCategory.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                categorySize = ButtonCategory.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((ButtonSubcategory) != null && ButtonSubcategory.IsVisible)
             {
-                subcategorySize = ButtonSubcategory.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                subcategorySize = ButtonSubcategory.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((LabelDepartmentSeparator) != null && LabelDepartmentSeparator.IsVisible)
             {
-                departmentSeparatorSize = LabelDepartmentSeparator.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                departmentSeparatorSize = LabelDepartmentSeparator.Measure(widthConstraint, heightConstraint).Request;
             }
 
             if ((LabelCategorySeparator) != null && LabelCategorySeparator.IsVisible)
             {
-                categorySeparatorSize = LabelCategorySeparator.GetSizeRequest(widthConstraint, heightConstraint).Request;
+                categorySeparatorSize = LabelCategorySeparator.Measure(widthConstraint, heightConstraint).Request;
             }
 
             double calculatedHeigh = Math.Max(levelOnlyButton.Height, Math.Max(departmentSize.Height, Math.Max(categorySize.Height, Math.Max(subcategorySize.Height, Math.Max(departmentSeparatorSize.Height, categorySeparatorSize.Height)))));
-            double calculatedWidth = levelOnlyButton.Width + departmentSize.Width + categorySize.Width + subcategorySize.Width + departmentSeparatorSize.Width + categorySeparatorSize.Width + (Margin * 2f);
+            double calculatedWidth = levelOnlyButton.Width + departmentSize.Width + categorySize.Width + subcategorySize.Width + departmentSeparatorSize.Width + categorySeparatorSize.Width + (ContentMargin * 2f);
 
             return new SizeRequest(new Size(calculatedWidth, calculatedHeigh), new Size(calculatedWidth, calculatedHeigh));
         }

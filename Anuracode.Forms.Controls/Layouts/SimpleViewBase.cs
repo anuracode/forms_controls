@@ -61,10 +61,10 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Margin for the element.s
         /// </summary>
-        protected virtual double Margin
+        protected virtual double ContentMargin
         {
             get
-            {
+            {                
                 return 10;
             }
         }
@@ -189,7 +189,7 @@ namespace Anuracode.Forms.Controls
             }
             else
             {
-                var resultSize = ContentLayout.GetSizeRequest(widthConstraint, heightConstraint);
+                var resultSize = ContentLayout.Measure(widthConstraint, heightConstraint);
 
                 double requestWidth = resultSize.Request.Width.Clamp(0, widthConstraint);
                 double requestHeight = resultSize.Request.Height.Clamp(0, heightConstraint);

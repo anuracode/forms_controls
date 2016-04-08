@@ -481,7 +481,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (SelectedItemPreview != null)
             {
-                var elementSize = SelectedItemPreview.GetSizeRequest(width, height).Request;
+                var elementSize = SelectedItemPreview.Measure(width, height).Request;
                 double elementMargin = 3;
                 double elementLeft = elementMargin;
                 double elementTop = elementMargin;
@@ -504,7 +504,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if ((ButtonIconShowDetail != null) && ButtonIconShowDetail.IsVisible)
             {
-                var elementSize = ButtonIconShowDetail.GetSizeRequest(width, height).Request;
+                var elementSize = ButtonIconShowDetail.Measure(width, height).Request;
                 double elementWidth = elementSize.Width;
                 double elementHeight = elementSize.Height;
                 double elementTop = previewPosition.Y + previewPosition.Height + ContentMargin;
@@ -517,7 +517,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if ((ButtonTextDetail != null) && ButtonTextDetail.IsVisible)
             {
                 double maxWidth = width - (iconDetailPosition.X * 2f) - iconDetailPosition.Width - ContentMargin;
-                var elementSize = ButtonTextDetail.GetSizeRequest(maxWidth, height).Request;
+                var elementSize = ButtonTextDetail.Measure(maxWidth, height).Request;
                 double elementWidth = elementSize.Width.Clamp(0, maxWidth);
                 double elementHeight = elementSize.Height;
                 double elementTop = iconDetailPosition.Y;
@@ -574,12 +574,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 if (SelectedItemPreview != null)
                 {
-                    elementSize = SelectedItemPreview.GetSizeRequest(width, height).Request;
+                    elementSize = SelectedItemPreview.Measure(width, height).Request;
                 }
 
                 if ((ButtonIconShowDetail != null) && ButtonIconShowDetail.IsVisible)
                 {
-                    detailSize = ButtonIconShowDetail.GetSizeRequest(width, height).Request;
+                    detailSize = ButtonIconShowDetail.Measure(width, height).Request;
                 }
 
                 double elementWidth = elementSize.Width + (3 * 2);
@@ -593,7 +593,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (CloseButton != null)
             {
-                var elementSize = CloseButton.GetSizeRequest(width, height).Request;
+                var elementSize = CloseButton.Measure(width, height).Request;
                 double elementWidth = elementSize.Width;
                 double elementHeight = elementSize.Height;
                 double elementLeft = (detailPosition.X + detailPosition.Width) - (elementWidth * 0.5f);
