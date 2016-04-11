@@ -110,6 +110,10 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                                 select item;
             }
 
+            filteredItems = from item in filteredItems
+                            where string.Compare(item.GroupParentId, groupParentId, StringComparison.CurrentCultureIgnoreCase) == 0
+                            select item;
+
             results.TotalItemsCount = filteredItems.Count();
 
             var pagedItems = (from item in filteredItems
@@ -173,7 +177,8 @@ namespace Anuracode.Forms.Controls.Sample.Repository
         /// </summary>
         /// <param name="quantity">Quanity to generate.</param>
         /// <param name="level">Level to use.</param>
-        protected virtual void AddGeneratedStoreItems(int quantity, StoreItemLevel level)
+        /// <param name="GroupParentId">Group parent id.</param>
+        protected virtual void AddGeneratedStoreItems(int quantity, StoreItemLevel level, string groupParentId = null)
         {
             if (level != null)
             {
@@ -191,10 +196,12 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                         LongDescription = "Long description " + storeItemNumber,
                         ThumbnailImagePath = string.Format("~/sample{0}-t.jpg", (i + 1).Clamp(1, 9)),
                         MainImagePath = string.Format("~/MP_Default-m.jpg"),
+                        BrandImagePath = string.Format("~/sample{0}-1.jpg", 5),
                         Brand = "Brand " + (i + 1),
                         Department = level.Department,
                         Category = level.Category,
                         Subcategory = level.Subcategory,
+                        GroupParentId = groupParentId,
                         IsFeautred = storeItemNumber < 10
                     };
 
@@ -237,6 +244,12 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                         };
 
                         sublevelsCache.Add(sampleLevel);
+
+                        if (j == 0)
+                        {
+                            AddGeneratedStoreItemGroup(2, sampleLevel);
+                        }
+
                         AddGeneratedStoreItems(2, sampleLevel);
 
                         if (i == 0 && j == 0)
@@ -258,6 +271,48 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                 }
 
                 sampleDataInitilized = true;
+            }
+        }
+
+        /// <summary>
+        /// Generate a store item group.
+        /// </summary>
+        /// <param name="quantity">Quanity to generate.</param>
+        /// <param name="level">Level to use.</param>
+        /// <param name="countGroup">Count for the group.</param>
+        private void AddGeneratedStoreItemGroup(int quantity, StoreItemLevel level, int countGroup = 15)
+        {
+            if (level != null)
+            {
+                StoreItem sampleItem = null;
+
+                for (int i = 0; i < quantity; i++)
+                {
+                    storeItemNumber++;
+
+                    sampleItem = new StoreItem()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = string.Format("Name group {0}", storeItemNumber),
+                        ShortDescription = "Short description " + storeItemNumber,
+                        LongDescription = "Long description " + storeItemNumber,
+                        ThumbnailImagePath = string.Format("~/sample{0}-t.jpg", (i + 1).Clamp(1, 9)),
+                        MainImagePath = string.Format("~/MP_Default-m.jpg"),
+                        BrandImagePath = string.Format("~/sample{0}-1.jpg", 5),
+                        Brand = "Brand " + (i + 1),
+                        Department = level.Department,
+                        Category = level.Category,
+                        Subcategory = level.Subcategory,
+                        IsGroupParent = true,
+                        IsFeautred = storeItemNumber < 10
+                    };
+
+                    sampleItem.ImagesPaths = new List<string>();
+                    sampleItem.ImagesPaths.Add(string.Format("~/sample{0}-1.jpg", 9));
+                    storeItemsCache.Add(sampleItem);
+
+                    AddGeneratedStoreItems(countGroup, level, sampleItem.Id);
+                }
             }
         }
     }
