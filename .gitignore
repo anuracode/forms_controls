@@ -165,3 +165,7 @@ $RECYCLE.BIN/
 
 #Visual studio local config
 .vs
+/Anuracode.Forms.Controls.Sample/Anuracode.Forms.Controls.Sample.UWP/Anuracode.Forms.Controls.Sample.UWP.nuget.targets
+/Anuracode.Forms.Controls.WindowsUWP/Anuracode.Forms.Controls.WindowsUWP.nuget.targets
+/Anuracode.Forms.Controls.WindowsUWP/project.lock.json
+/Anuracode.Forms.Controls.Sample/Anuracode.Forms.Controls.Sample.UWP/project.lock.json
