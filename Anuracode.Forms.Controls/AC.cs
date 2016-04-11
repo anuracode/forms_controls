@@ -79,6 +79,15 @@ namespace Anuracode.Forms.Controls
         }
 
         /// <summary>
+        /// Schedule a action to execute.
+        /// </summary>
+        /// <param name="action">Action to execute.</param>
+        public static void ScheduleManagedBackground(Func<Task> action)
+        {
+            ThreadManager.ScheduleManagedFull(action, useUIThread: false);
+        }
+
+        /// <summary>
         /// Set thread manager.
         /// </summary>
         /// <param name="newManager">New manager.</param>

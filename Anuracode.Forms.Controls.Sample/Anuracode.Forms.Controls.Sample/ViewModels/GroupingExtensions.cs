@@ -27,7 +27,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
             {
                 list.Add(newElement);
             }
-        }      
+        }
 
         /// <summary>
         /// First or default.
@@ -37,7 +37,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns>Task to await.</returns>
         public static Task<T> FirstOrDefaultAsync<T>(this IEnumerable<T> list)
         {
-            return Task.Run(() => list.FirstOrDefault<T>());
+            TaskCompletionSource<T> tc = new TaskCompletionSource<T>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.FirstOrDefault();
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -49,7 +67,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns>Task to await.</returns>
         public static Task<T> FirstOrDefaultAsync<T>(this IEnumerable<T> list, Func<T, bool> predicate)
         {
-            return Task.Run(() => list.FirstOrDefault<T>(predicate));
+            TaskCompletionSource<T> tc = new TaskCompletionSource<T>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.FirstOrDefault(predicate);
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -94,7 +130,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns></returns>
         public static Task<decimal> SumAsync<T>(this IEnumerable<T> list, Func<T, decimal> selector)
         {
-            return Task.Run(() => list.Sum<T>(selector));
+            TaskCompletionSource<decimal> tc = new TaskCompletionSource<decimal>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.Sum<T>(selector);
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -106,7 +160,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns></returns>
         public static Task<int> SumAsync<T>(this IEnumerable<T> list, Func<T, int> selector)
         {
-            return Task.Run(() => list.Sum<T>(selector));
+            TaskCompletionSource<int> tc = new TaskCompletionSource<int>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.Sum<T>(selector);
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -118,7 +190,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns></returns>
         public static Task<double> SumAsync<T>(this IEnumerable<T> list, Func<T, double> selector)
         {
-            return Task.Run(() => list.Sum<T>(selector));
+            TaskCompletionSource<double> tc = new TaskCompletionSource<double>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.Sum<T>(selector);
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -132,7 +222,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// from the input sequence.</returns>
         public static Task<List<T>> ToListAsync<T>(this IEnumerable<T> list)
         {
-            return Task.Run(() => list.ToList());
+            TaskCompletionSource<List<T>> tc = new TaskCompletionSource<List<T>>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.ToList();
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>
@@ -160,7 +268,25 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <returns>Task to await.</returns>
         public static Task<IEnumerable<T>> UnionAsync<T>(this IEnumerable<T> list, IEnumerable<T> otherlist, IEqualityComparer<T> comparer)
         {
-            return Task.Run(() => list.Union<T>(otherlist, comparer));
+            TaskCompletionSource<IEnumerable<T>> tc = new TaskCompletionSource<IEnumerable<T>>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.Union<T>(otherlist, comparer);
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
         }
 
         /// <summary>

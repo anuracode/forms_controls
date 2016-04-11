@@ -41,10 +41,26 @@ namespace Anuracode.Forms.Controls.Extensions
         /// <returns> Count of the items.</returns>
         public static Task<int> CountAsync<T>(this IEnumerable<T> list)
         {
-            return Task.Run(() => list.Count());
-        }
+            TaskCompletionSource<int> tc = new TaskCompletionSource<int>();
 
-       
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.Count();
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
+        }
 
         /// <summary>
         /// Platform delegate.
@@ -98,7 +114,25 @@ namespace Anuracode.Forms.Controls.Extensions
         /// from the input sequence.</returns>
         public static Task<List<T>> ToListAsync<T>(this IEnumerable<T> list)
         {
-            return Task.Run(() => list.ToList());
-        }       
+            TaskCompletionSource<List<T>> tc = new TaskCompletionSource<List<T>>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
+                {
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        var result = list.ToList();
+                        tc.TrySetResult(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
+                });
+
+            return tc.Task;
+        }
     }
 }

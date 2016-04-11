@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -51,23 +52,26 @@ namespace Anuracode.Forms.Controls.Thread
             }
             else
             {
-                Task.Run(
-                    async () =>
-                    {
-                        try
-                        {
-                            if ((delayTime != null) && delayTime.Value.TotalMilliseconds > 0)
-                            {
-                                await Task.Delay(delayTime.Value);
-                            }
+                var bgtask = Task.Factory.StartNew(
+                   async () =>
+                   {
+                       try
+                       {
+                           if ((delayTime != null) && delayTime.Value.TotalMilliseconds > 0)
+                           {
+                               await Task.Delay(delayTime.Value);
+                           }
 
-                            await action();
-                        }
-                        catch (Exception ex)
-                        {
-                            AC.TraceError("Schedule error", ex);
-                        }
-                    });
+                           await action();
+                       }
+                       catch (Exception ex)
+                       {
+                           AC.TraceError("Schedule error", ex);
+                       }
+                   },
+                   CancellationToken.None,
+                   TaskCreationOptions.PreferFairness,
+                   TaskScheduler.Current);
             }
         }
     }

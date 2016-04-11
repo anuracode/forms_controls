@@ -186,13 +186,30 @@ namespace Anuracode.Forms.Controls
         /// <returns></returns>
         protected virtual Task<DataTemplate> GetTemplateFor(Type type)
         {
-            return Task.Run<DataTemplate>(
-                () =>
+            TaskCompletionSource<DataTemplate> tc = new TaskCompletionSource<DataTemplate>();
+
+            AC.ScheduleManagedBackground(
+                async () =>
                 {
-                    DataTemplate retTemplate = null;
-                    if (TemplateSelector != null) retTemplate = TemplateSelector.TemplateFor(type);
-                    return retTemplate ?? ItemTemplate;
+                    await Task.FromResult(0);
+
+                    try
+                    {
+                        DataTemplate retTemplate = null;
+                        if (TemplateSelector != null)
+                        {
+                            retTemplate = TemplateSelector.TemplateFor(type);
+                        }
+
+                        tc.TrySetResult(retTemplate ?? ItemTemplate);
+                    }
+                    catch (Exception ex)
+                    {
+                        tc.TrySetException(ex);
+                    }
                 });
+
+            return tc.Task;
         }
 
         /// <summary>
