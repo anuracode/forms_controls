@@ -11,7 +11,7 @@
     <copyright>Copyright ©  2016</copyright>
     <dependencies>
       <group>        
-        <dependency id="Xamarin.Forms" version="2.2.0.4-pre1" />
+        <dependency id="Xamarin.Forms" version="2.2.0.5-pre2" />
       </group>      
     </dependencies>
   </metadata>
@@ -20,7 +20,18 @@
     <file src="../Anuracode.Forms.Controls.iOS\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\Xamarin.iOS10\" />        
     <file src="../Anuracode.Forms.Controls.Droid\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\MonoAndroid\" />
     <file src="../Anuracode.Forms.Controls.WinStore\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\netcore451\" />
-    <file src="../Anuracode.Forms.Controls.WindowsUWP\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\uap10.0\" />    
     <file src="../Anuracode.Forms.Controls.WinPhone8\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\wpa81\" />    
+
+    <file src="../Anuracode.Forms.Controls.WindowsUWP\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\uap10.0\" />
+
+    <file src="../Anuracode.Support.MobileSync\bin\Release\Anuracode.Forms.Controls*.dll" target="ref\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync\bin\Release\**\Anuracode.Forms.Controls*.resources.dll" target="ref\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\x86\Release\Ref\Anuracode.Forms.Controls*.dll" target="ref\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\ARM\Release\Anuracode.Forms.Controls*.dll" target="runtimes\win10-arm\lib\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\ARM\Release\**\Anuracode.Forms.Controls*.resources.dll" target="runtimes\win10-arm\lib\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\x86\Release\Anuracode.Forms.Controls*.dll" target="runtimes\win10-x86\lib\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\x86\Release\**\Anuracode.Forms.Controls*.resources.dll" target="runtimes\win10-x86\lib\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\x64\Release\Anuracode.Forms.Controls*.dll" target="runtimes\win10-x64\lib\uap10.0\" />
+    <file src="../Anuracode.Support.MobileSync.WindowsUWP\bin\x64\Release\**\Anuracode.Forms.Controls*.resources.dll" target="runtimes\win10-x64\lib\uap10.0\" />
   </files>
 </package>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anuracode.Forms.Controls", "Anuracode.Forms.Controls\Anuracode.Forms.Controls.csproj", "{30757D16-8A20-4CC2-A4B7-1DEEC7C77C51}"
 EndProject
@@ -41,7 +41,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Nuget", "3-Nuget", "{719F7B3E-EBFE-428F-83F2-D3EB2A332FCB}"
 	ProjectSection(SolutionItems) = preProject
 		NugetConfig\Anuracode.Forms.Controls.nuspec = NugetConfig\Anuracode.Forms.Controls.nuspec
+		NugetConfig\Anuracode.Forms.Controls.WindowsPhone8.targets = NugetConfig\Anuracode.Forms.Controls.WindowsPhone8.targets
+		NugetConfig\Anuracode.Forms.Controls.WinStore.targets = NugetConfig\Anuracode.Forms.Controls.WinStore.targets
 		NugetConfig\Anuracode.Forms.SignaturePadSerialization.nuspec = NugetConfig\Anuracode.Forms.SignaturePadSerialization.nuspec
+		NugetConfig\generateReferenceAssemblies.bat = NugetConfig\generateReferenceAssemblies.bat
 	EndProjectSection
 EndProject
 Global
