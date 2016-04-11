@@ -357,10 +357,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         public void FocusEntry()
         {
-            if (FilterEntry != null)
+            AC.ScheduleManaged(() =>
             {
-                FilterEntry.Focus();
-            }
+                if (FilterEntry != null)
+                {
+                    FilterEntry.Focus();
+                }
+            });
         }
 
         /// <summary>
