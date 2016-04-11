@@ -96,6 +96,7 @@
     <Compile Include="Views\MenuPage.cs" />
     <Compile Include="ViewModels\NavigationStep.cs" />
     <Compile Include="Views\ProfilePage.cs" />
+    <Compile Include="Views\SignatureLargeSimpleView.cs" />
     <Compile Include="Views\SignaturePage.cs" />
     <Compile Include="Views\StoreDetailGroupView.cs" />
     <Compile Include="Views\StoreDetailLargeSimpleView.cs" />

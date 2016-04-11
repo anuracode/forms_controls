@@ -11,21 +11,6 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
     public partial class CommonResources
     {
         /// <summary>
-        /// Glyph for the category bullet.
-        /// </summary>
-        public string GlyphTextCategoryBullet = "\uE236";
-
-        /// <summary>
-        /// Glyph for detail.
-        /// </summary>
-        public string GlyphTextDetail = "\uE243";
-
-        /// <summary>
-        /// Glyph edit.
-        /// </summary>
-        public string GlyphTextLogout = "\uE1AD";
-
-        /// <summary>
         /// Glyph about.
         /// </summary>
         public string GlyphTextAbout = "\uEA0C";
@@ -46,11 +31,6 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextArticles = "\uE1EC";
 
         /// <summary>
-        /// Glyph articles.
-        /// </summary>
-        public string GlyphTextProfile = "\uE2AF";
-
-        /// <summary>
         /// Bullet glyph.
         /// </summary>
         public string GlyphTextBullet = "\uE1F5";
@@ -66,6 +46,21 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextCart = "\uE93A";
 
         /// <summary>
+        /// Glyph for the category bullet.
+        /// </summary>
+        public string GlyphTextCategoryBullet = "\uE236";
+
+        /// <summary>
+        /// Glyph clear.
+        /// </summary>
+        public string GlyphTextClear = "\uE90C";
+
+        /// <summary>
+        /// Glyph for detail.
+        /// </summary>
+        public string GlyphTextDetail = "\uE243";
+
+        /// <summary>
         /// Glyph edit.
         /// </summary>
         public string GlyphTextEdit = "\uE0D8";
@@ -74,6 +69,11 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         /// Glyph for the filter.
         /// </summary>
         public string GlyphTextFilter = "\uE16E";
+
+        /// <summary>
+        /// Glyph edit.
+        /// </summary>
+        public string GlyphTextLogout = "\uE1AD";
 
         /// <summary>
         /// Glyph for the main menu.
@@ -91,9 +91,19 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         public string GlyphTextOrders = "\uE162";
 
         /// <summary>
+        /// Glyph articles.
+        /// </summary>
+        public string GlyphTextProfile = "\uE2AF";
+
+        /// <summary>
         /// Glyph for the refresh.
         /// </summary>
         public string GlyphTextRefresh = "\uE117";
+
+        /// <summary>
+        /// Glyph save.
+        /// </summary>
+        public string GlyphTextSave = "\uE105";
 
         /// <summary>
         /// Glyph for the search.

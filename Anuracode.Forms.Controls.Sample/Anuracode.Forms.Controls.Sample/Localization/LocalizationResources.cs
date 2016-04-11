@@ -624,6 +624,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// Show signature label.
+        /// </summary>
+        public string ShowSignatureLabel
+        {
+            get
+            {
+                return "Show signature";
+            }
+        }
+
+        /// <summary>
         /// Signature label.
         /// </summary>
         public string SignatureLabel

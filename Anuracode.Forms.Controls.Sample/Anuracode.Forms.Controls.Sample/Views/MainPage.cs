@@ -100,7 +100,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Default consturctor.
         /// </summary>
         public MainPage()
-        {
+        {            
             SetMenuGesture(false);
 
             NavigationPage.SetHasNavigationBar(this, false);

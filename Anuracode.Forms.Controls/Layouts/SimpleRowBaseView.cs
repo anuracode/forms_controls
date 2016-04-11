@@ -36,11 +36,15 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Content margin.
         /// </summary>
-        protected override double ContentMargin
+        public override double ContentMargin
         {
             get
             {
                 return 5;
+            }
+
+            set
+            {
             }
         }
 

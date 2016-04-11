@@ -14,6 +14,11 @@ namespace Anuracode.Forms.Controls
     public abstract class SimpleViewBase : ContentView
     {
         /// <summary>
+        /// Margin for the element.s
+        /// </summary>
+        private double contentMargin = 10;
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public SimpleViewBase()
@@ -49,6 +54,22 @@ namespace Anuracode.Forms.Controls
         public SimpleLayout ContentLayout { get; set; }
 
         /// <summary>
+        /// Margin for the element.s
+        /// </summary>
+        public virtual double ContentMargin
+        {
+            get
+            {
+                return contentMargin;
+            }
+
+            set
+            {
+                contentMargin = value;
+            }
+        }
+
+        /// <summary>
         /// The binding is already set.
         /// </summary>
         protected bool IsBindingSet { get; set; }
@@ -57,17 +78,6 @@ namespace Anuracode.Forms.Controls
         /// Flag to check if the view has been initialized.
         /// </summary>
         protected bool IsInitialized { get; set; }
-
-        /// <summary>
-        /// Margin for the element.s
-        /// </summary>
-        protected virtual double ContentMargin
-        {
-            get
-            {                
-                return 10;
-            }
-        }
 
         /// <summary>
         /// Initialize the control of the view.

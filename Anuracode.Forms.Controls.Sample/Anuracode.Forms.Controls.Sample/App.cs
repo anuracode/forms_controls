@@ -21,7 +21,7 @@ namespace Anuracode.Forms.Controls.Sample
         /// <summary>
         /// Repository cart.
         /// </summary>
-        private static RepositoryCart repositoryCart;
+        private static RepositoryCart repositoryCart;       
 
         /// <summary>
         /// Repository for store items.
