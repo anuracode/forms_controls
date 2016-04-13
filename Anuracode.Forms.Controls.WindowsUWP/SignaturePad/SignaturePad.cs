@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -20,9 +22,24 @@ namespace Anuracode.Forms.Controls.Renderers
     public sealed partial class SignaturePad : UserControl
     {
         /// <summary>
+        /// Flag for content loaded.
+        /// </summary>
+        private bool _contentLoaded;
+
+        /// <summary>
+        /// Border for the signature.
+        /// </summary>
+        private Border borderSignature;
+
+        /// <summary>
         /// Current path.
         /// </summary>
         private Polyline currentPath;
+
+        /// <summary>
+        /// Canvas to use.
+        /// </summary>
+        private Canvas inkPresenter;
 
         /// <summary>
         /// Last x.
@@ -35,6 +52,11 @@ namespace Anuracode.Forms.Controls.Renderers
         private double lastY;
 
         /// <summary>
+        /// Layout to use.
+        /// </summary>
+        private Grid LayoutRoot;
+
+        /// <summary>
         /// Solor for the stroke.
         /// </summary>
         private Brush strokeColor;
@@ -43,6 +65,16 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Storke thickness.
         /// </summary>
         private double strokeThickness = 1;
+
+        /// <summary>
+        /// Text for the caption.
+        /// </summary>
+        private TextBlock textBlockCaption;
+
+        /// <summary>
+        /// Text for the prompt.
+        /// </summary>
+        private TextBlock textBlockPrompt;
 
         /// <summary>
         /// Default constructor.
@@ -250,6 +282,66 @@ namespace Anuracode.Forms.Controls.Renderers
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// InitializeComponent()
+        /// </summary>
+        public void InitializeComponent()
+        {
+            if (_contentLoaded)
+            {
+                return;
+            }
+
+            _contentLoaded = true;
+
+            LayoutRoot = new Grid();
+            inkPresenter = new Canvas()
+            {
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Background = new SolidColorBrush(Colors.Transparent),
+                Opacity = 1
+            };
+
+            LayoutRoot.Children.Add(InkPresenter);
+
+            textBlockPrompt = new TextBlock()
+            {
+                Text = "X",
+                Margin = new Thickness(20, 0, 0, 25),
+                Foreground = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+
+            LayoutRoot.Children.Add(textBlockPrompt);
+
+            borderSignature = new Border()
+            {
+                Height = 2,
+                BorderThickness = new Thickness(2),
+                Margin = new Thickness(20, 0, 20, 25),
+                BorderBrush = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+
+            LayoutRoot.Children.Add(borderSignature);
+
+            textBlockCaption = new TextBlock()
+            {
+                Text = "",
+                Margin = new Thickness(20, 0, 0, 5),
+                Foreground = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+
+            LayoutRoot.Children.Add(textBlockCaption);
+
+            Content = LayoutRoot;
         }
 
         /// <summary>

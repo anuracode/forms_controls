@@ -20,9 +20,24 @@ namespace Anuracode.Forms.Controls.Renderers
     public sealed partial class SignaturePad : UserControl
     {
         /// <summary>
+        /// Flag for content loaded.
+        /// </summary>
+        private bool _contentLoaded;
+
+        /// <summary>
+        /// Border for the signature.
+        /// </summary>
+        private Border borderSignature;
+
+        /// <summary>
         /// Current path.
         /// </summary>
         private Polyline currentPath;
+
+        /// <summary>
+        /// Canvas to use.
+        /// </summary>
+        private Canvas inkPresenter;
 
         /// <summary>
         /// Last x.
@@ -35,6 +50,11 @@ namespace Anuracode.Forms.Controls.Renderers
         private double lastY;
 
         /// <summary>
+        /// Layout to use.
+        /// </summary>
+        private Grid LayoutRoot;
+
+        /// <summary>
         /// Solor for the stroke.
         /// </summary>
         private Brush strokeColor;
@@ -43,6 +63,16 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Storke thickness.
         /// </summary>
         private double strokeThickness = 1;
+
+        /// <summary>
+        /// Text for the caption.
+        /// </summary>
+        private TextBlock textBlockCaption;
+
+        /// <summary>
+        /// Text for the prompt.
+        /// </summary>
+        private TextBlock textBlockPrompt;
 
         /// <summary>
         /// Default constructor.
@@ -252,6 +282,66 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
+        /// InitializeComponent()
+        /// </summary>
+        public void InitializeComponent()
+        {
+            if (_contentLoaded)
+            {
+                return;
+            }
+
+            _contentLoaded = true;
+
+            LayoutRoot = new Grid();
+            inkPresenter = new Canvas()
+            {
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Background = new SolidColorBrush(Colors.Transparent),
+                Opacity = 1
+            };
+
+            LayoutRoot.Children.Add(InkPresenter);
+
+            textBlockPrompt = new TextBlock()
+            {
+                Text = "X",
+                Margin = new Thickness(20, 0, 0, 25),
+                Foreground = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Left,
+            };
+
+            LayoutRoot.Children.Add(textBlockPrompt);
+
+            borderSignature = new Border()
+            {
+                Height = 2,
+                BorderThickness = new Thickness(2),
+                Margin = new Thickness(20, 0, 20, 25),
+                BorderBrush = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+
+            LayoutRoot.Children.Add(borderSignature);
+
+            textBlockCaption = new TextBlock()
+            {
+                Text = "",
+                Margin = new Thickness(20, 0, 0, 5),
+                Foreground = new SolidColorBrush(Colors.Gray),
+                VerticalAlignment = VerticalAlignment.Bottom,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+
+            LayoutRoot.Children.Add(textBlockCaption);
+
+            Content = LayoutRoot;
+        }
+
+        /// <summary>
         /// Get the points in string format.
         /// </summary>
         /// <param name="pointsSerialized">Point serialized.</param>
@@ -328,7 +418,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="sender">Sender of the event.</param>
         /// <param name="e">Arguments of the event.</param>
         private void InkPresenter_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-        {            
+        {
             double touchX = e.ManipulationOrigin.X + e.CumulativeManipulation.Translation.X;
             double touchY = e.ManipulationOrigin.Y + e.CumulativeManipulation.Translation.Y;
             lastX = touchX;

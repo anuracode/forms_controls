@@ -2904,32 +2904,32 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f080058
-			public const int abc_background_cache_hint_selector_material_dark = 2131230808;
+			// aapt resource value: 0x7f08005c
+			public const int abc_background_cache_hint_selector_material_dark = 2131230812;
 			
-			// aapt resource value: 0x7f080059
-			public const int abc_background_cache_hint_selector_material_light = 2131230809;
+			// aapt resource value: 0x7f08005d
+			public const int abc_background_cache_hint_selector_material_light = 2131230813;
 			
-			// aapt resource value: 0x7f08005a
-			public const int abc_color_highlight_material = 2131230810;
+			// aapt resource value: 0x7f08005e
+			public const int abc_color_highlight_material = 2131230814;
 			
 			// aapt resource value: 0x7f080015
 			public const int abc_input_method_navigation_guard = 2131230741;
 			
-			// aapt resource value: 0x7f08005b
-			public const int abc_primary_text_disable_only_material_dark = 2131230811;
-			
-			// aapt resource value: 0x7f08005c
-			public const int abc_primary_text_disable_only_material_light = 2131230812;
-			
-			// aapt resource value: 0x7f08005d
-			public const int abc_primary_text_material_dark = 2131230813;
-			
-			// aapt resource value: 0x7f08005e
-			public const int abc_primary_text_material_light = 2131230814;
-			
 			// aapt resource value: 0x7f08005f
-			public const int abc_search_url_text = 2131230815;
+			public const int abc_primary_text_disable_only_material_dark = 2131230815;
+			
+			// aapt resource value: 0x7f080060
+			public const int abc_primary_text_disable_only_material_light = 2131230816;
+			
+			// aapt resource value: 0x7f080061
+			public const int abc_primary_text_material_dark = 2131230817;
+			
+			// aapt resource value: 0x7f080062
+			public const int abc_primary_text_material_light = 2131230818;
+			
+			// aapt resource value: 0x7f080063
+			public const int abc_search_url_text = 2131230819;
 			
 			// aapt resource value: 0x7f080016
 			public const int abc_search_url_text_normal = 2131230742;
@@ -2940,11 +2940,14 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f080018
 			public const int abc_search_url_text_selected = 2131230744;
 			
-			// aapt resource value: 0x7f080060
-			public const int abc_secondary_text_material_dark = 2131230816;
+			// aapt resource value: 0x7f080064
+			public const int abc_secondary_text_material_dark = 2131230820;
 			
-			// aapt resource value: 0x7f080061
-			public const int abc_secondary_text_material_light = 2131230817;
+			// aapt resource value: 0x7f080065
+			public const int abc_secondary_text_material_light = 2131230821;
+			
+			// aapt resource value: 0x7f08005a
+			public const int accent = 2131230810;
 			
 			// aapt resource value: 0x7f080019
 			public const int accent_material_dark = 2131230745;
@@ -3003,8 +3006,8 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f080008
 			public const int common_action_bar_splitter = 2131230728;
 			
-			// aapt resource value: 0x7f080062
-			public const int common_google_signin_btn_text_dark = 2131230818;
+			// aapt resource value: 0x7f080066
+			public const int common_google_signin_btn_text_dark = 2131230822;
 			
 			// aapt resource value: 0x7f080009
 			public const int common_google_signin_btn_text_dark_default = 2131230729;
@@ -3018,8 +3021,8 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f08000a
 			public const int common_google_signin_btn_text_dark_pressed = 2131230730;
 			
-			// aapt resource value: 0x7f080063
-			public const int common_google_signin_btn_text_light = 2131230819;
+			// aapt resource value: 0x7f080067
+			public const int common_google_signin_btn_text_light = 2131230823;
 			
 			// aapt resource value: 0x7f08000d
 			public const int common_google_signin_btn_text_light_default = 2131230733;
@@ -3033,8 +3036,8 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f08000e
 			public const int common_google_signin_btn_text_light_pressed = 2131230734;
 			
-			// aapt resource value: 0x7f080064
-			public const int common_plus_signin_btn_text_dark = 2131230820;
+			// aapt resource value: 0x7f080068
+			public const int common_plus_signin_btn_text_dark = 2131230824;
 			
 			// aapt resource value: 0x7f080000
 			public const int common_plus_signin_btn_text_dark_default = 2131230720;
@@ -3048,8 +3051,8 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f080001
 			public const int common_plus_signin_btn_text_dark_pressed = 2131230721;
 			
-			// aapt resource value: 0x7f080065
-			public const int common_plus_signin_btn_text_light = 2131230821;
+			// aapt resource value: 0x7f080069
+			public const int common_plus_signin_btn_text_light = 2131230825;
 			
 			// aapt resource value: 0x7f080004
 			public const int common_plus_signin_btn_text_light_default = 2131230724;
@@ -3156,6 +3159,12 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f08003c
 			public const int material_grey_900 = 2131230780;
 			
+			// aapt resource value: 0x7f080058
+			public const int primary = 2131230808;
+			
+			// aapt resource value: 0x7f080059
+			public const int primaryDark = 2131230809;
+			
 			// aapt resource value: 0x7f08003d
 			public const int primary_dark_material_dark = 2131230781;
 			
@@ -3204,17 +3213,20 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f08004c
 			public const int switch_thumb_disabled_material_light = 2131230796;
 			
-			// aapt resource value: 0x7f080066
-			public const int switch_thumb_material_dark = 2131230822;
+			// aapt resource value: 0x7f08006a
+			public const int switch_thumb_material_dark = 2131230826;
 			
-			// aapt resource value: 0x7f080067
-			public const int switch_thumb_material_light = 2131230823;
+			// aapt resource value: 0x7f08006b
+			public const int switch_thumb_material_light = 2131230827;
 			
 			// aapt resource value: 0x7f08004d
 			public const int switch_thumb_normal_material_dark = 2131230797;
 			
 			// aapt resource value: 0x7f08004e
 			public const int switch_thumb_normal_material_light = 2131230798;
+			
+			// aapt resource value: 0x7f08005b
+			public const int window_background = 2131230811;
 			
 			static Color()
 			{
@@ -4575,6 +4587,9 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			// aapt resource value: 0x7f0a001b
 			public const int showTitle = 2131361819;
 			
+			// aapt resource value: 0x7f0a009c
+			public const int sliding_tabs = 2131361948;
+			
 			// aapt resource value: 0x7f0a0072
 			public const int snackbar_action = 2131361906;
 			
@@ -4631,6 +4646,9 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			
 			// aapt resource value: 0x7f0a0050
 			public const int title_template = 2131361872;
+			
+			// aapt resource value: 0x7f0a009d
+			public const int toolbar = 2131361949;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int top = 2131361850;
@@ -4886,6 +4904,12 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			
 			// aapt resource value: 0x7f030035
 			public const int support_simple_spinner_dropdown_item = 2130903093;
+			
+			// aapt resource value: 0x7f030036
+			public const int tabs = 2130903094;
+			
+			// aapt resource value: 0x7f030037
+			public const int toolbar = 2130903095;
 			
 			static Layout()
 			{
@@ -5566,6 +5590,12 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			
 			// aapt resource value: 0x7f0b0019
 			public const int CardView_Light = 2131427353;
+			
+			// aapt resource value: 0x7f0b015e
+			public const int MyTheme = 2131427678;
+			
+			// aapt resource value: 0x7f0b015f
+			public const int MyTheme_Base = 2131427679;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int Platform_AppCompat = 2131427370;

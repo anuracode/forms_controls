@@ -126,22 +126,14 @@
     <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ShapeRenderer.cs">
       <Link>ShapeRenderer.cs</Link>
     </Compile>
-    <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\SignaturePad\SignaturePad.xaml.cs">
-      <Link>SignaturePad\SignaturePad.xaml.cs</Link>
-      <DependentUpon>SignaturePad.xaml</DependentUpon>
+    <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\SignaturePad\SignaturePad.cs">
+      <Link>SignaturePad\SignaturePad.cs</Link>
     </Compile>
     <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\SignaturePad\SignaturePadViewRenderer.cs">
       <Link>SignaturePad\SignaturePadViewRenderer.cs</Link>
     </Compile>
     <Compile Include="ColorExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="..\Anuracode.Forms.Controls.WindowsUWP\SignaturePad\SignaturePad.xaml">
-      <Link>SignaturePad\SignaturePad.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

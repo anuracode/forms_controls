@@ -114,9 +114,7 @@
     <Compile Include="ManagedImageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
-    <Compile Include="SignaturePad\SignaturePad.xaml.cs">
-      <DependentUpon>SignaturePad.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="SignaturePad\SignaturePad.cs" />
     <Compile Include="SignaturePad\SignaturePadViewRenderer.cs" />
     <EmbeddedResource Include="Properties\Anuracode.Forms.Controls.WindowsUWP.rd.xml" />
   </ItemGroup>
@@ -125,12 +123,6 @@
       <Project>{30757d16-8a20-4cc2-a4b7-1deec7c77c51}</Project>
       <Name>Anuracode.Forms.Controls</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="SignaturePad\SignaturePad.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
