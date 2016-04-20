@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Anuracode.Forms.SignaturePadSerialization</id>
-    <version>1.0.1.4-pre1</version>
+    <version>1.0.1.5-pre1</version>
     <title>Anuracode Forms controls</title>
     <authors>Anuracode</authors>
     <owners>Anuracode</owners>

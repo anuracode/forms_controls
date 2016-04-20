@@ -291,29 +291,18 @@ namespace Anuracode.Forms.Controls.Styles
         /// <returns>The new container that has been idented.</returns>
         public virtual StackLayout RenderIdentedVerticalContainer(StackLayout stackContainer, double spaceRequest = 10)
         {
-            StackLayout spacerContainer = new StackLayout()
-            {
-                Style = ThemeManager.ApplicationStyles.FormRowContainerStyle,
-                Orientation = StackOrientation.Horizontal,
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
+			StackLayout identedContainer = new StackLayout()
+			{
+				Style = ThemeManager.ApplicationStyles.FormRowContainerStyle,
+				Orientation = StackOrientation.Vertical,
+				VerticalOptions = LayoutOptions.Start,
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				Margin = new Thickness(spaceRequest, 0, spaceRequest, 0)
+			};
 
-            StackLayout identedContainer = new StackLayout()
-            {
-                Style = ThemeManager.ApplicationStyles.FormRowContainerStyle,
-                Orientation = StackOrientation.Vertical,
-                VerticalOptions = LayoutOptions.Start,
-                HorizontalOptions = LayoutOptions.FillAndExpand
-            };
+			stackContainer.Children.Add(identedContainer);
 
-            RenderSpace(spacerContainer, spaceRequest, spaceRequest);
-            spacerContainer.Children.Add(identedContainer);
-            RenderSpace(spacerContainer, spaceRequest, spaceRequest);
-
-            stackContainer.Children.Add(spacerContainer);
-
-            return identedContainer;
+			return identedContainer;
         }
 
         /// <summary>
