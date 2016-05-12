@@ -40,8 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anuracode.Signature.Seriali
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Nuget", "3-Nuget", "{719F7B3E-EBFE-428F-83F2-D3EB2A332FCB}"
 	ProjectSection(SolutionItems) = preProject
-		NugetConfig\Anuracode.Forms.Controls.nuspec = NugetConfig\Anuracode.Forms.Controls.nuspec
-		NugetConfig\Anuracode.Forms.SignaturePadSerialization.nuspec = NugetConfig\Anuracode.Forms.SignaturePadSerialization.nuspec
+		Anuracode.Forms.Controls.nuspec = Anuracode.Forms.Controls.nuspec
+		Anuracode.Forms.SignaturePadSerialization.nuspec = Anuracode.Forms.SignaturePadSerialization.nuspec
 		NugetConfig\generateReferenceAssemblies.bat = NugetConfig\generateReferenceAssemblies.bat
 	EndProjectSection
 EndProject
