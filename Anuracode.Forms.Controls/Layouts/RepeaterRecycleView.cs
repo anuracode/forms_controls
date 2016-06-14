@@ -159,7 +159,7 @@ namespace Anuracode.Forms.Controls
                 {
                     await UpdateStep();
                 });
-        }
+        }       
 
         /// <summary>
         /// Clean when binding change.
@@ -494,7 +494,7 @@ namespace Anuracode.Forms.Controls
                             if (itemView != null)
                             {
                                 itemView.UpdateOpacity(0);
-                                itemView.UpdateIsVisible(false);                                
+                                itemView.UpdateIsVisible(false);
                             }
                         }
                     }
@@ -816,7 +816,7 @@ namespace Anuracode.Forms.Controls
         /// </summary>
         /// <param name="sender">Sender of the event.</param>
         /// <param name="e">Arguments of the event.</param>
-        protected void RepeaterRecycleView_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected virtual void RepeaterRecycleView_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (ContentLayout != null)
             {
