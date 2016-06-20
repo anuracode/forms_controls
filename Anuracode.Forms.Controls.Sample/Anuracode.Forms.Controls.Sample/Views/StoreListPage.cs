@@ -2121,17 +2121,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
-        /// Event when the back button is pressed.
-        /// </summary>
-        /// <returns></returns>
-        protected override bool OnBackButtonPressed()
-        {
-            RelativeBackCommand.ExecuteIfCan();
-
-            return true;
-        }
-
-        /// <summary>
         /// Layout the children for the background.
         /// </summary>
         /// <param name="pageSize">Page size.</param>
