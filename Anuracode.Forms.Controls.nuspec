@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Anuracode.Forms.Controls</id>
-    <version>1.0.1.12</version>
+    <version>1.0.1.13</version>
     <title>Anuracode Forms controls</title>
     <authors>Anuracode</authors>
     <owners>Anuracode</owners>
@@ -11,16 +11,16 @@
     <copyright>Copyright ©  2016</copyright>
     <dependencies>
       <group>        
-        <dependency id="Xamarin.Forms" version="2.3.0.49" />
+        <dependency id="Xamarin.Forms" version="2.3.0.107" />
       </group>      
     </dependencies>
   </metadata>
   <files>
-    <file src="Anuracode.Forms.Controls\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+uap10.0+netcore\" />
-    <file src="Anuracode.Forms.Controls.iOS\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\Xamarin.iOS10\" />        
+    <file src="Anuracode.Forms.Controls\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+xamarinios+uap+netcore\" />
+    <file src="Anuracode.Forms.Controls.iOS\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\xamarinios\" />        
     <file src="Anuracode.Forms.Controls.Droid\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\MonoAndroid\" />
     <file src="Anuracode.Forms.Controls.WinStore\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\netcore451\" />
     <file src="Anuracode.Forms.Controls.WinPhone8\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\wpa81\" />   
-    <file src="Anuracode.Forms.Controls.WindowsUWP\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\uap10.0\" />    
+    <file src="Anuracode.Forms.Controls.WindowsUWP\bin\Release\Anuracode.Forms.Controls*.dll" target="lib\uap\" />    
   </files>
 </package>
