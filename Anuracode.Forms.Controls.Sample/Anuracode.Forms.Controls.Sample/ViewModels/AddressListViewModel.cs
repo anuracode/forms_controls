@@ -4,9 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Sample.Repository;
-using System;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace Anuracode.Forms.Controls.Sample.ViewModels
