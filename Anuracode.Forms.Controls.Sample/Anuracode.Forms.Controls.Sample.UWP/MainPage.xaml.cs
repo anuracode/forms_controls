@@ -45,11 +45,11 @@ namespace Anuracode.Forms.Controls.Sample.UWP
                 if (registerMethod != null)
                 {
                     // This renderers are not using the theme colors.
-                    registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedLabel), typeof(Renderers.ExtendedLabelRenderer) });
-                    registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedEntry), typeof(Renderers.ExtendedEntryRenderer) });
-                    registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedImage), typeof(Renderers.ManagedImageRenderer) });
-                    registerMethod.Invoke(registrarInstance, new object[] { typeof(ShapeView), typeof(Renderers.ShapeRenderer) });
-                    registerMethod.Invoke(registrarInstance, new object[] { typeof(SignaturePadView), typeof(Renderers.SignaturePadViewRenderer) });
+                    // registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedLabel), typeof(Renderers.ExtendedLabelRenderer) });
+                    // registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedEntry), typeof(Renderers.ExtendedEntryRenderer) });
+                    // registerMethod.Invoke(registrarInstance, new object[] { typeof(ExtendedImage), typeof(Renderers.ManagedImageRenderer) });
+                    // registerMethod.Invoke(registrarInstance, new object[] { typeof(ShapeView), typeof(Renderers.ShapeRenderer) });
+                    // registerMethod.Invoke(registrarInstance, new object[] { typeof(SignaturePadView), typeof(Renderers.SignaturePadViewRenderer) });
                 }
             }
         }

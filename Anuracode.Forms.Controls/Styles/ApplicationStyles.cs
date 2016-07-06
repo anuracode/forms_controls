@@ -176,7 +176,7 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Style for a normal entry.
         /// </summary>
-        public Style CommonEditorStyle
+		public virtual Style CommonEditorStyle
         {
             get
             {
@@ -194,7 +194,7 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Style for a normal entry.
         /// </summary>
-        public Style CommonEntryStyle
+		public virtual Style CommonEntryStyle
         {
             get
             {
@@ -203,6 +203,7 @@ namespace Anuracode.Forms.Controls.Styles
                     commonEntryStyle = new Style(typeof(Entry));
                     commonEntryStyle.Setters.Add(Entry.KeyboardProperty, Keyboard.Create(KeyboardFlags.Spellcheck));
                     commonEntryStyle.Setters.Add(Entry.BackgroundColorProperty, CommonResources.PagesBackgroundColorLight);
+                    commonEntryStyle.Setters.Add(Entry.FontSizeProperty, CommonResources.TextSizeMedium);
                 }
 
                 return commonEntryStyle;
@@ -541,7 +542,7 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Style similar to a link.
         /// </summary>
-        public Style LinkContentViewButtonStyle
+		public virtual Style LinkContentViewButtonStyle
         {
             get
             {
@@ -625,7 +626,7 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Style for number entry.
         /// </summary>
-        public Style NumberEntryStyle
+		public virtual Style NumberEntryStyle
         {
             get
             {
@@ -643,7 +644,7 @@ namespace Anuracode.Forms.Controls.Styles
         /// <summary>
         /// Page main title style.
         /// </summary>
-        public Style PageMainTitleExtendedLabelStyle
+		public virtual Style PageMainTitleExtendedLabelStyle
         {
             get
             {
