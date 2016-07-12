@@ -45,7 +45,11 @@ namespace Anuracode.Forms.Controls.Sample.WinPhone8
             if (registerMethod != null)
             {
                 // This renderers are not using the theme colors.                
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedEntry), typeof(Anuracode.Forms.Controls.Renderers.ExtendedEntryRenderer) });                
+                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedLabel), typeof(Anuracode.Forms.Controls.Renderers.ExtendedLabelRenderer) });
+                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedEntry), typeof(Anuracode.Forms.Controls.Renderers.ExtendedEntryRenderer) });
+                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.CircleImage), typeof(Anuracode.Forms.Controls.Renderers.ImageCircleRenderer) });
+                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer) });
+                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadViewRenderer) });
             }
         }
     }
