@@ -8,8 +8,6 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ExtendedImage), typeof(Anuracode.Forms.Controls.Renderers.ManagedImageRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

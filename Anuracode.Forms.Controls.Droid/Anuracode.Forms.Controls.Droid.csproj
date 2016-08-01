@@ -37,6 +37,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.0.7.1\lib\MonoAndroid10\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.0.7.1\lib\MonoAndroid10\FFImageLoading.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.3.0.107\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>
@@ -110,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedEntryRenderer.cs" />
+    <Compile Include="ExtendedImage\ExtendedImageRenderer.cs" />
+    <Compile Include="ExtendedImage\FormsImageView.cs" />
+    <Compile Include="ExtendedImage\ImageSourceBinding.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="FontExtensions.cs" />
     <Compile Include="ImageCircleRenderer.cs" />

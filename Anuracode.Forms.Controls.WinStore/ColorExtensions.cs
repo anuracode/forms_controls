@@ -12,6 +12,11 @@ namespace Anuracode.Forms.Controls.Renderers
     /// </summary>
     public static class ColorExtensions
     {
+        /// <summary>
+        /// To brush.
+        /// </summary>
+        /// <param name="color">Color to use.</param>
+        /// <returns>New brush.</returns>
         public static Brush ToBrush(this Xamarin.Forms.Color color)
         {
             return new SolidColorBrush(color.ToMediaColor());

@@ -15445,7 +15445,9 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Rx-Core >= 2.2.5",
       "Rx-Main >= 2.2.5",
+      "Rx-PlatformServices >= 2.2.5",
       "Xamarin.Forms >= 2.3.0.107"
     ],
     "UAP,Version=v10.0": []

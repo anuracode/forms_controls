@@ -1,21 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-namespace Anuracode.Forms.Controls.Sample.Windows
+﻿namespace Anuracode.Forms.Controls.Sample.Windows
 {
-    public sealed partial class MainPage
+    public sealed partial class MainPage: Xamarin.Forms.Platform.WinRT.WindowsPage
     {
         public MainPage()
         {

@@ -107,7 +107,11 @@ namespace Anuracode.Forms.Controls.Renderers
                     {
                         var uri = new System.Uri(string.Format(@"ms-appx:///Assets/Fonts/{0}", filename));
                         var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(uri);
+#if WINDOWS_PHONE_APP
+                        fileExists = file != null;
+#else
                         fileExists = file.IsAvailable;
+#endif
 
                         fileExitsCache.Add(filename, fileExists);
                     }

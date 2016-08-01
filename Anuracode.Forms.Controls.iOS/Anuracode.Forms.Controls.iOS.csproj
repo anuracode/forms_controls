@@ -33,6 +33,14 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.0.7.1\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Touch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.0.7.1\lib\Xamarin.iOS10\FFImageLoading.Touch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -59,8 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedEntryRenderer.cs" />
+    <Compile Include="ExtendedImageRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="ImageCircleRenderer.cs" />
+    <Compile Include="ImageSourceBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
     <Compile Include="Signature\SignaturePad.cs" />
