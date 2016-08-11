@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Anuracode.Forms.Controls</id>
-    <version>1.0.1.15</version>
+    <version>1.0.1.16</version>
     <title>Anuracode Forms controls</title>
     <authors>Anuracode</authors>
     <owners>Anuracode</owners>
@@ -11,18 +11,18 @@
     <copyright>Copyright ©  2016</copyright>
     <dependencies>
       <group>
-        <dependency id="Xamarin.Forms" version="2.3.0.107" />
+        <dependency id="Xamarin.Forms" version="2.3.1.114" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="Xamarin.Forms" version="2.3.0.107" />
+        <dependency id="Xamarin.Forms" version="2.3.1.114" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
       <group targetFramework="MonoAndroid">
-        <dependency id="Xamarin.Forms" version="2.3.0.107" />
+        <dependency id="Xamarin.Forms" version="2.3.1.114" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
     <group targetFramework="xamarinios">
-        <dependency id="Xamarin.Forms" version="2.3.0.107" />
+        <dependency id="Xamarin.Forms" version="2.3.1.114" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
     </dependencies>

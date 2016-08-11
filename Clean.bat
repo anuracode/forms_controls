@@ -4,8 +4,20 @@ rmdir /Q /S Anuracode.Forms.Controls.Droid\bin
 rmdir /Q /S Anuracode.Forms.Controls.Droid\obj
 rmdir /Q /S Anuracode.Forms.Controls.iOS\bin
 rmdir /Q /S Anuracode.Forms.Controls.iOS\obj
-rmdir /Q /S Anuracode.Forms.Controls.Sample\bin
-rmdir /Q /S Anuracode.Forms.Controls.Sample\obj
+
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample\obj
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.Droid\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.Droid\obj
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.iOS\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.iOS\obj
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.UWP\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.UWP\obj
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.Windows\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.Windows\obj
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.WinPhone\bin
+rmdir /Q /S Anuracode.Forms.Controls.Sample\Anuracode.Forms.Controls.Sample.WinPhone\obj
+
 rmdir /Q /S Anuracode.Forms.Controls.Sample.TestsUI\bin
 rmdir /Q /S Anuracode.Forms.Controls.Sample.TestsUI\obj
 rmdir /Q /S Anuracode.Forms.Controls.WindowsUWP\bin
