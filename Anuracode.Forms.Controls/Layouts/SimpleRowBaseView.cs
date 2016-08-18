@@ -3,10 +3,10 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
-using Xamarin.Forms;
 using Anuracode.Forms.Controls.Extensions;
-using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Styles;
+using Anuracode.Forms.Controls.Views.Extensions;
+using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls
 {
@@ -24,16 +24,6 @@ namespace Anuracode.Forms.Controls
         }
 
         /// <summary>
-        /// Extra padding used in iOS grouped lists.
-        /// </summary>
-        public double RightExtraPadding { get; set; }
-
-        /// <summary>
-        /// Layout for the image.
-        /// </summary>
-        protected SimpleLayout InnerConentLayout { get; set; }
-
-        /// <summary>
         /// Content margin.
         /// </summary>
         public override double ContentMargin
@@ -49,11 +39,19 @@ namespace Anuracode.Forms.Controls
         }
 
         /// <summary>
-        /// Setup the bindings of the elements.
+        /// Extra padding used in iOS grouped lists.
         /// </summary>
-        protected override void SetupBindings()
-        {
-        }
+        public double RightExtraPadding { get; set; }
+
+        /// <summary>
+        /// Label for the detail arrow.
+        /// </summary>
+        protected View DetailArrowView { get; set; }
+
+        /// <summary>
+        /// Layout for the image.
+        /// </summary>
+        protected SimpleLayout InnerConentLayout { get; set; }
 
         /// <summary>
         /// Add controls.
@@ -61,6 +59,7 @@ namespace Anuracode.Forms.Controls
         protected override void AddControlsToLayout()
         {
             AddViewToLayout(InnerConentLayout);
+            AddViewToLayout(DetailArrowView);
         }
 
         /// <summary>
@@ -72,6 +71,8 @@ namespace Anuracode.Forms.Controls
         /// <param name="height">Height to use.</param>
         protected override void ContentLayout_OnLayoutChildren(double x, double y, double width, double height)
         {
+            Rectangle innerContentPosition = new Rectangle();
+
             if (InnerConentLayout != null)
             {
                 double elementLeft = ContentMargin;
@@ -79,9 +80,22 @@ namespace Anuracode.Forms.Controls
                 double elementWidth = width - (ContentMargin * 2f) - RightExtraPadding;
                 double elementHeight = height - (ContentMargin * 2f);
 
+                innerContentPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
+
+                InnerConentLayout.LayoutUpdate(innerContentPosition);
+            }
+
+            if (DetailArrowView != null)
+            {
+                var elementSize = DetailArrowView.Measure(width, height).Request;
+                double elementWidth = elementSize.Width;
+                double elementHeight = elementSize.Height;
+                double elementLeft = innerContentPosition.X + innerContentPosition.Width - elementWidth - (ContentMargin * 0.5f);
+                double elementTop = innerContentPosition.Y + ((innerContentPosition.Height - elementHeight) * 0.5f);
+
                 var elementPosition = new Rectangle(elementLeft, elementTop, elementWidth, elementHeight);
 
-                InnerConentLayout.LayoutUpdate(elementPosition);
+                DetailArrowView.LayoutUpdate(elementPosition);
             }
         }
 
@@ -124,6 +138,24 @@ namespace Anuracode.Forms.Controls
         protected abstract SizeRequest InnerContentLayout_OnSizeRequest(double widthConstraint, double heightConstraint);
 
         /// <summary>
+        /// Instance the detail arrow.
+        /// </summary>
+        /// <returns>View to use.</returns>
+        protected virtual View InstanceDetailArrow()
+        {
+            return new ExtendedLabel()
+            {
+                FontName = ThemeManager.CommonResourcesBase.GlyphFontName,
+                FriendlyFontName = ThemeManager.CommonResourcesBase.GlyphFriendlyFontName,
+                TextColor = ThemeManager.CommonResourcesBase.TextColorDetailValue,
+                Text = "\uE013",
+                FontSize = ThemeManager.CommonResourcesBase.TextSizeLarge,
+                VerticalTextAlignment = TextAlignment.Center,
+                VerticalOptions = LayoutOptions.Start
+            };
+        }
+
+        /// <summary>
         /// Initialize control.
         /// </summary>
         protected override void InternalInitializeView()
@@ -139,6 +171,15 @@ namespace Anuracode.Forms.Controls
 
             InnerConentLayout.OnLayoutChildren += InnerConentLayout_OnLayoutChildren;
             InnerConentLayout.ManualSizeCalculationDelegate = InnerContentLayout_OnSizeRequest;
+
+            DetailArrowView = InstanceDetailArrow();
+        }
+
+        /// <summary>
+        /// Setup the bindings of the elements.
+        /// </summary>
+        protected override void SetupBindings()
+        {
         }
     }
 }
