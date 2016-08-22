@@ -40,6 +40,23 @@ namespace Anuracode.Forms.Controls.Renderers
 
             this.Control.KeyboardAppearance = UIKeyboardAppearance.Dark;
             this.Control.InputAccessoryView = toolbar;
+
+            UpdateBorderThickness();
+        }
+
+        /// <summary>
+        /// Element property changed.
+        /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="e">Arguments of the event.</param>
+        protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == ExtendedEntry.HasInvisibleBordersProperty.PropertyName)
+            {
+                UpdateBorderThickness();
+            }
         }
 
         /// <summary>
