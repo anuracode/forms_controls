@@ -5,7 +5,9 @@
 
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using Xamarin.Forms;
 
@@ -23,6 +25,34 @@ using Xamarin.Forms.Platform.WinRT;
 
 namespace Anuracode.Forms.Controls.Renderers
 {
+    public sealed class ImageLoaderSourceHandler1 : IImageSourceHandler, IRegisterable
+    {
+        /// <summary>
+        /// Load image.
+        /// </summary>
+        /// <param name="imagesoure">Image source to use.</param>
+        /// <param name="cancelationToken">Token to use.</param>
+        /// <returns></returns>
+        public async Task<Windows.UI.Xaml.Media.ImageSource> LoadImageAsync(Xamarin.Forms.ImageSource imagesoure, CancellationToken cancelationToken = default(CancellationToken))
+        {
+            await Task.FromResult(0);
+
+            Windows.UI.Xaml.Media.ImageSource imageSource;
+            UriImageSource uriImageSource = imagesoure as UriImageSource;
+            if (uriImageSource == null || uriImageSource.Uri == null)
+            {
+                imageSource = null;
+            }
+            else
+            {
+                BitmapImage bitmapImage = new BitmapImage(uriImageSource.Uri);
+
+                imageSource = bitmapImage;
+            }
+            return imageSource;
+        }
+    }
+
     /// <summary>
     /// Shape renderer.
     /// </summary>
@@ -38,7 +68,7 @@ namespace Anuracode.Forms.Controls.Renderers
             IImageSourceHandler returnValue = null;
             if (source is UriImageSource)
             {
-                returnValue = new ImageLoaderSourceHandler();
+                returnValue = new ImageLoaderSourceHandler1();
             }
             else if (source is FileImageSource)
             {
@@ -141,12 +171,15 @@ namespace Anuracode.Forms.Controls.Renderers
                         {
                             var imageSrouceNative = await handler.LoadImageAsync(newElement.Source, ImageTokenSource.Token);
 
-                            ImageBrush newImageBrush = new ImageBrush()
+                            if (imageSrouceNative != null)
                             {
-                                ImageSource = imageSrouceNative
-                            };
+                                ImageBrush newImageBrush = new ImageBrush()
+                                {
+                                    ImageSource = imageSrouceNative
+                                };
 
-                            elipese.Fill = newImageBrush;
+                                elipese.Fill = newImageBrush;
+                            }
                         }
                     }
                     finally
