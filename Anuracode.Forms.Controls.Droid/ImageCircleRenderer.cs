@@ -16,7 +16,7 @@ namespace Anuracode.Forms.Controls.Renderers
     /// <summary>
     /// ImageCircle Implementation
     /// </summary>
-    public class ImageCircleRenderer : ManagedImageRenderer
+    public class ImageCircleRenderer : ExtendedImageRenderer
     {
         /// <summary>
         /// Draw child.
@@ -69,7 +69,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// On element changed.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<ExtendedImage> e)
         {
             base.OnElementChanged(e);
 

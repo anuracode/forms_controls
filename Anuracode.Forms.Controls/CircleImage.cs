@@ -10,7 +10,7 @@ namespace Anuracode.Forms.Controls
     /// <summary>
     /// ImageCircle Interface
     /// </summary>
-    public class CircleImage : Image
+    public class CircleImage : ExtendedImage
     {
         /// <summary>
         /// Color property of border

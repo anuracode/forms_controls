@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer), typeof(Anuracode.Forms.Controls.Renderers.ManagedImageRenderer))]
+[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer), typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer))]
 
 namespace Anuracode.Forms.Controls.Renderers
 {
