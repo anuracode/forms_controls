@@ -76,7 +76,7 @@ namespace Anuracode.Forms.Controls.Renderers
             }
             else if (source is StreamImageSource)
             {
-                returnValue = new StreamImagesourceHandler();
+                returnValue = new StreamImageSourceHandler();
             }
             return returnValue;
         }

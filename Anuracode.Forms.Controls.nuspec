@@ -11,18 +11,18 @@
     <copyright>Copyright ©  2016</copyright>
     <dependencies>
       <group>
-        <dependency id="Xamarin.Forms" version="[2.3.0.107]" />
+        <dependency id="Xamarin.Forms" version="2.3.2.127" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="Xamarin.Forms" version="[2.3.0.107]" />
+        <dependency id="Xamarin.Forms" version="2.3.2.127" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
       <group targetFramework="MonoAndroid">
-        <dependency id="Xamarin.Forms" version="[2.3.0.107]" />
+        <dependency id="Xamarin.Forms" version="2.3.2.127" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
     <group targetFramework="xamarinios">
-        <dependency id="Xamarin.Forms" version="[2.3.0.107]" />
+        <dependency id="Xamarin.Forms" version="2.3.2.127" />
         <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
       </group>
     </dependencies>
