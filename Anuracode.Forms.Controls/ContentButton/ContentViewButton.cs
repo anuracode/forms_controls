@@ -1394,7 +1394,7 @@ namespace Anuracode.Forms.Controls
             }
 
             return ButtonImage;
-        }
+        }        
 
         /// <summary>
         /// Mesure the content.
@@ -1402,7 +1402,7 @@ namespace Anuracode.Forms.Controls
         /// <param name="widthConstraint">Width to constarint.</param>
         /// <param name="heightConstraint">Height to constraint.</param>
         /// <returns>Size to use.</returns>
-        protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
             SizeRequest request = new SizeRequest();
 

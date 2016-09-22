@@ -191,7 +191,7 @@ namespace Anuracode.Forms.Controls
         /// <param name="widthConstraint">Width constraint.</param>
         /// <param name="heightConstraint">Height constraint.</param>
         /// <returns>Size to use.</returns>
-        protected override SizeRequest OnSizeRequest(double widthConstraint, double heightConstraint)
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
             if (ContentLayout == null)
             {
