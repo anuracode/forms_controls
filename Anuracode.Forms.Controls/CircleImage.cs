@@ -15,12 +15,12 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Color property of border
         /// </summary>
-        public static readonly BindableProperty BorderColorProperty = BindableProperty.Create<CircleImage, Color>(p => p.BorderColor, Color.White);
+        public static readonly BindableProperty BorderColorProperty = BindablePropertyHelper.Create<CircleImage, Color>(nameof(BorderColor), Color.White);
 
         /// <summary>
         /// Thickness property of border
         /// </summary>
-        public static readonly BindableProperty BorderThicknessProperty = BindableProperty.Create<CircleImage, int>(p => p.BorderThickness, 0);
+        public static readonly BindableProperty BorderThicknessProperty = BindablePropertyHelper.Create<CircleImage, int>(nameof(BorderThickness), 0);
 
         /// <summary>
         /// Border Color of circle image

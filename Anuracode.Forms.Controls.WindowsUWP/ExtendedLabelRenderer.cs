@@ -116,7 +116,7 @@ namespace Anuracode.Forms.Controls.Renderers
                         fileExitsCache.Add(filename, fileExists);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // If the file dosn't exits it throws an exception, make fileExists false in this case
                     fileExists = false;

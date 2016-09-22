@@ -39,8 +39,8 @@ namespace Anuracode.Forms.Controls
     /// <typeparam name="T">The object type that this DataTemplateWrapper matches</typeparam>
     public class DataTemplateWrapper<T> : BindableObject, IDataTemplateWrapper
     {
-        public static readonly BindableProperty IsDefaultProperty = BindableProperty.Create<DataTemplateWrapper<T>, bool>(x => x.IsDefault, false);
-        public static readonly BindableProperty WrappedTemplateProperty = BindableProperty.Create<DataTemplateWrapper<T>, DataTemplate>(x => x.WrappedTemplate, null);
+        public static readonly BindableProperty IsDefaultProperty = BindablePropertyHelper.Create<DataTemplateWrapper<T>, bool>(nameof(IsDefault), false);
+        public static readonly BindableProperty WrappedTemplateProperty = BindablePropertyHelper.Create<DataTemplateWrapper<T>, DataTemplate>(nameof(WrappedTemplate), null);
 
         public bool IsDefault
         {
@@ -68,17 +68,17 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Property definition for the <see cref="ExceptionOnNoMatch"/> Bindable Property
         /// </summary>
-        public static BindableProperty ExceptionOnNoMatchProperty = BindableProperty.Create<TemplateSelector, bool>(x => x.ExceptionOnNoMatch, true);
+        public static BindableProperty ExceptionOnNoMatchProperty = BindablePropertyHelper.Create<TemplateSelector, bool>(nameof(ExceptionOnNoMatch), true);
 
         /// <summary>
         /// Property definition for the <see cref="SelectorFunction"/> Bindable Property
         /// </summary>
-        public static BindableProperty SelectorFunctionProperty = BindableProperty.Create<TemplateSelector, Func<Type, DataTemplate>>(x => x.SelectorFunction, null);
+        public static BindableProperty SelectorFunctionProperty = BindablePropertyHelper.Create<TemplateSelector, Func<Type, DataTemplate>>(nameof(SelectorFunction), null);
 
         /// <summary>
         /// Property definition for the <see cref="Templates"/> Bindable Property
         /// </summary>
-        public static BindableProperty TemplatesProperty = BindableProperty.Create<TemplateSelector, DataTemplateCollection>(x => x.Templates, default(DataTemplateCollection), BindingMode.OneWay, null, TemplatesChanged);
+        public static BindableProperty TemplatesProperty = BindablePropertyHelper.Create<TemplateSelector, DataTemplateCollection>(nameof(Templates), default(DataTemplateCollection), BindingMode.OneWay, null, TemplatesChanged);
 
         /// <summary>
         /// Initialize the TemplateCollections so that each
@@ -130,15 +130,30 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         ///  Clears the cache when the set of templates change
         /// </summary>
-        /// <param name="bo"></param>
-        /// <param name="oldval"></param>
-        /// <param name="newval"></param>
-        public static void TemplatesChanged(BindableObject bo, DataTemplateCollection oldval, DataTemplateCollection newval)
+        /// <param name="bo">Bindable object.</param>
+        /// <param name="oldval">Old value.</param>
+        /// <param name="newval">New value.</param>
+        public static void TemplatesChanged(BindableObject bo, object oldvalObject, object newvalObject)
         {
+            DataTemplateCollection oldval = oldvalObject as DataTemplateCollection;
+            DataTemplateCollection newval = newvalObject as DataTemplateCollection;
+
             var ts = bo as TemplateSelector;
-            if (ts == null) return;
-            if (oldval != null) oldval.CollectionChanged -= ts.TemplateSetChanged;
-            newval.CollectionChanged += ts.TemplateSetChanged;
+            if (ts == null)
+            {
+                return;
+            }
+
+            if (oldval != null)
+            {
+                oldval.CollectionChanged -= ts.TemplateSetChanged;
+            }
+
+            if (newval != null)
+            {
+                newval.CollectionChanged += ts.TemplateSetChanged;
+            }
+
             ts.Cache = null;
         }
 

@@ -33,12 +33,7 @@ namespace Anuracode.Forms.Controls.Sample.Model
         /// <summary>
         /// Nick name.
         /// </summary>
-        private string nickName = string.Empty;
-
-        /// <summary>
-        /// Value of the role.
-        /// </summary>
-        private int roleInt;
+        private string nickName = string.Empty;        
 
         /// <summary>
         /// Email of the person.

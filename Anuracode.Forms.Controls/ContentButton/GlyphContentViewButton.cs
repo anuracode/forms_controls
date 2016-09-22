@@ -18,33 +18,32 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Dsiable glyph and not the background.
         /// </summary>
-        public static readonly BindableProperty DisableGlyphOnlyProperty = BindableProperty.Create<GlyphContentViewButton, bool>(p => p.DisableGlyphOnly, true);
+        public static readonly BindableProperty DisableGlyphOnlyProperty = BindablePropertyHelper.Create<GlyphContentViewButton, bool>(nameof(DisableGlyphOnly), true);
 
         /// <summary>
         /// The font name property.
         /// </summary>
-        public static readonly BindableProperty GlyphFontNameProperty = BindableProperty.Create<GlyphContentViewButton, string>(p => p.GlyphFontName, Styles.ThemeManager.CommonResourcesBase.GlyphFontName);
+        public static readonly BindableProperty GlyphFontNameProperty = BindablePropertyHelper.Create<GlyphContentViewButton, string>(nameof(GlyphFontName), Styles.ThemeManager.CommonResourcesBase.GlyphFontName);
 
         /// <summary>
         /// Font size.
         /// </summary>
-        public static readonly BindableProperty GlyphFontSizeProperty = BindableProperty.Create<GlyphContentViewButton, double>(p => p.GlyphFontSize, Styles.ThemeManager.CommonResourcesBase.TextSizeMicro);
+        public static readonly BindableProperty GlyphFontSizeProperty = BindablePropertyHelper.Create<GlyphContentViewButton, double>(nameof(GlyphFontSize), Styles.ThemeManager.CommonResourcesBase.TextSizeMicro);
 
         /// <summary>
         /// The friendly font name property. This can be found on the first line of the font or in the font preview.
         /// This is only required on Windows Phone. If not given then the file name excl. the extension is used.
         /// </summary>
-        public static readonly BindableProperty GlyphFriendlyFontNameProperty = BindableProperty.Create<GlyphContentViewButton, string>(p => p.GlyphFriendlyFontName, Styles.ThemeManager.CommonResourcesBase.GlyphFriendlyFontName);
+        public static readonly BindableProperty GlyphFriendlyFontNameProperty = BindablePropertyHelper.Create<GlyphContentViewButton, string>(nameof(GlyphFriendlyFontName), Styles.ThemeManager.CommonResourcesBase.GlyphFriendlyFontName);
 
         /// <summary>
         /// Glyph Text color disabled.
         /// </summary>
-        public static readonly BindableProperty GlyphTextColorDisabledProperty = BindableProperty.Create<GlyphContentViewButton, Color>(
-            p => p.GlyphTextColorDisabled,
+        public static readonly BindableProperty GlyphTextColorDisabledProperty = BindablePropertyHelper.Create<GlyphContentViewButton, Color>(
+            nameof(GlyphTextColorDisabled),
             Styles.ThemeManager.CommonResourcesBase.TextColorDisable,
             BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
@@ -55,19 +54,15 @@ namespace Anuracode.Forms.Controls
                         button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Glyph Text color property.
         /// </summary>
-        public static readonly BindableProperty GlyphTextColorProperty = BindableProperty.Create<GlyphContentViewButton, Color>(
-            p => p.GlyphTextColor,
+        public static readonly BindableProperty GlyphTextColorProperty = BindablePropertyHelper.Create<GlyphContentViewButton, Color>(
+            nameof(GlyphTextColor),
             Color.White,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
@@ -78,32 +73,27 @@ namespace Anuracode.Forms.Controls
                         button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Text property.
         /// </summary>
-        public static readonly BindableProperty GlyphTextProperty = BindableProperty.Create<GlyphContentViewButton, string>(
-            (Expression<Func<GlyphContentViewButton, string>>)(p => p.GlyphText),
+        public static readonly BindableProperty GlyphTextProperty = BindablePropertyHelper.Create<GlyphContentViewButton, string>(
+            nameof(GlyphText),
             (string)null,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<string>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<string>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
-                if (newvalue != null)
+                string newString = newvalue as String;
+                if (!string.IsNullOrEmpty(newString))
                 {
                     GlyphContentViewButton button = bindable as GlyphContentViewButton;
                     if (button != null && button.LabelGlyph != null)
                     {
-                        button.LabelGlyph.Text = newvalue;                       
+                        button.LabelGlyph.Text = newString;
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<string>)null,
-            (BindableProperty.CoerceValueDelegate<string>)null);
+            });
 
         /// <summary>
         /// Default constructor.
@@ -263,7 +253,7 @@ namespace Anuracode.Forms.Controls
                 BindingContext = this
             };
 
-            if (DEBUG_COLORS)
+            if (DebugColors)
             {
                 LabelGlyph.BackgroundColor = Color.Teal;
             }
@@ -284,7 +274,7 @@ namespace Anuracode.Forms.Controls
         {
             if (DisableGlyphOnly)
             {
-                if (DEBUG_COLORS)
+                if (DebugColors)
                 {
                     DisableBox.BackgroundColor = new Color(Color.Fuchsia.R, Color.Fuchsia.G, Color.Fuchsia.B, 0.4);
                 }

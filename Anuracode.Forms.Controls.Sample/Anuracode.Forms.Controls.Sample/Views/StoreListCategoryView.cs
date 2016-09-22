@@ -38,12 +38,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             StoreListView = storeListView;
 
             ContentLayout.IsClippedToBounds = false;
-        }
-
-        /// <summary>
-        /// Content margin.
-        /// </summary>
-        public double ContentMargin { get; set; }
+        }        
 
         /// <summary>
         /// Nacigate back.

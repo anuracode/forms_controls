@@ -19,12 +19,12 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Respresents the command that is fired to ask the view model to load additional data bound collection.
         /// </summary>
-        public static readonly BindableProperty LoadMoreCommandProperty = BindableProperty.Create<InfiniteListView, ICommand>(bp => bp.LoadMoreCommand, default(ICommand));
+        public static readonly BindableProperty LoadMoreCommandProperty = BindablePropertyHelper.Create<InfiniteListView, ICommand>(nameof(LoadMoreCommand), default(ICommand));
 
         /// <summary>
         /// Total items count property.
         /// </summary>
-        public static readonly BindableProperty TotalItemsCountProperty = BindableProperty.Create<InfiniteListView, int>(s => s.TotalItemsCount, 0);
+        public static readonly BindableProperty TotalItemsCountProperty = BindablePropertyHelper.Create<InfiniteListView, int>(nameof(TotalItemsCount), 0);
 
         /// <summary>
         /// Creates a new instance of a <see cref="InfiniteListView" />

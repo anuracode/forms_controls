@@ -18,72 +18,72 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command paramter.
         /// </summary>
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create<FilterBarView, object>(p => p.CommandParameter, (object)null);
+        public static readonly BindableProperty CommandParameterProperty = BindablePropertyHelper.Create<FilterBarView, object>(nameof(CommandParameter), (object)null);
 
         /// <summary>
         /// Backing field for the command property.
         /// </summary>
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create<FilterBarView, object>(p => p.Command, (object)null);
+        public static readonly BindableProperty CommandProperty = BindablePropertyHelper.Create<FilterBarView, object>(nameof(Command), (object)null);
 
         /// <summary>
         /// Corner radius property.
         /// </summary>
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create<FilterBarView, float>(s => s.CornerRadius, 10f);
+        public static readonly BindableProperty CornerRadiusProperty = BindablePropertyHelper.Create<FilterBarView, float>(nameof(CornerRadius), 10f);
 
         /// <summary>
         /// Filter background color.
         /// </summary>
-        public static readonly BindableProperty FilterBackgroundColorProperty = BindableProperty.Create<FilterBarView, Color>(p => p.FilterBackgroundColor, Color.Transparent);
+        public static readonly BindableProperty FilterBackgroundColorProperty = BindablePropertyHelper.Create<FilterBarView, Color>(nameof(FilterBackgroundColor), Color.Transparent);
 
         /// <summary>
         /// Backing field for the image height property.
         /// </summary>
-        public static readonly BindableProperty ImageHeightRequestProperty = BindableProperty.Create<FilterBarView, int>(p => p.ImageHeightRequest, 30);
+        public static readonly BindableProperty ImageHeightRequestProperty = BindablePropertyHelper.Create<FilterBarView, int>(nameof(ImageHeightRequest), 30);
 
         /// <summary>
         /// Backing field for the image width property.
         /// </summary>
-        public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create<FilterBarView, int>(p => p.ImageWidthRequest, 30);
+        public static readonly BindableProperty ImageWidthRequestProperty = BindablePropertyHelper.Create<FilterBarView, int>(nameof(ImageWidthRequest), 30);
 
         /// <summary>
         /// Margin borders.
         /// </summary>
-        public static readonly BindableProperty MarginBordersProperty = BindableProperty.Create<FilterBarView, double>(p => p.MarginBorders, 10);
+        public static readonly BindableProperty MarginBordersProperty = BindablePropertyHelper.Create<FilterBarView, double>(nameof(MarginBorders), 10);
 
         /// <summary>
         /// Margin between elements.
         /// </summary>
-        public static readonly BindableProperty MarginElementsProperty = BindableProperty.Create<FilterBarView, double>(p => p.MarginElements, 10);
+        public static readonly BindableProperty MarginElementsProperty = BindablePropertyHelper.Create<FilterBarView, double>(nameof(MarginElements), 10);
 
         /// <summary>
         /// The placeholder property.
         /// </summary>
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create<FilterBarView, string>(p => p.Placeholder, default(string));
+        public static readonly BindableProperty PlaceholderProperty = BindablePropertyHelper.Create<FilterBarView, string>(nameof(Placeholder), default(string));
 
         /// <summary>
         /// Shape color.
         /// </summary>
-        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<FilterBarView, Color>(s => s.StrokeColor, Color.Default);
+        public static readonly BindableProperty StrokeColorProperty = BindablePropertyHelper.Create<FilterBarView, Color>(nameof(StrokeColor), Color.Default);
 
         /// <summary>
         /// Stroke width.
         /// </summary>
-        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<FilterBarView, float>(s => s.StrokeWidth, 1f);
+        public static readonly BindableProperty StrokeWidthProperty = BindablePropertyHelper.Create<FilterBarView, float>(nameof(StrokeWidth), 1f);
 
         /// <summary>
         /// Text color disabled.
         /// </summary>
-        public static readonly BindableProperty TextColorDisabledProperty = BindableProperty.Create<FilterBarView, Color>(p => p.TextColorDisabled, Theme.CommonResources.TextColorDisable);
+        public static readonly BindableProperty TextColorDisabledProperty = BindablePropertyHelper.Create<FilterBarView, Color>(nameof(TextColorDisabled), Theme.CommonResources.TextColorDisable);
 
         /// <summary>
         /// Text color property.
         /// </summary>
-        public static readonly BindableProperty TextColorProperty = BindableProperty.Create<FilterBarView, Color>(p => p.TextColor, Theme.CommonResources.DefaultEntryTextColor);
+        public static readonly BindableProperty TextColorProperty = BindablePropertyHelper.Create<FilterBarView, Color>(nameof(TextColor), Theme.CommonResources.DefaultEntryTextColor);
 
         /// <summary>
         /// Text property.
         /// </summary>
-        public static readonly BindableProperty TextProperty = BindableProperty.Create<FilterBarView, string>(p => p.Text, string.Empty);
+        public static readonly BindableProperty TextProperty = BindablePropertyHelper.Create<FilterBarView, string>(nameof(Text), string.Empty);
 
         /// <summary>
         /// Default constructor.

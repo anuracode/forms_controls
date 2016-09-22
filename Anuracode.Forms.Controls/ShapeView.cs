@@ -15,27 +15,27 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Corner radius property.
         /// </summary>
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create<ShapeView, float>(s => s.CornerRadius, 0f);
+        public static readonly BindableProperty CornerRadiusProperty = BindablePropertyHelper.Create<ShapeView, float>(nameof(CornerRadius), 0f);
 
         /// <summary>
         /// Padding property.
         /// </summary>
-        public static readonly BindableProperty PaddingProperty = BindableProperty.Create<ShapeView, Thickness>(s => s.Padding, default(Thickness));
+        public static readonly BindableProperty PaddingProperty = BindablePropertyHelper.Create<ShapeView, Thickness>(nameof(Padding), default(Thickness));
 
         /// <summary>
         /// Shape type.
         /// </summary>
-        public static readonly BindableProperty ShapeTypeProperty = BindableProperty.Create<ShapeView, ShapeType>(s => s.ShapeType, ShapeType.Box);
+        public static readonly BindableProperty ShapeTypeProperty = BindablePropertyHelper.Create<ShapeView, ShapeType>(nameof(ShapeType), ShapeType.Box);
 
         /// <summary>
         /// Shape color.
         /// </summary>
-        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<ShapeView, Color>(s => s.StrokeColor, Color.Default);
+        public static readonly BindableProperty StrokeColorProperty = BindablePropertyHelper.Create<ShapeView, Color>(nameof(StrokeColor), Color.Default);
 
         /// <summary>
         /// Stroke width.
         /// </summary>
-        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<ShapeView, float>(s => s.StrokeWidth, 1f);
+        public static readonly BindableProperty StrokeWidthProperty = BindablePropertyHelper.Create<ShapeView, float>(nameof(StrokeWidth), 1f);
 
         /// <summary>
         /// Default constructor.

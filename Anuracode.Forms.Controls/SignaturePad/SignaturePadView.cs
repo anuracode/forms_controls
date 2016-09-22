@@ -16,37 +16,37 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Caption color property.
         /// </summary>
-        public static readonly BindableProperty CaptionTextColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.CaptionTextColor, Color.Default);
+        public static readonly BindableProperty CaptionTextColorProperty = BindablePropertyHelper.Create<SignaturePadView, Color>(nameof(CaptionTextColor), Color.Default);
 
         /// <summary>
         /// Caption text property.
         /// </summary>
-        public static readonly BindableProperty CaptionTextProperty = BindableProperty.Create<SignaturePadView, string>(x => x.CaptionText, (string)null);
+        public static readonly BindableProperty CaptionTextProperty = BindablePropertyHelper.Create<SignaturePadView, string>(nameof(CaptionText), (string)null);
 
         /// <summary>
         /// Prompt text color.
         /// </summary>
-        public static readonly BindableProperty PromptTextColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.PromptTextColor, Color.Default);
+        public static readonly BindableProperty PromptTextColorProperty = BindablePropertyHelper.Create<SignaturePadView, Color>(nameof(PromptTextColor), Color.Default);
 
         /// <summary>
         /// Prompt text.
         /// </summary>
-        public static readonly BindableProperty PromptTextProperty = BindableProperty.Create<SignaturePadView, string>(x => x.PromptText, (string)null);
+        public static readonly BindableProperty PromptTextProperty = BindablePropertyHelper.Create<SignaturePadView, string>(nameof(PromptText), (string)null);
 
         /// <summary>
         /// Signature line color.
         /// </summary>
-        public static readonly BindableProperty SignatureLineColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.SignatureLineColor, Color.Default);
+        public static readonly BindableProperty SignatureLineColorProperty = BindablePropertyHelper.Create<SignaturePadView, Color>(nameof(SignatureLineColor), Color.Default);
 
         /// <summary>
         /// Storke color.
         /// </summary>
-        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<SignaturePadView, Color>(x => x.StrokeColor, Color.Default);
+        public static readonly BindableProperty StrokeColorProperty = BindablePropertyHelper.Create<SignaturePadView, Color>(nameof(StrokeColor), Color.Default);
 
         /// <summary>
         /// Stroke width.
         /// </summary>
-        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<SignaturePadView, float>(x => x.StrokeWidth, (float)0);
+        public static readonly BindableProperty StrokeWidthProperty = BindablePropertyHelper.Create<SignaturePadView, float>(nameof(StrokeWidth), (float)0);
 
         /// <summary>
         /// Clear command.

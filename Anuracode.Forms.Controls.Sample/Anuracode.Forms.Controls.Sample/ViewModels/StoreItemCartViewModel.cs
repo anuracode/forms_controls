@@ -17,17 +17,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <summary>
         /// Item to use.
         /// </summary>
-        private StoreItemViewModel itemViewModel;
-
-        /// <summary>
-        /// Flag when there is not enough quantity.
-        /// </summary>
-        private bool notEnoughQuantity;
-
-        /// <summary>
-        /// Price total including quantity.
-        /// </summary>
-        private decimal totalPrice;
+        private StoreItemViewModel itemViewModel;        
 
         /// <summary>
         /// Default constructor.

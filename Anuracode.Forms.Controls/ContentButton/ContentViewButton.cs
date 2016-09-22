@@ -6,7 +6,6 @@
 using Anuracode.Forms.Controls.Extensions;
 using Anuracode.Forms.Controls.Views.Extensions;
 using System;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -31,30 +30,24 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Background color.
         /// </summary>
-        public static readonly BindableProperty ButtonBackgroundColorProperty = BindableProperty.Create<ContentViewButton, Color>(
-            p => p.ButtonBackgroundColor,
-            Color.Transparent,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+        public static readonly BindableProperty ButtonBackgroundColorProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(
+            nameof(ButtonBackgroundColor),
+            defaultValue: Color.Transparent,
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
                 {
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Disable color.
         /// </summary>
-        public static readonly BindableProperty ButtonDisableBackgroundColorProperty = BindableProperty.Create<ContentViewButton, Color>(
-            p => p.ButtonDisableBackgroundColor,
-            Styles.ThemeManager.CommonResourcesBase.ButtonBackgroundColor,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+        public static readonly BindableProperty ButtonDisableBackgroundColorProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(
+            nameof(ButtonDisableBackgroundColor),
+            defaultValue: Styles.ThemeManager.CommonResourcesBase.ButtonBackgroundColor,
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
@@ -65,24 +58,19 @@ namespace Anuracode.Forms.Controls
                         button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Background color when tapped.
         /// </summary>
-        public static readonly BindableProperty ButtonTappedBackgroundColorProperty = BindableProperty.Create<ContentViewButton, Color>(p => p.ButtonTappedBackgroundColor, new Color(Color.Black.R, Color.Black.G, Color.Black.B, 0.5));
+        public static readonly BindableProperty ButtonTappedBackgroundColorProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(nameof(ButtonTappedBackgroundColor), new Color(Color.Black.R, Color.Black.G, Color.Black.B, 0.5));
 
         /// <summary>
         /// Command paramter.
         /// </summary>
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create<ContentViewButton, object>(
-            p => p.CommandParameter,
-            (object)null,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<object>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<object>)(
+        public static readonly BindableProperty CommandParameterProperty = BindablePropertyHelper.Create<ContentViewButton, object>(
+            nameof(CommandParameter),
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 AC.ScheduleManaged(
@@ -96,113 +84,81 @@ namespace Anuracode.Forms.Controls
 
                         return Task.FromResult(0);
                     });
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<object>)null,
-            (BindableProperty.CoerceValueDelegate<object>)null);
+            });
 
         /// <summary>
         /// Backing field for the command property.
         /// </summary>
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create<ContentViewButton, ICommand>(
-            p => p.Command,
-            (ICommand)null,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<ICommand>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<ICommand>)(
+        public static readonly BindableProperty CommandProperty = BindablePropertyHelper.Create<ContentViewButton, ICommand>(
+            nameof(Command),
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
-                if (newvalue != null)
+                ICommand newCommand = newvalue as ICommand;
+                if (newCommand != null)
                 {
                     var button = bindable as ContentViewButton;
                     if (button != null)
                     {
-                        newvalue.CanExecuteChanged -= button.CanExecuteChangedHandler;
-                        newvalue.CanExecuteChanged += button.CanExecuteChangedHandler;
+                        newCommand.CanExecuteChanged -= button.CanExecuteChangedHandler;
+                        newCommand.CanExecuteChanged += button.CanExecuteChangedHandler;
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<ICommand>)null,
-            (BindableProperty.CoerceValueDelegate<ICommand>)null);
+            });
 
         /// <summary>
         /// Content aligment.
         /// </summary>
-        public static readonly BindableProperty ContentAlignmentProperty = BindableProperty.Create<ContentViewButton, TextAlignment>(p => p.ContentAlignment, TextAlignment.Center);
+        public static readonly BindableProperty ContentAlignmentProperty = BindablePropertyHelper.Create<ContentViewButton, TextAlignment>(nameof(ContentAlignment), TextAlignment.Center);
 
         /// <summary>
         /// Corner radius property.
         /// </summary>
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create<ContentViewButton, float>(s => s.CornerRadius, 0f);
+        public static readonly BindableProperty CornerRadiusProperty = BindablePropertyHelper.Create<ContentViewButton, float>(nameof(CornerRadius), 0f);
 
         /// <summary>
         /// The font name property.
         /// </summary>
-        public static readonly BindableProperty FontNameProperty = BindableProperty.Create<ContentViewButton, string>(p => p.FontName, string.Empty);
+        public static readonly BindableProperty FontNameProperty = BindablePropertyHelper.Create<ContentViewButton, string>(nameof(FontName), string.Empty);
 
         /// <summary>
         /// Font size.
         /// </summary>
-        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create<ContentViewButton, double>(p => p.FontSize, Styles.ThemeManager.CommonResourcesBase.TextSizeMedium);
+        public static readonly BindableProperty FontSizeProperty = BindablePropertyHelper.Create<ContentViewButton, double>(nameof(FontSize), Styles.ThemeManager.CommonResourcesBase.TextSizeMedium);
 
         /// <summary>
         /// The formatted placeholder property.
         /// </summary>
-        public static readonly BindableProperty FormattedPlaceholderProperty = BindableProperty.Create<ContentViewButton, FormattedString>(p => p.FormattedPlaceholder, default(FormattedString));
+        public static readonly BindableProperty FormattedPlaceholderProperty = BindablePropertyHelper.Create<ContentViewButton, FormattedString>(nameof(FormattedPlaceholder), default(FormattedString));
 
         /// <summary>
         /// Formatted String.
         /// </summary>
-        public static readonly BindableProperty FormattedTextProperty = BindableProperty.Create<ContentViewButton, FormattedString>(p => p.FormattedText, default(FormattedString));
+        public static readonly BindableProperty FormattedTextProperty = BindablePropertyHelper.Create<ContentViewButton, FormattedString>(nameof(FormattedText), default(FormattedString));
 
         /// <summary>
         /// The friendly font name property. This can be found on the first line of the font or in the font preview.
         /// This is only required on Windows Phone. If not given then the file name excl. the extension is used.
         /// </summary>
-        public static readonly BindableProperty FriendlyFontNameProperty = BindableProperty.Create<ContentViewButton, string>(p => p.FriendlyFontName, string.Empty);
+        public static readonly BindableProperty FriendlyFontNameProperty = BindablePropertyHelper.Create<ContentViewButton, string>(nameof(FriendlyFontName), string.Empty);
 
         /// <summary>
         /// Backing field for the image height property.
         /// </summary>
-        public static readonly BindableProperty ImageHeightRequestProperty = BindableProperty.Create<ContentViewButton, double>(
-            (p => p.ImageHeightRequest),
-            (double)30,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<double>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<double>)(
-            (bindable, oldvalue, newvalue) =>
-            {
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<double>)null,
-            (BindableProperty.CoerceValueDelegate<double>)null);
+        public static readonly BindableProperty ImageHeightRequestProperty = BindablePropertyHelper.Create<ContentViewButton, double>(nameof(ImageHeightRequest), (double)30);
 
         /// <summary>
         /// Backing field for the image width property.
         /// </summary>
-        public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create<ContentViewButton, double>(
-            (p => p.ImageWidthRequest),
-            (double)30,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<double>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<double>)(
-            (bindable, oldvalue, newvalue) =>
-            {
-                var button = bindable as ContentViewButton;
-                if (button != null)
-                {
-                }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<double>)null,
-            (BindableProperty.CoerceValueDelegate<double>)null);
+        public static readonly BindableProperty ImageWidthRequestProperty = BindablePropertyHelper.Create<ContentViewButton, double>(nameof(ImageWidthRequest), (double)30);
 
         /// <summary>
         /// Flag to make button invisible if disabled.
         /// </summary>
-        public static readonly BindableProperty InvisibleWhenDisabledProperty = BindableProperty.Create<ContentViewButton, bool>(
-            p => p.InvisibleWhenDisabled,
+        public static readonly BindableProperty InvisibleWhenDisabledProperty = BindablePropertyHelper.Create<ContentViewButton, bool>(
+            nameof(InvisibleWhenDisabled),
             false,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<bool>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<bool>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 var button = bindable as ContentViewButton;
@@ -210,14 +166,12 @@ namespace Anuracode.Forms.Controls
                 {
                     button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<bool>)null,
-            (BindableProperty.CoerceValueDelegate<bool>)null);
+            });
 
         /// <summary>
         /// Is underline.
         /// </summary>
-        public static readonly BindableProperty IsUnderlineProperty = BindableProperty.Create<ContentViewButton, bool>(s => s.IsUnderline, false);
+        public static readonly BindableProperty IsUnderlineProperty = BindablePropertyHelper.Create<ContentViewButton, bool>(nameof(IsUnderline), false);
 
         /// <summary>
         /// Is visible property.
@@ -245,73 +199,68 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Linebreak mode.
         /// </summary>
-        public static readonly BindableProperty LineBreakModeProperty = BindableProperty.Create<ContentViewButton, LineBreakMode>(p => p.LineBreakMode, LineBreakMode.NoWrap);
+        public static readonly BindableProperty LineBreakModeProperty = BindablePropertyHelper.Create<ContentViewButton, LineBreakMode>(nameof(LineBreakMode), LineBreakMode.NoWrap);
 
         /// <summary>
         /// Margin borders.
         /// </summary>
-        public static readonly BindableProperty MarginBordersProperty = BindableProperty.Create<ContentViewButton, double>(p => p.MarginBorders, 0);
+        public static readonly BindableProperty MarginBordersProperty = BindablePropertyHelper.Create<ContentViewButton, double>(nameof(MarginBorders), 0);
 
         /// <summary>
         /// Margin between elements.
         /// </summary>
-        public static readonly BindableProperty MarginElementsProperty = BindableProperty.Create<ContentViewButton, double>(p => p.MarginElements, 0);
+        public static readonly BindableProperty MarginElementsProperty = BindablePropertyHelper.Create<ContentViewButton, double>(nameof(MarginElements), 0);
 
         /// <summary>
         /// The placeholder property.
         /// </summary>
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create<ContentViewButton, string>(p => p.Placeholder, default(string));
+        public static readonly BindableProperty PlaceholderProperty = BindablePropertyHelper.Create<ContentViewButton, string>(nameof(Placeholder), default(string));
 
         /// <summary>
         /// Shape type.
         /// </summary>
-        public static readonly BindableProperty ShapeTypeProperty = BindableProperty.Create<ContentViewButton, ShapeType>(s => s.ShapeType, ShapeType.Box);
+        public static readonly BindableProperty ShapeTypeProperty = BindablePropertyHelper.Create<ContentViewButton, ShapeType>(nameof(ShapeType), ShapeType.Box);
 
         /// <summary>
         /// Backing field for the Image property.
         /// </summary>
-        public static readonly BindableProperty SourceProperty = BindableProperty.Create<ContentViewButton, ImageSource>(
-            (Expression<Func<ContentViewButton, ImageSource>>)(p => p.Source),
+        public static readonly BindableProperty SourceProperty = BindablePropertyHelper.Create<ContentViewButton, ImageSource>(
+            nameof(Source),
             (ImageSource)null,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<ImageSource>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<ImageSource>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
-                if (newvalue != null)
+                ImageSource newImageSource = newvalue as ImageSource;
+                if (newImageSource != null)
                 {
                     var button = bindable as ContentViewButton;
                     if (button != null)
                     {
                         if (button.ButtonImage != null)
                         {
-                            button.ButtonImage.Source = newvalue;
+                            button.ButtonImage.Source = newImageSource;
                         }
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<ImageSource>)null,
-            (BindableProperty.CoerceValueDelegate<ImageSource>)null);
+            });
 
         /// <summary>
         /// Shape color.
         /// </summary>
-        public static readonly BindableProperty StrokeColorProperty = BindableProperty.Create<ContentViewButton, Color>(s => s.StrokeColor, Color.Default);
+        public static readonly BindableProperty StrokeColorProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(nameof(StrokeColor), Color.Default);
 
         /// <summary>
         /// Stroke width.
         /// </summary>
-        public static readonly BindableProperty StrokeWidthProperty = BindableProperty.Create<ContentViewButton, float>(s => s.StrokeWidth, 1f);
+        public static readonly BindableProperty StrokeWidthProperty = BindablePropertyHelper.Create<ContentViewButton, float>(nameof(StrokeWidth), 1f);
 
         /// <summary>
         /// Text color disabled.
         /// </summary>
-        public static readonly BindableProperty TextColorDisabledProperty = BindableProperty.Create<ContentViewButton, Color>(
-            p => p.TextColorDisabled,
+        public static readonly BindableProperty TextColorDisabledProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(
+            nameof(TextColorDisabled),
             Styles.ThemeManager.CommonResourcesBase.TextColorDisable,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
@@ -322,19 +271,15 @@ namespace Anuracode.Forms.Controls
                         button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Text color property.
         /// </summary>
-        public static readonly BindableProperty TextColorProperty = BindableProperty.Create<ContentViewButton, Color>(
-            p => p.TextColor,
+        public static readonly BindableProperty TextColorProperty = BindablePropertyHelper.Create<ContentViewButton, Color>(
+            nameof(TextColor),
              Color.White,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<Color>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<Color>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 if (newvalue != null)
@@ -345,34 +290,20 @@ namespace Anuracode.Forms.Controls
                         button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                     }
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<Color>)null,
-            (BindableProperty.CoerceValueDelegate<Color>)null);
+            });
 
         /// <summary>
         /// Text property.
         /// </summary>
-        public static readonly BindableProperty TextProperty = BindableProperty.Create<ContentViewButton, string>(
-            (Expression<Func<ContentViewButton, string>>)(p => p.Text),
-            (string)null,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<string>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<string>)(
-            (bindable, oldvalue, newvalue) =>
-            {
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<string>)null,
-            (BindableProperty.CoerceValueDelegate<string>)null);
+        public static readonly BindableProperty TextProperty = BindablePropertyHelper.Create<ContentViewButton, string>(nameof(Text), (string)null);
 
         /// <summary>
         /// Disable color.
         /// </summary>
-        public static readonly BindableProperty UseDisableBoxProperty = BindableProperty.Create<ContentViewButton, bool>(
-            p => p.UseDisableBox,
+        public static readonly BindableProperty UseDisableBoxProperty = BindablePropertyHelper.Create<ContentViewButton, bool>(
+            nameof(UseDisableBox),
             true,
-            BindingMode.OneWay,
-            (BindableProperty.ValidateValueDelegate<bool>)null,
-            (BindableProperty.BindingPropertyChangedDelegate<bool>)(
+            propertyChanged:
             (bindable, oldvalue, newvalue) =>
             {
                 var button = bindable as ContentViewButton;
@@ -380,14 +311,18 @@ namespace Anuracode.Forms.Controls
                 {
                     button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
                 }
-            }),
-            (BindableProperty.BindingPropertyChangingDelegate<bool>)null,
-            (BindableProperty.CoerceValueDelegate<bool>)null);
+            });
 
         /// <summary>
         /// Debug colors working.
         /// </summary>
-        protected const bool DEBUG_COLORS = false;
+        protected virtual bool DebugColors
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Control orientation.
@@ -1453,7 +1388,7 @@ namespace Anuracode.Forms.Controls
                 Aspect = ImageAspect,
             };
 
-            if (DEBUG_COLORS)
+            if (DebugColors)
             {
                 ButtonImage.BackgroundColor = Color.Teal;
             }
@@ -1514,7 +1449,7 @@ namespace Anuracode.Forms.Controls
             ContentLayout.ManualSizeCalculationDelegate = ContentLayout_OnSizeRequest;
             ContentLayout.OnLayoutChildren += ContentLayout_OnLayoutChildren;
 
-            if (DEBUG_COLORS)
+            if (DebugColors)
             {
                 ContentLayout.BackgroundColor = new Color(Color.Purple.R, Color.Purple.G, Color.Purple.B, 0.4);
             }
@@ -1562,7 +1497,7 @@ namespace Anuracode.Forms.Controls
                     HorizontalTextAlignment = TextAlignment.Center
                 };
 
-                if (DEBUG_COLORS)
+                if (DebugColors)
                 {
                     TextExtendedLabel.BackgroundColor = new Color(Color.Blue.R, Color.Blue.G, Color.Blue.B, 0.4);
                 }
@@ -1741,7 +1676,7 @@ namespace Anuracode.Forms.Controls
 
                 Color calculatedColor = Color.Transparent;
 
-                if (DEBUG_COLORS)
+                if (DebugColors)
                 {
                     calculatedColor = new Color(Color.Fuchsia.R, Color.Fuchsia.G, Color.Fuchsia.B, 0.4);
                 }

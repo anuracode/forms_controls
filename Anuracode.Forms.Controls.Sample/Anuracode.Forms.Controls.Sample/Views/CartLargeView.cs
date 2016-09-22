@@ -97,12 +97,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Margin for the bottom app bar.
         /// </summary>
-        public virtual double BottomAppBarMargin { get; set; }
-
-        /// <summary>
-        /// Margin for the relative layout calculations.
-        /// </summary>
-        public double ContentMargin { get; set; }
+        public virtual double BottomAppBarMargin { get; set; }        
 
         /// <summary>
         /// Hide overlay.

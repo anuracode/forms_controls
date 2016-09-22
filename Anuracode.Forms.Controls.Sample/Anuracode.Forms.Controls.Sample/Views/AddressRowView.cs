@@ -113,8 +113,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             Rectangle recievPosition = new Rectangle();
             Rectangle line1Position = new Rectangle();
             Rectangle line2Position = new Rectangle();
-            Rectangle phonePosition = new Rectangle();
-            Rectangle distancePosition = new Rectangle();
+            Rectangle phonePosition = new Rectangle();            
             Rectangle previousPosition = new Rectangle();
 
             if ((LabelNickName) != null && LabelNickName.IsVisible)

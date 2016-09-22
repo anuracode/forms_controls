@@ -17,46 +17,46 @@ namespace Anuracode.Forms.Controls
         /// The font name property.
         /// </summary>
         public static readonly BindableProperty FontNameProperty =
-            BindableProperty.Create<ExtendedLabel, string>(
-                p => p.FontName, string.Empty);
+            BindablePropertyHelper.Create<ExtendedLabel, string>(
+                nameof(FontName), string.Empty);
 
         /// <summary>
         /// The formatted placeholder property.
         /// </summary>
         public static readonly BindableProperty FormattedPlaceholderProperty =
-            BindableProperty.Create<ExtendedLabel, FormattedString>(p => p.FormattedPlaceholder, default(FormattedString));
+            BindablePropertyHelper.Create<ExtendedLabel, FormattedString>(nameof(FormattedPlaceholder), default(FormattedString));
 
         /// <summary>
         /// The friendly font name property. This can be found on the first line of the font or in the font preview.
         /// This is only required on Windows Phone. If not given then the file name excl. the extension is used.
         /// </summary>
         public static readonly BindableProperty FriendlyFontNameProperty =
-            BindableProperty.Create<ExtendedLabel, string>(
-                p => p.FriendlyFontName, string.Empty);
+            BindablePropertyHelper.Create<ExtendedLabel, string>(
+                nameof(FriendlyFontName), string.Empty);
 
         /// <summary>
         /// This is the drop shadow property
         /// </summary>
         public static readonly BindableProperty IsDropShadowProperty =
-            BindableProperty.Create<ExtendedLabel, bool>(p => p.IsDropShadow, false);
+            BindablePropertyHelper.Create<ExtendedLabel, bool>(nameof(IsDropShadow), false);
 
         /// <summary>
         /// The is underlined property.
         /// </summary>
         public static readonly BindableProperty IsStrikeThroughProperty =
-            BindableProperty.Create<ExtendedLabel, bool>(p => p.IsStrikeThrough, false);
+            BindablePropertyHelper.Create<ExtendedLabel, bool>(nameof(IsStrikeThrough), false);
 
         /// <summary>
         /// The is underlined property.
         /// </summary>
         public static readonly BindableProperty IsUnderlineProperty =
-            BindableProperty.Create<ExtendedLabel, bool>(p => p.IsUnderline, false);
+            BindablePropertyHelper.Create<ExtendedLabel, bool>(nameof(IsUnderline), false);
 
         /// <summary>
         /// The placeholder property.
         /// </summary>
         public static readonly BindableProperty PlaceholderProperty =
-            BindableProperty.Create<ExtendedLabel, string>(p => p.Placeholder, default(string));
+            BindablePropertyHelper.Create<ExtendedLabel, string>(nameof(Placeholder), default(string));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtendedLabel"/> class.

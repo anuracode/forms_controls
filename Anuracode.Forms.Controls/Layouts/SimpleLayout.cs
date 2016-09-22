@@ -63,7 +63,7 @@ namespace Anuracode.Forms.Controls
             {
                 OnLayoutChildren(x, y, width, height);
             }
-        }
+        }        
 
         /// <summary>
         /// Mesure the content.

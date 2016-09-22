@@ -21,11 +21,6 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
     public class StoreItemViewModel : BaseEntity
     {
         /// <summary>
-        /// Subscription when the repository changes.
-        /// </summary>
-        private IDisposable cartRepositorySubscription;
-
-        /// <summary>
         /// Default thumb image path.
         /// </summary>
         private string defaultBrandThumbImagePath = Theme.CommonResources.PathImageAppLogoLarge;

@@ -44,6 +44,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 if (isRootView != value)
                 {
+                    isRootView = value;
                     OnPropertyChanged(nameof(IsRootView));
                 }
 

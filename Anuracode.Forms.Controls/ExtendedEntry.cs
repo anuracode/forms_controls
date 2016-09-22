@@ -15,7 +15,7 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Flag to hide the borders.
         /// </summary>
-        public static readonly BindableProperty HasInvisibleBordersProperty = BindableProperty.Create<ExtendedEntry, bool>(bp => bp.HasInvisibleBorders, false);
+        public static readonly BindableProperty HasInvisibleBordersProperty = BindablePropertyHelper.Create<ExtendedEntry, bool>(nameof(HasInvisibleBorders), false);
 
         /// <summary>
         /// Flag to hide the borders.

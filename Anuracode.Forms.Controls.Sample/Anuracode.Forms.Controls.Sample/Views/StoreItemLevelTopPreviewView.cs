@@ -20,56 +20,49 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Command to navigate.
         /// </summary>
-        public static readonly BindableProperty NavigateToStoreLevelCommandProperty = BindableProperty.Create<StoreItemLevelTopPreviewView, ICommand>(
-           p => p.NavigateToStoreLevelCommand,
-           (ICommand)null,
-           BindingMode.OneWay,
-           (BindableProperty.ValidateValueDelegate<ICommand>)null,
-           (BindableProperty.BindingPropertyChangedDelegate<ICommand>)(
+        public static readonly BindableProperty NavigateToStoreLevelCommandProperty = BindablePropertyHelper.Create<StoreItemLevelTopPreviewView, ICommand>(
+           nameof(NavigateToStoreLevelCommand),
+           propertyChanged:
            (bindable, oldvalue, newvalue) =>
            {
-               if (newvalue != null)
+               ICommand newCommand = newvalue as ICommand;
+               if (newCommand != null)
                {
                    StoreItemLevelTopPreviewView controlInstance = bindable as StoreItemLevelTopPreviewView;
                    if (controlInstance != null)
                    {
                        if (controlInstance.ButtonCategory != null)
                        {
-                           controlInstance.ButtonCategory.Command = newvalue;
+                           controlInstance.ButtonCategory.Command = newCommand;
                        }
 
                        if (controlInstance.ButtonExpandCategory != null)
                        {
-                           controlInstance.ButtonExpandCategory.Command = newvalue;
+                           controlInstance.ButtonExpandCategory.Command = newCommand;
                        }
                    }
                }
-           }),
-           (BindableProperty.BindingPropertyChangingDelegate<ICommand>)null,
-           (BindableProperty.CoerceValueDelegate<ICommand>)null);
+           });
 
         /// <summary>
         /// Command to navigate.
         /// </summary>
-        public static readonly BindableProperty NavigateToStoreLevelProductsCommandProperty = BindableProperty.Create<StoreItemLevelTopPreviewView, ICommand>(
-           p => p.NavigateToStoreLevelProductsCommand,
-           (ICommand)null,
-           BindingMode.OneWay,
-           (BindableProperty.ValidateValueDelegate<ICommand>)null,
-           (BindableProperty.BindingPropertyChangedDelegate<ICommand>)(
+        public static readonly BindableProperty NavigateToStoreLevelProductsCommandProperty = BindablePropertyHelper.Create<StoreItemLevelTopPreviewView, ICommand>(
+           nameof(NavigateToStoreLevelProductsCommand),
+           propertyChanged:
            (bindable, oldvalue, newvalue) =>
            {
-               if (newvalue != null)
+
+               ICommand newCommand = newvalue as ICommand;
+               if (newCommand != null)
                {
                    StoreItemLevelTopPreviewView controlInstance = bindable as StoreItemLevelTopPreviewView;
                    if (controlInstance != null && controlInstance.ButtonAllProducts != null)
                    {
-                       controlInstance.ButtonAllProducts.Command = newvalue;
+                       controlInstance.ButtonAllProducts.Command = newCommand;
                    }
                }
-           }),
-           (BindableProperty.BindingPropertyChangingDelegate<ICommand>)null,
-           (BindableProperty.CoerceValueDelegate<ICommand>)null);
+           });
 
         /// <summary>
         /// Internal item detail command.

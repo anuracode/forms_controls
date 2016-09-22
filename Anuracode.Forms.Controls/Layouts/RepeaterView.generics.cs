@@ -23,32 +23,28 @@ namespace Anuracode.Forms.Controls
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty IsUILocableProperty =
-            BindableProperty.Create<RepeaterView<T>, bool>(
-                p => p.IsUILocable,
+            BindablePropertyHelper.Create<RepeaterView<T>, bool>(
+                nameof(IsUILocable),
                 true,
-                BindingMode.OneWay,
-                null,
-                IsUILocableChanged);
+                propertyChanged: IsUILocableChanged);
 
         /// <summary>
         /// Definition for <see cref="ItemsSource"/>
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<RepeaterView<T>, IEnumerable<T>>(
-                p => p.ItemsSource,
+            BindablePropertyHelper.Create<RepeaterView<T>, IEnumerable<T>>(
+                nameof(ItemsSource),
                 Enumerable.Empty<T>(),
-                BindingMode.OneWay,
-                null,
-                ItemsChanged);
+                propertyChanged: ItemsChanged);
 
         /// <summary>
         /// Definition for <see cref="ItemTemplate"/>
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty ItemTemplateProperty =
-            BindableProperty.Create<RepeaterView<T>, DataTemplate>(
-                p => p.ItemTemplate,
+            BindablePropertyHelper.Create<RepeaterView<T>, DataTemplate>(
+                nameof(ItemTemplate),
                 default(DataTemplate));
 
         /// <summary>
@@ -56,8 +52,8 @@ namespace Anuracode.Forms.Controls
         /// </summary>
         /// Element created at 15/11/2014,3:12 PM by Charles
         public static readonly BindableProperty TemplateSelectorProperty =
-            BindableProperty.Create<RepeaterView<T>, TemplateSelector>(
-                x => x.TemplateSelector,
+            BindablePropertyHelper.Create<RepeaterView<T>, TemplateSelector>(
+                nameof(TemplateSelector),
                 default(TemplateSelector));
 
         /// <summary>
@@ -65,7 +61,7 @@ namespace Anuracode.Forms.Controls
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static BindableProperty ItemClickCommandProperty =
-            BindableProperty.Create<RepeaterView<T>, ICommand>(x => x.ItemClickCommand, null);
+            BindablePropertyHelper.Create<RepeaterView<T>, ICommand>(nameof(ItemClickCommand), null);
 
         /// <summary>
         /// The Collection changed handler
@@ -269,8 +265,8 @@ namespace Anuracode.Forms.Controls
         /// <param name="newValue">New bound collection</param>
         private static void IsUILocableChanged(
             BindableObject bindable,
-            bool oldValue,
-            bool newValue)
+            object oldValue,
+            object newValue)
         {
             var control = bindable as RepeaterView<T>;
             if (control == null)
@@ -294,14 +290,15 @@ namespace Anuracode.Forms.Controls
         /// <param name="newValue">New bound collection</param>
         private static void ItemsChanged(
             BindableObject bindable,
-            IEnumerable<T> oldValue,
-            IEnumerable<T> newValue)
+            object oldValue,
+            object newValueObject)
         {
+            IEnumerable<T> newValue = newValueObject as IEnumerable<T>;
             var control = bindable as RepeaterView<T>;
             if (control == null)
-                throw new Exception(
-                    "Invalid bindable object passed to ReapterView::ItemsChanged expected a ReapterView<T> received a "
-                    + bindable.GetType().Name);
+            {
+                throw new Exception("Invalid bindable object passed to ReapterView::ItemsChanged expected a ReapterView<T> received a " + bindable.GetType().Name);
+            }
 
             if (control._collectionChangedHandle != null)
             {

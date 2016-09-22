@@ -88,12 +88,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         });
                 }
             }
-        }
-
-        /// <summary>
-        /// Margin for the relative layout calculations.
-        /// </summary>
-        public double ContentMargin { get; set; }
+        }        
 
         /// <summary>
         /// Hide overlay.
