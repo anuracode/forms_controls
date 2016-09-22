@@ -3,6 +3,8 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
+using Anuracode.Forms.Controls.Views.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,8 +14,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Anuracode.Forms.Controls.Extensions;
-using Anuracode.Forms.Controls.Views.Extensions;
 
 namespace Anuracode.Forms.Controls
 {
@@ -27,47 +27,21 @@ namespace Anuracode.Forms.Controls
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<RepeaterRecycleView, IList>(
-                p => p.ItemsSource,
-                null,
-                BindingMode.OneWay,
-                null,
-                ItemsSourceChanged);
+            BindablePropertyHelper.Create<RepeaterRecycleView, IList>(nameof(ItemsSource), null, propertyChanged: ItemsSourceChanged);
 
         /// <summary>
         /// Definition for <see cref="ItemTemplate"/>
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty ItemTemplateProperty =
-            BindableProperty.Create<RepeaterRecycleView, DataTemplate>(
-                p => p.ItemTemplate,
-                default(DataTemplate),
-                propertyChanged:
-                (BindableObject bindable, DataTemplate oldValue, DataTemplate newValue) =>
-                {
-                    var control = bindable as RepeaterRecycleView;
-
-                    if (control != null)
-                    {
-                        AC.ScheduleManaged(
-                            async () =>
-                            {
-                                await control.UpdateStep();
-                            });
-                    }
-                });
+            BindablePropertyHelper.Create<RepeaterRecycleView, DataTemplate>(nameof(ItemTemplate), defaultValue: default(DataTemplate));
 
         /// <summary>
         /// Definition for <see cref="ItemsSource"/>
         /// </summary>
         /// Element created at 15/11/2014,3:11 PM by Charles
         public static readonly BindableProperty SpacingProperty =
-            BindableProperty.Create<RepeaterRecycleView, double>(
-                p => p.Spacing,
-                0,
-                BindingMode.OneWay,
-                null,
-                null);
+            BindablePropertyHelper.Create<RepeaterRecycleView, double>(nameof(Spacing), defaultValue: (double)0);
 
         /// <summary>
         /// Semaphore for the repository file.
@@ -110,12 +84,19 @@ namespace Anuracode.Forms.Controls
         private SemaphoreSlim lockUI;
 
         /// <summary>
+        /// Instance all pool ahead items.
+        /// </summary>
+        protected bool InstanceAllPoolAheadItems { get; set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="poolAheadItems">Number of items the pool should be ahead.</param>
         /// <param name="showActivityIndicator">Activity indicator.</param>
-        public RepeaterRecycleView(int poolAheadItems = 4, bool showActivityIndicator = true)
+        /// <param name="instanceAllPoolAheadItems">Instance all pool ahead items even if not needed for the datasource.</param>
+        public RepeaterRecycleView(int poolAheadItems = 4, bool showActivityIndicator = true, bool instanceAllPoolAheadItems = false)
         {
+            InstanceAllPoolAheadItems = instanceAllPoolAheadItems;
             PoolAheadItems = poolAheadItems.Clamp(1, int.MaxValue);
 
             this.Orientation = ScrollOrientation.Horizontal;
@@ -152,14 +133,7 @@ namespace Anuracode.Forms.Controls
             }
 
             Content = ContentLayout;
-
-            AC.ScheduleManaged(
-                TimeSpan.FromSeconds(0.1),
-                async () =>
-                {
-                    await UpdateStep();
-                });
-        }       
+        }
 
         /// <summary>
         /// Clean when binding change.
@@ -672,9 +646,14 @@ namespace Anuracode.Forms.Controls
 
                                 ControlsPool[i] = itemView;
 
-                                await Task.Delay(Device.Idiom == TargetIdiom.Phone ? 15 : 6, cancellationToken);
-
-                                ContentLayout.Children.Add(itemView);
+                                try
+                                {
+                                    await Task.Delay(Device.Idiom == TargetIdiom.Phone ? 15 : 6, cancellationToken);
+                                }
+                                finally
+                                {
+                                    ContentLayout.Children.Add(itemView);
+                                }
 
                                 await Task.Delay(Device.Idiom == TargetIdiom.Phone ? 15 : 6, cancellationToken);
 
@@ -786,11 +765,25 @@ namespace Anuracode.Forms.Controls
 
                     if (Orientation == ScrollOrientation.Horizontal)
                     {
-                        visibleCount = ((Width * (1 / ItemWidth)) + PoolAheadItems).Clamp(0, itemSourceCount);
+                        if (InstanceAllPoolAheadItems)
+                        {
+                            visibleCount = ((Width * (1 / ItemWidth)) + PoolAheadItems).Clamp(0, double.MaxValue);
+                        }
+                        else
+                        {
+                            visibleCount = ((Width * (1 / ItemWidth)) + PoolAheadItems).Clamp(0, itemSourceCount);
+                        }
                     }
                     else
                     {
-                        visibleCount = ((Height * (1 / ItemHeight)) + PoolAheadItems).Clamp(0, itemSourceCount);
+                        if (InstanceAllPoolAheadItems)
+                        {
+                            visibleCount = ((Height * (1 / ItemHeight)) + PoolAheadItems).Clamp(0, double.MaxValue);
+                        }
+                        else
+                        {
+                            visibleCount = ((Height * (1 / ItemHeight)) + PoolAheadItems).Clamp(0, itemSourceCount);
+                        }
                     }
 
                     while (ControlsPool.Count < visibleCount)
@@ -798,7 +791,14 @@ namespace Anuracode.Forms.Controls
                         ControlsPool.Add(null);
                     }
 
-                    PoolCount = ControlsPool.Count.Clamp(0, itemSourceCount);
+                    if (InstanceAllPoolAheadItems)
+                    {
+                        PoolCount = ControlsPool.Count.Clamp(0, int.MaxValue);
+                    }
+                    else
+                    {
+                        PoolCount = ControlsPool.Count.Clamp(0, itemSourceCount);
+                    }
                 }
                 else
                 {
@@ -925,8 +925,8 @@ namespace Anuracode.Forms.Controls
         /// <param name="newValue">New bound collection</param>
         private static void ItemsSourceChanged(
             BindableObject bindable,
-            IList oldValue,
-            IList newValue)
+            object oldValue,
+            object newValue)
         {
             var control = bindable as RepeaterRecycleView;
 

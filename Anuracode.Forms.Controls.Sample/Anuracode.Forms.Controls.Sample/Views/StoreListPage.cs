@@ -2219,7 +2219,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                          return featureButton;
                      });
 
-                FeaturedScrollView = new RepeaterRecycleView(2)
+                FeaturedScrollView = new RepeaterRecycleView(2, true, instanceAllPoolAheadItems: true)
                 {
                     Padding = 0,
                     ItemHeight = itemHeight,
@@ -2700,7 +2700,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             int itemsCount = (featuredCount == null) ? ViewModel.FeaturedItems.Count : featuredCount.Value;
 
-            bool backgroundVisible = ViewModel.IsProductListMode || (!ViewModel.IsProductListMode && itemsCount == 0);           
+            bool backgroundVisible = ViewModel.IsProductListMode || (!ViewModel.IsProductListMode && itemsCount == 0);
         }
 
         /// <summary>

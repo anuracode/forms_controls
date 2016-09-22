@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AC.cs" />
+    <Compile Include="BindablePropertyHelper.cs" />
     <Compile Include="CircleImage.cs" />
     <Compile Include="ContentButton\ContentTemplateViewButton.cs" />
     <Compile Include="ContentButton\ContentViewButton.cs" />

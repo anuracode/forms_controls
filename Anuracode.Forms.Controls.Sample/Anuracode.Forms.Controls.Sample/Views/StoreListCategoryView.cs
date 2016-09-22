@@ -281,7 +281,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (UseGrid)
             {
-                GridViewProducts = new RepeaterRecycleView()
+                GridViewProducts = new RepeaterRecycleView(instanceAllPoolAheadItems: true)
                 {
                     Padding = 0,
                     ItemHeight = 150,

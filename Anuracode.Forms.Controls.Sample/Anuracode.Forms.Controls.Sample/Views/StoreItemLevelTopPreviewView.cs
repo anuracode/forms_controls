@@ -467,7 +467,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             CategoryShapeBackgroundView = new ShapeView()
             {
-                ShapeType =  ShapeType.Box,
+                ShapeType = ShapeType.Box,
                 Color = Theme.CommonResources.Accent,
                 CornerRadius = 15
             };
@@ -503,7 +503,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                             return detailItemButton;
                         });
 
-                GridViewProducts = new RepeaterRecycleView(poolAheadItems: 3, showActivityIndicator: true)
+                GridViewProducts = new RepeaterRecycleView(poolAheadItems: 3, showActivityIndicator: true, instanceAllPoolAheadItems: true)
                 {
                     ItemHeight = itemHeight,
                     ItemWidth = itemWidth,
