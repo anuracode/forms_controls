@@ -207,7 +207,10 @@ namespace Anuracode.Forms.Controls.Sample.Repository
 
                     sampleItem.ImagesPaths = new List<string>();
 
-                    sampleItem.ImagesPaths.Add(string.Format("~/sample{0}-1.jpg", (i + 1).Clamp(1, 9)));
+                    for (int j = 1; j < i + 1; j++)
+                    {
+                        sampleItem.ImagesPaths.Add(string.Format("~/sample{0}-1.jpg", (j).Clamp(1, 9)));
+                    }
 
                     storeItemsCache.Add(sampleItem);
                 }
