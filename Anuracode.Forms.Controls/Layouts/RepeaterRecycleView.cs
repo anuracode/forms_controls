@@ -729,6 +729,33 @@ namespace Anuracode.Forms.Controls
                 {
                     itemView = ControlsPool[i];
 
+                    if (InstanceAllPoolAheadItems && (itemView == null))
+                    {
+                        content = ItemTemplate.CreateContent();
+
+                        if (!(content is View) && !(content is ViewCell))
+                        {
+                            throw new ArgumentException(content.GetType().Name);
+                        }
+
+                        itemView = (content is View) ? content as View : ((ViewCell)content).View;
+
+                        ControlsPool[i] = itemView;
+
+                        try
+                        {
+                            await Task.Delay(Device.Idiom == TargetIdiom.Phone ? 15 : 6, cancellationToken);
+                        }
+                        finally
+                        {
+                            ContentLayout.Children.Add(itemView);
+                        }
+
+                        await Task.Delay(Device.Idiom == TargetIdiom.Phone ? 15 : 6, cancellationToken);
+
+                        cancellationToken.ThrowIfCancellationRequested();
+                    }
+
                     if (itemView != null)
                     {
                         itemView.UpdateOpacity(0);
@@ -762,43 +789,35 @@ namespace Anuracode.Forms.Controls
 
                     // Extra space.
                     double visibleCount = 0;
+                    double fullpool = 0;
 
                     if (Orientation == ScrollOrientation.Horizontal)
                     {
-                        if (InstanceAllPoolAheadItems)
-                        {
-                            visibleCount = ((Width * (1 / ItemWidth)) + PoolAheadItems).Clamp(0, double.MaxValue);
-                        }
-                        else
-                        {
-                            visibleCount = ((Width * (1 / ItemWidth)) + PoolAheadItems).Clamp(0, itemSourceCount);
-                        }
+                        fullpool = ((Width * (1 / ItemWidth)) + PoolAheadItems);
+                        visibleCount = fullpool.Clamp(0, itemSourceCount);
                     }
                     else
                     {
-                        if (InstanceAllPoolAheadItems)
-                        {
-                            visibleCount = ((Height * (1 / ItemHeight)) + PoolAheadItems).Clamp(0, double.MaxValue);
-                        }
-                        else
-                        {
-                            visibleCount = ((Height * (1 / ItemHeight)) + PoolAheadItems).Clamp(0, itemSourceCount);
-                        }
-                    }
-
-                    while (ControlsPool.Count < visibleCount)
-                    {
-                        ControlsPool.Add(null);
+                        fullpool = ((Height * (1 / ItemHeight)) + PoolAheadItems);
+                        visibleCount = fullpool.Clamp(0, itemSourceCount);
                     }
 
                     if (InstanceAllPoolAheadItems)
                     {
-                        PoolCount = ControlsPool.Count.Clamp(0, int.MaxValue);
+                        while (ControlsPool.Count < fullpool)
+                        {
+                            ControlsPool.Add(null);
+                        }
                     }
                     else
                     {
-                        PoolCount = ControlsPool.Count.Clamp(0, itemSourceCount);
+                        while (ControlsPool.Count < visibleCount)
+                        {
+                            ControlsPool.Add(null);
+                        }
                     }
+
+                    PoolCount = ControlsPool.Count.Clamp(0, itemSourceCount);
                 }
                 else
                 {

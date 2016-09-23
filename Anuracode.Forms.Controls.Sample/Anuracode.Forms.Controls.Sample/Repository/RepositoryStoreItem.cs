@@ -236,38 +236,46 @@ namespace Anuracode.Forms.Controls.Sample.Repository
                     };
 
                     sublevelsCache.Add(sampleLevel);
-                    AddGeneratedStoreItems(2, sampleLevel);
 
-                    for (int j = 0; j < 3; j++)
+                    if (i == 0)
                     {
-                        sampleLevel = new StoreItemLevel()
-                        {
-                            Department = "Department " + (i + 1),
-                            Category = "Category " + (j + 1)
-                        };
-
-                        sublevelsCache.Add(sampleLevel);
-
-                        if (j == 0)
-                        {
-                            AddGeneratedStoreItemGroup(2, sampleLevel);
-                        }
-
+                        AddGeneratedStoreItems(1, sampleLevel);
+                    }
+                    else
+                    {
                         AddGeneratedStoreItems(2, sampleLevel);
 
-                        if (i == 0 && j == 0)
+                        for (int j = 0; j < 3; j++)
                         {
-                            for (int k = 0; k < 4; k++)
+                            sampleLevel = new StoreItemLevel()
                             {
-                                sampleLevel = new StoreItemLevel()
-                                {
-                                    Department = "Department " + (i + 1),
-                                    Category = "Category " + (j + 1),
-                                    Subcategory = "SubCategory " + (k + 1)
-                                };
+                                Department = "Department " + (i + 1),
+                                Category = "Category " + (j + 1)
+                            };
 
-                                sublevelsCache.Add(sampleLevel);
-                                AddGeneratedStoreItems(5, sampleLevel);
+                            sublevelsCache.Add(sampleLevel);
+
+                            if (j == 0)
+                            {
+                                AddGeneratedStoreItemGroup(2, sampleLevel);
+                            }
+
+                            AddGeneratedStoreItems(2, sampleLevel);
+
+                            if (i == 0 && j == 0)
+                            {
+                                for (int k = 0; k < 4; k++)
+                                {
+                                    sampleLevel = new StoreItemLevel()
+                                    {
+                                        Department = "Department " + (i + 1),
+                                        Category = "Category " + (j + 1),
+                                        Subcategory = "SubCategory " + (k + 1)
+                                    };
+
+                                    sublevelsCache.Add(sampleLevel);
+                                    AddGeneratedStoreItems(5, sampleLevel);
+                                }
                             }
                         }
                     }
