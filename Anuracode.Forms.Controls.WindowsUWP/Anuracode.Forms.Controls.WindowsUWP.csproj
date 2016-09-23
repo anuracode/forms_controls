@@ -111,7 +111,7 @@
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="ImageCircleRenderer.cs" />
-    <Compile Include="ManagedImageRenderer.cs" />
+    <Compile Include="ExtendedImageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeRenderer.cs" />
     <Compile Include="SignaturePad\SignaturePad.cs" />

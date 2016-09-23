@@ -208,7 +208,7 @@ namespace Anuracode.Forms.Controls.Renderers
                         ((IVisualElementController)element).NativeSizeChanged();
                     });
             }
-        }
+        }        
 
         /// <summary>
         /// Set aspect.
@@ -337,14 +337,14 @@ namespace Anuracode.Forms.Controls.Renderers
                     ImageLoadingFinished(waitedElement);
                 }
             }
-            catch (TaskCanceledException taskCanceledException)
-            {                
+            catch (TaskCanceledException)
+            {
             }
-            catch (OperationCanceledException operationCanceledException)
-            {             
+            catch (OperationCanceledException)
+            {
             }
-            catch (IOException oException)
-            {                
+            catch (IOException)
+            {
             }
             catch (Exception ex)
             {
