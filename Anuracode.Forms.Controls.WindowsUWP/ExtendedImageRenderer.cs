@@ -7,8 +7,10 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 #if WINDOWS_UWP
 
@@ -65,12 +67,16 @@ namespace Anuracode.Forms.Controls.Renderers
                 if (e.OldElement != null || this.Element == null)
                     return;
 
-                Windows.UI.Xaml.Controls.Image controlImage = new Windows.UI.Xaml.Controls.Image();
+                if (Control == null)
+                {
+                    Windows.UI.Xaml.Controls.Image controlImage = new Windows.UI.Xaml.Controls.Image();
+                    controlImage.ImageOpened += OnImageOpened;
 
-                UpdateImageSource(e.NewElement, controlImage);
-                UpdateImageAspect(e.NewElement, controlImage);
+                    UpdateImageSource(e.NewElement, controlImage);
+                    UpdateImageAspect(e.NewElement, controlImage);
 
-                SetNativeControl(controlImage);
+                    SetNativeControl(controlImage);
+                }
             }
             catch (Exception ex)
             {
@@ -82,6 +88,41 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Image token source.
         /// </summary>
         protected CancellationTokenSource ImageTokenSource { get; set; }
+
+        /// <summary>
+        /// Render disposed.
+        /// </summary>
+        /// <param name="disposing">True for managed disposed.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (Control != null)
+            {
+                Control.ImageOpened -= OnImageOpened;
+            }
+
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Event when image opened.
+        /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="routedEventArgs">Arguments of the event.</param>
+        private void OnImageOpened(object sender, RoutedEventArgs routedEventArgs)
+        {
+            RefreshImage();
+        }
+
+        /// <summary>
+        /// Refresh image.
+        /// </summary>
+        private void RefreshImage()
+        {
+            if (Element != null)
+            {
+                ((IVisualElementController)Element)?.InvalidateMeasure(InvalidationTrigger.RendererReady);
+            }
+        }
 
         /// <summary>
         /// Lock for the  image source.
