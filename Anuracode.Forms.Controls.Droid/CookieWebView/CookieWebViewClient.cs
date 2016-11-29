@@ -19,6 +19,11 @@ namespace Anuracode.Forms.Controls.Renderers
         private readonly CookieWebView cookieWebView;
 
         /// <summary>
+        /// Is first page.
+        /// </summary>
+        private bool firstPage = true;
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="cookieWebView"></param>
@@ -44,16 +49,21 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="favicon">Icon to use.</param>
         public override void OnPageStarted(global::Android.Webkit.WebView view, string url, Bitmap favicon)
         {
-            var cookieManager = CookieManager.Instance;
-            cookieManager.SetAcceptCookie(true);
-            cookieManager.RemoveAllCookie();
-            var cookies = cookieWebView.Cookies.GetCookies(new System.Uri(url));
-            for (var i = 0; i < cookies.Count; i++)
+            if (firstPage)
             {
-                string cookieValue = cookies[i].Value;
-                string cookieDomain = cookies[i].Domain;
-                string cookieName = cookies[i].Name;
-                cookieManager.SetCookie(cookieDomain, cookieName + "=" + cookieValue);
+                var cookieManager = CookieManager.Instance;
+                cookieManager.SetAcceptCookie(true);
+                cookieManager.RemoveAllCookie();
+                var cookies = cookieWebView.Cookies.GetCookies(new System.Uri(url));
+                for (var i = 0; i < cookies.Count; i++)
+                {
+                    string cookieValue = cookies[i].Value;
+                    string cookieDomain = cookies[i].Domain;
+                    string cookieName = cookies[i].Name;
+                    cookieManager.SetCookie(cookieDomain, cookieName + "=" + cookieValue);
+                }
+
+                firstPage = false;
             }
 
             base.OnPageStarted(view, url, favicon);

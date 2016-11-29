@@ -66,6 +66,8 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieWebView\WebViewDelegate.cs" />
+    <Compile Include="CookieWebView\CookieWebViewRenderer.cs" />
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedImageRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
