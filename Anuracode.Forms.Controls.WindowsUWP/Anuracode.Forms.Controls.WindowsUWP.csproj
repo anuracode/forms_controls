@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorExtensions.cs" />
+    <Compile Include="CookieWebViewRenderer.cs" />
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="ImageCircleRenderer.cs" />

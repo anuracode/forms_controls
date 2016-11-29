@@ -82,6 +82,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         private Command showStoreCommand;
 
         /// <summary>
+        /// Navigate to web view.
+        /// </summary>
+        private Command showWebViewCommand;
+
+        /// <summary>
         /// Navigate to signature.
         /// </summary>
         private Command signatureCommand;
@@ -100,7 +105,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Default consturctor.
         /// </summary>
         public MainPage()
-        {            
+        {
             SetMenuGesture(false);
 
             NavigationPage.SetHasNavigationBar(this, false);
@@ -386,6 +391,37 @@ namespace Anuracode.Forms.Controls.Sample.Views
         }
 
         /// <summary>
+        /// Navigate to web view.
+        /// </summary>
+        public Command ShowWebViewCommand
+        {
+            get
+            {
+                if (showWebViewCommand == null)
+                {
+                    showWebViewCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new WebViewViewModel();
+
+                            var newPage = new WebViewPage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
+                }
+
+                return showWebViewCommand;
+            }
+        }
+
+        /// <summary>
         /// Navigate to About.
         /// </summary>
         public Command SignatureCommand
@@ -496,6 +532,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             mainMenu.ExternalShowSearchCommand = ShowSearchCommand;
             mainMenu.ExternalShowStoreCommand = ShowStoreCommand;
             mainMenu.ExternalShowAboutCommand = ShowAboutCommand;
+            mainMenu.ExternalShowWebViewCommand = ShowWebViewCommand;
             mainMenu.ExternalShowProfileCommand = ShowProfileCommand;
             mainMenu.ExternalShowCartCommand = ShowCartCommand;
             mainMenu.ExternalShowAddressBookCommand = ShowAddressBookCommand;
@@ -560,6 +597,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ShowImageSampleCommand.ChangeCanExecute();
             ShowSearchCommand.ChangeCanExecute();
             ShowStoreCommand.ChangeCanExecute();
+            ShowWebViewCommand.ChangeCanExecute();
             ShowAboutCommand.ChangeCanExecute();
             ShowProfileCommand.ChangeCanExecute();
             ShowCartCommand.ChangeCanExecute();

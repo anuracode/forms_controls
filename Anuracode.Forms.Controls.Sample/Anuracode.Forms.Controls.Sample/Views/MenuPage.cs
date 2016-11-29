@@ -86,6 +86,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public Command ExternalShowSearchCommand { get; set; }
 
         /// <summary>
+        /// Navigate to web view.
+        /// </summary>
+        public Command ExternalShowWebViewCommand { get; set; }
+
+        /// <summary>
         /// Navigate to settings.
         /// </summary>
         public Command ExternalShowImageSampleCommand { get; set; }
@@ -144,6 +149,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// Button orders.
         /// </summary>
         protected ContentViewButton ButtonOrdersAlt { get; private set; }
+
+        /// <summary>
+        /// Button cookie web view.
+        /// </summary>
+        protected ContentViewButton ButtonCookieWebView { get; private set; }
 
         /// <summary>
         /// Button to use.
@@ -402,9 +412,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextSearch,
                 Text = App.LocalizationResources.SearchButton,
                 Command = ExternalShowSearchCommand
-            };
-
-            StackAlternativeOptions.Children.Add(ButtonSearchAlt);
+            };            
 
             // Orders
             ButtonOrdersAlt = new GlyphLeftContentViewButton()
@@ -520,6 +528,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             StackAlternativeOptions.Children.Add(ButtonAboutAlt);
 
+            // cookie
+            ButtonCookieWebView = new GlyphLeftContentViewButton()
+            {
+                Style = extraMenuOptionsStyle,
+                GlyphText = Theme.CommonResources.GlyphTextAddressBook,
+                Text = App.LocalizationResources.CookieWebViewButton,
+                Command = ExternalShowWebViewCommand
+            };
+
+            StackAlternativeOptions.Children.Add(ButtonCookieWebView);
+
             // Space
             Theme.RenderUtil.RenderSpace(stackOptions, 10, 10);
 
@@ -564,6 +583,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             UpdateButtonCommand(ButtonStoreAlt, ExternalShowStoreCommand);
             UpdateButtonCommand(ButtonCartAlt, ExternalShowCartCommand);
             UpdateButtonCommand(ButtonSearchAlt, ExternalShowSearchCommand);
+            UpdateButtonCommand(ButtonCookieWebView, ExternalShowWebViewCommand);
             UpdateButtonCommand(ButtonProfileAlt, ExternalShowProfileCommand);
             UpdateButtonCommand(ButtonOrdersAlt, ExternalShowOrdersCommand);
             UpdateButtonCommand(ButtonImageSampleAlt, ExternalShowImageSampleCommand);

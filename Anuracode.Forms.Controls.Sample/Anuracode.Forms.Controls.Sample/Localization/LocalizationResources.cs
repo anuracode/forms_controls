@@ -132,6 +132,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
         }
 
         /// <summary>
+        /// WebView lable.
+        /// </summary>
+        public string WebViewLabel
+        {
+            get
+            {
+                return "Sample web view";
+            }
+        }
+
+        /// <summary>
         /// Address label.
         /// </summary>
         public string AddressLabel
@@ -227,6 +238,17 @@ namespace Anuracode.Forms.Controls.Sample.Localization
             get
             {
                 return "Clear";
+            }
+        }
+
+        /// <summary>
+        /// Sample web view.
+        /// </summary>
+        public string CookieWebViewButton
+        {
+            get
+            {
+                return "Sample web view";
             }
         }
 
