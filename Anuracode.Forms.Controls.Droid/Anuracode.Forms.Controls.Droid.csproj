@@ -117,6 +117,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieWebView\CookieWebViewClient.cs" />
+    <Compile Include="CookieWebView\CookieWebViewRenderer.cs" />
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedImage\ExtendedImageRenderer.cs" />
     <Compile Include="ExtendedImage\FormsImageView.cs" />
