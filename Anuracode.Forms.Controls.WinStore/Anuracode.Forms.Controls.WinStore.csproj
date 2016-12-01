@@ -111,9 +111,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\CookieWebViewRenderer.cs">
-      <Link>CookieWebViewRenderer.cs</Link>
-    </Compile>
     <Compile Include="..\Anuracode.Forms.Controls.WindowsUWP\ExtendedEntryRenderer.cs">
       <Link>ExtendedEntryRenderer.cs</Link>
     </Compile>

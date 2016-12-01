@@ -35,14 +35,24 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         protected override View RenderContent()
         {
-            CookieWebView webView = new CookieWebView()
+            WebView webView = new WebView()
             {
                 Source = ViewModel == null ? null : ViewModel.StartUrl
             };
 
-            webView.AddLoginWebsites();
+            webView.Navigating += WebView_Navigating;
 
             return webView;
+        }
+
+        /// <summary>
+        /// Event when navigating.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WebView_Navigating(object sender, WebNavigatingEventArgs e)
+        {
+            var taskAlert = this.DisplayAlert("URL", e.Url, "Cancel");
         }
     }
 }

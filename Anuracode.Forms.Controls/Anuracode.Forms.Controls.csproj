@@ -45,7 +45,6 @@
     <Compile Include="ContentButton\ImageContentViewButton.cs" />
     <Compile Include="ContentButton\ImageLeftContentViewButton.cs" />
     <Compile Include="ContentButton\TextContentViewButton.cs" />
-    <Compile Include="CookieWebView.cs" />
     <Compile Include="EventArgs.Generics.cs" />
     <Compile Include="ExtendedEntry.cs" />
     <Compile Include="ExtendedImage.cs" />
