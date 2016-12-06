@@ -5,7 +5,6 @@
 
 using Android.Runtime;
 using Android.Widget;
-using Anuracode.Forms.Controls;
 using FFImageLoading;
 using FFImageLoading.Views;
 using FFImageLoading.Work;
@@ -245,132 +244,135 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="previous">Previous control.</param>
         private async Task UpdateBitmap(ExtendedImage previous = null)
         {
-            try
+            if ((Element != null) && (Control != null) && !_isDisposed)
             {
-                Cancel(this, EventArgs.Empty);
-
-                if (UpdateSourceCancellationToken != null)
+                try
                 {
-                    UpdateSourceCancellationToken.Cancel();
+                    Cancel(this, EventArgs.Empty);
 
-                    UpdateSourceCancellationToken = null;
-                }
-
-                if (UpdateSourceCancellationToken == null)
-                {
-                    UpdateSourceCancellationToken = new CancellationTokenSource();
-                }
-
-                await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
-
-                if (previous == null || !object.Equals(previous.Source, Element.Source))
-                {
-                    Xamarin.Forms.ImageSource source = Element.Source;
-                    ImageViewAsync formsImageView = Control as ImageViewAsync;
-
-                    if (formsImageView == null)
-                        return;
-
-                    if (Element != null && object.Equals(Element.Source, source) && !_isDisposed)
+                    if (UpdateSourceCancellationToken != null)
                     {
-                        TaskCompletionSource<ExtendedImage> tc = new TaskCompletionSource<ExtendedImage>();
-                        ExtendedImage ei = Element;
+                        UpdateSourceCancellationToken.Cancel();
 
-                        try
+                        UpdateSourceCancellationToken = null;
+                    }
+
+                    if (UpdateSourceCancellationToken == null)
+                    {
+                        UpdateSourceCancellationToken = new CancellationTokenSource();
+                    }
+
+                    await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
+
+                    if (previous == null || !object.Equals(previous.Source, Element.Source))
+                    {
+                        Xamarin.Forms.ImageSource source = Element.Source;
+                        ImageViewAsync formsImageView = Control as ImageViewAsync;
+
+                        if (formsImageView == null)
+                            return;
+
+                        if (Element != null && object.Equals(Element.Source, source) && !_isDisposed)
                         {
-                            TaskParameter imageLoader = null;
+                            TaskCompletionSource<ExtendedImage> tc = new TaskCompletionSource<ExtendedImage>();
+                            ExtendedImage ei = Element;
 
-                            var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
+                            try
+                            {
+                                TaskParameter imageLoader = null;
 
-                            if (ffSource == null)
-                            {
-                                if (Control != null)
-                                    Control.SetImageDrawable(null);
+                                var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
 
-                                tc.SetResult(ei);
-                            }
-                            else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
-                            {
-                                imageLoader = ImageService.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
-                            }
-                            else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
-                            {
-                                imageLoader = ImageService.LoadCompiledResource(ffSource.Path);
-                            }
-                            else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
-                            {
-                                imageLoader = ImageService.LoadFileFromApplicationBundle(ffSource.Path);
-                            }
-                            else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
-                            {
-                                imageLoader = ImageService.LoadFile(ffSource.Path);
-                            }
-
-                            if (imageLoader != null)
-                            {
-                                // Downsample
-                                if (ei.HeightRequest > 0 || ei.WidthRequest > 0)
+                                if (ffSource == null)
                                 {
-                                    if (ei.HeightRequest > ei.WidthRequest)
-                                    {
-                                        if (ei.WidthRequest > 500)
-                                        {
-                                            imageLoader.DownSample(height: (int)ei.WidthRequest);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (ei.HeightRequest > 500)
-                                        {
-                                            imageLoader.DownSample(width: (int)ei.HeightRequest);
-                                        }
-                                    }
+                                    if (Control != null)
+                                        Control.SetImageDrawable(null);
+
+                                    tc.SetResult(ei);
+                                }
+                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
+                                {
+                                    imageLoader = ImageService.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
+                                }
+                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
+                                {
+                                    imageLoader = ImageService.LoadCompiledResource(ffSource.Path);
+                                }
+                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
+                                {
+                                    imageLoader = ImageService.LoadFileFromApplicationBundle(ffSource.Path);
+                                }
+                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
+                                {
+                                    imageLoader = ImageService.LoadFile(ffSource.Path);
                                 }
 
-                                imageLoader.Retry(2, 30000);
-
-                                imageLoader.Finish(
-                                    (work) =>
+                                if (imageLoader != null)
+                                {
+                                    // Downsample
+                                    if (ei.HeightRequest > 0 || ei.WidthRequest > 0)
                                     {
-                                        tc.TrySetResult(ei);
+                                        if (ei.HeightRequest > ei.WidthRequest)
+                                        {
+                                            if (ei.WidthRequest > 500)
+                                            {
+                                                imageLoader.DownSample(height: (int)ei.WidthRequest);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (ei.HeightRequest > 500)
+                                            {
+                                                imageLoader.DownSample(width: (int)ei.HeightRequest);
+                                            }
+                                        }
+                                    }
+
+                                    imageLoader.Retry(2, 30000);
+
+                                    imageLoader.Finish(
+                                        (work) =>
+                                        {
+                                            tc.TrySetResult(ei);
+                                        });
+
+                                    imageLoader.Error(
+                                        (iex) =>
+                                    {
+                                        tc.TrySetException(iex);
                                     });
 
-                                imageLoader.Error(
-                                    (iex) =>
-                                {
-                                    tc.TrySetException(iex);
-                                });
-
-                                _currentTask = imageLoader.Into(Control);
+                                    _currentTask = imageLoader.Into(Control);
+                                }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            tc.SetException(ex);
-                        }
+                            catch (Exception ex)
+                            {
+                                tc.SetException(ex);
+                            }
 
-                        var waitedElement = await tc.Task;
+                            var waitedElement = await tc.Task;
 
-                        ImageLoadingFinished(waitedElement);
+                            ImageLoadingFinished(waitedElement);
+                        }
                     }
                 }
-            }
-            catch (TaskCanceledException taskCanceledException)
-            {                
-            }
-            catch (OperationCanceledException operationCanceledException)
-            {                
-            }
-            catch (IOException oException)
-            {             
-            }
-            catch (Exception ex)
-            {
-                AC.TraceError("Android Extended renderer", ex);
-            }
-            finally
-            {
-                LockSource.Release();
+                catch (TaskCanceledException taskCanceledException)
+                {
+                }
+                catch (OperationCanceledException operationCanceledException)
+                {
+                }
+                catch (IOException oException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    AC.TraceError("Android Extended renderer", ex);
+                }
+                finally
+                {
+                    LockSource.Release();
+                }
             }
         }
     }
