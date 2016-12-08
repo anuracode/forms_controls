@@ -17,6 +17,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer), typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer))]
+
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>
@@ -25,15 +26,6 @@ namespace Anuracode.Forms.Controls.Renderers
     [Preserve(AllMembers = true)]
     public class ExtendedImageRenderer : ViewRenderer<ExtendedImage, ImageViewAsync>
     {
-        /// <summary>
-        /// Set the lock for the images, default count depents on the cores.
-        /// </summary>
-        /// <param name="newLock">New lock to use.</param>
-        public static void SetLockSource(SemaphoreSlim newLock)
-        {
-            lockSource = newLock;
-        }
-
         /// <summary>
         /// Lock for the source update.
         /// </summary>
@@ -80,10 +72,24 @@ namespace Anuracode.Forms.Controls.Renderers
         protected CancellationTokenSource UpdateSourceCancellationToken { get; set; }
 
         /// <summary>
+        /// Allow down sample.
+        /// </summary>
+        private static bool AllowDownSample { get; set; }
+
+        /// <summary>
         ///   Used for registration with dependency service
         /// </summary>
         public static void Init()
         {
+        }
+
+        /// <summary>
+        /// Set the lock for the images, default count depents on the cores.
+        /// </summary>
+        /// <param name="newLock">New lock to use.</param>
+        public static void SetLockSource(SemaphoreSlim newLock)
+        {
+            lockSource = newLock;
         }
 
         /// <summary>
@@ -317,8 +323,9 @@ namespace Anuracode.Forms.Controls.Renderers
 
                                 if (imageLoader != null)
                                 {
+
                                     // Downsample
-                                    if (ei.HeightRequest > 0 || ei.WidthRequest > 0)
+                                    if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
                                     {
                                         if (ei.HeightRequest > ei.WidthRequest)
                                         {
