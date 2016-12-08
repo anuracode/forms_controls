@@ -50,6 +50,11 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
+        /// Allow down sample.
+        /// </summary>
+        public static bool AllowDownSample { get; set; }
+
+        /// <summary>
         /// Lock for the source update.
         /// </summary>
         public SemaphoreSlim LockSource
@@ -70,11 +75,6 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Token created when the view model is navigated and cancel when is navigated off.
         /// </summary>
         protected CancellationTokenSource UpdateSourceCancellationToken { get; set; }
-
-        /// <summary>
-        /// Allow down sample.
-        /// </summary>
-        private static bool AllowDownSample { get; set; }
 
         /// <summary>
         ///   Used for registration with dependency service
@@ -323,7 +323,6 @@ namespace Anuracode.Forms.Controls.Renderers
 
                                 if (imageLoader != null)
                                 {
-
                                     // Downsample
                                     if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
                                     {
