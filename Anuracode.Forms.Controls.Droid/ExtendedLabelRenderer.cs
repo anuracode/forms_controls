@@ -11,8 +11,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Anuracode.Forms.Controls.Droid;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ExtendedLabel), typeof(Anuracode.Forms.Controls.Renderers.ExtendedLabelRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

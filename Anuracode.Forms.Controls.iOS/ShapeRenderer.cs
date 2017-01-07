@@ -10,8 +10,6 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

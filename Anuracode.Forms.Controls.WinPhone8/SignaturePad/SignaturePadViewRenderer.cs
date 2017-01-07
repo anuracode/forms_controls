@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.WinPhone;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadViewRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

@@ -10,14 +10,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadViewRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>
     /// Signature pad renderer.
     /// </summary>
-    internal class SignaturePadViewRenderer : ViewRenderer<SignaturePadView, SignaturePad>
+    public class SignaturePadViewRenderer : ViewRenderer<SignaturePadView, SignaturePad>
     {
         /// <summary>
         /// Flag when the element has been disposed.

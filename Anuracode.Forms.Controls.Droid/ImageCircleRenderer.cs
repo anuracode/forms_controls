@@ -9,8 +9,6 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.CircleImage), typeof(Anuracode.Forms.Controls.Renderers.ImageCircleRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

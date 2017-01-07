@@ -11,8 +11,6 @@ using System.Windows.Shapes;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.WinPhone;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

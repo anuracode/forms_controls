@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

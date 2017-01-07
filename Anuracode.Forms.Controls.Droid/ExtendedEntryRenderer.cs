@@ -6,8 +6,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ExtendedEntry), typeof(Anuracode.Forms.Controls.Renderers.ExtendedEntryRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

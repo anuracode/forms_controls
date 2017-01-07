@@ -23,32 +23,11 @@ namespace Anuracode.Forms.Controls.Sample.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-
-            RegisterRenderers();
+            global::Xamarin.Forms.Forms.Init();            
 
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
-        }
-
-        /// <summary>
-        /// Register renderers.
-        /// </summary>
-        protected void RegisterRenderers()
-        {
-            string registrarType = "Xamarin.Forms.Registrar, Xamarin.Forms.Core";
-            object registrarInstance;
-            MethodInfo registerMethod;
-
-            var type = Type.GetType(registrarType, true);
-            var property = type.GetProperty("Registered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            registrarInstance = property.GetValue(null);
-            registerMethod = property.PropertyType.GetMethod("Register", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-
-            // This renderers are not using the theme colors.            
-            registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedLabel), typeof(Anuracode.Forms.Controls.Renderers.ExtendedLabelRenderer) });
-            registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer) });
-        }
+        }        
     }
 }

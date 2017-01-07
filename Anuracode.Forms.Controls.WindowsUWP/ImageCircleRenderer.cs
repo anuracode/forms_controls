@@ -21,8 +21,6 @@ using Xamarin.Forms.Platform.WinRT;
 
 #endif
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.CircleImage), typeof(Anuracode.Forms.Controls.Renderers.ImageCircleRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     public sealed class ImageLoaderSourceHandler1 : IImageSourceHandler, IRegisterable

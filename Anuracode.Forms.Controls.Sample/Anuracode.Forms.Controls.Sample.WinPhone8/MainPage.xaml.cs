@@ -21,36 +21,9 @@ namespace Anuracode.Forms.Controls.Sample.WinPhone8
 
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
             Xamarin.Forms.Forms.Init();
-            // global::Xamarin.FormsMaps.Init();                        
-
-            RegisterRenderers();
+            // global::Xamarin.FormsMaps.Init();                                    
 
             LoadApplication(new Anuracode.Forms.Controls.Sample.App());
-        }
-
-        /// <summary>
-        /// Register renderers.
-        /// </summary>
-        protected void RegisterRenderers()
-        {
-            string registrarType = "Xamarin.Forms.Registrar, Xamarin.Forms.Core";
-            object registrarInstance;
-            MethodInfo registerMethod;
-
-            var type = Type.GetType(registrarType, true);
-            var property = type.GetProperty("Registered", BindingFlags.Static | BindingFlags.NonPublic);
-            registrarInstance = property.GetValue(null);
-            registerMethod = property.PropertyType.GetMethod("Register", BindingFlags.Instance | BindingFlags.Public);
-
-            if (registerMethod != null)
-            {
-                // This renderers are not using the theme colors.                
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedLabel), typeof(Anuracode.Forms.Controls.Renderers.ExtendedLabelRenderer) });
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ExtendedEntry), typeof(Anuracode.Forms.Controls.Renderers.ExtendedEntryRenderer) });
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.CircleImage), typeof(Anuracode.Forms.Controls.Renderers.ImageCircleRenderer) });
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer) });
-                registerMethod.Invoke(registrarInstance, new object[] { typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadViewRenderer) });
-            }
-        }
+        }        
     }
 }

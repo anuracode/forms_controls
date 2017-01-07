@@ -18,6 +18,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Fonts\seguisym.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Renderers\RenderersRegistration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TraceService.cs" />
   </ItemGroup>
 </Project>

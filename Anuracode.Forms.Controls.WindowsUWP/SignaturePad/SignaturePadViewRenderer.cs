@@ -12,8 +12,6 @@ using Xamarin.Forms.Platform.UWP;
 using Xamarin.Forms.Platform.WinRT;
 #endif
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.SignaturePadView), typeof(Anuracode.Forms.Controls.Renderers.SignaturePadViewRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

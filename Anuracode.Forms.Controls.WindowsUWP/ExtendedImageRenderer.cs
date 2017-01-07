@@ -22,8 +22,6 @@ using Xamarin.Forms.Platform.WinRT;
 
 #endif
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ExtendedImage), typeof(Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>

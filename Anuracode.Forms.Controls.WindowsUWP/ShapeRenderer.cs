@@ -14,8 +14,6 @@ using Xamarin.Forms.Platform.UWP;
 using Xamarin.Forms.Platform.WinRT;
 #endif
 
-[assembly: ExportRenderer(typeof(Anuracode.Forms.Controls.ShapeView), typeof(Anuracode.Forms.Controls.Renderers.ShapeRenderer))]
-
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>
