@@ -162,16 +162,8 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     imageControl.Stretch = GetStretch(Element.Aspect);
 
-                    if (newElement.Aspect == Aspect.AspectFill) // Then Center Crop
-                    {
-                        imageControl.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-                        imageControl.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-                    }
-                    else
-                    {
-                        imageControl.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
-                        imageControl.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Top;
-                    }
+                    imageControl.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+                    imageControl.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
                 });
         }
 
