@@ -38,6 +38,11 @@ namespace Anuracode.Forms.Controls.Renderers
         private bool _isDisposed;
 
         /// <summary>
+        /// Allow down sample.
+        /// </summary>
+        public static bool AllowDownSample { get; set; }
+
+        /// <summary>
         /// Lock for the source update.
         /// </summary>
         public SemaphoreSlim LockSource
@@ -65,9 +70,7 @@ namespace Anuracode.Forms.Controls.Renderers
         public static new void Init()
         {
             // needed because of this STUPID linker issue: https://bugzilla.xamarin.com/show_bug.cgi?id=31076
-#pragma warning disable 0219
             var dummy = new ExtendedImageRenderer();
-#pragma warning restore 0219
         }
 
         /// <summary>
@@ -301,7 +304,7 @@ namespace Anuracode.Forms.Controls.Renderers
                         ExtendedImage ei = Element;
 
                         // Downsample
-                        if (ei.HeightRequest > 0 || ei.WidthRequest > 0)
+                        if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
                         {
                             if (ei.HeightRequest > ei.WidthRequest)
                             {
