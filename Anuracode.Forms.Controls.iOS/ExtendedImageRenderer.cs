@@ -268,7 +268,10 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     if (Control.Image != null)
                     {
+                        var oldImage = Control.Image;
                         Control.Image = null;
+
+                        oldImage.Dispose();
                     }
 
                     TaskParameter imageLoader = null;
