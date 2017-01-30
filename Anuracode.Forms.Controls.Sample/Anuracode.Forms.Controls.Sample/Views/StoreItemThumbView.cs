@@ -8,6 +8,7 @@ using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.ViewModels;
 using System;
 using Xamarin.Forms;
+using Anuracode.Forms.Controls.Sample.Model;
 
 namespace Anuracode.Forms.Controls.Sample.Views
 {
@@ -1004,6 +1005,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (ThumbImage != null)
             {
                 ThumbImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.ThumbnailImagePath);
+                ThumbImage.LoadingPlaceholder = "~/loading.png".Replace(StoreItem.DEFAULT_PATH_SHORTCUT, StoreItem.DEFAULT_SERVER_IMAGE_PATH);
             }
 
             if (NewLabel != null)

@@ -23,7 +23,7 @@
       </group>
     <group targetFramework="xamarinios">
         <dependency id="Xamarin.Forms" version="[2.3.2.127]" />
-        <dependency id="Xamarin.FFImageLoading" version="[2.0.7.1]" />
+        <dependency id="Xamarin.FFImageLoading" version="[2.2.7]" />
       </group>
     </dependencies>
   </metadata>

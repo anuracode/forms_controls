@@ -266,6 +266,11 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
 
+                    if (Control.Image != null)
+                    {
+                        Control.Image = null;
+                    }
+
                     TaskParameter imageLoader = null;
 
                     var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
@@ -279,23 +284,23 @@ namespace Anuracode.Forms.Controls.Renderers
                     }
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
                     {
-                        imageLoader = ImageService.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
+                        imageLoader = ImageService.Instance.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
                     }
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
                     {
-                        imageLoader = ImageService.LoadCompiledResource(ffSource.Path);
+                        imageLoader = ImageService.Instance.LoadCompiledResource(ffSource.Path);
                     }
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
                     {
-                        imageLoader = ImageService.LoadFileFromApplicationBundle(ffSource.Path);
+                        imageLoader = ImageService.Instance.LoadFileFromApplicationBundle(ffSource.Path);
                     }
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
                     {
-                        imageLoader = ImageService.LoadFile(ffSource.Path);
+                        imageLoader = ImageService.Instance.LoadFile(ffSource.Path);
                     }
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Stream)
                     {
-                        imageLoader = ImageService.LoadStream(ffSource.Stream);
+                        imageLoader = ImageService.Instance.LoadStream(ffSource.Stream);
                     }
 
                     if (imageLoader != null)
@@ -303,22 +308,27 @@ namespace Anuracode.Forms.Controls.Renderers
                         TaskCompletionSource<ExtendedImage> tc = new TaskCompletionSource<ExtendedImage>();
                         ExtendedImage ei = Element;
 
+                        // Place holder
+                        if (ei.LoadingPlaceholder != null)
+                        {
+                            var placeholderSource = ImageSourceBinding.GetImageSourceBinding(ei.LoadingPlaceholder);
+
+                            if (placeholderSource != null)
+                            {
+                                imageLoader.LoadingPlaceholder(placeholderSource.Path, placeholderSource.ImageSource);
+                            }
+                        }
+
                         // Downsample
                         if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
                         {
-                            if (ei.HeightRequest > ei.WidthRequest)
+                            if (Element.Height > Element.Width)
                             {
-                                if (ei.WidthRequest > 500)
-                                {
-                                    imageLoader.DownSample(height: (int)ei.WidthRequest);
-                                }
+                                imageLoader.DownSampleInDip(height: (int)Element.Height);
                             }
                             else
                             {
-                                if (ei.HeightRequest > 500)
-                                {
-                                    imageLoader.DownSample(width: (int)ei.HeightRequest);
-                                }
+                                imageLoader.DownSampleInDip(width: (int)Element.Width);
                             }
                         }
 

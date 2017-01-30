@@ -13,6 +13,11 @@ namespace Anuracode.Forms.Controls
     public class ExtendedImage : Image
     {
         /// <summary>
+		/// The loading placeholder property.
+		/// </summary>
+        public static readonly BindableProperty LoadingPlaceholderProperty = BindableProperty.Create(nameof(LoadingPlaceholder), typeof(ImageSource), typeof(ExtendedImage), default(ImageSource));
+
+        /// <summary>
         /// Prefix for platform.
         /// </summary>
         private const string PREFIX_ANDROID = "";
@@ -26,6 +31,22 @@ namespace Anuracode.Forms.Controls
         /// Prefix for platform.
         /// </summary>
         private const string PREFIX_WP = "Resources/Images/";
+
+        /// <summary>
+        /// Gets or sets the loading placeholder image.
+        /// </summary>
+        [TypeConverter(typeof(ImageSourceConverter))]
+        public ImageSource LoadingPlaceholder
+        {
+            get
+            {
+                return (ImageSource)GetValue(LoadingPlaceholderProperty);
+            }
+            set
+            {
+                SetValue(LoadingPlaceholderProperty, value);
+            }
+        }
 
         /// <summary>
         /// Extension to complete the prefix of the images for the device.
