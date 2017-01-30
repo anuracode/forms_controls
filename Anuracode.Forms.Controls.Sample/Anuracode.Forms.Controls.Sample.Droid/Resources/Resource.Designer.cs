@@ -1079,6 +1079,7 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			global::Anuracode.Forms.Controls.Droid.Resource.String.common_open_on_phone = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.common_open_on_phone;
 			global::Anuracode.Forms.Controls.Droid.Resource.String.common_signin_button_text = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.common_signin_button_text;
 			global::Anuracode.Forms.Controls.Droid.Resource.String.common_signin_button_text_long = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.common_signin_button_text_long;
+			global::Anuracode.Forms.Controls.Droid.Resource.String.library_name = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.library_name;
 			global::Anuracode.Forms.Controls.Droid.Resource.String.mr_button_content_description = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.mr_button_content_description;
 			global::Anuracode.Forms.Controls.Droid.Resource.String.mr_chooser_searching = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.mr_chooser_searching;
 			global::Anuracode.Forms.Controls.Droid.Resource.String.mr_chooser_title = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.mr_chooser_title;
@@ -1929,6 +1930,7 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.ViewStubCompat_android_id = global::Anuracode.Forms.Controls.Sample.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Anuracode.Forms.Controls.Sample.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::Anuracode.Forms.Controls.Sample.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::ModernHttpClient.Resource.String.library_name = global::Anuracode.Forms.Controls.Sample.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Anuracode.Forms.Controls.Sample.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -5086,11 +5088,11 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060046
-			public const int ApplicationName = 2131099718;
+			// aapt resource value: 0x7f060047
+			public const int ApplicationName = 2131099719;
 			
-			// aapt resource value: 0x7f060045
-			public const int Hello = 2131099717;
+			// aapt resource value: 0x7f060046
+			public const int Hello = 2131099718;
 			
 			// aapt resource value: 0x7f06002e
 			public const int abc_action_bar_home_description = 2131099694;
@@ -5250,6 +5252,9 @@ namespace Anuracode.Forms.Controls.Sample.Droid
 			
 			// aapt resource value: 0x7f06001e
 			public const int common_signin_button_text_long = 2131099678;
+			
+			// aapt resource value: 0x7f060045
+			public const int library_name = 2131099717;
 			
 			// aapt resource value: 0x7f06001f
 			public const int mr_button_content_description = 2131099679;

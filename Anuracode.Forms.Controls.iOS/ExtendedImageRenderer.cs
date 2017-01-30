@@ -301,7 +301,7 @@ namespace Anuracode.Forms.Controls.Renderers
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Stream)
                     {
                         imageLoader = ImageService.Instance.LoadStream(ffSource.Stream);
-                    }
+                    }                    
 
                     if (imageLoader != null)
                     {

@@ -1,6 +1,9 @@
 ﻿{
   "dependencies": {
+    "Microsoft.Bcl.Build": "1.0.21",
+    "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "modernhttpclient": "2.4.2",
     "Xamarin.Forms": "2.3.2.127"
   },
   "frameworks": {

@@ -39,6 +39,8 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         private bool _isDisposed;
 
+        private ImageSourceBinding lastImageSource;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -282,7 +284,9 @@ namespace Anuracode.Forms.Controls.Renderers
                         ImageViewAsync formsImageView = Control as ImageViewAsync;
 
                         if (formsImageView == null)
+                        {
                             return;
+                        }
 
                         if (Element != null && object.Equals(Element.Source, source) && !_isDisposed)
                         {
@@ -290,15 +294,16 @@ namespace Anuracode.Forms.Controls.Renderers
                             ExtendedImage ei = Element;
 
                             try
-                            {
+                            {   
                                 TaskParameter imageLoader = null;
 
                                 var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
 
                                 if (ffSource == null)
                                 {
-                                    if (Control != null)
-                                        Control.SetImageDrawable(null);
+                                    lastImageSource = null;
+
+                                    Control.SetImageResource(global::Android.Resource.Color.Transparent);
 
                                     tc.SetResult(ei);
                                 }
@@ -317,26 +322,25 @@ namespace Anuracode.Forms.Controls.Renderers
                                 else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
                                 {
                                     imageLoader = ImageService.LoadFile(ffSource.Path);
-                                }
+                                }                                
 
                                 if (imageLoader != null)
                                 {
+                                    if (lastImageSource != null)
+                                    {
+                                        Control.SetImageResource(global::Android.Resource.Color.Transparent);
+                                    }
+
                                     // Downsample
                                     if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
                                     {
                                         if (ei.HeightRequest > ei.WidthRequest)
                                         {
-                                            if (ei.WidthRequest > 500)
-                                            {
-                                                imageLoader.DownSample(height: (int)ei.WidthRequest);
-                                            }
+                                            imageLoader.DownSample(height: (int)ei.WidthRequest);
                                         }
                                         else
                                         {
-                                            if (ei.HeightRequest > 500)
-                                            {
-                                                imageLoader.DownSample(width: (int)ei.HeightRequest);
-                                            }
+                                            imageLoader.DownSample(width: (int)ei.HeightRequest);
                                         }
                                     }
 
@@ -347,6 +351,11 @@ namespace Anuracode.Forms.Controls.Renderers
                                         {
                                             tc.TrySetResult(ei);
                                         });
+
+                                    imageLoader.Success((ImageInformation imageInformation, LoadingResult loadingResult) =>
+                                    {                                        
+                                        lastImageSource = ffSource;
+                                    });
 
                                     imageLoader.Error(
                                         (iex) =>
