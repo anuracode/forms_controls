@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Anuracode.Forms.Controls</id>
-    <version>1.0.1.35</version>
+    <version>1.0.1.36</version>
     <title>Anuracode Forms controls</title>
     <authors>Anuracode</authors>
     <owners>Anuracode</owners>
@@ -12,18 +12,26 @@
     <dependencies>
       <group>
         <dependency id="Xamarin.Forms" version="[2.3.2.127]" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+        <dependency id="modernhttpclient" version="2.4.2" />
       </group>
       <group targetFramework="MonoAndroid10">
         <dependency id="Xamarin.Forms" version="[2.3.2.127]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+        <dependency id="modernhttpclient" version="2.4.2" />
       </group>
       <group targetFramework="MonoAndroid">
         <dependency id="Xamarin.Forms" version="[2.3.2.127]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+        <dependency id="modernhttpclient" version="2.4.2" />
       </group>
-    <group targetFramework="xamarinios">
+      <group targetFramework="xamarinios">
         <dependency id="Xamarin.Forms" version="[2.3.2.127]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+        <dependency id="modernhttpclient" version="2.4.2" />
       </group>
     </dependencies>
   </metadata>
