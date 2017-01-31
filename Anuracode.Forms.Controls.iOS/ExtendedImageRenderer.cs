@@ -43,6 +43,11 @@ namespace Anuracode.Forms.Controls.Renderers
         public static bool AllowDownSample { get; set; }
 
         /// <summary>
+        /// Flag to dispose the old image.
+        /// </summary>
+        public static bool DisposeOldImage { get; set; }
+
+        /// <summary>
         /// Lock for the source update.
         /// </summary>
         public SemaphoreSlim LockSource
@@ -271,7 +276,10 @@ namespace Anuracode.Forms.Controls.Renderers
                         var oldImage = Control.Image;
                         Control.Image = null;
 
-                        oldImage.Dispose();
+                        if (DisposeOldImage)
+                        {
+                            oldImage.Dispose();
+                        }
                     }
 
                     TaskParameter imageLoader = null;
@@ -281,7 +289,9 @@ namespace Anuracode.Forms.Controls.Renderers
                     if (ffSource == null)
                     {
                         if (Control != null)
+                        {
                             Control.Image = null;
+                        }
 
                         ImageLoadingFinished(Element);
                     }
@@ -304,7 +314,7 @@ namespace Anuracode.Forms.Controls.Renderers
                     else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Stream)
                     {
                         imageLoader = ImageService.Instance.LoadStream(ffSource.Stream);
-                    }                    
+                    }
 
                     if (imageLoader != null)
                     {
