@@ -294,7 +294,7 @@ namespace Anuracode.Forms.Controls.Renderers
                             ExtendedImage ei = Element;
 
                             try
-                            {   
+                            {
                                 TaskParameter imageLoader = null;
 
                                 var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
@@ -309,20 +309,20 @@ namespace Anuracode.Forms.Controls.Renderers
                                 }
                                 else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
                                 {
-                                    imageLoader = ImageService.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
+                                    imageLoader = ImageService.Instance.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
                                 }
                                 else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
                                 {
-                                    imageLoader = ImageService.LoadCompiledResource(ffSource.Path);
+                                    imageLoader = ImageService.Instance.LoadCompiledResource(ffSource.Path);
                                 }
                                 else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
                                 {
-                                    imageLoader = ImageService.LoadFileFromApplicationBundle(ffSource.Path);
+                                    imageLoader = ImageService.Instance.LoadFileFromApplicationBundle(ffSource.Path);
                                 }
                                 else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
                                 {
-                                    imageLoader = ImageService.LoadFile(ffSource.Path);
-                                }                                
+                                    imageLoader = ImageService.Instance.LoadFile(ffSource.Path);
+                                }
 
                                 if (imageLoader != null)
                                 {
@@ -353,7 +353,7 @@ namespace Anuracode.Forms.Controls.Renderers
                                         });
 
                                     imageLoader.Success((ImageInformation imageInformation, LoadingResult loadingResult) =>
-                                    {                                        
+                                    {
                                         lastImageSource = ffSource;
                                     });
 

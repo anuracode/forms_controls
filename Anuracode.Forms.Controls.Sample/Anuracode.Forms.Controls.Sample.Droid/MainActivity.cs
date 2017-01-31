@@ -15,9 +15,14 @@ namespace Anuracode.Forms.Controls.Sample.Droid
         protected override void OnCreate(Bundle bundle)
         {
             Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer.AllowDownSample = true;
-            FFImageLoading.ImageService.Initialize(
+            FFImageLoading.ImageService.Instance.Initialize(
                 new FFImageLoading.Config.Configuration()
                 {
+                    VerboseLoadingCancelledLogging = false,
+                    VerboseLogging = false,
+                    VerboseMemoryCacheLogging = false,
+                    VerbosePerformanceLogging = false,
+                    MaxMemoryCacheSize = 100000 * 5,
                     HttpClient = new System.Net.Http.HttpClient(new Xamarin.Android.Net.AndroidClientHandler())
                 });
 
