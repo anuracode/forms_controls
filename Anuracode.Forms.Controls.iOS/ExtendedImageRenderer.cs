@@ -79,6 +79,15 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
+        /// Set the lock for the images, default count depents on the cores.
+        /// </summary>
+        /// <param name="newLock">New lock to use.</param>
+        public static void SetLockSource(SemaphoreSlim newLock)
+        {
+            lockSource = newLock;
+        }
+
+        /// <summary>
         /// Dispose renderer.
         /// </summary>
         /// <param name="disposing"></param>
