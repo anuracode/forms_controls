@@ -49,6 +49,7 @@
     <Compile Include="ExtendedEntry.cs" />
     <Compile Include="ExtendedImage.cs" />
     <Compile Include="ExtendedLabel.cs" />
+    <Compile Include="ExtendedSlider.cs" />
     <Compile Include="ICommandExtensions.cs" />
     <Compile Include="ImageOrientation.cs" />
     <Compile Include="ITraceService.cs" />

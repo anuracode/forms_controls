@@ -51,11 +51,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public Command ExternalCloseMenuCommand { get; set; }
 
         /// <summary>
-        /// Share app.
-        /// </summary>
-        public Command ExternalSignatureCommand { get; set; }
-
-        /// <summary>
         /// Navigate to About.
         /// </summary>
         public Command ExternalShowAboutCommand { get; set; }
@@ -66,29 +61,14 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public Command ExternalShowAddressBookCommand { get; set; }
 
         /// <summary>
-        /// Command to show the tasks.
-        /// </summary>
-        public Command ExternalShowProfileCommand { get; set; }
-
-        /// <summary>
         /// Navigate to cart.
         /// </summary>
         public Command ExternalShowCartCommand { get; set; }
 
         /// <summary>
-        /// Command to show the orders.
+        /// Navigate to settings.
         /// </summary>
-        public Command ExternalShowOrdersCommand { get; set; }
-
-        /// <summary>
-        /// Navigate to search.
-        /// </summary>
-        public Command ExternalShowSearchCommand { get; set; }
-
-        /// <summary>
-        /// Navigate to web view.
-        /// </summary>
-        public Command ExternalShowWebViewCommand { get; set; }
+        public Command ExternalShowImageLoopSampleCommand { get; set; }
 
         /// <summary>
         /// Navigate to settings.
@@ -96,9 +76,34 @@ namespace Anuracode.Forms.Controls.Sample.Views
         public Command ExternalShowImageSampleCommand { get; set; }
 
         /// <summary>
+        /// Command to show the orders.
+        /// </summary>
+        public Command ExternalShowOrdersCommand { get; set; }
+
+        /// <summary>
+        /// Command to show the tasks.
+        /// </summary>
+        public Command ExternalShowProfileCommand { get; set; }
+
+        /// <summary>
+        /// Navigate to search.
+        /// </summary>
+        public Command ExternalShowSearchCommand { get; set; }
+
+        /// <summary>
         /// Navigate to store.
         /// </summary>
         public Command ExternalShowStoreCommand { get; set; }
+
+        /// <summary>
+        /// Navigate to web view.
+        /// </summary>
+        public Command ExternalShowWebViewCommand { get; set; }
+
+        /// <summary>
+        /// Share app.
+        /// </summary>
+        public Command ExternalSignatureCommand { get; set; }
 
         /// <summary>
         /// Command for the logo.
@@ -138,17 +143,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Button to use.
         /// </summary>
-        protected GlyphContentViewButton ButtonProfileAlt { get; private set; }
-
-        /// <summary>
-        /// Button to use.
-        /// </summary>
         protected ContentViewButton ButtonCartAlt { get; private set; }
-
-        /// <summary>
-        /// Button orders.
-        /// </summary>
-        protected ContentViewButton ButtonOrdersAlt { get; private set; }
 
         /// <summary>
         /// Button cookie web view.
@@ -158,12 +153,27 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Button to use.
         /// </summary>
-        protected ContentViewButton ButtonSearchAlt { get; private set; }
+        protected ContentViewButton ButtonImageLoopSampleAlt { get; private set; }
 
         /// <summary>
-        /// Button for settings.
+        /// Button to use.
         /// </summary>
         protected ContentViewButton ButtonImageSampleAlt { get; private set; }
+
+        /// <summary>
+        /// Button orders.
+        /// </summary>
+        protected ContentViewButton ButtonOrdersAlt { get; private set; }
+
+        /// <summary>
+        /// Button to use.
+        /// </summary>
+        protected GlyphContentViewButton ButtonProfileAlt { get; private set; }
+
+        /// <summary>
+        /// Button to use.
+        /// </summary>
+        protected ContentViewButton ButtonSearchAlt { get; private set; }
 
         /// <summary>
         /// Button to use.
@@ -412,7 +422,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextSearch,
                 Text = App.LocalizationResources.SearchButton,
                 Command = ExternalShowSearchCommand
-            };            
+            };
 
             // Orders
             ButtonOrdersAlt = new GlyphLeftContentViewButton()
@@ -478,7 +488,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             bottomMenuOptionsStyle.Setters.Add(ContentViewButton.MarginBordersProperty, 10);
             bottomMenuOptionsStyle.Setters.Add(ContentViewButton.ContentAlignmentProperty, TextAlignment.Start);
 
-            // Settings
+            // Button
             ButtonImageSampleAlt = new GlyphLeftContentViewButton()
             {
                 Style = extraMenuOptionsStyle,
@@ -488,6 +498,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             StackAlternativeOptions.Children.Add(ButtonImageSampleAlt);
+
+            // Button
+            ButtonImageLoopSampleAlt = new GlyphLeftContentViewButton()
+            {
+                Style = extraMenuOptionsStyle,
+                GlyphText = Theme.CommonResources.GlyphTextSettings,
+                Text = App.LocalizationResources.ImageLoopSampleButton,
+                Command = ExternalShowImageLoopSampleCommand
+            };
+
+            StackAlternativeOptions.Children.Add(ButtonImageLoopSampleAlt);
 
             // Share
             ButtonSignatureAlt = new GlyphLeftContentViewButton()
@@ -587,6 +608,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             UpdateButtonCommand(ButtonProfileAlt, ExternalShowProfileCommand);
             UpdateButtonCommand(ButtonOrdersAlt, ExternalShowOrdersCommand);
             UpdateButtonCommand(ButtonImageSampleAlt, ExternalShowImageSampleCommand);
+            UpdateButtonCommand(ButtonImageLoopSampleAlt, ExternalShowImageLoopSampleCommand);
             UpdateButtonCommand(ButtonSignatureAlt, ExternalSignatureCommand);
             UpdateButtonCommand(ButtonAboutAlt, ExternalShowAboutCommand);
             UpdateButtonCommand(ButtonAddressBook, ExternalShowAddressBookCommand);

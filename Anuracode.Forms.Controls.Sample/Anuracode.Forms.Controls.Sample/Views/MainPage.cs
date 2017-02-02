@@ -54,6 +54,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Navigate to image.
         /// </summary>
+        private Command showImageLoopSampleCommand;
+
+        /// <summary>
+        /// Navigate to image.
+        /// </summary>
         private Command showImageSampleCommand;
 
         /// <summary>
@@ -248,6 +253,37 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 }
 
                 return showCartCommand;
+            }
+        }
+
+        /// <summary>
+        /// Navigate to sample.
+        /// </summary>
+        public Command ShowImageLoopSampleCommand
+        {
+            get
+            {
+                if (showImageLoopSampleCommand == null)
+                {
+                    showImageLoopSampleCommand = new Command(
+                        () =>
+                        {
+                            var newViewModel = new ImageLoopViewModel();
+
+                            var newPage = new ImageLoopPage(newViewModel);
+
+                            if (StoreNavigationPage != null)
+                            {
+                                NavigationPage.SetHasNavigationBar(newPage, false);
+                                NavigationPage.SetHasBackButton(newPage, false);
+                                StoreNavigationPage.PushAsync(newPage);
+
+                                CloseMenuCommand.Execute(null);
+                            }
+                        });
+                }
+
+                return showImageLoopSampleCommand;
             }
         }
 
@@ -529,6 +565,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             mainMenu.ExternalCloseMenuCommand = CloseMenuCommand;
             mainMenu.ExternalShowImageSampleCommand = ShowImageSampleCommand;
+            mainMenu.ExternalShowImageLoopSampleCommand = ShowImageLoopSampleCommand;
             mainMenu.ExternalShowSearchCommand = ShowSearchCommand;
             mainMenu.ExternalShowStoreCommand = ShowStoreCommand;
             mainMenu.ExternalShowAboutCommand = ShowAboutCommand;
@@ -594,6 +631,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// </summary>
         private void UpdateCommandsStatus()
         {
+            ShowImageLoopSampleCommand.ChangeCanExecute();
             ShowImageSampleCommand.ChangeCanExecute();
             ShowSearchCommand.ChangeCanExecute();
             ShowStoreCommand.ChangeCanExecute();
