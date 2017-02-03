@@ -502,7 +502,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                            });
 
                 // Substract button.
-                CloseButton = new GlyphOnlyContentViewButton()
+                CloseButton = new GlyphOnlyContentViewButton(hasBackground: true)
                 {
                     Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                     GlyphText = Theme.CommonResources.GlyphTextCancel,

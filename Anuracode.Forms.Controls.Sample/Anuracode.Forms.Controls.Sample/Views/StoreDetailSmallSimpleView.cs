@@ -625,7 +625,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                        });
 
             // Substract button.
-            CloseButton = new GlyphOnlyContentViewButton()
+            CloseButton = new GlyphOnlyContentViewButton(hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 GlyphText = Theme.CommonResources.GlyphTextCancel,
@@ -652,7 +652,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             SelectedItemPreview = new StoreItemThumbFeaturedVerticalView();            
 
-            ButtonIconShowDetail = new GlyphOnlyContentViewButton()
+            ButtonIconShowDetail = new GlyphOnlyContentViewButton(hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 VerticalOptions = LayoutOptions.Center,
@@ -674,8 +674,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             // Image thumb button.
             ButtonThumbImage = new ContentViewButton(false, false, ImageOrientation.ImageOnTop)
-            {
-                ButtonBackgroundColor = Color.Transparent,
+            {                
                 CornerRadius = 10
             };
         }

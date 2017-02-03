@@ -291,7 +291,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
 
             // Image.
-            ImageDetailPreview = new ImageContentViewButton()
+            ImageDetailPreview = new ImageContentViewButton(hasBackground: true)
             {
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Center,

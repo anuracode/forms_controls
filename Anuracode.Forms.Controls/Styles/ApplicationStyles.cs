@@ -741,8 +741,7 @@ namespace Anuracode.Forms.Controls.Styles
                     textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.MarginBordersProperty, 5);
                     textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.CornerRadiusProperty, 10);
                     textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.ButtonBackgroundColorProperty, CommonResources.Accent);
-                    textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.HorizontalOptionsProperty, LayoutOptions.Center);
-                    textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.UseDisableBoxProperty, false);
+                    textOnlyImportantContentButtonStyle.Setters.Add(ContentViewButton.HorizontalOptionsProperty, LayoutOptions.Center);                    
                 }
 
                 return textOnlyImportantContentButtonStyle;

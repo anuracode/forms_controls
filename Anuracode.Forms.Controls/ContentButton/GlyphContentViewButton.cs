@@ -97,12 +97,15 @@ namespace Anuracode.Forms.Controls
 
         /// <summary>
         /// Default constructor.
-        /// </summary>
+        /// </summary>        
         /// <param name="hasText">Has text.</param>
         /// <param name="hasImage">Has image.</param>
         /// <param name="orientation">Orientation.</param>
-        public GlyphContentViewButton(bool hasText, bool hasImage, ImageOrientation orientation)
-            : base(hasText, hasImage, orientation)
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
+        /// <param name="useDisableBox">Use disable box.</param>
+        public GlyphContentViewButton(bool hasText, bool hasImage, ImageOrientation orientation, bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
+            : base(hasText, hasImage, orientation, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox)
         {
         }
 
@@ -274,13 +277,16 @@ namespace Anuracode.Forms.Controls
         {
             if (DisableGlyphOnly)
             {
-                if (DebugColors)
+                if (DisableBox != null)
                 {
-                    DisableBox.BackgroundColor = new Color(Color.Fuchsia.R, Color.Fuchsia.G, Color.Fuchsia.B, 0.4);
-                }
-                else
-                {
-                    DisableBox.Color = Color.Transparent;
+                    if (DebugColors)
+                    {
+                        DisableBox.BackgroundColor = new Color(Color.Fuchsia.R, Color.Fuchsia.G, Color.Fuchsia.B, 0.4);
+                    }
+                    else
+                    {
+                        DisableBox.Color = Color.Transparent;
+                    }
                 }
 
                 if (canExecute)

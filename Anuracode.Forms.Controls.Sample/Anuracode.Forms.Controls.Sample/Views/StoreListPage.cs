@@ -2581,7 +2581,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             base.RenderPanelNoElements(panelFoundNoElementsLayout);
 
-            GlyphContentViewButton searchAllStore = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            GlyphContentViewButton searchAllStore = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Text = App.LocalizationResources.SearchAllStoreLabel,
                 Style = Theme.ApplicationStyles.MainSubMenuContentButtonStyle,

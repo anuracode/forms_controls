@@ -343,8 +343,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         ShapeType = ShapeType.Box,
                         CornerRadius = 0,
                         GlyphText = Theme.CommonResources.GlyphTextCancel,
-                        Command = ExternalCloseMenuCommand,
-                        ButtonBackgroundColor = Theme.CommonResources.Accent,
+                        Command = ExternalCloseMenuCommand,                        
                         HeightRequest = menuBarHeight,
                         WidthRequest = menuBarHeight
                     };

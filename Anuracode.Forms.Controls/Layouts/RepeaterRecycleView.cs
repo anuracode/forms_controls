@@ -44,6 +44,16 @@ namespace Anuracode.Forms.Controls
             BindablePropertyHelper.Create<RepeaterRecycleView, double>(nameof(Spacing), defaultValue: (double)0);
 
         /// <summary>
+        /// Instance all pool ahead items.
+        /// </summary>
+        protected readonly bool InstanceAllPoolAheadItems;
+
+        /// <summary>
+        /// Number of items that should the pool be ahead of the visible.
+        /// </summary>
+        protected readonly int PoolAheadItems;
+
+        /// <summary>
         /// Semaphore for the repository file.
         /// </summary>
         private static SemaphoreSlim lockInstanceViewUILevel1;
@@ -82,11 +92,6 @@ namespace Anuracode.Forms.Controls
         /// Semaphore for the repository file.
         /// </summary>
         private SemaphoreSlim lockUI;
-
-        /// <summary>
-        /// Instance all pool ahead items.
-        /// </summary>
-        protected bool InstanceAllPoolAheadItems { get; set; }
 
         /// <summary>
         /// Default constructor.
@@ -359,11 +364,6 @@ namespace Anuracode.Forms.Controls
         /// Last step.
         /// </summary>
         protected int LastStep { get; set; }
-
-        /// <summary>
-        /// Number of items that should the pool be ahead of the visible.
-        /// </summary>
-        protected int PoolAheadItems { get; set; }
 
         /// <summary>
         /// Current pool count.

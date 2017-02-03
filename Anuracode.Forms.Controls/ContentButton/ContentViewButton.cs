@@ -298,36 +298,24 @@ namespace Anuracode.Forms.Controls
         public static readonly BindableProperty TextProperty = BindablePropertyHelper.Create<ContentViewButton, string>(nameof(Text), (string)null);
 
         /// <summary>
-        /// Disable color.
+        /// Has image.
         /// </summary>
-        public static readonly BindableProperty UseDisableBoxProperty = BindablePropertyHelper.Create<ContentViewButton, bool>(
-            nameof(UseDisableBox),
-            true,
-            propertyChanged:
-            (bindable, oldvalue, newvalue) =>
-            {
-                var button = bindable as ContentViewButton;
-                if (button != null)
-                {
-                    button.ButtonTappedCommand_CanExecuteChanged(null, EventArgs.Empty);
-                }
-            });
+        protected readonly bool HasImage;
 
         /// <summary>
-        /// Debug colors working.
+        /// Has text.
         /// </summary>
-        protected virtual bool DebugColors
-        {
-            get
-            {
-                return false;
-            }
-        }
+        protected readonly bool HasText;
 
         /// <summary>
         /// Control orientation.
         /// </summary>
         protected readonly ImageOrientation orientation;
+
+        /// <summary>
+        /// Use disable box for showing disable state.
+        /// </summary>
+        protected readonly bool UseDisableBox;
 
         /// <summary>
         /// Button tapped command.
@@ -340,21 +328,30 @@ namespace Anuracode.Forms.Controls
         /// <param name="hasText">Has text.</param>
         /// <param name="hasImage">Has image.</param>
         /// <param name="orientation">Orientation.</param>
-        public ContentViewButton(bool hasText, bool hasImage, ImageOrientation orientation)
-            : this(hasText, hasImage)
-        {
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
+        /// <param name="useDisableBox">Use disable box.</param>
+        public ContentViewButton(bool hasText, bool hasImage, ImageOrientation orientation, bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
+            : this(hasText: hasText, hasImage: hasImage, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox)
+        {            
             this.orientation = orientation;
-            RenderContent(hasText, hasImage, orientation);
+            RenderContent(hasText: hasText, hasImage: hasImage, orientation: orientation, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox);
         }
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        protected ContentViewButton(bool hasText, bool hasImage)
+        /// <param name="hasText">Has text.</param>
+        /// <param name="hasImage">Has image.</param>
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
+        /// <param name="useDisableBox">Use disable box.</param>
+        protected ContentViewButton(bool hasText, bool hasImage, bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
         {
             Padding = 0;
             HasText = hasText;
             HasImage = hasImage;
+            UseDisableBox = useDisableBox;
         }
 
         /// <summary>
@@ -422,7 +419,7 @@ namespace Anuracode.Forms.Controls
                     buttonTappedCommand = new Command(
                         () =>
                         {
-                            if (BackgroundBox != null)
+                            if (TappedBox != null)
                             {
                                 AC.ScheduleManaged(
                                     async () =>
@@ -898,22 +895,6 @@ namespace Anuracode.Forms.Controls
         }
 
         /// <summary>
-        /// Use disable box for showing disable state.
-        /// </summary>
-        public bool UseDisableBox
-        {
-            get
-            {
-                return (bool)GetValue(UseDisableBoxProperty);
-            }
-
-            set
-            {
-                SetValue(UseDisableBoxProperty, value);
-            }
-        }
-
-        /// <summary>
         /// Background box.
         /// </summary>
         protected ShapeView BackgroundBox { get; set; }
@@ -939,6 +920,17 @@ namespace Anuracode.Forms.Controls
         protected SimpleLayout ContentLayout { get; set; }
 
         /// <summary>
+        /// Debug colors working.
+        /// </summary>
+        protected virtual bool DebugColors
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Box for the disable.
         /// </summary>
         protected ShapeView DisableBox { get; set; }
@@ -947,16 +939,6 @@ namespace Anuracode.Forms.Controls
         /// Gesture box.
         /// </summary>
         protected BoxView GesturesBox { get; set; }
-
-        /// <summary>
-        /// Has image.
-        /// </summary>
-        protected bool HasImage { get; private set; }
-
-        /// <summary>
-        /// Has text.
-        /// </summary>
-        protected bool HasText { get; private set; }
 
         /// <summary>
         /// Flag to determine if the image size is variable, used with the glyphs.
@@ -1028,11 +1010,30 @@ namespace Anuracode.Forms.Controls
             Rectangle controlSizeWithMargin = new Rectangle(x + MarginBorders, y + MarginBorders, width - (MarginBorders * 2), height - (MarginBorders * 2));
             Rectangle controlSize = new Rectangle(x, y, width, height);
 
-            BackgroundBox.LayoutUpdate(controlSize);
-            BorderBox.LayoutUpdate(controlSize);
-            TappedBox.LayoutUpdate(controlSize);
-            DisableBox.LayoutUpdate(controlSize);
-            GesturesBox.LayoutUpdate(controlSize);
+            if (BackgroundBox != null)
+            {
+                BackgroundBox.LayoutUpdate(controlSize);
+            }
+
+            if (BorderBox != null)
+            {
+                BorderBox.LayoutUpdate(controlSize);
+            }
+
+            if (TappedBox != null)
+            {
+                TappedBox.LayoutUpdate(controlSize);
+            }
+
+            if (DisableBox != null)
+            {
+                DisableBox.LayoutUpdate(controlSize);
+            }
+
+            if (GesturesBox != null)
+            {
+                GesturesBox.LayoutUpdate(controlSize);
+            }
 
             if (TemplateContentView != null)
             {
@@ -1394,7 +1395,7 @@ namespace Anuracode.Forms.Controls
             }
 
             return ButtonImage;
-        }        
+        }
 
         /// <summary>
         /// Mesure the content.
@@ -1432,8 +1433,10 @@ namespace Anuracode.Forms.Controls
         /// <param name="hasText">Has text.</param>
         /// <param name="hasImage">Has image.</param>
         /// <param name="orientation">Orientation.</param>
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
         /// <returns>View to use.</returns>
-        protected virtual void RenderContent(bool hasText, bool hasImage, ImageOrientation orientation)
+        protected virtual void RenderContent(bool hasText, bool hasImage, ImageOrientation orientation, bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
         {
             ContentLayout = new SimpleLayout()
             {
@@ -1455,17 +1458,20 @@ namespace Anuracode.Forms.Controls
             }
 
             // Background.
-            BackgroundBox = new ShapeView()
+            if (hasBackground)
             {
-                BindingContext = this
-            };
+                BackgroundBox = new ShapeView()
+                {
+                    BindingContext = this
+                };
 
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ColorProperty, vm => vm.ButtonBackgroundColor);
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
-            BackgroundBox.SetBinding<ContentViewButton>(ShapeView.IsVisibleProperty, vm => vm.IsVisible);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ColorProperty, vm => vm.ButtonBackgroundColor);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.IsVisibleProperty, vm => vm.IsVisible);
+            }
 
             // Tapped view
             TappedBox = new ShapeView()
@@ -1525,16 +1531,19 @@ namespace Anuracode.Forms.Controls
             TemplateContentView = RenderButtonContent(hasText, hasImage, orientation);
 
             // Tapped trigger and disable view.
-            DisableBox = new ShapeView()
+            if (useDisableBox)
             {
-                BackgroundColor = Color.Transparent,
-                BindingContext = this,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand
-            };
+                DisableBox = new ShapeView()
+                {
+                    BackgroundColor = Color.Transparent,
+                    BindingContext = this,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    VerticalOptions = LayoutOptions.FillAndExpand
+                };
 
-            DisableBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-            DisableBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+                DisableBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
+                DisableBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+            }
 
             // Define tap area.
             GesturesBox = new BoxView()
@@ -1552,21 +1561,27 @@ namespace Anuracode.Forms.Controls
 
             GesturesBox.GestureRecognizers.Add(tapRecognizer);
 
-            BorderBox = new ShapeView()
+            if (hasBorder)
             {
-                BackgroundColor = Color.Transparent,
-                BindingContext = this,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand
-            };
+                BorderBox = new ShapeView()
+                {
+                    BackgroundColor = Color.Transparent,
+                    BindingContext = this,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    VerticalOptions = LayoutOptions.FillAndExpand
+                };
 
-            BorderBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-            BorderBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
-            BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
-            BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
+                BorderBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
+                BorderBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+                BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
+                BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
+            }
 
             // Add layers.
-            ContentLayout.Children.Add(BackgroundBox);
+            if (BackgroundBox != null)
+            {
+                ContentLayout.Children.Add(BackgroundBox);
+            }
 
             if (TextExtendedLabel != null)
             {
@@ -1583,7 +1598,7 @@ namespace Anuracode.Forms.Controls
                 ContentLayout.Children.Add(TemplateContentView);
             }
 
-            if (HasImage)
+            if (HasImage && useDisableBox)
             {
                 if (DisableBox.Color != ButtonDisableBackgroundColor)
                 {
@@ -1593,9 +1608,18 @@ namespace Anuracode.Forms.Controls
                 DisableBox.Opacity = 1;
             }
 
-            ContentLayout.Children.Add(BorderBox);
+            if (BorderBox != null)
+            {
+                ContentLayout.Children.Add(BorderBox);
+            }
+
             ContentLayout.Children.Add(TappedBox);
-            ContentLayout.Children.Add(DisableBox);
+
+            if (DisableBox != null)
+            {
+                ContentLayout.Children.Add(DisableBox);
+            }
+
             ContentLayout.Children.Add(GesturesBox);
 
             this.Content = this.ContentLayout;
@@ -1609,28 +1633,31 @@ namespace Anuracode.Forms.Controls
         /// <param name="canExecute">Can execute command.</param>
         protected virtual void SetBackgroundEnable(bool canExecute)
         {
-            if (!UseDisableBox && (BackgroundBox != null) && (DisableBox != null))
+            if (!UseDisableBox)
             {
-                if (DisableBox.Opacity != 1)
+                if (DisableBox != null)
                 {
-                    DisableBox.Opacity = 1;
-                }
+                    if (DisableBox.Opacity != 1)
+                    {
+                        DisableBox.Opacity = 1;
+                    }
 
-                if (DisableBox.Color != Color.Transparent)
-                {
-                    DisableBox.Color = Color.Transparent;
+                    if (DisableBox.Color != Color.Transparent)
+                    {
+                        DisableBox.Color = Color.Transparent;
+                    }
                 }
 
                 if (canExecute)
                 {
-                    if (BackgroundBox.Color != ButtonBackgroundColor)
+                    if ((BackgroundBox != null) && (BackgroundBox.Color != ButtonBackgroundColor))
                     {
                         BackgroundBox.Color = ButtonBackgroundColor;
                     }
                 }
                 else
                 {
-                    if (BackgroundBox.Color != ButtonDisableBackgroundColor)
+                    if ((BackgroundBox != null) && (BackgroundBox.Color != ButtonDisableBackgroundColor))
                     {
                         BackgroundBox.Color = ButtonDisableBackgroundColor;
                     }

@@ -19,7 +19,7 @@ namespace Anuracode.Forms.Controls.Views.Extensions
         /// <param name="elementPosition">Position to use.</param>
         public static void LayoutUpdate(this View view, Rectangle elementPosition)
         {
-            if ((view.X != elementPosition.X) || (view.Y != elementPosition.Y) || (view.Width != elementPosition.Width) || (view.Height != elementPosition.Height))
+            if ((view != null) && (view.X != elementPosition.X) || (view.Y != elementPosition.Y) || (view.Width != elementPosition.Width) || (view.Height != elementPosition.Height))
             {
                 view.Layout(elementPosition);
             }

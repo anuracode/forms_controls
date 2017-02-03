@@ -280,6 +280,8 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
 
+                    UpdateSourceCancellationToken.Token.ThrowIfCancellationRequested();
+
                     if (Control.Image != null)
                     {
                         var oldImage = Control.Image;

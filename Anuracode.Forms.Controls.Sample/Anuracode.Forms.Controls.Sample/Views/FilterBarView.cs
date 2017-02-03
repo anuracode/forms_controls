@@ -536,8 +536,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextSearch,
                 Text = App.LocalizationResources.SearchButton,
                 MarginElements = 0,
-                DisableGlyphOnly = true,
-                UseDisableBox = false
+                DisableGlyphOnly = true                
             };
         }
     }

@@ -307,7 +307,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             double buttonWidth = 150;
 
-            ContentViewButton buttonLoginFacebook = new ContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            ContentViewButton buttonLoginFacebook = new ContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,
                 HorizontalOptions = LayoutOptions.Center,
@@ -321,7 +321,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             buttonLoginFacebook.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LoginFacebookCommand);
             stackButtons.Children.Add(buttonLoginFacebook);
 
-            ContentViewButton buttonLoginGoogle = new ContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            ContentViewButton buttonLoginGoogle = new ContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,
                 HorizontalOptions = LayoutOptions.Center,
@@ -334,7 +334,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             buttonLoginGoogle.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LoginGoogleCommand);
             stackButtons.Children.Add(buttonLoginGoogle);
 
-            ContentViewButton buttonLoginMicrosoft = new ContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            ContentViewButton buttonLoginMicrosoft = new ContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,
                 ButtonBackgroundColor = Color.White,
@@ -367,12 +367,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
             {
                 Source = Theme.CommonResources.PathImageAppLogoLargeMirror,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-				Aspect = Aspect.AspectFill,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,                
+                Aspect = Aspect.AspectFill,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
                 BorderThickness = 1,
-                BorderColor = Theme.CommonResources.Accent,                
+                BorderColor = Theme.CommonResources.Accent,
                 WidthRequest = imageProfileWidth + marginBordersLogo,
-                HeightRequest = imageProfileWidth + marginBordersLogo                
+                HeightRequest = imageProfileWidth + marginBordersLogo
             };
 
             stackLoggedOut.Children.Add(ImageLogoButton);
@@ -418,7 +418,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Content = stackGeneral
             };
 
-            ViewModel.UpdateLoginStatus();           
+            ViewModel.UpdateLoginStatus();
 
             return mainScroll;
         }

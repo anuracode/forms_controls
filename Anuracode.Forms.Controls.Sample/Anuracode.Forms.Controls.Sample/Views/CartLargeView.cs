@@ -97,7 +97,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <summary>
         /// Margin for the bottom app bar.
         /// </summary>
-        public virtual double BottomAppBarMargin { get; set; }        
+        public virtual double BottomAppBarMargin { get; set; }
 
         /// <summary>
         /// Hide overlay.
@@ -533,9 +533,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 OverlaySeparator.UpdateOpacity(0);
                 OverlaySeparator.UpdateIsVisible(false);
-
-                // Substract button.
-                CloseButton = new GlyphOnlyContentViewButton()
+                                
+                CloseButton = new GlyphOnlyContentViewButton(hasBackground: true)
                 {
                     Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                     GlyphText = Theme.CommonResources.GlyphTextCancel,
@@ -595,7 +594,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HorizontalOptions = LayoutOptions.FillAndExpand
             });
 
-            ButtonConfirmOrder = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            ButtonConfirmOrder = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.TextWithGlyphImportantLargeContentButtonStyle,
                 Command = ViewModel.PlaceOrderCommand,
@@ -616,7 +615,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             Theme.RenderUtil.RenderSpace(PanelHeaderRequestLayout, 5, 5);
 
-            ButtonAddMoreItems = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft)
+            ButtonAddMoreItems = new GlyphContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
             {
                 Style = Theme.ApplicationStyles.TextWithGlyphImportantLargeContentButtonStyle,
                 Text = App.LocalizationResources.AddMoreProductsAction,

@@ -241,7 +241,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Orientation = StackOrientation.Vertical
             };
 
-            TextContentViewButton showSignatureButton = new TextContentViewButton()
+            TextContentViewButton showSignatureButton = new TextContentViewButton(hasBackground: true)
             {
                 Text = App.LocalizationResources.ShowSignatureLabel,
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,

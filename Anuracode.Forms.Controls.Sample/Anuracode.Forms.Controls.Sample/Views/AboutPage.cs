@@ -52,7 +52,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             TextContentViewButton buttonSupportMailValue = new TextContentViewButton()
             {
                 Style = Theme.ApplicationStyles.LinkContentViewButtonStyle,
-                MinimumWidthRequest = 350                
+                MinimumWidthRequest = 350
             };
 
             buttonSupportMailValue.SetBinding<AboutViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.ErrorMailTo);
@@ -64,7 +64,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             ContentViewButton buttonDevelopByValue = new TextContentViewButton()
             {
                 Style = Theme.ApplicationStyles.LinkContentViewButtonStyle,
-                MinimumWidthRequest = 350                
+                MinimumWidthRequest = 350
             };
 
             buttonDevelopByValue.Text = "AnuraCode";
@@ -82,9 +82,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
             labelDisclaimerValue.SetBinding<AboutViewModel>(Label.TextProperty, vm => vm.LocalizationResources.AboutDisclaimerMessage);
             stackGeneral.Children.Add(labelDisclaimerValue);
 
-            ContentViewButton buttonDisclaimer = new TextContentViewButton()
+            ContentViewButton buttonDisclaimer = new TextContentViewButton(hasBackground: true)
             {
-                Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle                
+                Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle
             };
 
             buttonDisclaimer.SetBinding<AboutViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.AboutDisclaimerTitle);

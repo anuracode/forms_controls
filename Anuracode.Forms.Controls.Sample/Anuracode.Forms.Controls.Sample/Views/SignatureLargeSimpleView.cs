@@ -586,7 +586,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (IsOverlay && HasControlBar)
             {
                 // Substract button.
-                CloseButton = new GlyphOnlyContentViewButton()
+                CloseButton = new GlyphOnlyContentViewButton(hasBackground: true)
                 {
                     Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                     GlyphText = Theme.CommonResources.GlyphTextCancel,
@@ -632,7 +632,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             // Count button.
-            ButtonClear = new GlyphOnlyContentViewButton()
+            ButtonClear = new GlyphOnlyContentViewButton(hasBackground: true, useDisableBox: true)
             {
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 VerticalOptions = LayoutOptions.Center,
@@ -644,7 +644,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             // Add button.
-            ButtonSave = new GlyphOnlyContentViewButton()
+            ButtonSave = new GlyphOnlyContentViewButton(hasBackground: true, useDisableBox: true)
             {
                 Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                 GlyphText = Theme.CommonResources.GlyphTextSave,

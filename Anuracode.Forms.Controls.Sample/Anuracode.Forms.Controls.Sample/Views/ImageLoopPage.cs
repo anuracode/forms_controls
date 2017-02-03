@@ -49,7 +49,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             // Start button
-            TextContentViewButton startLoopButton = new TextContentViewButton()
+            TextContentViewButton startLoopButton = new TextContentViewButton(hasBackground: true)
             {
                 Text = "Start",
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,
@@ -60,7 +60,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             buttonsLayout.Children.Add(startLoopButton);
 
             // Stop button.
-            TextContentViewButton stopLoopButton = new TextContentViewButton()
+            TextContentViewButton stopLoopButton = new TextContentViewButton(hasBackground: true)
             {
                 Text = "Stop",
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle,

@@ -13,8 +13,11 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public TextContentViewButton()
-            : base(true, false, ImageOrientation.ImageToLeft)
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
+        /// <param name="useDisableBox">Use disable box.</param>
+        public TextContentViewButton(bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
+            : base(true, false, ImageOrientation.ImageToLeft, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox)
         {
         }
     }

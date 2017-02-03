@@ -26,12 +26,18 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public ContentTemplateViewButton(DataTemplate buttonTemplate)
-            : base(false, false)
+        /// <param name="hasText">Has text.</param>
+        /// <param name="hasImage">Has image.</param>
+        /// <param name="orientation">Orientation.</param>
+        /// <param name="hasBorder">Has border.</param>
+        /// <param name="hasBackground">Has background.</param>
+        /// <param name="useDisableBox">Use disable box.</param>
+        public ContentTemplateViewButton(DataTemplate buttonTemplate, bool hasBorder = false, bool hasBackground = false, bool useDisableBox = false)
+            : base(false, false, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox)
         {
             template = buttonTemplate;
-
-            RenderContent(HasText, HasImage, ImageOrientation.ImageToLeft);
+                        
+            RenderContent(hasText: HasText, hasImage: HasImage, orientation: ImageOrientation.ImageToLeft, hasBorder: hasBorder, hasBackground: hasBackground, useDisableBox: useDisableBox);
         }
 
         /// <summary>

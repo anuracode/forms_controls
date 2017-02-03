@@ -115,7 +115,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         });
                 }
             }
-        }        
+        }
 
         /// <summary>
         /// Hide overlay.
@@ -765,7 +765,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (IsOverlay && HasControlBar)
             {
                 // Substract button.
-                CloseButton = new GlyphOnlyContentViewButton()
+                CloseButton = new GlyphOnlyContentViewButton(hasBackground: true)
                 {
                     Style = Theme.ApplicationStyles.GlyphOnlyRoundedContentButtonStyle,
                     GlyphText = Theme.CommonResources.GlyphTextCancel,
@@ -808,7 +808,6 @@ namespace Anuracode.Forms.Controls.Sample.Views
             // Image thumb button.
             ButtonThumbImage = new ContentViewButton(false, false, ImageOrientation.ImageOnTop)
             {
-                ButtonBackgroundColor = Color.Transparent,
                 CornerRadius = 10
             };
 
@@ -857,14 +856,13 @@ namespace Anuracode.Forms.Controls.Sample.Views
             DataTemplate itemTemplate = new DataTemplate(
                     () =>
                     {
-                        ContentViewButton imageDetailPreview = new ImageContentViewButton()
+                        ContentViewButton imageDetailPreview = new ImageContentViewButton(hasBackground: false, hasBorder: true)
                         {
                             Style = Theme.ApplicationStyles.TextOnlyContentButtonStyle,
                             HorizontalOptions = LayoutOptions.Center,
                             VerticalOptions = LayoutOptions.Center,
                             ImageWidthRequest = Theme.CommonResources.PreviewImageWidth,
-                            ImageHeightRequest = Theme.CommonResources.PreviewImageWidth,
-                            ButtonDisableBackgroundColor = Color.Transparent,
+                            ImageHeightRequest = Theme.CommonResources.PreviewImageWidth,                            
                             ButtonBackgroundColor = Color.White,
                             StrokeColor = Color.Black,
                             StrokeWidth = 3,
