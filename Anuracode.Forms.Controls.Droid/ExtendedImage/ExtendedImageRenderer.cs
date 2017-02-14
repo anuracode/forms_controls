@@ -39,6 +39,9 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         private bool _isDisposed;
 
+        /// <summary>
+        /// Last image source.
+        /// </summary>
         private ImageSourceBinding lastImageSource;
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <summary>
         /// Lock for the source update.
         /// </summary>
-        public SemaphoreSlim LockSource
+        public static SemaphoreSlim LockSource
         {
             get
             {
@@ -75,6 +78,22 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Token created when the view model is navigated and cancel when is navigated off.
         /// </summary>
         protected CancellationTokenSource UpdateSourceCancellationToken { get; set; }
+
+        /// <summary>
+        /// Get the number of cores.
+        /// </summary>
+        /// <returns>Number of cores of the device.</returns>
+        public static int GetNumberOfCores()
+        {
+            if (((int)Android.OS.Build.VERSION.SdkInt) >= 17)
+            {
+                return Java.Lang.Runtime.GetRuntime().AvailableProcessors();
+            }
+            else
+            {
+                return 1;
+            }
+        }
 
         /// <summary>
         ///   Used for registration with dependency service
@@ -184,22 +203,6 @@ namespace Anuracode.Forms.Controls.Renderers
             catch (Exception ex)
             {
                 Anuracode.Forms.Controls.AC.TraceError("ManagedImageRenderer problem: {0}", ex);
-            }
-        }
-
-        /// <summary>
-        /// Get the number of cores.
-        /// </summary>
-        /// <returns>Number of cores of the device.</returns>
-        private int GetNumberOfCores()
-        {
-            if (((int)Android.OS.Build.VERSION.SdkInt) >= 17)
-            {
-                return Java.Lang.Runtime.GetRuntime().AvailableProcessors();
-            }
-            else
-            {
-                return 1;
             }
         }
 

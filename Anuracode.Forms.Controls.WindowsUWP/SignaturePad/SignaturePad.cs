@@ -24,7 +24,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <summary>
         /// Flag for content loaded.
         /// </summary>
-        private bool _contentLoaded;
+        private bool contentLoaded;
 
         /// <summary>
         /// Border for the signature.
@@ -289,12 +289,12 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         public void InitializeComponent()
         {
-            if (_contentLoaded)
+            if (contentLoaded)
             {
                 return;
             }
 
-            _contentLoaded = true;
+            contentLoaded = true;
 
             LayoutRoot = new Grid();
             inkPresenter = new Canvas()

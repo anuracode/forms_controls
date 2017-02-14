@@ -193,7 +193,7 @@ namespace Anuracode.Forms.Controls.Renderers
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (this.Control != null || this.Element == null)
+            if (this.Control == null || this.Element == null)
             {
                 return;
             }
