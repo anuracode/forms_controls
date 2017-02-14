@@ -5,9 +5,7 @@
 
 using Android.Runtime;
 using Android.Widget;
-using FFImageLoading;
 using FFImageLoading.Views;
-using FFImageLoading.Work;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -25,24 +23,14 @@ namespace Anuracode.Forms.Controls.Renderers
     public class ExtendedImageRenderer : ViewRenderer<ExtendedImage, ImageViewAsync>
     {
         /// <summary>
-        /// Lock for the source update.
-        /// </summary>
-        private static SemaphoreSlim lockSource;
-
-        /// <summary>
-        /// Current task.
-        /// </summary>
-        private IScheduledWork _currentTask;
-
-        /// <summary>
         /// Is disposed.
         /// </summary>
-        private bool _isDisposed;
+        private bool isDisposed;
 
         /// <summary>
         /// Last image source.
         /// </summary>
-        private ImageSourceBinding lastImageSource;
+        private Xamarin.Forms.ImageSource lastImageSource = null;
 
         /// <summary>
         /// Default constructor.
@@ -56,23 +44,6 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Allow down sample.
         /// </summary>
         public static bool AllowDownSample { get; set; }
-
-        /// <summary>
-        /// Lock for the source update.
-        /// </summary>
-        public static SemaphoreSlim LockSource
-        {
-            get
-            {
-                if (lockSource == null)
-                {
-                    int semaphoreLimit = 2 * GetNumberOfCores();
-                    lockSource = new SemaphoreSlim(semaphoreLimit);
-                }
-
-                return lockSource;
-            }
-        }
 
         /// <summary>
         /// Token created when the view model is navigated and cancel when is navigated off.
@@ -103,38 +74,13 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
-        /// Set the lock for the images, default count depents on the cores.
-        /// </summary>
-        /// <param name="newLock">New lock to use.</param>
-        public static void SetLockSource(SemaphoreSlim newLock)
-        {
-            lockSource = newLock;
-        }
-
-        /// <summary>
-        /// Cancel task.
-        /// </summary>
-        /// <param name="sender">Sender of the event.</param>
-        /// <param name="args">Arguments of the event.</param>
-        public void Cancel(object sender, EventArgs args)
-        {
-            if (_currentTask != null && !_currentTask.IsCancelled)
-            {
-                _currentTask.Cancel();
-                _currentTask = null;
-            }
-        }
-
-        /// <summary>
         /// Dispose control.
         /// </summary>
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (!_isDisposed)
+            if (!isDisposed)
             {
-                Cancel(this, EventArgs.Empty);
-
                 if (UpdateSourceCancellationToken != null)
                 {
                     UpdateSourceCancellationToken.Cancel();
@@ -142,7 +88,7 @@ namespace Anuracode.Forms.Controls.Renderers
                     UpdateSourceCancellationToken = null;
                 }
 
-                _isDisposed = true;
+                isDisposed = true;
                 base.Dispose(disposing);
             }
         }
@@ -212,14 +158,14 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="element">Element to use.</param>
         private void ImageLoadingFinished(ExtendedImage element)
         {
-            if ((element != null) && !_isDisposed && (Control != null))
+            if ((element != null) && !isDisposed && (Control != null))
             {
                 AC.ThreadManager.ScheduleManagedFull(
                     async () =>
                     {
                         await Task.FromResult(0);
 
-                        if ((element != null) && !_isDisposed && (Control != null))
+                        if ((element != null) && !isDisposed && (Control != null))
                         {
                             ((IVisualElementController)element).NativeSizeChanged();
                         }
@@ -237,7 +183,7 @@ namespace Anuracode.Forms.Controls.Renderers
                     {
                         await Task.FromResult(0);
 
-                        if ((Element != null) && (Control != null) && !_isDisposed)
+                        if ((Element != null) && (Control != null) && !isDisposed)
                         {
                             if (Element.Aspect == Aspect.AspectFill)
                             {
@@ -261,12 +207,10 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="previous">Previous control.</param>
         private async Task UpdateBitmap(ExtendedImage previous = null)
         {
-            if ((Element != null) && (Control != null) && !_isDisposed)
+            if ((Element != null) && (Control != null) && !isDisposed)
             {
                 try
                 {
-                    Cancel(this, EventArgs.Empty);
-
                     if (UpdateSourceCancellationToken != null)
                     {
                         UpdateSourceCancellationToken.Cancel();
@@ -279,8 +223,6 @@ namespace Anuracode.Forms.Controls.Renderers
                         UpdateSourceCancellationToken = new CancellationTokenSource();
                     }
 
-                    await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
-
                     if (previous == null || !object.Equals(previous.Source, Element.Source))
                     {
                         Xamarin.Forms.ImageSource source = Element.Source;
@@ -291,93 +233,20 @@ namespace Anuracode.Forms.Controls.Renderers
                             return;
                         }
 
-                        if (Element != null && object.Equals(Element.Source, source) && !_isDisposed)
+                        var completed = await formsImageView.UpdateImageSource(
+                            source,
+                            lastImageSource: lastImageSource,
+                            allowDownSample: AllowDownSample,
+                            targetWidth: Element.WidthRequest,
+                            targetHeight: Element.HeightRequest,
+                            cancellationToken: UpdateSourceCancellationToken.Token);
+
+                        if (completed)
                         {
-                            TaskCompletionSource<ExtendedImage> tc = new TaskCompletionSource<ExtendedImage>();
-                            ExtendedImage ei = Element;
-
-                            try
-                            {
-                                TaskParameter imageLoader = null;
-
-                                var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
-
-                                if (ffSource == null)
-                                {
-                                    lastImageSource = null;
-
-                                    Control.SetImageResource(global::Android.Resource.Color.Transparent);
-
-                                    tc.SetResult(ei);
-                                }
-                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
-                                {
-                                    imageLoader = ImageService.Instance.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
-                                }
-                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
-                                {
-                                    imageLoader = ImageService.Instance.LoadCompiledResource(ffSource.Path);
-                                }
-                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
-                                {
-                                    imageLoader = ImageService.Instance.LoadFileFromApplicationBundle(ffSource.Path);
-                                }
-                                else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
-                                {
-                                    imageLoader = ImageService.Instance.LoadFile(ffSource.Path);
-                                }
-
-                                if (imageLoader != null)
-                                {
-                                    if (lastImageSource != null)
-                                    {
-                                        Control.SetImageResource(global::Android.Resource.Color.Transparent);
-                                    }
-
-                                    // Downsample
-                                    if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
-                                    {
-                                        if (ei.HeightRequest > ei.WidthRequest)
-                                        {
-                                            imageLoader.DownSample(height: (int)ei.WidthRequest);
-                                        }
-                                        else
-                                        {
-                                            imageLoader.DownSample(width: (int)ei.HeightRequest);
-                                        }
-                                    }
-
-                                    imageLoader.Retry(2, 30000);
-
-                                    imageLoader.Finish(
-                                        (work) =>
-                                        {
-                                            tc.TrySetResult(ei);
-                                        });
-
-                                    imageLoader.Success((ImageInformation imageInformation, LoadingResult loadingResult) =>
-                                    {
-                                        lastImageSource = ffSource;
-                                    });
-
-                                    imageLoader.Error(
-                                        (iex) =>
-                                    {
-                                        tc.TrySetException(iex);
-                                    });
-
-                                    _currentTask = imageLoader.Into(Control);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                tc.SetException(ex);
-                            }
-
-                            var waitedElement = await tc.Task;
-
-                            ImageLoadingFinished(waitedElement);
+                            lastImageSource = source;
                         }
+
+                        ImageLoadingFinished(Element);
                     }
                 }
                 catch (TaskCanceledException taskCanceledException)
@@ -392,10 +261,6 @@ namespace Anuracode.Forms.Controls.Renderers
                 catch (Exception ex)
                 {
                     AC.TraceError("Android Extended renderer", ex);
-                }
-                finally
-                {
-                    LockSource.Release();
                 }
             }
         }

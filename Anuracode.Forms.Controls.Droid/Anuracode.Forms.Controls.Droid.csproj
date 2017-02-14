@@ -137,6 +137,7 @@
     <Compile Include="ExtendedEntryRenderer.cs" />
     <Compile Include="ExtendedImage\ExtendedImageRenderer.cs" />
     <Compile Include="ExtendedImage\FormsImageView.cs" />
+    <Compile Include="ExtendedImage\ImageLoader.cs" />
     <Compile Include="ExtendedImage\ImageSourceBinding.cs" />
     <Compile Include="ExtendedLabelRenderer.cs" />
     <Compile Include="FontExtensions.cs" />

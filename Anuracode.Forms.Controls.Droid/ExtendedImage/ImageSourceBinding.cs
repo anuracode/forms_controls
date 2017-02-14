@@ -12,7 +12,7 @@ namespace Anuracode.Forms.Controls.Renderers
     /// <summary>
     /// Image source binding.
     /// </summary>
-    internal class ImageSourceBinding
+    public class ImageSourceBinding
     {
         /// <summary>
         /// Default constructor.
@@ -72,7 +72,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         /// <param name="source">Source to use.</param>
         /// <returns>Binding to use.</returns>
-        internal static ImageSourceBinding GetImageSourceBinding(ImageSource source)
+        public static ImageSourceBinding GetImageSourceBinding(ImageSource source)
         {
             if (source == null)
             {
