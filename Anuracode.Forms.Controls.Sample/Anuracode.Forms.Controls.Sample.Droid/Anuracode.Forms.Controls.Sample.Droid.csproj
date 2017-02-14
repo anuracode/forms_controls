@@ -17,8 +17,7 @@
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <MandroidI18n />
-    <JavaMaximumHeapSize>
-    </JavaMaximumHeapSize>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -35,13 +34,12 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <Debugger>Xamarin</Debugger>
-    <AotAssemblies>False</AotAssemblies>
-    <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Proyectos\forms_controls\Anuracode.Forms.Controls.Droid\anuracode.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Anuracode2017</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>anuracode</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Anuracode2017</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,16 +55,15 @@
     <AndroidLinkSkip />
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <MandroidI18n />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
-    <AotAssemblies>False</AotAssemblies>
-    <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
     <DebugSymbols>False</DebugSymbols>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Proyectos\forms_controls\Anuracode.Forms.Controls.Droid\anuracode.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Anuracode2017</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>anuracode</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Anuracode2017</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
