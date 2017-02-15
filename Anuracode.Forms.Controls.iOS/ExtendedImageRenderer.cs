@@ -1,11 +1,9 @@
-﻿// <copyright file="CachedImageRenderer.cs" company="Anura Code">
+﻿// <copyright file="ExtendedImageRenderer.cs" company="Anura Code">
 // All rights reserved.
 // </copyright>
 // <author>Alberto Puyana</author>
 
 using CoreGraphics;
-using FFImageLoading;
-using FFImageLoading.Work;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -23,19 +21,14 @@ namespace Anuracode.Forms.Controls.Renderers
     public class ExtendedImageRenderer : ViewRenderer<ExtendedImage, UIImageView>
     {
         /// <summary>
-        /// Lock for the source update.
-        /// </summary>
-        private static SemaphoreSlim lockSource;
-
-        /// <summary>
-        /// Scheduled work.
-        /// </summary>
-        private IScheduledWork _currentTask;
-
-        /// <summary>
         /// Is disposed.
         /// </summary>
-        private bool _isDisposed;
+        private bool isDisposed;
+
+        /// <summary>
+        /// Last image source.
+        /// </summary>
+        private Xamarin.Forms.ImageSource lastImageSource = null;
 
         /// <summary>
         /// Allow down sample.
@@ -46,23 +39,6 @@ namespace Anuracode.Forms.Controls.Renderers
         /// Flag to dispose the old image.
         /// </summary>
         public static bool DisposeOldImage { get; set; }
-
-        /// <summary>
-        /// Lock for the source update.
-        /// </summary>
-        public SemaphoreSlim LockSource
-        {
-            get
-            {
-                if (lockSource == null)
-                {
-                    int semaphoreLimit = 2 * GetNumberOfCores();
-                    lockSource = new SemaphoreSlim(semaphoreLimit);
-                }
-
-                return lockSource;
-            }
-        }
 
         /// <summary>
         /// Token created when the view model is navigated and cancel when is navigated off.
@@ -79,26 +55,15 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
-        /// Set the lock for the images, default count depents on the cores.
-        /// </summary>
-        /// <param name="newLock">New lock to use.</param>
-        public static void SetLockSource(SemaphoreSlim newLock)
-        {
-            lockSource = newLock;
-        }
-
-        /// <summary>
         /// Dispose renderer.
         /// </summary>
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (_isDisposed)
+            if (isDisposed)
             {
                 return;
             }
-
-            Cancel();
 
             if (UpdateSourceCancellationToken != null)
             {
@@ -116,7 +81,7 @@ namespace Anuracode.Forms.Controls.Renderers
                 }
             }
 
-            _isDisposed = true;
+            isDisposed = true;
             base.Dispose(disposing);
         }
 
@@ -188,32 +153,12 @@ namespace Anuracode.Forms.Controls.Renderers
         }
 
         /// <summary>
-        /// Cancel current loading.
-        /// </summary>
-        private void Cancel()
-        {
-            if (_currentTask != null && !_currentTask.IsCancelled)
-            {
-                _currentTask.Cancel();
-            }
-        }
-
-        /// <summary>
-        /// Get the number of cores.
-        /// </summary>
-        /// <returns>Number of cores of the device.</returns>
-        private int GetNumberOfCores()
-        {
-            return 2;
-        }
-
-        /// <summary>
         /// Image loading completed.
         /// </summary>
         /// <param name="element">Element to use.</param>
         private void ImageLoadingFinished(ExtendedImage element)
         {
-            if ((element != null) && !_isDisposed && (Control != null))
+            if ((element != null) && !isDisposed && (Control != null))
             {
                 AC.ThreadManager.ScheduleManagedFull(
                     async () =>
@@ -230,7 +175,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         private void SetAspect()
         {
-            if ((Element != null) && (Control != null) && !_isDisposed)
+            if ((Element != null) && (Control != null) && !isDisposed)
             {
                 Control.ContentMode = Element.Aspect.ToUIViewContentMode();
             }
@@ -244,7 +189,7 @@ namespace Anuracode.Forms.Controls.Renderers
         {
             await Task.FromResult(0);
 
-            if ((Element != null) && (Element.Source != null) && (Control != null) && !_isDisposed)
+            if ((Element != null) && (Element.Source != null) && (Control != null) && !isDisposed)
             {
                 Xamarin.Forms.ImageSource source = Element.Source;
 
@@ -264,8 +209,6 @@ namespace Anuracode.Forms.Controls.Renderers
 
                 try
                 {
-                    Cancel();
-
                     if (UpdateSourceCancellationToken != null)
                     {
                         UpdateSourceCancellationToken.Cancel();
@@ -278,103 +221,29 @@ namespace Anuracode.Forms.Controls.Renderers
                         UpdateSourceCancellationToken = new CancellationTokenSource();
                     }
 
-                    await LockSource.WaitAsync(UpdateSourceCancellationToken.Token);
-
-                    UpdateSourceCancellationToken.Token.ThrowIfCancellationRequested();
-
-                    if (Control.Image != null)
+                    if (oldElement == null || !object.Equals(oldElement.Source, Element.Source))
                     {
-                        var oldImage = Control.Image;
-                        Control.Image = null;
+                        UIImageView formsImageView = Control as UIImageView;
 
-                        if (DisposeOldImage)
+                        if (formsImageView == null)
                         {
-                            oldImage.Dispose();
+                            return;
                         }
-                    }
 
-                    TaskParameter imageLoader = null;
+                        var completed = await formsImageView.UpdateImageSource(
+                            source,
+                            lastImageSource: lastImageSource,
+                            allowDownSample: AllowDownSample,
+                            targetWidth: Element.WidthRequest,
+                            targetHeight: Element.HeightRequest,
+                            cancellationToken: UpdateSourceCancellationToken.Token);
 
-                    var ffSource = ImageSourceBinding.GetImageSourceBinding(source);
-
-                    if (ffSource == null)
-                    {
-                        if (Control != null)
+                        if (completed)
                         {
-                            Control.Image = null;
+                            lastImageSource = source;
                         }
 
                         ImageLoadingFinished(Element);
-                    }
-                    else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Url)
-                    {
-                        imageLoader = ImageService.Instance.LoadUrl(ffSource.Path, TimeSpan.FromDays(1));
-                    }
-                    else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.CompiledResource)
-                    {
-                        imageLoader = ImageService.Instance.LoadCompiledResource(ffSource.Path);
-                    }
-                    else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.ApplicationBundle)
-                    {
-                        imageLoader = ImageService.Instance.LoadFileFromApplicationBundle(ffSource.Path);
-                    }
-                    else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Filepath)
-                    {
-                        imageLoader = ImageService.Instance.LoadFile(ffSource.Path);
-                    }
-                    else if (ffSource.ImageSource == FFImageLoading.Work.ImageSource.Stream)
-                    {
-                        imageLoader = ImageService.Instance.LoadStream(ffSource.Stream);
-                    }
-
-                    if (imageLoader != null)
-                    {
-                        TaskCompletionSource<ExtendedImage> tc = new TaskCompletionSource<ExtendedImage>();
-                        ExtendedImage ei = Element;
-
-                        // Place holder
-                        if (ei.LoadingPlaceholder != null)
-                        {
-                            var placeholderSource = ImageSourceBinding.GetImageSourceBinding(ei.LoadingPlaceholder);
-
-                            if (placeholderSource != null)
-                            {
-                                imageLoader.LoadingPlaceholder(placeholderSource.Path, placeholderSource.ImageSource);
-                            }
-                        }
-
-                        // Downsample
-                        if (AllowDownSample && (ei.HeightRequest > 0 || ei.WidthRequest > 0))
-                        {
-                            if (Element.Height > Element.Width)
-                            {
-                                imageLoader.DownSampleInDip(height: (int)Element.Height);
-                            }
-                            else
-                            {
-                                imageLoader.DownSampleInDip(width: (int)Element.Width);
-                            }
-                        }
-
-                        imageLoader.Retry(2, 30000);
-
-                        imageLoader.Finish(
-                                           (work) =>
-                                           {
-                                               tc.TrySetResult(ei);
-                                           });
-
-                        imageLoader.Error(
-                            (iex) =>
-                            {
-                                tc.TrySetException(iex);
-                            });
-
-                        _currentTask = imageLoader.Into(Control);
-
-                        var waitedElement = await tc.Task;
-
-                        ImageLoadingFinished(waitedElement);
                     }
                 }
                 catch (TaskCanceledException)
@@ -390,10 +259,6 @@ namespace Anuracode.Forms.Controls.Renderers
                 {
                     AC.TraceError("iOS Extended renderer", ex);
                 }
-                finally
-                {
-                    LockSource.Release();
-                }
             }
         }
 
@@ -402,7 +267,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         private void SetOpacity()
         {
-            if ((Element != null) && (Control != null) && !_isDisposed)
+            if ((Element != null) && (Control != null) && !isDisposed)
             {
                 Control.Opaque = Element.IsOpaque;
             }

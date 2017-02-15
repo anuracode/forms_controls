@@ -209,6 +209,22 @@ namespace Anuracode.Forms.Controls.Renderers
         {
             if ((Element != null) && (Control != null) && !isDisposed)
             {
+                Xamarin.Forms.ImageSource source = Element.Source;
+
+                if (previous != null)
+                {
+                    Xamarin.Forms.ImageSource source2 = previous.Source;
+                    if (object.Equals(source2, source))
+                    {
+                        return;
+                    }
+
+                    if (source2 is FileImageSource && source is FileImageSource && ((FileImageSource)source2).File == ((FileImageSource)source).File)
+                    {
+                        return;
+                    }
+                }
+
                 try
                 {
                     if (UpdateSourceCancellationToken != null)
@@ -225,7 +241,6 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     if (previous == null || !object.Equals(previous.Source, Element.Source))
                     {
-                        Xamarin.Forms.ImageSource source = Element.Source;
                         ImageViewAsync formsImageView = Control as ImageViewAsync;
 
                         if (formsImageView == null)

@@ -4,12 +4,12 @@
 // <author>Alberto Puyana</author>
 
 using FFImageLoading;
-using FFImageLoading.Views;
 using FFImageLoading.Work;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using UIKit;
 
 namespace Anuracode.Forms.Controls.Renderers
 {
@@ -46,14 +46,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <returns>Number of cores of the device.</returns>
         public static int GetNumberOfCores()
         {
-            if (((int)Android.OS.Build.VERSION.SdkInt) >= 17)
-            {
-                return Java.Lang.Runtime.GetRuntime().AvailableProcessors();
-            }
-            else
-            {
-                return 1;
-            }
+            return 2;
         }
 
         /// <summary>
@@ -76,7 +69,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <param name="targetHeight">Target height.</param>
         /// <param name="cancellationToken">Cancel token to use.</param>
         /// <returns>Task to await.</returns>
-        public static async Task<bool> UpdateImageSource(this ImageViewAsync control, Xamarin.Forms.ImageSource source, Xamarin.Forms.ImageSource lastImageSource = null, bool allowDownSample = true, double targetWidth = 0, double targetHeight = 0, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task<bool> UpdateImageSource(this UIImageView control, Xamarin.Forms.ImageSource source, Xamarin.Forms.ImageSource lastImageSource = null, bool allowDownSample = true, double targetWidth = 0, double targetHeight = 0, CancellationToken cancellationToken = default(CancellationToken))
         {
             await Task.FromResult(0);
 
@@ -103,7 +96,7 @@ namespace Anuracode.Forms.Controls.Renderers
 
                     if (ffSource == null)
                     {
-                        control.SetImageResource(global::Android.Resource.Color.Transparent);
+                        control.Image = null;
 
                         tc.SetResult(true);
                     }
@@ -128,7 +121,7 @@ namespace Anuracode.Forms.Controls.Renderers
                     {
                         if (lastImageSource != null)
                         {
-                            control.SetImageResource(global::Android.Resource.Color.Transparent);
+                            control.Image = null;
                         }
 
                         // Downsample
@@ -136,11 +129,11 @@ namespace Anuracode.Forms.Controls.Renderers
                         {
                             if (targetHeight > targetWidth)
                             {
-                                imageLoader.DownSample(height: (int)targetWidth);
+                                imageLoader.DownSampleInDip(height: (int)targetWidth);
                             }
                             else
                             {
-                                imageLoader.DownSample(width: (int)targetHeight);
+                                imageLoader.DownSampleInDip(width: (int)targetHeight);
                             }
                         }
 
@@ -171,7 +164,7 @@ namespace Anuracode.Forms.Controls.Renderers
             catch (TaskCanceledException taskCanceledException)
             {
             }
-            catch (Android.OS.OperationCanceledException operationCanceledException)
+            catch (OperationCanceledException operationCanceledException)
             {
             }
             catch (IOException oException)
@@ -179,7 +172,7 @@ namespace Anuracode.Forms.Controls.Renderers
             }
             catch (Exception ex)
             {
-                AC.TraceError("Android image loader", ex);
+                AC.TraceError("iOS image loader", ex);
             }
             finally
             {
