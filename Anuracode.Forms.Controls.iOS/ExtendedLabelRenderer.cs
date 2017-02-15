@@ -96,34 +96,28 @@ namespace Anuracode.Forms.Controls.Renderers
         {
             if ((view != null) && (control != null))
             {
-                if (string.Compare(view.FontFamily, view.FriendlyFontName, true) != 0)
+                UIFont font = null;
+
+                if ((font == null) && !string.IsNullOrEmpty(view.FriendlyFontName))
                 {
-                    view.FontFamily = view.FriendlyFontName;
+                    font = (UIFont)(UIFont.FromName(view.FriendlyFontName, (view.FontSize > 0) ? (float)view.FontSize : 12.0f));
                 }
 
-                if (!string.IsNullOrEmpty(view.FriendlyFontName))
-                {
-                    var font = (UIFont)(UIFont.FromName(view.FriendlyFontName, (view.FontSize > 0) ? (float)view.FontSize : 12.0f));
-
-                    if (font != null)
-                    {
-                        control.Font = font;
-                    }
-                }
-                else if (!string.IsNullOrEmpty(view.FontName))
+                if ((font == null) && !string.IsNullOrEmpty(view.FontName))
                 {
                     var fontName = Path.GetFileNameWithoutExtension(view.FontName);
 
-                    var font = (UIFont)(UIFont.FromName(fontName, (view.FontSize > 0) ? (float)view.FontSize : 12.0f));
-
-                    if (font != null)
-                    {
-                        control.Font = font;
-                    }
+                    font = (UIFont)(UIFont.FromName(fontName, (view.FontSize > 0) ? (float)view.FontSize : 12.0f));
                 }
-                else if (view.FontSize > 0)
+
+                if ((font == null) && (view.FontSize > 0))
                 {
-                    control.Font = (UIFont)(UIFont.FromName(control.Font.Name, (float)view.FontSize));
+                    font = (UIFont)(UIFont.FromName(control.Font.Name, (float)view.FontSize));
+                }
+
+                if (font != null)
+                {
+                    control.Font = font;
                 }
             }
 
