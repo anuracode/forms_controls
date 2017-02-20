@@ -875,11 +875,11 @@ namespace Anuracode.Forms.Controls
         /// <param name="cancellationToken">Cancellation token to use.</param>
         protected void UpdatePoolBindingContext(int indexToUpdate, View itemView, CancellationToken cancellationToken)
         {
-            if ((ItemsSource != null) && (GetItemSourceTotalCount() > indexToUpdate) && (itemView != null))
+            if ((ItemsSource != null) && (ItemsSource.Count > indexToUpdate) && (itemView != null))
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if ((ItemsSource != null) && (GetItemSourceTotalCount() > indexToUpdate) && (itemView != null))
+                if ((ItemsSource != null) && (ItemsSource.Count > indexToUpdate) && (itemView != null))
                 {
                     SimpleViewBase baseView = itemView as SimpleViewBase;
 
