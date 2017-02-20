@@ -548,7 +548,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <summary>
         /// Page size to initially display.
         /// </summary>
-        protected virtual int PageSize
+        public virtual int PageSize
         {
             get
             {

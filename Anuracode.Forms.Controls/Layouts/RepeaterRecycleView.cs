@@ -388,7 +388,7 @@ namespace Anuracode.Forms.Controls
 
             if (ItemsSource != null)
             {
-                maxItems = ItemsSource.Count;
+                maxItems = GetItemSourceTotalCount();
             }
 
             double maxX = ContentSize.Width;
@@ -509,7 +509,7 @@ namespace Anuracode.Forms.Controls
 
             if (ItemsSource != null)
             {
-                itemCount = ItemsSource.Count;
+                itemCount = GetItemSourceTotalCount();
             }
 
             if (itemCount != 0)
@@ -530,6 +530,22 @@ namespace Anuracode.Forms.Controls
             SizeRequest resultRequest = new SizeRequest(new Size(totalWidth.Clamp(0, widthConstraint), totalheight.Clamp(0, heightConstraint)), new Size(totalWidth.Clamp(0, widthConstraint), totalheight.Clamp(0, heightConstraint)));
 
             return resultRequest;
+        }
+
+        /// <summary>
+        /// Get Item source total count.
+        /// </summary>
+        /// <returns>Item source total count.</returns>
+        protected virtual int GetItemSourceTotalCount()
+        {
+            int totalCount = 0;
+
+            if (ItemsSource != null)
+            {
+                totalCount = ItemsSource.Count;
+            }
+
+            return totalCount;
         }
 
         /// <summary>
@@ -785,7 +801,7 @@ namespace Anuracode.Forms.Controls
 
                 if ((ItemTemplate != null) && (ItemsSource != null))
                 {
-                    var itemSourceCount = ItemsSource.Count;
+                    var itemSourceCount = GetItemSourceTotalCount();
 
                     // Extra space.
                     double visibleCount = 0;
@@ -859,11 +875,11 @@ namespace Anuracode.Forms.Controls
         /// <param name="cancellationToken">Cancellation token to use.</param>
         protected void UpdatePoolBindingContext(int indexToUpdate, View itemView, CancellationToken cancellationToken)
         {
-            if ((ItemsSource != null) && (ItemsSource.Count > indexToUpdate) && (itemView != null))
+            if ((ItemsSource != null) && (GetItemSourceTotalCount() > indexToUpdate) && (itemView != null))
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if ((ItemsSource != null) && (ItemsSource.Count > indexToUpdate) && (itemView != null))
+                if ((ItemsSource != null) && (GetItemSourceTotalCount() > indexToUpdate) && (itemView != null))
                 {
                     SimpleViewBase baseView = itemView as SimpleViewBase;
 

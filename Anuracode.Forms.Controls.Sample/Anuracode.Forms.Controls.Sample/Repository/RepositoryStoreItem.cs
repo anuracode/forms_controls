@@ -228,7 +228,7 @@ namespace Anuracode.Forms.Controls.Sample.Repository
 
                 sublevelsCache.Clear();
 
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     sampleLevel = new StoreItemLevel()
                     {
@@ -239,7 +239,7 @@ namespace Anuracode.Forms.Controls.Sample.Repository
 
                     if (i == 0)
                     {
-                        AddGeneratedStoreItems(1, sampleLevel);
+                        AddGeneratedStoreItems(500, sampleLevel);
                     }
                     else
                     {

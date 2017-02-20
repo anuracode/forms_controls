@@ -628,11 +628,11 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         /// <summary>
         /// Page size.
         /// </summary>
-        protected override int PageSize
+        public override int PageSize
         {
             get
             {
-                return Device.OS.OnPlatform(10, 10, 10, 15, 20);
+                return Device.OS.OnPlatform(8, 8, 8, 8, 8);
             }
         }
 

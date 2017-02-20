@@ -57,6 +57,7 @@
     <Compile Include="Layouts\HeaderCell.cs" />
     <Compile Include="Layouts\IGroupingPaged.cs" />
     <Compile Include="Layouts\InfiniteListView.cs" />
+    <Compile Include="Layouts\InfiniteRepeaterRecycleView.cs" />
     <Compile Include="Layouts\RepeaterRecycleView.cs" />
     <Compile Include="Layouts\RepeaterView.generics.cs" />
     <Compile Include="Layouts\SimpleLayout.cs" />

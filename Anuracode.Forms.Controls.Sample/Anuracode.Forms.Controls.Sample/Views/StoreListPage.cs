@@ -4,10 +4,10 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Extensions;
-using Anuracode.Forms.Controls.Views.Extensions;
 using Anuracode.Forms.Controls.Sample.Interfaces;
 using Anuracode.Forms.Controls.Sample.Model;
 using Anuracode.Forms.Controls.Sample.ViewModels;
+using Anuracode.Forms.Controls.Views.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -1609,6 +1609,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected StoreItemViewModel LastSelectedCartItem { get; set; }
 
         /// <summary>
+        /// Recycler with the list of product.
+        /// </summary>
+        protected RepeaterRecycleView ProductsList { get; set; }
+
+        /// <summary>
         /// Suggestions label.
         /// </summary>
         protected ExtendedLabel SuggestionsLabel { get; set; }
@@ -2165,6 +2170,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 GroupItemsView.LayoutUpdate(pageSize);
             }
+
+            if (ProductsList != null)
+            {
+                ProductsList.ItemWidth = LastPositionInnerContentView.Width;
+            }
         }
 
         /// <summary>
@@ -2173,11 +2183,53 @@ namespace Anuracode.Forms.Controls.Sample.Views
         /// <returns>View to use.</returns>
         protected override View RenderContent()
         {
-            var contentView = base.RenderContent();
+            var itemHeight = 66;
+            double itemWidth = 200;
 
-            contentView.IsVisible = ViewModel.IsProductListMode;
+            DataTemplate itemTemplate = null;
 
-            return contentView;
+            itemTemplate = new DataTemplate(
+           () =>
+           {
+               ContentViewButton detailItemButton = new ContentTemplateViewButton(
+                  new DataTemplate(
+                      () =>
+                      {
+                          var cell = new StoreItemThumbHorizontalSimpleView();
+                          cell.BindingContext = null;
+                          cell.PrepareBindings();
+                          return cell;
+                      }))
+               {
+                   Command = ShowItemOptionsCommand,
+                   Style = Theme.ApplicationStyles.TextOnlyContentButtonStyle
+               };
+
+               detailItemButton.BindingContext = null;
+
+               detailItemButton.SetBinding(ContentViewButton.CommandParameterProperty, ".");
+
+               return detailItemButton;
+           });
+
+            ProductsList = new InfiniteRepeaterRecycleView(pageSize:ViewModel.PageSize, poolAheadItems: 2,  instanceAllPoolAheadItems: false)
+            {
+                ItemHeight = itemHeight,
+                ItemWidth = itemWidth,
+                ItemTemplate = itemTemplate,
+                Spacing = 0.5,
+                InstanceOnSublevelLock = true,
+                CleanOnBindingChange = true,
+                Orientation = ScrollOrientation.Vertical,
+                ItemsSource = ViewModel.Items,
+                LoadMoreCommand = ViewModel.LoadMoreItemsCommand
+            };
+
+            ProductsList.IsVisible = ViewModel.IsProductListMode;
+
+            ProductsList.SetBinding<StoreListViewModel>(InfiniteRepeaterRecycleView.TotalItemsCountProperty, vm => vm.TotalItemsCount);
+
+            return ProductsList;
         }
 
         /// <summary>
