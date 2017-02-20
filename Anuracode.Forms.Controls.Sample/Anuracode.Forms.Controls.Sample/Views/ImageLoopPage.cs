@@ -4,6 +4,7 @@
 // <author>Alberto Puyana</author>
 
 using Anuracode.Forms.Controls.Sample.ViewModels;
+using System;
 using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls.Sample.Views
@@ -103,7 +104,79 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             contentLayout.Children.Add(img);
 
-            return contentLayout;
+            // Sample formated text.
+            FormattedString fs = new FormattedString();
+            fs.Spans.Add(
+                new Span()
+                {
+                    Text = "Title",
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = Theme.CommonResources.TextSizeLarge
+                });
+
+            fs.Spans.Add(
+                new Span()
+                {
+                    Text = Environment.NewLine
+                });
+
+            fs.Spans.Add(
+                new Span()
+                {
+                    Text = "Subtitle",
+                    FontAttributes = FontAttributes.Italic,
+                    FontSize = Theme.CommonResources.TextSizeMedium
+                });
+
+            fs.Spans.Add(
+               new Span()
+               {
+                   Text = Environment.NewLine
+               });
+
+            fs.Spans.Add(
+               new Span()
+               {
+                   Text = "Some text that makes no sense, aasdklj askj alkjjda asdkj hnbpe npqnsp knasp eiena asdoe ppos eojd pnjjnsp okjs lkjasdkjs oiena,xpe oksndno.",
+                   FontSize = Theme.CommonResources.TextSizeMedium
+               });
+
+            fs.Spans.Add(
+              new Span()
+              {
+                  Text = Environment.NewLine
+              });
+
+            fs.Spans.Add(
+               new Span()
+               {
+                   Text = "asdk asdk e pjeslkjs pedsaskd lkjsdposd ejsdlkjs sdlkajsd aslkjasd sskljdalkds eposdn slkjdepslkjs pekjdsd",
+                   FontSize = Theme.CommonResources.TextSizeMicro
+               });
+
+            var descriptionLabel = new ExtendedLabel()
+            {
+                FontName = Theme.CommonResources.FontRobotLightName,
+                FriendlyFontName = Theme.CommonResources.FontRobotLightFriendlyName,
+                TextColor = Color.Black,
+                FontSize = Theme.CommonResources.TextSizeMedium,
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions = LayoutOptions.Start,
+                HorizontalTextAlignment = TextAlignment.Start,
+                FormattedText = fs
+            };
+
+            contentLayout.Children.Add(descriptionLabel);
+
+            var viewScroll = new ScrollView()
+            {
+                Orientation = ScrollOrientation.Vertical,
+                Content = contentLayout,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+
+            return viewScroll;
         }
     }
 }

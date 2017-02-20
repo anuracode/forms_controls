@@ -129,13 +129,11 @@ namespace Anuracode.Forms.Controls.Renderers
                 control.TextColor = view.TextColor.ToUIColor();
             }
 
-            //Do not create attributed string if it is not necesarry
-            if (!view.IsUnderline && !view.IsStrikeThrough && !view.IsDropShadow)
+            if (view.FormattedText != null)
             {
-                return;
+                control.AttributedText = view.FormattedText.ToAttributed(Font.OfSize(control.Font.Name, view.FontSize), view.TextColor);
             }
-
-            if (!string.IsNullOrEmpty(view.Text))
+            else if (!string.IsNullOrEmpty(view.Text) && (!view.IsUnderline || !view.IsStrikeThrough || !view.IsDropShadow))
             {
                 control.Text = null;
 
