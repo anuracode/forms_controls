@@ -3,10 +3,10 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Anuracode.Forms.Controls.Extensions;
 
 namespace Anuracode.Forms.Controls
 {
@@ -23,7 +23,7 @@ namespace Anuracode.Forms.Controls
         /// <summary>
         /// Total items count property.
         /// </summary>
-        public static readonly BindableProperty TotalItemsCountProperty = BindablePropertyHelper.Create<InfiniteRepeaterRecycleView, int>(nameof(TotalItemsCount), 0);
+        public static readonly BindableProperty TotalItemsCountProperty = BindablePropertyHelper.Create<InfiniteRepeaterRecycleView, int>(nameof(TotalItemsCount), 0, propertyChanged: TotalItemsCountChanged);
 
         /// <summary>
         /// Default constructor.
@@ -106,6 +106,29 @@ namespace Anuracode.Forms.Controls
                 {
                     LoadMoreCommand.ExecuteIfCan();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Update step.
+        /// </summary>
+        /// <param name="bindable">The control</param>
+        /// <param name="oldValue">Previous bound collection</param>
+        /// <param name="newValue">New bound collection</param>
+        private static void TotalItemsCountChanged(
+            BindableObject bindable,
+            object oldValue,
+            object newValue)
+        {
+            var control = bindable as InfiniteRepeaterRecycleView;
+
+            if (control != null)
+            {
+                AC.ScheduleManaged(
+                    async () =>
+                    {
+                        await control.UpdateStep(forceRedraw: true);
+                    });
             }
         }
     }
