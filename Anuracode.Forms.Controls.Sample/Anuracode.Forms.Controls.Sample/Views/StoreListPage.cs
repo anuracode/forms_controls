@@ -2212,12 +2212,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
                return detailItemButton;
            });
 
-            ProductsList = new InfiniteRepeaterRecycleView(pageSize:ViewModel.PageSize, poolAheadItems: 2,  instanceAllPoolAheadItems: false)
+            ProductsList = new InfiniteRepeaterRecycleView(pageSize:ViewModel.PageSize, poolAheadItems: 4,  instanceAllPoolAheadItems: false)
             {
                 ItemHeight = itemHeight,
                 ItemWidth = itemWidth,
                 ItemTemplate = itemTemplate,
-                Spacing = 0.5,
+                Spacing = 10,
                 InstanceOnSublevelLock = true,
                 CleanOnBindingChange = true,
                 Orientation = ScrollOrientation.Vertical,

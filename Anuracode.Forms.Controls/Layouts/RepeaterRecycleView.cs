@@ -395,7 +395,7 @@ namespace Anuracode.Forms.Controls
             double maxY = ContentSize.Height;
             double currentY = ScrollY;
             double currentX = ScrollX;
-            double componentSize = (Orientation == ScrollOrientation.Horizontal) ? ItemWidth : ItemHeight;
+            double componentSize = (Orientation == ScrollOrientation.Horizontal) ? ItemWidth + Spacing : ItemHeight + Spacing;
             double maxComponentValue = (Orientation == ScrollOrientation.Horizontal) ? maxX : maxY;
 
             double newPosition = (indexInSource.Clamp(0, maxItems) * componentSize);
@@ -520,11 +520,11 @@ namespace Anuracode.Forms.Controls
 
             if (Orientation == ScrollOrientation.Horizontal)
             {
-                totalWidth = (ItemWidth * itemCount) + (Spacing * itemCount);
+                totalWidth = ((ItemWidth + Spacing) * itemCount);
             }
             else
             {
-                totalheight = (ItemHeight * itemCount) + (Spacing * itemCount);
+                totalheight = ((ItemHeight + Spacing) * itemCount);
             }
 
             SizeRequest resultRequest = new SizeRequest(new Size(totalWidth.Clamp(0, widthConstraint), totalheight.Clamp(0, heightConstraint)), new Size(totalWidth.Clamp(0, widthConstraint), totalheight.Clamp(0, heightConstraint)));
@@ -682,11 +682,11 @@ namespace Anuracode.Forms.Controls
 
                                 if (Orientation == ScrollOrientation.Horizontal)
                                 {
-                                    elementLeft = (ItemWidth * i) + ((poolCount * ItemWidth) * poolDiffAhead) + (Spacing * i) + ((poolCount * Spacing) * poolDiffAhead);
+                                    elementLeft = ((ItemWidth + Spacing) * i) + ((poolCount * (ItemWidth + Spacing)) * poolDiffAhead);
                                 }
                                 else
                                 {
-                                    elementTop = (ItemHeight * i) + ((poolCount * ItemHeight) * poolDiffAhead) + (Spacing * i) + ((poolCount * Spacing) * poolDiffAhead);
+                                    elementTop = ((ItemHeight + Spacing) * i) + ((poolCount * (ItemHeight + Spacing)) * poolDiffAhead);
                                 }
 
                                 UpdatePoolBindingContext(indexToUpdate, itemView, cancellationToken);
@@ -697,11 +697,11 @@ namespace Anuracode.Forms.Controls
 
                                 if (Orientation == ScrollOrientation.Horizontal)
                                 {
-                                    elementLeft = (ItemWidth * i) + ((poolCount * ItemWidth) * poolDiff) + (Spacing * i) + ((poolCount * Spacing) * poolDiff);
+                                    elementLeft = ((ItemWidth + Spacing) * i) + ((poolCount * (ItemWidth + Spacing)) * poolDiff);
                                 }
                                 else
                                 {
-                                    elementTop = (ItemHeight * i) + ((poolCount * ItemHeight) * poolDiff) + (Spacing * i) + ((poolCount * Spacing) * poolDiff);
+                                    elementTop = ((ItemHeight + Spacing) * i) + ((poolCount * (ItemHeight + Spacing)) * poolDiff);
                                 }
 
                                 UpdatePoolBindingContext(indexToUpdate, itemView, cancellationToken);
@@ -809,12 +809,12 @@ namespace Anuracode.Forms.Controls
 
                     if (Orientation == ScrollOrientation.Horizontal)
                     {
-                        fullpool = ((Width * (1 / ItemWidth)) + PoolAheadItems);
+                        fullpool = ((Width * (1 / (ItemWidth + Spacing))) + PoolAheadItems);
                         visibleCount = fullpool.Clamp(0, itemSourceCount);
                     }
                     else
                     {
-                        fullpool = ((Height * (1 / ItemHeight)) + PoolAheadItems);
+                        fullpool = ((Height * (1 / (ItemHeight + Spacing))) + PoolAheadItems);
                         visibleCount = fullpool.Clamp(0, itemSourceCount);
                     }
 
@@ -917,7 +917,7 @@ namespace Anuracode.Forms.Controls
 
             await PrepareControlPool();
 
-            double itemLenght = Orientation == ScrollOrientation.Horizontal ? ItemWidth : ItemHeight;
+            double itemLenght = Orientation == ScrollOrientation.Horizontal ? ItemWidth + Spacing : ItemHeight + Spacing;
             double axisScroll = Orientation == ScrollOrientation.Horizontal ? ScrollX : ScrollY;
 
             int calculatedStep = 0;
