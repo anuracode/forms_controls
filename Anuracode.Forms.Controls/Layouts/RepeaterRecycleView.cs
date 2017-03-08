@@ -376,6 +376,20 @@ namespace Anuracode.Forms.Controls
         protected CancellationTokenSource RenderCancellationToken { get; set; }
 
         /// <summary>
+        /// Relayout items.
+        /// </summary>
+        public virtual void RelayoutItems()
+        {
+            AC.ScheduleManaged(
+                   async () =>
+                   {
+                       await CancelRenderAsync(false);
+
+                       await UpdateStep(forceRedraw: true);
+                   });
+        }
+
+        /// <summary>
         /// Scroll to an index in the collection.
         /// </summary>
         /// <param name="indexInSource">Index to scroll to.</param>

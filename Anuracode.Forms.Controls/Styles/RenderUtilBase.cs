@@ -66,7 +66,7 @@ namespace Anuracode.Forms.Controls.Styles
             {
                 if (viewElement.Opacity != 0)
                 {
-                    viewElement.Opacity = 1;
+                    viewElement.Opacity = 0;
                 }
 
                 if (viewElement.IsVisible != true)
