@@ -374,7 +374,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, true, false, false, false);
+                return Device.RuntimePlatform.OnPlatform(true, true, false, false, false);
             }
         }
 
@@ -913,12 +913,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (ImageMain != null)
             {
-                ImageMain.SetBinding<StoreDetailViewModel>(Image.SourceProperty, vm => vm.CurrentItemViewModel.MainImagePath);
+                ImageMain.SetBinding(Image.SourceProperty, "CurrentItemViewModel.MainImagePath");
             }
 
             if (ThumbImage != null)
             {
-                ThumbImage.SetBinding<StoreDetailViewModel>(View.BindingContextProperty, vm => vm.CurrentItemViewModel);
+                ThumbImage.SetBinding(View.BindingContextProperty, "CurrentItemViewModel");
                 ThumbImage.PrepareBindings();
             }
 
@@ -929,18 +929,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (LevelView != null)
             {
-                LevelView.SetBinding<StoreDetailViewModel>(StoreItemLevelSimpleView.BindingContextProperty, vm => vm.CurrentItemViewModel.ItemLevel);
+                LevelView.SetBinding(StoreItemLevelSimpleView.BindingContextProperty, "CurrentItemViewModel.ItemLevel");
                 LevelView.PrepareBindings();
             }
 
             if (LabelName != null)
             {
-                LabelName.SetBinding<StoreDetailViewModel>(ExtendedLabel.TextProperty, vm => vm.CurrentItemViewModel.Item.Name);
+                LabelName.SetBinding(ExtendedLabel.TextProperty, "CurrentItemViewModel.Item.Name");
             }
 
             if (LabelShortDescription != null)
             {
-                LabelShortDescription.SetBinding<StoreDetailViewModel>(ExtendedLabel.TextProperty, vm => vm.CurrentItemViewModel.Item.ShortDescription);
+                LabelShortDescription.SetBinding(ExtendedLabel.TextProperty, "CurrentItemViewModel.Item.ShortDescription");
             }
 
             if (PriceLabel != null)
@@ -950,7 +950,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (RecyclerImages != null)
             {
-                RecyclerImages.SetBinding<StoreDetailViewModel>(RepeaterRecycleView.ItemsSourceProperty, vm => vm.CurrentItemViewModel.Images);
+                RecyclerImages.SetBinding(RepeaterRecycleView.ItemsSourceProperty, "CurrentItemViewModel.Images");
             }
         }
 

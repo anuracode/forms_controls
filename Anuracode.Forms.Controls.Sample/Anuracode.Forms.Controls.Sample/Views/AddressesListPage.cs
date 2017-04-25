@@ -39,7 +39,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             base.BindLabelNoElements(labelToSet);
 
-            labelToSet.SetBinding<AddressListViewModel>(Label.TextProperty, vm => vm.LocalizationResources.AddressesEmptyText);
+            labelToSet.SetBinding(Label.TextProperty, "LocalizationResources.AddressesEmptyText");
         }
 
         /// <summary>

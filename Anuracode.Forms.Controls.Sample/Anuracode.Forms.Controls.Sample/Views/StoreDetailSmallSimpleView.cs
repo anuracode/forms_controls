@@ -406,21 +406,21 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (ButtonIconShowDetail != null)
             {
                 ButtonIconShowDetail.BindingContext = this;
-                ButtonIconShowDetail.SetBinding<StoreDetailSmallSimpleView>(ContentViewButton.CommandParameterProperty, vm => vm.SelectedItemViewModel);
+                ButtonIconShowDetail.SetBinding(ContentViewButton.CommandParameterProperty, "SelectedItemViewModel");
                 ButtonIconShowDetail.Command = ViewItemDetailCommand;
             }
 
             if (ButtonTextDetail != null)
             {
                 ButtonTextDetail.BindingContext = this;
-                ButtonTextDetail.SetBinding<StoreDetailSmallSimpleView>(ContentViewButton.CommandParameterProperty, vm => vm.SelectedItemViewModel);
+                ButtonTextDetail.SetBinding(ContentViewButton.CommandParameterProperty, "SelectedItemViewModel");
                 ButtonTextDetail.Command = ViewItemDetailCommand;
             }
 
             if (ButtonThumbImage != null)
             {
                 ButtonThumbImage.BindingContext = this;
-                ButtonThumbImage.SetBinding<StoreDetailSmallSimpleView>(ContentViewButton.CommandParameterProperty, vm => vm.SelectedItemViewModel);
+                ButtonThumbImage.SetBinding(ContentViewButton.CommandParameterProperty, "SelectedItemViewModel");
                 ButtonThumbImage.Command = ViewItemDetailCommand;
             }
         }

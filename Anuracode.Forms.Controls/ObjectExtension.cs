@@ -60,7 +60,7 @@ namespace Anuracode.Forms.Controls.Extensions
                 });
 
             return tc.Task;
-        }
+        }        
 
         /// <summary>
         /// Platform delegate.
@@ -73,25 +73,26 @@ namespace Anuracode.Forms.Controls.Extensions
         /// <param name="windows">Delegate to use.</param>
         /// <param name="other">Delegate to use.</param>
         /// <returns>Value to use.</returns>
-        public static TValue OnPlatform<TValue>(this TargetPlatform os, TValue iOS, TValue android, TValue windowsPhone, TValue windows, TValue other = default(TValue))
+        public static TValue OnPlatform<TValue>(this string os, TValue iOS, TValue android, TValue windowsPhone, TValue windows, TValue other = default(TValue))
         {
             TValue returnValue = default(TValue);
 
             switch (os)
             {
-                case TargetPlatform.Android:
+                case Device.Android:
                     returnValue = android;
                     break;
 
-                case TargetPlatform.WinPhone:
+                case Device.WinPhone:
                     returnValue = windowsPhone;
                     break;
 
-                case TargetPlatform.Windows:
+                case Device.UWP:
+                case Device.WinRT:
                     returnValue = windows;
                     break;
 
-                case TargetPlatform.iOS:
+                case Device.iOS:
                     returnValue = iOS;
                     break;
 

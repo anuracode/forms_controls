@@ -552,7 +552,7 @@ namespace Anuracode.Forms.Controls.Sample.ViewModels
         {
             get
             {
-                return Device.OS.OnPlatform(15, 15, 15, 15, 30);
+                return Device.RuntimePlatform.OnPlatform(15, 15, 15, 15, 30);
             }
         }
 

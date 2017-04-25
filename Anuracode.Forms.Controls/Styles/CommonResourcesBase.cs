@@ -153,7 +153,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS && Device.Idiom == TargetIdiom.Phone)
+                if (Device.RuntimePlatform == Device.iOS && Device.Idiom == TargetIdiom.Phone)
                 {
                     return 30;
                 }
@@ -171,7 +171,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                 {
                     return new Color(Color.Black.R, Color.Black.G, Color.Black.B, 0.75);
                 }
@@ -200,7 +200,7 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                 {
                     return new Color(Color.Black.R, Color.Black.G, Color.Black.B, 0.7);
                 }

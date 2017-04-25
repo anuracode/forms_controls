@@ -189,15 +189,15 @@ namespace Anuracode.Forms.Controls.Styles
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS && Device.Idiom == TargetIdiom.Phone)
+                if (Device.RuntimePlatform == Device.iOS && Device.Idiom == TargetIdiom.Phone)
                 {
                     return 0.8;
                 }
-                if (Device.OS == TargetPlatform.Android && Device.Idiom == TargetIdiom.Phone)
+                if (Device.RuntimePlatform == Device.Android && Device.Idiom == TargetIdiom.Phone)
                 {
                     return 0.8;
                 }
-                else if (Device.OS == TargetPlatform.Windows)
+                else if ((Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP))
                 {
                     return 0.9;
                 }
@@ -220,21 +220,21 @@ namespace Anuracode.Forms.Controls.Styles
             switch (namedSize)
             {
                 case NamedSize.Large:
-                    fontSize = Device.OS.OnPlatform(28, 28, 28, 32, 32);
+                    fontSize = Device.RuntimePlatform.OnPlatform(28, 28, 28, 32, 32);
                     break;
 
                 case NamedSize.Micro:
-                    fontSize = Device.OS.OnPlatform(13, 13, 13, 15, 15);
+                    fontSize = Device.RuntimePlatform.OnPlatform(13, 13, 13, 15, 15);
                     break;
 
                 case NamedSize.Small:
-                    fontSize = Device.OS.OnPlatform(16, 16, 16, 18, 18);
+                    fontSize = Device.RuntimePlatform.OnPlatform(16, 16, 16, 18, 18);
                     break;
 
                 case NamedSize.Default:
                 case NamedSize.Medium:
                 default:
-                    fontSize = Device.OS.OnPlatform(18, 18, 18, 22, 22);
+                    fontSize = Device.RuntimePlatform.OnPlatform(18, 18, 18, 22, 22);
                     break;
             }
 

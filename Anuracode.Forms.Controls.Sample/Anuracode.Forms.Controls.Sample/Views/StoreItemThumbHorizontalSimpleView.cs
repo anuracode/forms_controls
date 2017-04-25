@@ -395,32 +395,32 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (ThumbNormalBorder != null)
             {
-                ThumbNormalBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+                ThumbNormalBorder.SetBinding(ShapeView.IsVisibleProperty, "Item.IsFeautred", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
             }
 
             if (ThumbFeaturedBorder != null)
             {
-                ThumbFeaturedBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred);
+                ThumbFeaturedBorder.SetBinding(ShapeView.IsVisibleProperty, "Item.IsFeautred");
             }
 
             if (ThumbImage != null)
             {
-                ThumbImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.BrandImagePath);
+                ThumbImage.SetBinding(Image.SourceProperty, "BrandImagePath");
             }
 
             if (NewLabel != null)
             {
-                NewLabel.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsNew);
+                NewLabel.SetBinding(View.IsVisibleProperty, "Item.IsNew");
             }
 
             if (BackgroundShapeNewLeft != null)
             {
-                BackgroundShapeNewLeft.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsNew);
+                BackgroundShapeNewLeft.SetBinding(View.IsVisibleProperty, "Item.IsNew");
             }
 
             if (BackgroundShapeFeaturedLeft != null)
             {
-                BackgroundShapeFeaturedLeft.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsFeautred);
+                BackgroundShapeFeaturedLeft.SetBinding(View.IsVisibleProperty, "Item.IsFeautred");
             }
 
             if (ProductPriceLabel != null)
@@ -430,7 +430,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                ProductNameLabel.SetBinding<StoreItemViewModel>(Label.TextProperty, vm => vm.Item.Name);
+                ProductNameLabel.SetBinding(Label.TextProperty, "Item.Name");
             }
         }
     }

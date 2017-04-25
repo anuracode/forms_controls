@@ -261,10 +261,10 @@ namespace Anuracode.Forms.Controls
                 LabelGlyph.BackgroundColor = Color.Teal;
             }
 
-            LabelGlyph.SetBinding<GlyphContentViewButton>(ExtendedLabel.TextColorProperty, vm => vm.GlyphTextColor);
-            LabelGlyph.SetBinding<GlyphContentViewButton>(ExtendedLabel.FontSizeProperty, vm => vm.GlyphFontSize);
-            LabelGlyph.SetBinding<GlyphContentViewButton>(ExtendedLabel.FontNameProperty, vm => vm.GlyphFontName);
-            LabelGlyph.SetBinding<GlyphContentViewButton>(ExtendedLabel.FriendlyFontNameProperty, vm => vm.GlyphFriendlyFontName);
+            LabelGlyph.SetBinding(ExtendedLabel.TextColorProperty, nameof(GlyphTextColor));
+            LabelGlyph.SetBinding(ExtendedLabel.FontSizeProperty, nameof(GlyphFontSize));
+            LabelGlyph.SetBinding(ExtendedLabel.FontNameProperty, nameof(GlyphFontName));
+            LabelGlyph.SetBinding(ExtendedLabel.FriendlyFontNameProperty, nameof(GlyphFriendlyFontName));
 
             return LabelGlyph;
         }

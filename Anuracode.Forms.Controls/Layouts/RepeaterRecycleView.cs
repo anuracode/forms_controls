@@ -117,7 +117,7 @@ namespace Anuracode.Forms.Controls
             ContentLayout.OnLayoutChildren += ContentLayout_OnLayoutChildren;
             ContentLayout.ManualSizeCalculationDelegate = ContentLayout_OnSizeRequest;
 
-            if (Device.OS == TargetPlatform.Windows)
+            if ((Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP))
             {
                 showActivityIndicator = false;
             }
@@ -131,8 +131,8 @@ namespace Anuracode.Forms.Controls
 
                 ActivityView.BindingContext = this;
 
-                ActivityView.SetBinding<RepeaterRecycleView>(View.IsVisibleProperty, vm => vm.IsLoading);
-                ActivityView.SetBinding<RepeaterRecycleView>(ActivityIndicator.IsRunningProperty, vm => vm.IsLoading);
+                ActivityView.SetBinding(View.IsVisibleProperty, "IsLoading");
+                ActivityView.SetBinding(ActivityIndicator.IsRunningProperty, "IsLoading");
 
                 ContentLayout.Children.Add(ActivityView);
             }

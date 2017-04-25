@@ -76,12 +76,12 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (ImageDetailPreview != null)
             {
-                ImageDetailPreview.SetBinding<StoreItemCartViewModel>(ContentViewButton.SourceProperty, mv => mv.ItemViewModel.ThumbnailImagePath);                
+                ImageDetailPreview.SetBinding(ContentViewButton.SourceProperty, "ItemViewModel.ThumbnailImagePath");                
             }
 
             if (LabelName != null)
             {
-                LabelName.SetBinding<StoreItemCartViewModel>(Label.TextProperty, mv => mv.ItemViewModel.Item.Name);
+                LabelName.SetBinding(Label.TextProperty, "ItemViewModel.Item.Name");
             }
 
             if (LabelPriceValue != null)

@@ -87,7 +87,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, false, true, true, true);
+                return Device.RuntimePlatform.OnPlatform(true, false, true, true, true);
             }
         }
 
@@ -189,7 +189,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, false, true, true, true);
+                return Device.RuntimePlatform.OnPlatform(true, false, true, true, true);
             }
         }
 
@@ -989,33 +989,33 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (BackgroundImage != null)
             {
-                BackgroundImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.MainImagePath);
+                BackgroundImage.SetBinding(Image.SourceProperty, "MainImagePath");
             }
 
             if (ThumbNormalBorder != null)
             {
-                ThumbNormalBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+                ThumbNormalBorder.SetBinding(ShapeView.IsVisibleProperty, "Item.IsFeautred", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
             }
 
             if (ThumbFeaturedBorder != null)
             {
-                ThumbFeaturedBorder.SetBinding<StoreItemViewModel>(ShapeView.IsVisibleProperty, mv => mv.Item.IsFeautred);
+                ThumbFeaturedBorder.SetBinding(ShapeView.IsVisibleProperty, "Item.IsFeautred");
             }
 
             if (ThumbImage != null)
             {
-                ThumbImage.SetBinding<StoreItemViewModel>(Image.SourceProperty, mv => mv.ThumbnailImagePath);
+                ThumbImage.SetBinding(Image.SourceProperty, "ThumbnailImagePath");
                 ThumbImage.LoadingPlaceholder = "~/loading.png".Replace(StoreItem.DEFAULT_PATH_SHORTCUT, StoreItem.DEFAULT_SERVER_IMAGE_PATH);
             }
 
             if (NewLabel != null)
             {
-                NewLabel.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, mv => mv.Item.IsNew);
+                NewLabel.SetBinding(View.IsVisibleProperty, "Item.IsNew");
             }
 
             if (ProductShortDescriptionLabel != null)
             {
-                ProductShortDescriptionLabel.SetBinding<StoreItemViewModel>(ExtendedLabel.TextProperty, vm => vm.Item.ShortDescription);
+                ProductShortDescriptionLabel.SetBinding(ExtendedLabel.TextProperty, "Item.ShortDescription");
             }
 
             if (ProductPriceLabel != null)
@@ -1025,7 +1025,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (ProductNameLabel != null)
             {
-                ProductNameLabel.SetBinding<StoreItemViewModel>(Label.TextProperty, vm => vm.Item.Name);
+                ProductNameLabel.SetBinding(Label.TextProperty, "Item.Name");
             }
         }
     }

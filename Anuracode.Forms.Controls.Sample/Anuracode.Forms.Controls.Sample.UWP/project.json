@@ -7,7 +7,7 @@
     "Rx-Core": "2.2.5",
     "Rx-Main": "2.2.5",
     "Rx-PlatformServices": "2.2.5",
-    "Xamarin.Forms": "2.3.2.127"
+    "Xamarin.Forms": "2.3.5.233-pre1"
   },
   "frameworks": {
     "uap10.0": {}

@@ -161,7 +161,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     isBlank = SignatureView.IsBlank;
                 }
 
-                if (Device.OS == TargetPlatform.WinPhone)
+                if (Device.RuntimePlatform == Device.WinPhone)
                 {
                     isBlank = false;
                 }
@@ -349,7 +349,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS == TargetPlatform.iOS;
+                return Device.RuntimePlatform == Device.iOS;
             }
         }
 

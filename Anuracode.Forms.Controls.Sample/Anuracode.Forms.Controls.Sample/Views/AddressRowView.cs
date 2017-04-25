@@ -327,36 +327,36 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (LabelNickName != null)
             {
-                LabelNickName.SetBinding<Model.Address>(ExtendedLabel.TextProperty, mv => mv.NickName);
-                LabelNickName.SetBinding<Model.Address>(ExtendedLabel.IsVisibleProperty, vm => vm.NickName, converter: Theme.CommonResources.StringToBooleanConverter);
+                LabelNickName.SetBinding(ExtendedLabel.TextProperty, "NickName");
+                LabelNickName.SetBinding(ExtendedLabel.IsVisibleProperty, "NickName", converter: Theme.CommonResources.StringToBooleanConverter);
             }
 
             if (LabelRecipient != null)
             {
                 // Recipient
-                LabelRecipient.SetBinding<Model.Address>(ExtendedLabel.TextProperty, mv => mv.Name);
-                LabelRecipient.SetBinding<Model.Address>(ExtendedLabel.IsVisibleProperty, vm => vm.Name, converter: Theme.CommonResources.StringToBooleanConverter);
+                LabelRecipient.SetBinding(ExtendedLabel.TextProperty, "Name");
+                LabelRecipient.SetBinding(ExtendedLabel.IsVisibleProperty, "Name", converter: Theme.CommonResources.StringToBooleanConverter);
             }
 
             if (LabelPhoneValue != null)
             {
                 // Phone
-                LabelPhoneValue.SetBinding<Model.Address>(ExtendedLabel.TextProperty, vm => vm.Phone);
-                LabelPhoneValue.SetBinding<Model.Address>(ExtendedLabel.IsVisibleProperty, vm => vm.Phone, converter: Theme.CommonResources.StringToBooleanConverter);
+                LabelPhoneValue.SetBinding(ExtendedLabel.TextProperty, "Phone");
+                LabelPhoneValue.SetBinding(ExtendedLabel.IsVisibleProperty, "Phone", converter: Theme.CommonResources.StringToBooleanConverter);
             }
 
             if (LabelLine1Value != null)
             {
                 // Address line.
-                LabelLine1Value.SetBinding<Model.Address>(ExtendedLabel.TextProperty, vm => vm.Line1);
-                LabelLine1Value.SetBinding<Model.Address>(ExtendedLabel.IsVisibleProperty, vm => vm.Line1, converter: Theme.CommonResources.StringToBooleanConverter);
+                LabelLine1Value.SetBinding(ExtendedLabel.TextProperty, "Line1");
+                LabelLine1Value.SetBinding(ExtendedLabel.IsVisibleProperty, "Line1", converter: Theme.CommonResources.StringToBooleanConverter);
             }
 
             if (LabelLine2Value != null)
             {
                 // Address line.
-                LabelLine2Value.SetBinding<Model.Address>(ExtendedLabel.TextProperty, vm => vm.Line2);
-                LabelLine2Value.SetBinding<Model.Address>(ExtendedLabel.IsVisibleProperty, vm => vm.Line2, converter: Theme.CommonResources.StringToBooleanConverter);
+                LabelLine2Value.SetBinding(ExtendedLabel.TextProperty, "Line2");
+                LabelLine2Value.SetBinding(ExtendedLabel.IsVisibleProperty, "Line2", converter: Theme.CommonResources.StringToBooleanConverter);
             }
         }
     }

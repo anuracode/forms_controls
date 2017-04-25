@@ -348,7 +348,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, true, false, false, false);
+                return Device.RuntimePlatform.OnPlatform(true, true, false, false, false);
             }
         }
 
@@ -609,7 +609,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HorizontalOptions = LayoutOptions.Start
             };
 
-            ButtonConfirmOrder.SetBinding<CartListViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.Items);
+            ButtonConfirmOrder.SetBinding(ContentViewButton.CommandParameterProperty, "Items");
 
             panelHeaderButtonsLayout.Children.Add(ButtonConfirmOrder);
 
@@ -685,7 +685,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     })
             };
 
-            repeaterStoreItemsLevels.SetBinding<CartListViewModel>(RepeaterView<StoreItemCartViewModel>.ItemsSourceProperty, vm => vm.Items);
+            repeaterStoreItemsLevels.SetBinding(RepeaterView<StoreItemCartViewModel>.ItemsSourceProperty, "Items");
             detailLayout.Children.Add(repeaterStoreItemsLevels);
 
             var totalLayout = Theme.RenderUtil.RenderIdentedVerticalContainer(generalLayout); ;

@@ -462,8 +462,8 @@ namespace Anuracode.Forms.Controls.Styles
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.ImageWidthRequestProperty, CommonResources.RoundedButtonWidth);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.MarginElementsProperty, 0);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.MarginBordersProperty, 0);
-                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.GlyphFontSizeProperty, Device.OS == TargetPlatform.Windows ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
-                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.FontSizeProperty, Device.OS == TargetPlatform.Windows ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
+                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.GlyphFontSizeProperty, (Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
+                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.FontSizeProperty, (Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
                 }
 
                 return glyphOnlyNavbarButtonStyle;
@@ -782,9 +782,9 @@ namespace Anuracode.Forms.Controls.Styles
                 {
                     textWithGlyphImportantLargeContentButtonStyle = new Style(typeof(GlyphContentViewButton));
                     textWithGlyphImportantLargeContentButtonStyle.BasedOn = TextOnlyImportantContentButtonStyle;
-                    textWithGlyphImportantLargeContentButtonStyle.Setters.Add(ContentViewButton.MarginBordersProperty, Device.OS.OnPlatform(10, 15, 15, 15, 15));
+                    textWithGlyphImportantLargeContentButtonStyle.Setters.Add(ContentViewButton.MarginBordersProperty, Device.RuntimePlatform.OnPlatform(10, 15, 15, 15, 15));
                     textWithGlyphImportantLargeContentButtonStyle.Setters.Add(ContentViewButton.MarginElementsProperty, 0);
-                    textWithGlyphImportantLargeContentButtonStyle.Setters.Add(ContentViewButton.MinimumWidthRequestProperty, Device.OS.OnPlatform(130, 150, 150, 150, 150));
+                    textWithGlyphImportantLargeContentButtonStyle.Setters.Add(ContentViewButton.MinimumWidthRequestProperty, Device.RuntimePlatform.OnPlatform(130, 150, 150, 150, 150));
                 }
 
                 return textWithGlyphImportantLargeContentButtonStyle;
@@ -802,7 +802,7 @@ namespace Anuracode.Forms.Controls.Styles
                 {
                     viewPageStyle = new Style(typeof(ContentPage));
 
-                    if (Device.OS == TargetPlatform.Android)
+                    if (Device.RuntimePlatform == Device.Android)
                     {
                         viewPageStyle.Setters.Add(ContentPage.TitleProperty, CommonResources.ApplicationTitle);
                     }

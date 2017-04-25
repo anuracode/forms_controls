@@ -374,9 +374,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (FilterEntry != null)
             {
                 FilterEntry.BindingContext = this;
-                FilterEntry.SetBinding<FilterBarView>(Entry.TextProperty, vm => vm.Text);
-                FilterEntry.SetBinding<FilterBarView>(Entry.PlaceholderProperty, vm => vm.Placeholder);
-                FilterEntry.SetBinding<FilterBarView>(Entry.TextColorProperty, vm => vm.TextColor);
+                FilterEntry.SetBinding(Entry.TextProperty, "Text");
+                FilterEntry.SetBinding(Entry.PlaceholderProperty, "Placeholder");
+                FilterEntry.SetBinding(Entry.TextColorProperty, "TextColor");
 
                 FilterEntry.Completed -= FilterEntry_Completed;
                 FilterEntry.Completed += FilterEntry_Completed;
@@ -385,10 +385,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (SearchButton != null)
             {
                 SearchButton.BindingContext = this;
-                SearchButton.SetBinding<FilterBarView>(ContentViewButton.CommandProperty, vm => vm.Command);
-                SearchButton.SetBinding<FilterBarView>(ContentViewButton.CommandParameterProperty, vm => vm.CommandParameter);
-                SearchButton.SetBinding<FilterBarView>(ContentViewButton.ImageHeightRequestProperty, vm => vm.ImageHeightRequest);
-                SearchButton.SetBinding<FilterBarView>(ContentViewButton.ImageWidthRequestProperty, vm => vm.ImageWidthRequest);
+                SearchButton.SetBinding(ContentViewButton.CommandProperty, "Command");
+                SearchButton.SetBinding(ContentViewButton.CommandParameterProperty, "CommandParameter");
+                SearchButton.SetBinding(ContentViewButton.ImageHeightRequestProperty, "ImageHeightRequest");
+                SearchButton.SetBinding(ContentViewButton.ImageWidthRequestProperty, "ImageWidthRequest");
             }
         }
 

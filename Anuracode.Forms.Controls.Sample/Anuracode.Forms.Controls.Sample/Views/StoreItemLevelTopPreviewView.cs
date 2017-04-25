@@ -227,7 +227,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, true, true, true, true);
+                return Device.RuntimePlatform.OnPlatform(true, true, true, true, true);
             }
         }
 
@@ -508,7 +508,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             }
             else
             {
-                bool hasVisibleButton = Device.OS.OnPlatform(true, false, false, false, true);
+                bool hasVisibleButton = Device.RuntimePlatform.OnPlatform(true, false, false, false, true);
 
                 DataTemplate itemTemplate = null;
 
@@ -603,19 +603,19 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             if (ButtonCategory != null)
             {
-                ButtonCategory.SetBinding<StoreItemLevelViewModel>(ContentViewButton.TextProperty, vm => vm.Item, converter: Theme.CommonResources.StoreItemLevelToLowerLevelStringConverter);
-                ButtonCategory.SetBinding<StoreItemLevelViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.Item);
+                ButtonCategory.SetBinding(ContentViewButton.TextProperty, "Item", converter: Theme.CommonResources.StoreItemLevelToLowerLevelStringConverter);
+                ButtonCategory.SetBinding(ContentViewButton.CommandParameterProperty, "Item");
             }
 
             if (ButtonExpandCategory != null)
             {
-                ButtonExpandCategory.SetBinding<StoreItemLevelViewModel>(ContentViewButton.TextProperty, vm => vm.Item, converter: Theme.CommonResources.StoreItemLevelToLowerLevelStringConverter);
-                ButtonExpandCategory.SetBinding<StoreItemLevelViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.Item);
+                ButtonExpandCategory.SetBinding(ContentViewButton.TextProperty, "Item", converter: Theme.CommonResources.StoreItemLevelToLowerLevelStringConverter);
+                ButtonExpandCategory.SetBinding(ContentViewButton.CommandParameterProperty, "Item");
             }
 
             if (ButtonAllProducts != null)
             {
-                ButtonAllProducts.SetBinding<StoreItemLevelViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.Item);
+                ButtonAllProducts.SetBinding(ContentViewButton.CommandParameterProperty, "Item");
             }
 
             if (GridViewProducts != null)
@@ -627,8 +627,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         ActivityView.BindingContext = GridViewProducts;
                     }
 
-                    ActivityView.SetBinding<RepeaterRecycleView>(View.IsVisibleProperty, vm => vm.IsLoading);
-                    ActivityView.SetBinding<RepeaterRecycleView>(ActivityIndicator.IsRunningProperty, vm => vm.IsLoading);
+                    ActivityView.SetBinding(View.IsVisibleProperty, "IsLoading");
+                    ActivityView.SetBinding(ActivityIndicator.IsRunningProperty, "IsLoading");
                 }
             }
 
@@ -641,8 +641,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         ActivityView.BindingContext = RepeaterTopItems;
                     }
 
-                    ActivityView.SetBinding<RepeaterView<StoreItemViewModel>>(View.IsVisibleProperty, vm => vm.IsLoading);
-                    ActivityView.SetBinding<RepeaterView<StoreItemViewModel>>(ActivityIndicator.IsRunningProperty, vm => vm.IsLoading);
+                    ActivityView.SetBinding(View.IsVisibleProperty, "IsLoading");
+                    ActivityView.SetBinding(ActivityIndicator.IsRunningProperty, "IsLoading");
                 }
             }
         }

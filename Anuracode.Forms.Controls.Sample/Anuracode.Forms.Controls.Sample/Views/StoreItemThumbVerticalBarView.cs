@@ -61,7 +61,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, false, true, true, true);
+                return Device.RuntimePlatform.OnPlatform(true, false, true, true, true);
             }
         }
 
@@ -72,7 +72,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, true, false, false, false);
+                return Device.RuntimePlatform.OnPlatform(true, true, false, false, false);
             }
         }
 
@@ -537,7 +537,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (BackgroundShape != null)
             {
-                BackgroundShape.SetBinding<StoreItemViewModel>(View.IsVisibleProperty, vm => vm.Item.HasFullSizeThumb);
+                BackgroundShape.SetBinding(View.IsVisibleProperty, "Item.HasFullSizeThumb");
             }
         }
     }

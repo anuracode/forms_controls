@@ -106,7 +106,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         protected virtual void BindListElements()
         {
             ListElementsAll.ItemsSource = ViewModel.Items;
-            ListElementsAll.SetBinding<TViewModel>(InfiniteListView.TotalItemsCountProperty, vm => vm.TotalItemsCount);
+            ListElementsAll.SetBinding(InfiniteListView.TotalItemsCountProperty, "TotalItemsCount");
         }
 
         /// <summary>
@@ -203,9 +203,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
             BindListElements();
 
             ListElementsAll.IsPullToRefreshEnabled = true;
-            ListElementsAll.SetBinding<TViewModel>(InfiniteListView.RefreshCommandProperty, vm => vm.RefreshCommand);
-            ListElementsAll.SetBinding<TViewModel>(InfiniteListView.IsRefreshingProperty, vm => vm.IsLoading, mode: BindingMode.OneWay);
-            ListElementsAll.SetBinding<TViewModel>(InfiniteListView.LoadMoreCommandProperty, vm => vm.LoadMoreItemsCommand);
+            ListElementsAll.SetBinding(InfiniteListView.RefreshCommandProperty, "RefreshCommand");
+            ListElementsAll.SetBinding(InfiniteListView.IsRefreshingProperty, "IsLoading", mode: BindingMode.OneWay);
+            ListElementsAll.SetBinding(InfiniteListView.LoadMoreCommandProperty, "LoadMoreItemsCommand");
 
             return ListElementsAll;
         }
@@ -240,7 +240,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     Orientation = StackOrientation.Horizontal
                 };
 
-                stackFilterLabel.SetBinding<TViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsFiltered);
+                stackFilterLabel.SetBinding(StackLayout.IsVisibleProperty, "IsFiltered");
 
                 ExtendedLabel labelSearchResults = new ExtendedLabel()
                 {
@@ -267,7 +267,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     MinimumWidthRequest = 250
                 };
 
-                labelSearchTerm.SetBinding<TViewModel>(TextContentViewButton.TextProperty, vm => vm.FilterTerm);
+                labelSearchTerm.SetBinding(TextContentViewButton.TextProperty, "FilterTerm");
                 stackFilterLabel.Children.Add(labelSearchTerm);
 
                 panelNoElementsLayout.Children.Add(stackFilterLabel);

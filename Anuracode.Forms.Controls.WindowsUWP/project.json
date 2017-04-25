@@ -4,7 +4,7 @@
     "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "modernhttpclient": "2.4.2",
-    "Xamarin.Forms": "2.3.2.127"
+    "Xamarin.Forms": "2.3.5.233-pre1"
   },
   "frameworks": {
     "uap10.0": {}

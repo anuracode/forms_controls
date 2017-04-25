@@ -159,7 +159,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.FormRowContainerStyle
             };
 
-            stackLoggedIn.SetBinding<ProfileViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsLoggedIn);
+            stackLoggedIn.SetBinding(StackLayout.IsVisibleProperty, "IsLoggedIn");
 
             GridTopInfo = new Grid()
             {
@@ -190,8 +190,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextEdit
             };
 
-            buttonEdit.SetBinding<ProfileViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.EditButton);
-            // buttonEdit.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.EditClientInfoCommand);
+            buttonEdit.SetBinding(ContentViewButton.TextProperty, "LocalizationResources.EditButton");
+            // buttonEdit.SetBinding(ContentViewButton.CommandProperty, vm => vm.EditClientInfoCommand);
             stackLoggedInButtons.Children.Add(buttonEdit);
 
             ContentViewButton buttonLogout = new GlyphOnlyContentViewButton()
@@ -201,8 +201,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 GlyphText = Theme.CommonResources.GlyphTextLogout
             };
 
-            buttonLogout.SetBinding<ProfileViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.SignOutButton);
-            // buttonLogout.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LogoutCommand);
+            buttonLogout.SetBinding(ContentViewButton.TextProperty, "LocalizationResources.SignOutButton");
+            // buttonLogout.SetBinding(ContentViewButton.CommandProperty, vm => vm.LogoutCommand);
             stackLoggedInButtons.Children.Add(buttonLogout);
 
             stackmainInfo.Children.Add(stackLoggedInButtons);
@@ -217,7 +217,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             imageProfile.WidthRequest = imageProfileWidth;
             imageProfile.HeightRequest = imageProfileWidth;
 
-            imageProfile.SetBinding<ProfileViewModel>(Image.SourceProperty, vm => vm.UserThumbImage);
+            imageProfile.SetBinding(Image.SourceProperty, "UserThumbImage");
 
             stackmainInfo.Children.Add(imageProfile);
 
@@ -229,7 +229,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HorizontalOptions = LayoutOptions.Center
             };
 
-            // labelName.SetBinding<ProfileViewModel>(Label.TextProperty, vm => vm.UserInfo.Name);
+            // labelName.SetBinding(Label.TextProperty, vm => vm.UserInfo.Name);
 
             stackmainInfo.Children.Add(labelName);
 
@@ -241,7 +241,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 FontSize = Theme.CommonResources.TextSizeMicro * 0.7
             };
 
-            // labelProvider.SetBinding<ProfileViewModel>(Label.TextProperty, vm => vm.UserInfo.Provider);
+            // labelProvider.SetBinding(Label.TextProperty, vm => vm.UserInfo.Provider);
 
             stackmainInfo.Children.Add(labelProvider);
 
@@ -258,27 +258,27 @@ namespace Anuracode.Forms.Controls.Sample.Views
             Color lineColor = Theme.CommonResources.SubtleBackgroundColor;
 
             // First Name.
-            Theme.RenderUtil.RenderReadField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.FirstNameLabel, vm => vm.LoggedClient.Name, orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderReadField(stackDetail, "LocalizationResources.FirstNameLabel", "LoggedClient.Name", orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
 
             Theme.RenderUtil.RenderLineSeparator(stackDetail, lineColor, heightRequest: lineHeight);
 
             // Last Name.
-            Theme.RenderUtil.RenderReadField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.LastNameLabel, vm => vm.LoggedClient.Name, orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderReadField(stackDetail, "LocalizationResources.LastNameLabel", "LoggedClient.Name", orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
 
             Theme.RenderUtil.RenderLineSeparator(stackDetail, lineColor, heightRequest: lineHeight);
 
             // Nick name.
-            Theme.RenderUtil.RenderReadField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.NickNameLabel, vm => vm.LoggedClient.NickName, orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderReadField(stackDetail, "LocalizationResources.NickNameLabel", "LoggedClient.NickName", orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
 
             Theme.RenderUtil.RenderLineSeparator(stackDetail, lineColor, heightRequest: lineHeight);
 
             // Mobile phone.
-            Theme.RenderUtil.RenderReadField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.MobilePhoneLabel, vm => vm.LoggedClient.MobilePhone, orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderReadField(stackDetail, "LocalizationResources.MobilePhoneLabel", "LoggedClient.MobilePhone", orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
 
             Theme.RenderUtil.RenderLineSeparator(stackDetail, lineColor, heightRequest: lineHeight);
 
             // phone.
-            Theme.RenderUtil.RenderReadField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.PhoneLabel, vm => vm.LoggedClient.Phone, orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderReadField(stackDetail, "LocalizationResources.PhoneLabel", "LoggedClient.Phone", orientation: StackOrientation.Horizontal, horizontalOptions: TextAlignment.Center);
 
             Theme.RenderUtil.RenderLineSeparator(stackDetail, lineColor, heightRequest: lineHeight);
 
@@ -289,10 +289,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 // Command = BaseViewModel.OpenUrlCommand
             };
 
-            // buttonMailValue.SetBinding<ProfileViewModel>(ContentViewButton.TextProperty, vm => vm.UserInfo.Email);
-            // buttonMailValue.SetBinding<ProfileViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.UserInfo.Email, stringFormat: BaseViewModel.PREFIX_EMAIL + "{0}");
+            // buttonMailValue.SetBinding(ContentViewButton.TextProperty, vm => vm.UserInfo.Email);
+            // buttonMailValue.SetBinding(ContentViewButton.CommandParameterProperty, vm => vm.UserInfo.Email, stringFormat: BaseViewModel.PREFIX_EMAIL + "{0}");
 
-            Theme.RenderUtil.RenderField<ProfileViewModel>(stackDetail, vm => vm.LocalizationResources.EmailLabel, orientation: StackOrientation.Horizontal, contentView: buttonMailValue, horizontalOptions: TextAlignment.Center);
+            Theme.RenderUtil.RenderField(stackDetail, "LocalizationResources.EmailLabel", orientation: StackOrientation.Horizontal, contentView: buttonMailValue, horizontalOptions: TextAlignment.Center);
 
             // When logged in.
             stackGeneral.Children.Add(stackLoggedIn);
@@ -318,7 +318,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             buttonLoginFacebook.Text = "Facebook";
-            buttonLoginFacebook.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LoginFacebookCommand);
+            buttonLoginFacebook.SetBinding(ContentViewButton.CommandProperty, "LoginFacebookCommand");
             stackButtons.Children.Add(buttonLoginFacebook);
 
             ContentViewButton buttonLoginGoogle = new ContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
@@ -331,7 +331,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 WidthRequest = buttonWidth
             };
             buttonLoginGoogle.Text = "Google+";
-            buttonLoginGoogle.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LoginGoogleCommand);
+            buttonLoginGoogle.SetBinding(ContentViewButton.CommandProperty, "LoginGoogleCommand");
             stackButtons.Children.Add(buttonLoginGoogle);
 
             ContentViewButton buttonLoginMicrosoft = new ContentViewButton(true, true, ImageOrientation.ImageToLeft, hasBackground: true)
@@ -346,7 +346,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 WidthRequest = buttonWidth
             };
             buttonLoginMicrosoft.Text = "Microsoft";
-            buttonLoginMicrosoft.SetBinding<ProfileViewModel>(ContentViewButton.CommandProperty, vm => vm.LoginMicrosoftCommand);
+            buttonLoginMicrosoft.SetBinding(ContentViewButton.CommandProperty, "LoginMicrosoftCommand");
             stackButtons.Children.Add(buttonLoginMicrosoft);
 
             StackLayout stackLoggedOut = new StackLayout()
@@ -354,7 +354,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.FormRowContainerStyle
             };
 
-            stackLoggedOut.SetBinding<ProfileViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsLoggedIn, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+            stackLoggedOut.SetBinding(StackLayout.IsVisibleProperty, "IsLoggedIn", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
 
             double marginLogin = 40;
 

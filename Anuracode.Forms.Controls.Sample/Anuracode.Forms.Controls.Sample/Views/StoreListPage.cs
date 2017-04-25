@@ -1727,7 +1727,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     Command = SelectGroupTypeCommand
                 };
 
-                filterButton.SetBinding<StoreListViewModel>(ContentViewButton.IsVisibleContentProperty, vm => vm.IsProductListMode);
+                filterButton.SetBinding(ContentViewButton.IsVisibleContentProperty, "IsProductListMode");
 
                 StackShortCuts.Children.Insert(0, filterButton);
             }
@@ -1813,7 +1813,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 IsVisible = false
             };
 
-            SuggestionsRepeater.SetBinding<StoreListViewModel>(RepeaterRecycleView.ItemsSourceProperty, vm => vm.SuggestedItems);
+            SuggestionsRepeater.SetBinding(RepeaterRecycleView.ItemsSourceProperty, "SuggestedItems");
 
             list.Add(SuggestionsRepeater);
 
@@ -1936,7 +1936,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             base.BindLabelNoElements(labelToSet);
 
-            labelToSet.SetBinding<StoreListViewModel>(Label.TextProperty, vm => vm.LocalizationResources.SearchEmptyToAllStoreText);
+            labelToSet.SetBinding(Label.TextProperty, "LocalizationResources.SearchEmptyToAllStoreText");
         }
 
         /// <summary>
@@ -2076,7 +2076,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     {
                         try
                         {
-                            if (Device.OS.OnPlatform(true, true, true, true, false))
+                            if (Device.RuntimePlatform.OnPlatform(true, true, true, true, false))
                             {
                                 if (ShowItemOptionsCommand.CanExecute(selectedItem))
                                 {
@@ -2227,7 +2227,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             ProductsList.IsVisible = ViewModel.IsProductListMode;
 
-            ProductsList.SetBinding<StoreListViewModel>(InfiniteRepeaterRecycleView.TotalItemsCountProperty, vm => vm.TotalItemsCount);
+            ProductsList.SetBinding(InfiniteRepeaterRecycleView.TotalItemsCountProperty, "TotalItemsCount");
 
             return ProductsList;
         }
@@ -2241,7 +2241,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             base.RenderFilters(headerLayout);
             headerLayout.Spacing = 0.2;
 
-            bool useGridView = Device.OS.OnPlatform(true, true, true, true, false);
+            bool useGridView = Device.RuntimePlatform.OnPlatform(true, true, true, true, false);
 
             if (useGridView)
             {
@@ -2279,8 +2279,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     ItemTemplate = itemTemplate
                 };
 
-                FeaturedScrollView.SetBinding<StoreListViewModel>(RepeaterRecycleView.IsVisibleProperty, vm => vm.IsFullSearchMode, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
-                FeaturedScrollView.SetBinding<StoreListViewModel>(RepeaterRecycleView.ItemsSourceProperty, vm => vm.FeaturedItems);
+                FeaturedScrollView.SetBinding(RepeaterRecycleView.IsVisibleProperty, "IsFullSearchMode", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+                FeaturedScrollView.SetBinding(RepeaterRecycleView.ItemsSourceProperty, "FeaturedItems");
 
                 headerLayout.Children.Add(FeaturedScrollView);
             }
@@ -2293,9 +2293,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     MinimumHeightRequest = 80
                 };
 
-                FeaturedScrollView.SetBinding<StoreListViewModel>(ScrollView.IsVisibleProperty, vm => vm.IsFullSearchMode, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+                FeaturedScrollView.SetBinding(ScrollView.IsVisibleProperty, "IsFullSearchMode", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
 
-                bool hasVisibleButton = Device.OS.OnPlatform(true, true, false, false, true);
+                bool hasVisibleButton = Device.RuntimePlatform.OnPlatform(true, true, false, false, true);
 
                 DataTemplate itemTemplate = null;
 
@@ -2350,7 +2350,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     repeaterFeatured.ItemClickCommand = ShowItemLargeDetailCommand;
                 }
 
-                repeaterFeatured.SetBinding<StoreListViewModel>(RepeaterView<StoreItemViewModel>.ItemsSourceProperty, vm => vm.FeaturedItems);
+                repeaterFeatured.SetBinding(RepeaterView<StoreItemViewModel>.ItemsSourceProperty, "FeaturedItems");
 
                 FeaturedScrollView.Content = repeaterFeatured;
 
@@ -2364,7 +2364,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 MinimumHeightRequest = 60
             };
 
-            sublevelsScrollView.SetBinding<StoreListViewModel>(ScrollView.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
+            sublevelsScrollView.SetBinding(ScrollView.IsVisibleProperty, "IsProductListModeNoFullSearch");
 
             var repeaterSublevels = new RepeaterView<StoreItemLevel>()
             {
@@ -2385,7 +2385,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     })
             };
 
-            repeaterSublevels.SetBinding<StoreListViewModel>(RepeaterView<StoreItemLevel>.ItemsSourceProperty, vm => vm.Sublevels);
+            repeaterSublevels.SetBinding(RepeaterView<StoreItemLevel>.ItemsSourceProperty, "Sublevels");
 
             sublevelsScrollView.Content = repeaterSublevels;
 
@@ -2397,11 +2397,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Orientation = StackOrientation.Horizontal
             };
 
-            stackSeparatorContainer.SetBinding<StoreListViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
+            stackSeparatorContainer.SetBinding(StackLayout.IsVisibleProperty, "IsProductListModeNoFullSearch");
 
             var separatorView = Theme.RenderUtil.InstaceLineSeparator();
 
-            separatorView.SetBinding<StoreListViewModel>(View.IsVisibleProperty, vm => vm.Sublevels.Count, converter: Theme.CommonResources.IntToBooleanConverter);
+            separatorView.SetBinding(View.IsVisibleProperty, "Sublevels.Count", converter: Theme.CommonResources.IntToBooleanConverter);
 
             stackSeparatorContainer.Children.Add(separatorView);
 
@@ -2414,7 +2414,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Orientation = StackOrientation.Horizontal
             };
 
-            stackGroupLabel.SetBinding<StoreListViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
+            stackGroupLabel.SetBinding(StackLayout.IsVisibleProperty, "IsProductListModeNoFullSearch");
 
             ExtendedLabel labelGroupText = new ExtendedLabel()
             {
@@ -2464,9 +2464,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             newFilter.PrepareBindings();
 
-            newFilter.SetBinding<StoreListViewModel>(FilterBarView.TextProperty, vm => vm.FilterTerm, mode: BindingMode.TwoWay);
-            newFilter.SetBinding<StoreListViewModel>(FilterBarView.CommandParameterProperty, vm => vm.FilterTerm);
-            newFilter.SetBinding<StoreListViewModel>(FilterBarView.PlaceholderProperty, vm => vm.LocalizationResources.SearchPlaceHolderText);
+            newFilter.SetBinding(FilterBarView.TextProperty, "FilterTerm", mode: BindingMode.TwoWay);
+            newFilter.SetBinding(FilterBarView.CommandParameterProperty, "FilterTerm");
+            newFilter.SetBinding(FilterBarView.PlaceholderProperty, "LocalizationResources.SearchPlaceHolderText");
 
             FilterBar = newFilter;
 
@@ -2489,7 +2489,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                     Orientation = StackOrientation.Vertical
                 };
 
-                stackSeparatorContainer.SetBinding<StoreListViewModel>(StackLayout.IsVisibleProperty, vm => vm.IsProductListModeNoFullSearch);
+                stackSeparatorContainer.SetBinding(StackLayout.IsVisibleProperty, "IsProductListModeNoFullSearch");
 
                 Theme.RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
 
@@ -2505,7 +2505,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
                 levelView.PrepareBindings();
 
-                levelView.SetBinding<StoreListViewModel>(StoreItemLevelSimpleView.BindingContextProperty, vm => vm.Level);
+                levelView.SetBinding(StoreItemLevelSimpleView.BindingContextProperty, "Level");
                 stackSeparatorContainer.Children.Add(levelView);
 
                 Theme.RenderUtil.RenderSpace(stackSeparatorContainer, heightRequest: 5);
@@ -2629,7 +2629,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Orientation = StackOrientation.Vertical
             };
 
-            panelFoundNoElementsLayout.SetBinding<StoreListViewModel>(View.IsVisibleProperty, vm => vm.IsProductListMode);
+            panelFoundNoElementsLayout.SetBinding(View.IsVisibleProperty, "IsProductListMode");
 
             base.RenderPanelNoElements(panelFoundNoElementsLayout);
 
@@ -2644,7 +2644,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 ContentAlignment = TextAlignment.Start
             };
 
-            searchAllStore.SetBinding<StoreListViewModel>(GlyphContentViewButton.IsVisibleContentProperty, vm => vm.IsFullSearchMode, converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
+            searchAllStore.SetBinding(GlyphContentViewButton.IsVisibleContentProperty, "IsFullSearchMode", converter: Theme.CommonResources.InvertBooleanToBooleanConverter);
 
             panelFoundNoElementsLayout.Children.Add(searchAllStore);
 

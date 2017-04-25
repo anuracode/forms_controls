@@ -659,9 +659,9 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             newFilter.PrepareBindings();
 
-            newFilter.SetBinding<TViewModel>(FilterBarView.TextProperty, vm => vm.FilterTerm, mode: BindingMode.TwoWay);
-            newFilter.SetBinding<TViewModel>(FilterBarView.CommandParameterProperty, vm => vm.FilterTerm);
-            newFilter.SetBinding<TViewModel>(FilterBarView.PlaceholderProperty, vm => vm.LocalizationResources.FilterLabel);
+            newFilter.SetBinding(FilterBarView.TextProperty, "FilterTerm", mode: BindingMode.TwoWay);
+            newFilter.SetBinding(FilterBarView.CommandParameterProperty, "FilterTerm");
+            newFilter.SetBinding(FilterBarView.PlaceholderProperty, "LocalizationResources.FilterLabel");
 
             FilterBar = newFilter;
 

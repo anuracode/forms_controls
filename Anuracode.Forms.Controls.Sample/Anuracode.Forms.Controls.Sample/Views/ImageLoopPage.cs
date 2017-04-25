@@ -73,17 +73,17 @@ namespace Anuracode.Forms.Controls.Sample.Views
             contentLayout.Children.Add(buttonsLayout);
 
             // Count.
-            Theme.RenderUtil.RenderReadField<ImageLoopViewModel>(contentLayout, labelValue: "Count", expressionValue: vm => vm.CurrentCount, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(contentLayout, labelValue: "Count", expressionValue: "CurrentCount", orientation: StackOrientation.Horizontal);
 
             // Path.
-            Theme.RenderUtil.RenderReadField<ImageLoopViewModel>(contentLayout, labelValue: "Path", expressionValue: vm => vm.CurrentImagePath, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(contentLayout, labelValue: "Path", expressionValue: "CurrentImagePath", orientation: StackOrientation.Horizontal);
 
             // Delay.
-            Theme.RenderUtil.RenderReadField<ImageLoopViewModel>(contentLayout, labelValue: "Delay", expressionValue: vm => vm.DelaySeconds, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(contentLayout, labelValue: "Delay", expressionValue: "DelaySeconds", orientation: StackOrientation.Horizontal);
 
             ExtendedSlider sliderFeaturedWeight = new ExtendedSlider();
             sliderFeaturedWeight.StepValue = 0.25f;
-            sliderFeaturedWeight.SetBinding<ImageLoopViewModel>(ExtendedSlider.ValueProperty, vm => vm.DelaySeconds, BindingMode.TwoWay);
+            sliderFeaturedWeight.SetBinding(ExtendedSlider.ValueProperty, "DelaySeconds", BindingMode.TwoWay);
             sliderFeaturedWeight.VerticalOptions = LayoutOptions.Center;
             sliderFeaturedWeight.Minimum = 0.25f;
             sliderFeaturedWeight.Maximum = 5;
@@ -100,7 +100,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Aspect = Aspect.AspectFill
             };
 
-            img.SetBinding<ImageLoopViewModel>(ExtendedImage.SourceProperty, vm => vm.CurrentImagePath);
+            img.SetBinding(ExtendedImage.SourceProperty, "CurrentImagePath");
 
             contentLayout.Children.Add(img);
 

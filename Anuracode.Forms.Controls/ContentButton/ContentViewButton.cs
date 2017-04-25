@@ -1446,8 +1446,8 @@ namespace Anuracode.Forms.Controls
                 IsClippedToBounds = true
             };
 
-            ContentLayout.SetBinding<ContentViewButton>(SimpleLayout.VerticalOptionsProperty, vm => vm.VerticalOptions);
-            ContentLayout.SetBinding<ContentViewButton>(SimpleLayout.HorizontalOptionsProperty, vm => vm.HorizontalOptions);
+            ContentLayout.SetBinding(SimpleLayout.VerticalOptionsProperty, nameof(VerticalOptions));
+            ContentLayout.SetBinding(SimpleLayout.HorizontalOptionsProperty, nameof(HorizontalOptions));
 
             ContentLayout.ManualSizeCalculationDelegate = ContentLayout_OnSizeRequest;
             ContentLayout.OnLayoutChildren += ContentLayout_OnLayoutChildren;
@@ -1465,12 +1465,12 @@ namespace Anuracode.Forms.Controls
                     BindingContext = this
                 };
 
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ColorProperty, vm => vm.ButtonBackgroundColor);
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
-                BackgroundBox.SetBinding<ContentViewButton>(ShapeView.IsVisibleProperty, vm => vm.IsVisible);
+                BackgroundBox.SetBinding(ShapeView.ColorProperty, nameof(ButtonBackgroundColor));
+                BackgroundBox.SetBinding(ShapeView.StrokeColorProperty, nameof(StrokeColor));
+                BackgroundBox.SetBinding(ShapeView.StrokeWidthProperty, nameof(StrokeWidth));
+                BackgroundBox.SetBinding(ShapeView.ShapeTypeProperty, nameof(ShapeType));
+                BackgroundBox.SetBinding(ShapeView.CornerRadiusProperty, nameof(CornerRadius));
+                BackgroundBox.SetBinding(ShapeView.IsVisibleProperty, nameof(IsVisible));
             }
 
             // Tapped view
@@ -1480,11 +1480,11 @@ namespace Anuracode.Forms.Controls
                 Opacity = 0
             };
 
-            TappedBox.SetBinding<ContentViewButton>(ShapeView.ColorProperty, vm => vm.ButtonTappedBackgroundColor);
-            TappedBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
-            TappedBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
-            TappedBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-            TappedBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+            TappedBox.SetBinding(ShapeView.ColorProperty, nameof(ButtonTappedBackgroundColor));
+            TappedBox.SetBinding(ShapeView.StrokeColorProperty, nameof(StrokeColor));
+            TappedBox.SetBinding(ShapeView.StrokeWidthProperty, nameof(StrokeWidth));
+            TappedBox.SetBinding(ShapeView.ShapeTypeProperty, nameof(ShapeType));
+            TappedBox.SetBinding(ShapeView.CornerRadiusProperty, nameof(CornerRadius));
 
             if (hasImage)
             {
@@ -1508,23 +1508,23 @@ namespace Anuracode.Forms.Controls
                     TextExtendedLabel.BackgroundColor = new Color(Color.Blue.R, Color.Blue.G, Color.Blue.B, 0.4);
                 }
 
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.IsUnderlineProperty, vm => vm.IsUnderline);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.LineBreakModeProperty, vm => vm.LineBreakMode);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.FontNameProperty, vm => vm.FontName);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.FontSizeProperty, vm => vm.FontSize);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.FormattedPlaceholderProperty, vm => vm.FormattedPlaceholder);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.PlaceholderProperty, vm => vm.Placeholder);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.FriendlyFontNameProperty, vm => vm.FriendlyFontName);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.TextProperty, vm => vm.Text);
-                TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.FormattedTextProperty, vm => vm.FormattedText);
+                TextExtendedLabel.SetBinding(ExtendedLabel.IsUnderlineProperty, nameof(IsUnderline));
+                TextExtendedLabel.SetBinding(ExtendedLabel.LineBreakModeProperty, nameof(LineBreakMode));
+                TextExtendedLabel.SetBinding(ExtendedLabel.FontNameProperty, nameof(FontName));
+                TextExtendedLabel.SetBinding(ExtendedLabel.FontSizeProperty, nameof(FontSize));
+                TextExtendedLabel.SetBinding(ExtendedLabel.FormattedPlaceholderProperty, nameof(FormattedPlaceholder));
+                TextExtendedLabel.SetBinding(ExtendedLabel.PlaceholderProperty, nameof(Placeholder));
+                TextExtendedLabel.SetBinding(ExtendedLabel.FriendlyFontNameProperty, nameof(FriendlyFontName));
+                TextExtendedLabel.SetBinding(ExtendedLabel.TextProperty, nameof(Text));
+                TextExtendedLabel.SetBinding(ExtendedLabel.FormattedTextProperty, nameof(FormattedText));
 
                 if (HasImage)
                 {
-                    TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.TextColorProperty, vm => vm.TextColor);
+                    TextExtendedLabel.SetBinding(ExtendedLabel.TextColorProperty, nameof(TextColor));
                 }
                 else
                 {
-                    TextExtendedLabel.SetBinding<ContentViewButton>(ExtendedLabel.TextColorProperty, vm => vm.TextColorDisabled);
+                    TextExtendedLabel.SetBinding(ExtendedLabel.TextColorProperty, nameof(TextColorDisabled));
                 }
             }
 
@@ -1541,8 +1541,8 @@ namespace Anuracode.Forms.Controls
                     VerticalOptions = LayoutOptions.FillAndExpand
                 };
 
-                DisableBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-                DisableBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
+                DisableBox.SetBinding(ShapeView.ShapeTypeProperty, nameof(ShapeType));
+                DisableBox.SetBinding(ShapeView.CornerRadiusProperty, nameof(CornerRadius));
             }
 
             // Define tap area.
@@ -1571,10 +1571,10 @@ namespace Anuracode.Forms.Controls
                     VerticalOptions = LayoutOptions.FillAndExpand
                 };
 
-                BorderBox.SetBinding<ContentViewButton>(ShapeView.ShapeTypeProperty, vm => vm.ShapeType);
-                BorderBox.SetBinding<ContentViewButton>(ShapeView.CornerRadiusProperty, vm => vm.CornerRadius);
-                BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeColorProperty, vm => vm.StrokeColor);
-                BorderBox.SetBinding<ContentViewButton>(ShapeView.StrokeWidthProperty, vm => vm.StrokeWidth);
+                BorderBox.SetBinding(ShapeView.ShapeTypeProperty, nameof(ShapeType));
+                BorderBox.SetBinding(ShapeView.CornerRadiusProperty, nameof(CornerRadius));
+                BorderBox.SetBinding(ShapeView.StrokeColorProperty, nameof(StrokeColor));
+                BorderBox.SetBinding(ShapeView.StrokeWidthProperty, nameof(StrokeWidth));
             }
 
             // Add layers.

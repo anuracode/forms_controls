@@ -128,7 +128,7 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                 {
                     return Device.Idiom == TargetIdiom.Phone ? 70 : 100;
                 }
@@ -157,7 +157,7 @@ namespace Anuracode.Forms.Controls.Sample.Views.Common
         {
             get
             {
-                if (Device.OS == TargetPlatform.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                 {
                     return Device.Idiom == TargetIdiom.Phone ? 15 : 20;
                 }

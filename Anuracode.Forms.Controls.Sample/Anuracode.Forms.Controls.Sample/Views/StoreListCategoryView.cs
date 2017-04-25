@@ -52,7 +52,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(true, true, true, true, true);
+                return Device.RuntimePlatform.OnPlatform(true, true, true, true, true);
             }
         }
 
@@ -139,7 +139,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             if (StoreAllProductsButton != null)
             {
-                StoreAllProductsButton.SetBinding<StoreListViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.Level);
+                StoreAllProductsButton.SetBinding(ContentViewButton.CommandParameterProperty, "Level");
                 StoreAllProductsButton.Command = StoreListView.NavigateToStoreLevelProductsCommand;
             }
 
@@ -167,7 +167,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
             if (LevelView != null)
             {
                 LevelView.PrepareBindings();
-                LevelView.SetBinding<StoreListViewModel>(View.BindingContextProperty, vm => vm.Level);
+                LevelView.SetBinding(View.BindingContextProperty, "Level");
                 LevelView.NavigateBackCommand = InternalNavigateBackCommand;
                 LevelView.NavigateToStoreLevelCommand = StoreListView.NavigateToStoreLevelCommand;
             }

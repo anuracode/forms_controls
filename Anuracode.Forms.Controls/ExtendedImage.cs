@@ -3,6 +3,7 @@
 // </copyright>
 // <author>Alberto Puyana</author>
 
+using Anuracode.Forms.Controls.Extensions;
 using Xamarin.Forms;
 
 namespace Anuracode.Forms.Controls
@@ -55,7 +56,7 @@ namespace Anuracode.Forms.Controls
         /// <returns>New path to use.</returns>
         public static string CompleteImagePrefix(string imagePath)
         {
-            return Device.OS == TargetPlatform.Windows ? (PREFIX_WP + imagePath).Trim() : Device.OnPlatform<string>(PREFIX_IOS + imagePath, PREFIX_ANDROID + imagePath, PREFIX_WP + imagePath).Trim();
+            return Device.RuntimePlatform.OnPlatform<string> (PREFIX_IOS + imagePath, PREFIX_ANDROID + imagePath, PREFIX_WP + imagePath, PREFIX_WP + imagePath).Trim();
         }
     }
 }

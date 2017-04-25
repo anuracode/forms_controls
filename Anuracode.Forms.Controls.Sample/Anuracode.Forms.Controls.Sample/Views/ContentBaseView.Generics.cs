@@ -61,7 +61,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             get
             {
-                return Device.OS.OnPlatform(20, 0, 0, 0, 0);
+                return Device.RuntimePlatform.OnPlatform(20, 0, 0, 0, 0);
             }
         }
 
@@ -399,7 +399,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 HorizontalTextAlignment = TextAlignment.Start
             };
 
-            labelTitle.SetBinding<TViewModel>(ExtendedLabel.TextProperty, vm => vm.Title);
+            labelTitle.SetBinding(ExtendedLabel.TextProperty, "Title");
 
             return labelTitle;
         }

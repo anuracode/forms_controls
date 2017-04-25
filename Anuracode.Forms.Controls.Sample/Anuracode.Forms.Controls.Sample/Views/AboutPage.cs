@@ -43,10 +43,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
             var stackGeneral = stackPage;
 
             // Assembly version.
-            Theme.RenderUtil.RenderReadField<AboutViewModel>(stackGeneral, vm => vm.LocalizationResources.AboutAssemblyVersionLabel, vm => vm.AssemblyVersion, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(stackGeneral, "LocalizationResources.AboutAssemblyVersionLabel", "AssemblyVersion", orientation: StackOrientation.Horizontal);
 
             // Assembly file version.
-            Theme.RenderUtil.RenderReadField<AboutViewModel>(stackGeneral, vm => vm.LocalizationResources.AboutFileVersionLabel, vm => vm.FileVersion, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(stackGeneral, "LocalizationResources.AboutFileVersionLabel", "FileVersion", orientation: StackOrientation.Horizontal);
 
             // Support mail.
             TextContentViewButton buttonSupportMailValue = new TextContentViewButton()
@@ -55,10 +55,10 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 MinimumWidthRequest = 350
             };
 
-            buttonSupportMailValue.SetBinding<AboutViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.ErrorMailTo);
-            buttonSupportMailValue.SetBinding<AboutViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.LocalizationResources.ErrorMailTo, stringFormat: BaseViewModel.PREFIX_EMAIL + "{0}");
+            buttonSupportMailValue.SetBinding(ContentViewButton.TextProperty, "LocalizationResources.ErrorMailTo");
+            buttonSupportMailValue.SetBinding(ContentViewButton.CommandParameterProperty, "LocalizationResources.ErrorMailTo", stringFormat: BaseViewModel.PREFIX_EMAIL + "{0}");
 
-            Theme.RenderUtil.RenderFormField<AboutViewModel>(stackGeneral, vm => vm.LocalizationResources.AboutMailLabel, editorView: buttonSupportMailValue, orientation: StackOrientation.Horizontal, labelSytle: Theme.ApplicationStyles.DetailNameExtendedLabelStyle);
+            Theme.RenderUtil.RenderFormField(stackGeneral, "LocalizationResources.AboutMailLabel", editorView: buttonSupportMailValue, orientation: StackOrientation.Horizontal, labelSytle: Theme.ApplicationStyles.DetailNameExtendedLabelStyle);
 
             // Developed by.            
             ContentViewButton buttonDevelopByValue = new TextContentViewButton()
@@ -68,18 +68,18 @@ namespace Anuracode.Forms.Controls.Sample.Views
             };
 
             buttonDevelopByValue.Text = "AnuraCode";
-            buttonDevelopByValue.SetBinding<AboutViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.LocalizationResources.AboutUrl);
+            buttonDevelopByValue.SetBinding(ContentViewButton.CommandParameterProperty, "LocalizationResources.AboutUrl");
 
-            Theme.RenderUtil.RenderFormField<AboutViewModel>(stackGeneral, vm => vm.LocalizationResources.DevelopedByLabel, editorView: buttonDevelopByValue, orientation: StackOrientation.Horizontal, labelSytle: Theme.ApplicationStyles.DetailNameExtendedLabelStyle);
+            Theme.RenderUtil.RenderFormField(stackGeneral, "LocalizationResources.DevelopedByLabel", editorView: buttonDevelopByValue, orientation: StackOrientation.Horizontal, labelSytle: Theme.ApplicationStyles.DetailNameExtendedLabelStyle);
 
-            Theme.RenderUtil.RenderReadField<AboutViewModel>(stackGeneral, vm => vm.LocalizationResources.AboutDisclaimerTitle, orientation: StackOrientation.Horizontal);
+            Theme.RenderUtil.RenderReadField(stackGeneral, "LocalizationResources.AboutDisclaimerTitle", orientation: StackOrientation.Horizontal);
 
             Label labelDisclaimerValue = new ExtendedLabel()
             {
                 Style = Theme.ApplicationStyles.DescriptionExtendedLabelStyle,
                 MinimumWidthRequest = 250
             };
-            labelDisclaimerValue.SetBinding<AboutViewModel>(Label.TextProperty, vm => vm.LocalizationResources.AboutDisclaimerMessage);
+            labelDisclaimerValue.SetBinding(Label.TextProperty, "LocalizationResources.AboutDisclaimerMessage");
             stackGeneral.Children.Add(labelDisclaimerValue);
 
             ContentViewButton buttonDisclaimer = new TextContentViewButton(hasBackground: true)
@@ -87,8 +87,8 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 Style = Theme.ApplicationStyles.TextOnlyImportantContentButtonStyle
             };
 
-            buttonDisclaimer.SetBinding<AboutViewModel>(ContentViewButton.TextProperty, vm => vm.LocalizationResources.AboutDisclaimerTitle);
-            buttonDisclaimer.SetBinding<AboutViewModel>(ContentViewButton.CommandParameterProperty, vm => vm.LocalizationResources.DisclaimerUrl);
+            buttonDisclaimer.SetBinding(ContentViewButton.TextProperty, "LocalizationResources.AboutDisclaimerTitle");
+            buttonDisclaimer.SetBinding(ContentViewButton.CommandParameterProperty, "LocalizationResources.DisclaimerUrl");
             stackGeneral.Children.Add(buttonDisclaimer);
 
             Image imageAnuracode = new ExtendedImage()

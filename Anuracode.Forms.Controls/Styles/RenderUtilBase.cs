@@ -145,10 +145,10 @@ namespace Anuracode.Forms.Controls.Styles
         /// <param name="contentView">Control to add as content.</param>
         /// <param name="labelSytle">Style to use.</param>
         /// <param name="horizontalOptions">Option to center.</param>
-        public virtual void RenderField<TViewModel>(
+        public virtual void RenderField(
             StackLayout stackContainer,
-            Expression<Func<TViewModel, object>> expressionLabel = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
+            string expressionLabel = null,
+            string expressionIsVisible = null,
             StackOrientation orientation = StackOrientation.Vertical,
             IValueConverter labelConverter = null,
             IValueConverter isVisibleConverter = null,
@@ -182,7 +182,7 @@ namespace Anuracode.Forms.Controls.Styles
 
             if (expressionIsVisible != null)
             {
-                stackElement.SetBinding<TViewModel>(StackLayout.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
+                stackElement.SetBinding(StackLayout.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
             }
 
             if ((expressionLabel != null) || (labelValue != null))
@@ -217,11 +217,11 @@ namespace Anuracode.Forms.Controls.Styles
                 {
                     if (addTwoPoint)
                     {
-                        labelElement.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionLabel, converter: labelConverter, stringFormat: TWO_POINTS_FORMAT);
+                        labelElement.SetBinding(ExtendedLabel.TextProperty, expressionLabel, converter: labelConverter, stringFormat: TWO_POINTS_FORMAT);
                     }
                     else
                     {
-                        labelElement.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionLabel, converter: labelConverter);
+                        labelElement.SetBinding(ExtendedLabel.TextProperty, expressionLabel, converter: labelConverter);
                     }
                 }
 
@@ -251,10 +251,10 @@ namespace Anuracode.Forms.Controls.Styles
         /// <param name="editorView">Control to add as content.</param>
         /// <param name="labelSytle">Style for the label.</param>
         /// <param name="addSpaceAfter">Add space before field.</param>
-        public virtual void RenderFormField<TViewModel>(
+        public virtual void RenderFormField(
             StackLayout stackContainer,
-            Expression<Func<TViewModel, object>> expressionLabel = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
+            string expressionLabel = null,
+            string expressionIsVisible = null,
             StackOrientation orientation = StackOrientation.Vertical,
             IValueConverter labelConverter = null,
             IValueConverter isVisibleConverter = null,
@@ -276,7 +276,7 @@ namespace Anuracode.Forms.Controls.Styles
                 formLabelStyle = labelSytle;
             }
 
-            RenderField<TViewModel>(stackContainer, expressionLabel, expressionIsVisible, orientation, labelConverter, isVisibleConverter, labelValue, addTwoPoint, editorView, formLabelStyle, horizontalOptions: horizontalOptions);
+            RenderField(stackContainer, expressionLabel, expressionIsVisible, orientation, labelConverter, isVisibleConverter, labelValue, addTwoPoint, editorView, formLabelStyle, horizontalOptions: horizontalOptions);
 
             if (addSpaceAfter)
             {
@@ -449,11 +449,11 @@ namespace Anuracode.Forms.Controls.Styles
         /// <param name="labelValue">Value for the label (when a expression do not apply.</param>
         /// <param name="valueValue">Value for the value (when a expression do not apply.</param>
         /// <param name="addTwoPoint">Add two points to the label.</param>
-        public virtual void RenderReadField<TViewModel>(
+        public virtual void RenderReadField(
             StackLayout stackContainer,
-            Expression<Func<TViewModel, object>> expressionLabel = null,
-            Expression<Func<TViewModel, object>> expressionValue = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
+            string expressionLabel = null,
+            string expressionValue = null,
+            string expressionIsVisible = null,
             StackOrientation orientation = StackOrientation.Vertical,
             IValueConverter labelConverter = null,
             IValueConverter valueConverter = null,
@@ -489,13 +489,13 @@ namespace Anuracode.Forms.Controls.Styles
                 }
                 else if (expressionValue != null)
                 {
-                    extendedLabelValue.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionValue, converter: valueConverter);
+                    extendedLabelValue.SetBinding(ExtendedLabel.TextProperty, expressionValue, converter: valueConverter);
                 }
 
                 contentValue = extendedLabelValue;
             }
 
-            RenderField<TViewModel>(stackContainer, expressionLabel, expressionIsVisible, orientation, labelConverter, isVisibleConverter, labelValue, addTwoPoint, contentValue, horizontalOptions: horizontalOptions);
+            RenderField(stackContainer, expressionLabel, expressionIsVisible, orientation, labelConverter, isVisibleConverter, labelValue, addTwoPoint, contentValue, horizontalOptions: horizontalOptions);
         }
 
         /// <summary>
@@ -510,10 +510,10 @@ namespace Anuracode.Forms.Controls.Styles
         /// <param name="labelValue">Label value</param>
         /// <param name="isVisibleConverter">Is visible converter.</param>
         /// <param name="cornerRadius">Corner radius.</param>
-        public virtual void RenderSectionTitle<TViewModel>(
+        public virtual void RenderSectionTitle(
             StackLayout stackContainer,
-            Expression<Func<TViewModel, object>> expressionLabel = null,
-            Expression<Func<TViewModel, object>> expressionIsVisible = null,
+            string expressionLabel = null,
+            string expressionIsVisible = null,
             IValueConverter labelConverter = null,
             IValueConverter isVisibleConverter = null,
             bool addTwoPoint = false,
@@ -573,18 +573,18 @@ namespace Anuracode.Forms.Controls.Styles
             {
                 if (addTwoPoint)
                 {
-                    labelsection.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionLabel, stringFormat: " {0}:", converter: labelConverter);
+                    labelsection.SetBinding(ExtendedLabel.TextProperty, expressionLabel, stringFormat: " {0}:", converter: labelConverter);
                 }
                 else
                 {
-                    labelsection.SetBinding<TViewModel>(ExtendedLabel.TextProperty, expressionLabel, stringFormat: " {0}", converter: labelConverter);
+                    labelsection.SetBinding(ExtendedLabel.TextProperty, expressionLabel, stringFormat: " {0}", converter: labelConverter);
                 }
             }
 
             if (expressionIsVisible != null)
             {
-                gridLayout.SetBinding<TViewModel>(StackLayout.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
-                shapeSectionBackground.SetBinding<TViewModel>(ShapeView.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
+                gridLayout.SetBinding(StackLayout.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
+                shapeSectionBackground.SetBinding(ShapeView.IsVisibleProperty, expressionIsVisible, converter: isVisibleConverter);
             }
 
             RenderSpace(stackSection, 10, 10);
