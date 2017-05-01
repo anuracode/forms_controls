@@ -2,12 +2,12 @@
   "dependencies": {
     "Microsoft.Bcl.Build": "1.0.21",
     "Microsoft.Net.Http": "2.2.29",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
     "modernhttpclient": "2.4.2",
     "Rx-Core": "2.2.5",
     "Rx-Main": "2.2.5",
     "Rx-PlatformServices": "2.2.5",
-    "Xamarin.Forms": "2.3.5.233-pre1"
+    "Xamarin.Forms": "2.3.5.235-pre2"
   },
   "frameworks": {
     "uap10.0": {}
