@@ -2245,7 +2245,7 @@
           }
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -4594,7 +4594,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -6982,7 +6982,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -9340,7 +9340,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -11737,7 +11737,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -14095,7 +14095,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -16492,7 +16492,7 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.5.235-pre2": {
+      "Xamarin.Forms/2.3.5.239-pre3": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -24965,10 +24965,10 @@
         "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "Xamarin.Forms/2.3.5.235-pre2": {
-      "sha512": "o8VjPdtAG99emuaL1tQTTGFjEFqf5fCx5TBmh8S+w/lI1m48jxsdC492tZsjdYpgpnbQW/V9ebPGFZDSTlkLHw==",
+    "Xamarin.Forms/2.3.5.239-pre3": {
+      "sha512": "nr8U+3nYBdsRFnm5oBKWi6zdEalbd0unmEZFPwTSXtSRumcMSwsMU/UI9cP0wmzwBMJYCjPYmvKZIorVmcjM7Q==",
       "type": "package",
-      "path": "xamarin.forms/2.3.5.235-pre2",
+      "path": "xamarin.forms/2.3.5.239-pre3",
       "files": [
         "build/netstandard1.0/Mono.Cecil.Mdb.dll",
         "build/netstandard1.0/Mono.Cecil.Pdb.dll",
@@ -25147,7 +25147,7 @@
         "lib/wpa81/Xamarin.Forms.Platform.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.dll",
         "lib/wpa81/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.2.3.5.235-pre2.nupkg.sha512",
+        "xamarin.forms.2.3.5.239-pre3.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -25162,7 +25162,7 @@
       "Microsoft.Bcl.Build >= 1.0.21",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.3.3",
       "Microsoft.Net.Http >= 2.2.29",
-      "Xamarin.Forms >= 2.3.5.235-pre2",
+      "Xamarin.Forms >= 2.3.5.239-pre3",
       "modernhttpclient >= 2.4.2"
     ],
     "UAP,Version=v10.0": []
@@ -25192,7 +25192,7 @@
       "Microsoft.Net.Http": "2.2.29",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
       "modernhttpclient": "2.4.2",
-      "Xamarin.Forms": "2.3.5.235-pre2"
+      "Xamarin.Forms": "2.3.5.239-pre3"
     },
     "frameworks": {
       "uap10.0": {}
