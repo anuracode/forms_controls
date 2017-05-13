@@ -25144,16 +25144,16 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj",
+      "projectUniqueName": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj",
       "projectName": "Anuracode.Forms.Controls.WindowsUWP",
-      "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj",
-      "projectJsonPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.WindowsUWP\\project.json",
+      "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj",
+      "projectJsonPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.WindowsUWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj": {
-              "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj"
+            "C:\\Proyectos\\FC\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj": {
+              "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj"
             }
           }
         }
@@ -25164,7 +25164,7 @@
       "Microsoft.Net.Http": "2.2.29",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
       "modernhttpclient": "2.4.2",
-      "Xamarin.Forms": "[2.3.4.231, )"
+      "Xamarin.Forms": "2.3.4.231"
     },
     "frameworks": {
       "uap10.0": {}

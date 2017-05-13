@@ -25800,22 +25800,22 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\Anuracode.Forms.Controls.Sample.UWP.csproj",
+      "projectUniqueName": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\Anuracode.Forms.Controls.Sample.UWP.csproj",
       "projectName": "Anuracode.Forms.Controls.Sample.UWP",
-      "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\Anuracode.Forms.Controls.Sample.UWP.csproj",
-      "projectJsonPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\project.json",
+      "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\Anuracode.Forms.Controls.Sample.UWP.csproj",
+      "projectJsonPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.UWP\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj": {
-              "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj"
+            "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj": {
+              "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.WindowsUWP\\Anuracode.Forms.Controls.WindowsUWP.csproj"
             },
-            "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj": {
-              "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj"
+            "C:\\Proyectos\\FC\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj": {
+              "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls\\Anuracode.Forms.Controls.csproj"
             },
-            "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.csproj": {
-              "projectPath": "C:\\Proyectos\\forms_controls\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.csproj"
+            "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.csproj": {
+              "projectPath": "C:\\Proyectos\\FC\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample\\Anuracode.Forms.Controls.Sample.csproj"
             }
           }
         }
