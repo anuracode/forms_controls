@@ -79,20 +79,20 @@ namespace Anuracode.Forms.Controls.Extensions
 
             switch (os)
             {
-                case Device.Android:
+                case DeviceExtension.Android:
                     returnValue = android;
                     break;
 
-                case Device.WinPhone:
+                case DeviceExtension.WinPhone:
                     returnValue = windowsPhone;
                     break;
 
-                case Device.UWP:
-                case Device.WinRT:
+                case DeviceExtension.UWP:
+                case DeviceExtension.WinRT:
                     returnValue = windows;
                     break;
 
-                case Device.iOS:
+                case DeviceExtension.iOS:
                     returnValue = iOS;
                     break;
 

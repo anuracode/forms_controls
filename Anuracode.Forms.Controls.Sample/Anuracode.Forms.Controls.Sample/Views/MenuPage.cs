@@ -28,7 +28,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
         {
             NavigationPage.SetHasNavigationBar(this, false);
 
-            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.WinRT || Device.RuntimePlatform == Device.UWP)
+            if (Device.RuntimePlatform == DeviceExtension.WinPhone || Device.RuntimePlatform == DeviceExtension.WinRT || Device.RuntimePlatform == DeviceExtension.UWP)
             {
                 this.Title = "Menu";
             }
@@ -270,7 +270,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                         MenuScroll.HeightRequest = -1;
                     }
 
-                    if ((Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP))
+                    if ((Device.RuntimePlatform == DeviceExtension.WinRT) || (Device.RuntimePlatform == DeviceExtension.UWP))
                     {
                         IsSmallView = ((width < 290) && (width > 0)) || ((height < 300) && (height > 0));
                     }

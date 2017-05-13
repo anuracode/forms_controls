@@ -4,18 +4,19 @@
 // <author>https://github.com/XLabs/Xamarin-Forms-Labs</author>
 
 using Android.Graphics;
-using Anuracode.Forms.Controls.Droid;
+using Android.Widget;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Anuracode.Forms.Controls.Droid;
 
 namespace Anuracode.Forms.Controls.Renderers
 {
     /// <summary>
     /// Extended renderer.
     /// </summary>
-    public class ExtendedLabelRenderer : Xamarin.Forms.Platform.Android.FastRenderers.LabelRenderer
+    public class ExtendedLabelRenderer : LabelRenderer
     {
         /// <summary>
         ///  Last text size.
@@ -31,8 +32,9 @@ namespace Anuracode.Forms.Controls.Renderers
             base.OnElementChanged(e);
 
             var view = (ExtendedLabel)Element;
+            var control = Control;
 
-            UpdateUi(view);
+            UpdateUi(view, control);
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Anuracode.Forms.Controls.Renderers
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (this.Element == null)
+            if ((this.Element == null) || (this.Control == null))
             {
                 return;
             }
@@ -54,8 +56,8 @@ namespace Anuracode.Forms.Controls.Renderers
                 (e.PropertyName == Label.TextProperty.PropertyName) ||
                 (e.PropertyName == Label.FormattedTextProperty.PropertyName))
             {
-                UpdateUi(this.Element as ExtendedLabel);
-                PostInvalidate();
+                UpdateUi(this.Element as ExtendedLabel, this.Control);
+                Control.PostInvalidate();
             }
         }
 
@@ -91,9 +93,9 @@ namespace Anuracode.Forms.Controls.Renderers
         /// </summary>
         /// <param name="view">The view.</param>
         /// <param name="control">The control.</param>
-        protected void UpdateUi(ExtendedLabel view)
+        protected void UpdateUi(ExtendedLabel view, TextView control)
         {
-            if (view != null)
+            if ((view != null) && (control != null))
             {
                 if (!string.IsNullOrEmpty(view.FontName))
                 {
@@ -103,28 +105,27 @@ namespace Anuracode.Forms.Controls.Renderers
                     {
                         filename = string.Format("{0}.ttf", filename);
                     }
-
-                    this.Typeface = TrySetFont(filename);
+                    control.Typeface = TrySetFont(filename);
                 }
                 else if (view.Font != Font.Default)
                 {
-                    Typeface = view.Font.ToExtendedTypeface(Context);
+                    control.Typeface = view.Font.ToExtendedTypeface(Context);
                 }
 
                 if (view.FontSize > 0 && (lastTextSize != view.FontSize))
                 {
-                    SetTextSize(Android.Util.ComplexUnitType.Sp, (float)view.FontSize);
+                    control.SetTextSize(Android.Util.ComplexUnitType.Sp, (float)view.FontSize);
                     lastTextSize = (float)view.FontSize;
                 }
 
                 if (view.IsUnderline)
                 {
-                    PaintFlags = PaintFlags | PaintFlags.UnderlineText;
+                    control.PaintFlags = control.PaintFlags | PaintFlags.UnderlineText;
                 }
 
                 if (view.IsStrikeThrough)
                 {
-                    PaintFlags = PaintFlags | PaintFlags.StrikeThruText;
+                    control.PaintFlags = control.PaintFlags | PaintFlags.StrikeThruText;
                 }
             }
         }

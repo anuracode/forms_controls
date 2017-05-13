@@ -197,7 +197,7 @@ namespace Anuracode.Forms.Controls.Styles
                 {
                     return 0.8;
                 }
-                else if ((Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP))
+                else if ((Device.RuntimePlatform == DeviceExtension.WinRT) || (Device.RuntimePlatform == DeviceExtension.UWP))
                 {
                     return 0.9;
                 }

@@ -579,11 +579,11 @@ namespace Anuracode.Forms.Controls.Sample.Views
 
             MasterBehavior = Xamarin.Forms.MasterBehavior.Popover;
 
-            if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.UWP || Device.RuntimePlatform == Device.WinRT)
+            if (Device.RuntimePlatform == DeviceExtension.WinPhone || Device.RuntimePlatform == DeviceExtension.UWP || Device.RuntimePlatform == DeviceExtension.WinRT)
             {
                 mainMenu.Icon = Theme.CommonResources.PathImageFeaturesAction;
             }
-            else if (Device.RuntimePlatform == Device.iOS)
+            else if (Device.RuntimePlatform == DeviceExtension.iOS)
             {
                 mainMenu.Icon = Theme.CommonResources.PathImageHambuergerLogo;
             }

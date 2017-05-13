@@ -117,7 +117,7 @@ namespace Anuracode.Forms.Controls
             ContentLayout.OnLayoutChildren += ContentLayout_OnLayoutChildren;
             ContentLayout.ManualSizeCalculationDelegate = ContentLayout_OnSizeRequest;
 
-            if ((Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP))
+            if ((Device.RuntimePlatform == DeviceExtension.WinRT) || (Device.RuntimePlatform == DeviceExtension.UWP))
             {
                 showActivityIndicator = false;
             }

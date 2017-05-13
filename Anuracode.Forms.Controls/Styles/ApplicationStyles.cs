@@ -462,8 +462,8 @@ namespace Anuracode.Forms.Controls.Styles
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.ImageWidthRequestProperty, CommonResources.RoundedButtonWidth);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.MarginElementsProperty, 0);
                     glyphOnlyNavbarButtonStyle.Setters.Add(ContentViewButton.MarginBordersProperty, 0);
-                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.GlyphFontSizeProperty, (Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
-                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.FontSizeProperty, (Device.RuntimePlatform == Device.WinRT) || (Device.RuntimePlatform == Device.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
+                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.GlyphFontSizeProperty, (Device.RuntimePlatform == DeviceExtension.WinRT) || (Device.RuntimePlatform == DeviceExtension.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
+                    glyphOnlyNavbarButtonStyle.Setters.Add(GlyphContentViewButton.FontSizeProperty, (Device.RuntimePlatform == DeviceExtension.WinRT) || (Device.RuntimePlatform == DeviceExtension.UWP) ? CommonResources.TextSizeMedium : CommonResources.TextSizeMedium * 1.25f);
                 }
 
                 return glyphOnlyNavbarButtonStyle;
