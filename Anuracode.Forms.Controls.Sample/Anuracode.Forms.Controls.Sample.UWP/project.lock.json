@@ -2336,6 +2336,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -4758,6 +4759,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -7219,6 +7221,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -9650,6 +9653,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -12120,6 +12124,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -14551,6 +14556,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -17021,6 +17027,7 @@
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
           "Microsoft.Net.Http": "2.2.29",
+          "Xamarin.Forms": "2.3.4.247",
           "modernhttpclient": "2.4.2"
         }
       }
@@ -25822,10 +25829,7 @@
       "Rx-Core": "2.2.5",
       "Rx-Main": "2.2.5",
       "Rx-PlatformServices": "2.2.5",
-      "Xamarin.Forms": {
-        "target": "Package",
-        "version": "[2.3.4.247, )"
-      }
+      "Xamarin.Forms": "2.3.4.247"
     },
     "frameworks": {
       "uap10.0": {}

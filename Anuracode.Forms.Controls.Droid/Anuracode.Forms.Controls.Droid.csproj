@@ -114,7 +114,8 @@
     <Compile Include="ExtendedImage\FormsImageView.cs" />
     <Compile Include="ExtendedImage\ImageLoader.cs" />
     <Compile Include="ExtendedImage\ImageSourceBinding.cs" />
-    <Compile Include="ExtendedLabelRenderer.cs" />
+    <Compile Include="ExtendedLabel\ExtendedLabelRenderer.cs" />
+    <Compile Include="ExtendedLabel\FormsTextView.cs" />
     <Compile Include="FontExtensions.cs" />
     <Compile Include="ImageCircleRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

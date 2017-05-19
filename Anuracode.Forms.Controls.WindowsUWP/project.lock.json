@@ -25164,10 +25164,7 @@
       "Microsoft.Net.Http": "2.2.29",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
       "modernhttpclient": "2.4.2",
-      "Xamarin.Forms": {
-        "target": "Package",
-        "version": "[2.3.4.247, )"
-      }
+      "Xamarin.Forms": "2.3.4.247"
     },
     "frameworks": {
       "uap10.0": {}
