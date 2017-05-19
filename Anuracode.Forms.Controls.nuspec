@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Anuracode.Forms.Controls</id>
-    <version>1.0.2.2</version>
+    <version>1.0.2.3</version>
     <title>Anuracode Forms controls</title>
     <authors>Anuracode</authors>
     <owners>Anuracode</owners>
@@ -11,12 +11,12 @@
     <copyright>Copyright ©  2016</copyright>
     <dependencies>
       <group>
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />
@@ -24,7 +24,7 @@
         <dependency id="Xamarin.Android.Support.v7.AppCompat" version="[23.3.0]" />
       </group>
       <group targetFramework="MonoAndroid">
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />
@@ -33,23 +33,22 @@
         <dependency id="Xamarin.Android.Support.v7.CardView" version="[23.3.0]" />
       </group>
       <group targetFramework="monoandroid71">
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />
-        <dependency id="Xamarin.Android.Support.v4" version="25.3.1" />
-        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="25.3.1" />
-        <dependency id="Xamarin.Android.Support.v7.CardView" version="25.3.1" />
-        <dependency id="Xamarin.Build.Download" version="0.4.4" />
+        <dependency id="Xamarin.Android.Support.v4" version="[23.3.0]" />
+        <dependency id="Xamarin.Android.Support.v7.AppCompat" version="[23.3.0]" />
+        <dependency id="Xamarin.Android.Support.v7.CardView" version="[23.3.0]" />        
       </group>
       <group targetFramework="xamarinios">
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Xamarin.FFImageLoading" version="[2.2.8]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />
       </group>
       <group targetFramework="uap">
-        <dependency id="Xamarin.Forms" version="[2.3.4.231]" />
+        <dependency id="Xamarin.Forms" version="[2.3.4.247]" />
         <dependency id="Microsoft.Net.Http" version="2.2.29" />
         <dependency id="modernhttpclient" version="2.4.2" />        
         <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.3.3" />        
