@@ -10,6 +10,8 @@ namespace SampleAndroid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            Xamarin.Essentials.Platform.Init(this, bundle); // add this line to your code, it may also be called: bundle
+
             Anuracode.Forms.Controls.Renderers.ExtendedImageRenderer.AllowDownSample = true;
             FFImageLoading.ImageService.Instance.Initialize(
                 new FFImageLoading.Config.Configuration()
@@ -23,7 +25,7 @@ namespace SampleAndroid
                 });
 
             // set the layout resources first
-            global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
+            // global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
             global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
             base.OnCreate(bundle);
 

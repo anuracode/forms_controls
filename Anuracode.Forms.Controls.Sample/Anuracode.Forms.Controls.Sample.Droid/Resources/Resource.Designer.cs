@@ -2717,8 +2717,6 @@ namespace SampleAndroid
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.View_paddingEnd = global::SampleAndroid.Resource.Styleable.View_paddingEnd;
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.View_paddingStart = global::SampleAndroid.Resource.Styleable.View_paddingStart;
 			global::Anuracode.Forms.Controls.Droid.Resource.Styleable.View_theme = global::SampleAndroid.Resource.Styleable.View_theme;
-			global::ModernHttpClient.Resource.String.app_name = global::SampleAndroid.Resource.String.app_name;
-			global::ModernHttpClient.Resource.String.hello = global::SampleAndroid.Resource.String.hello;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::SampleAndroid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::SampleAndroid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::SampleAndroid.Resource.Attribute.font;
