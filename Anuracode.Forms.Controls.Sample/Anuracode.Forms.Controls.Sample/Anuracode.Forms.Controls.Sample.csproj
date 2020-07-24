@@ -1,191 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF46EFA6-1ECD-47E6-844B-32948C09119C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Anuracode.Forms.Controls.Sample</RootNamespace>
-    <AssemblyName>Anuracode.Forms.Controls.Sample</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
+    <Version>1.0.3.0</Version>
+    <Authors>Anuracode</Authors>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="Interfaces\IListPagedViewModelBase.cs" />
-    <Compile Include="Interfaces\IStoreListPage.cs" />
-    <Compile Include="Localization\LocalizationResources.cs" />
-    <Compile Include="Model\Address.cs" />
-    <Compile Include="Model\BaseEntity.cs" />
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\PersonBase.cs" />
-    <Compile Include="Model\StoreItem.cs" />
-    <Compile Include="Model\StoreItemLevel.cs" />
-    <Compile Include="Model\StringExtensions.cs" />
-    <Compile Include="Repository\RepositoryAddress.cs" />
-    <Compile Include="Repository\RepositoryCart.cs" />
-    <Compile Include="Repository\RepositoryStoreItem.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\ImageLoopViewModel.cs" />
-    <Compile Include="ViewModels\WebViewViewModel.cs" />
-    <Compile Include="ViewModels\AddressListViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CartListViewModel.cs" />
-    <Compile Include="ViewModels\GenericComparer.cs" />
-    <Compile Include="ViewModels\GroupingExtensions.cs" />
-    <Compile Include="ViewModels\ImageSampleViewModel.cs" />
-    <Compile Include="ViewModels\IStoreListViewModel.cs" />
-    <Compile Include="ViewModels\ListPagedViewModelBase.Generics.cs" />
-    <Compile Include="ViewModels\PagedResult.Generics.cs" />
-    <Compile Include="ViewModels\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\SignatureViewModel.cs" />
-    <Compile Include="ViewModels\StoreDetailViewModel.cs" />
-    <Compile Include="ViewModels\StoreItemCartViewModel.cs" />
-    <Compile Include="ViewModels\StoreItemLevelViewModel.cs" />
-    <Compile Include="ViewModels\StoreItemViewModel.cs" />
-    <Compile Include="ViewModels\StoreListViewModel.cs" />
-    <Compile Include="ViewModels\StoreSearchViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Theme.cs" />
-    <Compile Include="Views\ImageLoopPage.cs" />
-    <Compile Include="Views\WebViewPage.cs" />
-    <Compile Include="Views\AboutPage.cs" />
-    <Compile Include="Views\AddressesListPage.cs" />
-    <Compile Include="Views\AddressRowView.cs" />
-    <Compile Include="Views\BasePagedView.Generics.cs" />
-    <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\BaseView.Generics.cs" />
-    <Compile Include="Views\CartLargeView.cs" />
-    <Compile Include="Views\CartRowView.cs" />
-    <Compile Include="Views\CartSmallView.cs" />
-    <Compile Include="Views\Common\BaseConverter.cs" />
-    <Compile Include="Views\Common\CommonResources.cs" />
-    <Compile Include="Views\Common\CommonResourcesGlyph.cs" />
-    <Compile Include="Views\Common\IntToBooleanConverter.cs" />
-    <Compile Include="Views\Common\InvertBooleanToBooleanConverter.cs" />
-    <Compile Include="Views\Common\StoreItemLevelToLowerLevelStringConverter.cs" />
-    <Compile Include="Views\Common\StringToBooleanConverter.cs" />
-    <Compile Include="Views\ContentBaseView.Generics.cs" />
-    <Compile Include="Views\FilterBarStoreView.cs" />
-    <Compile Include="Views\FilterBarView.cs" />
-    <Compile Include="Views\ImageSamplePage.cs" />
-    <Compile Include="Views\IntroPage.cs" />
-    <Compile Include="Views\ListBasePagedView.Generics.cs" />
-    <Compile Include="Views\MainPage.cs" />
-    <Compile Include="Views\MenuPage.cs" />
-    <Compile Include="ViewModels\NavigationStep.cs" />
-    <Compile Include="Views\ProfilePage.cs" />
-    <Compile Include="Views\SignatureLargeSimpleView.cs" />
-    <Compile Include="Views\SignaturePage.cs" />
-    <Compile Include="Views\StoreDetailGroupView.cs" />
-    <Compile Include="Views\StoreDetailLargeSimpleView.cs" />
-    <Compile Include="Views\StoreDetailSmallSimpleView.cs" />
-    <Compile Include="Views\StoreItemLevelSimpleView.cs" />
-    <Compile Include="Views\StoreItemLevelTopPreviewView.cs" />
-    <Compile Include="Views\StoreItemThumbFeaturedVerticalView.cs" />
-    <Compile Include="Views\StoreItemThumbFeaturedView.cs" />
-    <Compile Include="Views\StoreItemThumbHorizontalSimpleView.cs" />
-    <Compile Include="Views\StoreItemThumbOnlyView.cs" />
-    <Compile Include="Views\StoreItemThumbVerticalBarView.cs" />
-    <Compile Include="Views\StoreItemThumbVerticalBarViewCell.cs" />
-    <Compile Include="Views\StoreItemThumbView.cs" />
-    <Compile Include="Views\StoreListCategoryView.cs" />
-    <Compile Include="Views\StoreListPage.cs" />
-    <Compile Include="Views\StoreSearchPage.cs" />
+
+  <ItemGroup><!--<PackageReference Include="" Version=""/>-->
+  
+    <Folder Include="Properties\" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
-    <None Include="packages.config" />
+    <PackageReference Include="System.Reactive.Linq" Version="4.4.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\Anuracode.Forms.Controls\Anuracode.Forms.Controls.csproj">
-      <Project>{30757d16-8a20-4cc2-a4b7-1deec7c77c51}</Project>
-      <Name>Anuracode.Forms.Controls</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\Anuracode.Forms.Controls\Anuracode.Forms.Controls.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
-  </Target>
-  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

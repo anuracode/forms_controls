@@ -1,131 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{30757D16-8A20-4CC2-A4B7-1DEEC7C77C51}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Anuracode.Forms.Controls</RootNamespace>
-    <AssemblyName>Anuracode.Forms.Controls</AssemblyName>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Anuracode.Forms.Controls</PackageId>
+    <Version>1.0.3.0</Version>
+    <Authors>Anuracode</Authors>
+    <Company>Anuracode</Company>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AC.cs" />
-    <Compile Include="BindablePropertyHelper.cs" />
-    <Compile Include="CircleImage.cs" />
-    <Compile Include="ContentButton\ContentTemplateViewButton.cs" />
-    <Compile Include="ContentButton\ContentViewButton.cs" />
-    <Compile Include="ContentButton\GlyphContentViewButton.cs" />
-    <Compile Include="ContentButton\GlyphLeftContentViewButton.cs" />
-    <Compile Include="ContentButton\GlyphOnlyContentViewButton.cs" />
-    <Compile Include="ContentButton\GlyphTopContentViewButton.cs" />
-    <Compile Include="ContentButton\ImageContentViewButton.cs" />
-    <Compile Include="ContentButton\ImageLeftContentViewButton.cs" />
-    <Compile Include="ContentButton\TextContentViewButton.cs" />
-    <Compile Include="DeviceExtension.cs" />
-    <Compile Include="EventArgs.Generics.cs" />
-    <Compile Include="ExtendedEntry.cs" />
-    <Compile Include="ExtendedImage.cs" />
-    <Compile Include="ExtendedLabel.cs" />
-    <Compile Include="ExtendedSlider.cs" />
-    <Compile Include="ICommandExtensions.cs" />
-    <Compile Include="ImageOrientation.cs" />
-    <Compile Include="ITraceService.cs" />
-    <Compile Include="Layouts\CollectionChangedHandle.cs" />
-    <Compile Include="Layouts\HeaderCell.cs" />
-    <Compile Include="Layouts\IGroupingPaged.cs" />
-    <Compile Include="Layouts\InfiniteListView.cs" />
-    <Compile Include="Layouts\InfiniteRepeaterRecycleView.cs" />
-    <Compile Include="Layouts\RepeaterRecycleView.cs" />
-    <Compile Include="Layouts\RepeaterView.generics.cs" />
-    <Compile Include="Layouts\SimpleLayout.cs" />
-    <Compile Include="Layouts\SimpleRowBaseView.cs" />
-    <Compile Include="Layouts\SimpleViewBase.cs" />
-    <Compile Include="Layouts\SimpleViewViewCell.Generic.cs" />
-    <Compile Include="Layouts\SimpleViewViewRowCell.Generic.cs" />
-    <Compile Include="Layouts\TemplateSelector.cs" />
-    <Compile Include="ObjectExtension.cs" />
-    <Compile Include="ObservableCollectionFast.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShapeType.cs" />
-    <Compile Include="ShapeView.cs" />
-    <Compile Include="SignaturePad\DrawPoint.cs" />
-    <Compile Include="SignaturePad\SignaturePadView.cs" />
-    <Compile Include="SignaturePad\SignatureSerializer.cs" />
-    <Compile Include="Styles\ApplicationStyles.cs" />
-    <Compile Include="Styles\ApplicationStyles.Generics.cs" />
-    <Compile Include="Styles\ApplicationStylesBase.cs" />
-    <Compile Include="Styles\CommonResourcesBase.cs" />
-    <Compile Include="Styles\CommonResourcesBase.Fonts.cs" />
-    <Compile Include="Styles\CommonResourcesDarkTheme.cs" />
-    <Compile Include="Styles\CommonResourcesLightTheme.cs" />
-    <Compile Include="Styles\RenderUtilBase.cs" />
-    <Compile Include="Styles\ThemeManager.cs" />
-    <Compile Include="Thread\IThreadManager.cs" />
-    <Compile Include="Thread\ThreadManagerBase.cs" />
-    <Compile Include="ViewExtensions.cs" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
+    <Folder Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
-  </Target>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+
 </Project>

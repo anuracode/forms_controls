@@ -159,12 +159,7 @@ namespace Anuracode.Forms.Controls.Sample.Views
                 if (SignatureView != null)
                 {
                     isBlank = SignatureView.IsBlank;
-                }
-
-                if (Device.RuntimePlatform == Device.WinPhone)
-                {
-                    isBlank = false;
-                }
+                }                
 
                 return isBlank;
             }

@@ -6,7 +6,6 @@
 using Android.Graphics;
 using Android.Views;
 using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace Anuracode.Forms.Controls.Renderers

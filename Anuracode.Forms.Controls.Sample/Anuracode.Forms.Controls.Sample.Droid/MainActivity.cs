@@ -1,13 +1,9 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Anuracode.Forms.Controls.Sample;
 
-namespace Anuracode.Forms.Controls.Sample.Droid
+namespace SampleAndroid
 {
     [Activity(Label = "Anuracode.Forms.Controls.Sample", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity  // global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
@@ -37,4 +33,3 @@ namespace Anuracode.Forms.Controls.Sample.Droid
         }
     }
 }
-

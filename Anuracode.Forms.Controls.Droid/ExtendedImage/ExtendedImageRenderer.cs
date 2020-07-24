@@ -35,7 +35,7 @@ namespace Anuracode.Forms.Controls.Renderers
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public ExtendedImageRenderer()
+        public ExtendedImageRenderer() : base(Android.App.Application.Context)
         {
             AutoPackage = false;
         }

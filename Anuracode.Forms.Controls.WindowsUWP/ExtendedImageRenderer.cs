@@ -15,6 +15,7 @@ using Xamarin.Forms.Internals;
 #if WINDOWS_UWP
 
 using Xamarin.Forms.Platform.UWP;
+using Stretch = Windows.UI.Xaml.Media.Stretch;
 
 #else
 
