@@ -5,6 +5,8 @@
     <Version>1.0.3.0</Version>
     <Authors>Anuracode</Authors>
     <Company>Anuracode</Company>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />

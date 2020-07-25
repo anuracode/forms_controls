@@ -4,6 +4,7 @@
     <PackageId>Anuracode.Signature.Serialization</PackageId>
     <Version>1.0.3.0</Version>
     <Authors>Anuracode</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup><!--<PackageReference Include="" Version=""/>-->
