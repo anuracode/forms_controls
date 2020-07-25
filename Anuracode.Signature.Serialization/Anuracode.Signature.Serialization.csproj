@@ -5,6 +5,7 @@
     <Version>1.0.3.0</Version>
     <Authors>Anuracode</Authors>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Deterministic>True</Deterministic>
   </PropertyGroup>
 
   <ItemGroup><!--<PackageReference Include="" Version=""/>-->
